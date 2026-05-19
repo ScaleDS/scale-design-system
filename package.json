@@ -19,9 +19,13 @@
   },
   "files": [
     "dist",
+    "components",
     "scss",
     "context",
-    "assets"
+    "assets",
+    "index.ts",
+    "declarations.d.ts",
+    "tsconfig.json"
   ],
   "scripts": {
     "build": "tsc",
