@@ -17,16 +17,6 @@
     "./context/*": "./context/*",
     "./assets/*": "./assets/*"
   },
-  "files": [
-    "dist",
-    "components",
-    "scss",
-    "context",
-    "assets",
-    "index.ts",
-    "declarations.d.ts",
-    "tsconfig.json"
-  ],
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
