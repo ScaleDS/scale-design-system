@@ -1,0 +1,40 @@
+/* Scale: Type Mixins */
+/* Auto-generated from sc-variables-type.scss */
+
+@import './sc-variables-type.scss';
+
+// Helper mixin to apply typography styles from a map
+@mixin _apply-typography($map) {
+  @each $property, $value in $map {
+    #{$property}: $value;
+  }
+}
+
+/* Headings */
+@mixin sc-typography-heading-5xl { @include _apply-typography($sc-typography-heading-5xl); }
+@mixin sc-typography-heading-4xl { @include _apply-typography($sc-typography-heading-4xl); }
+@mixin sc-typography-heading-3xl { @include _apply-typography($sc-typography-heading-3xl); }
+@mixin sc-typography-heading-2xl { @include _apply-typography($sc-typography-heading-2xl); }
+@mixin sc-typography-heading-xl { @include _apply-typography($sc-typography-heading-xl); }
+@mixin sc-typography-heading-l { @include _apply-typography($sc-typography-heading-l); }
+@mixin sc-typography-heading-m { @include _apply-typography($sc-typography-heading-m); }
+@mixin sc-typography-heading-s { @include _apply-typography($sc-typography-heading-s); }
+@mixin sc-typography-heading-xs { @include _apply-typography($sc-typography-heading-xs); }
+@mixin sc-typography-heading-2xs { @include _apply-typography($sc-typography-heading-2xs); }
+
+/* Text */
+@mixin sc-typography-text-2xl { @include _apply-typography($sc-typography-text-2xl); }
+@mixin sc-typography-text-xl { @include _apply-typography($sc-typography-text-xl); }
+@mixin sc-typography-text-l { @include _apply-typography($sc-typography-text-l); }
+@mixin sc-typography-text-m { @include _apply-typography($sc-typography-text-m); }
+@mixin sc-typography-text-s { @include _apply-typography($sc-typography-text-s); }
+
+/* Links */
+@mixin sc-typography-link-l { @include _apply-typography($sc-typography-link-l); }
+@mixin sc-typography-link-m { @include _apply-typography($sc-typography-link-m); }
+@mixin sc-typography-link-s { @include _apply-typography($sc-typography-link-s); }
+
+/* Labels */
+@mixin sc-typography-label-l { @include _apply-typography($sc-typography-label-l); }
+@mixin sc-typography-label-m { @include _apply-typography($sc-typography-label-m); }
+@mixin sc-typography-label-s { @include _apply-typography($sc-typography-label-s); }

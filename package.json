@@ -1,0 +1,59 @@
+{
+  "name": "@scale/design-system",
+  "version": "1.0.0",
+  "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./scss/*": "./scss/*",
+    "./scss/typography": "./dist/scss/typography.js",
+    "./components/*": "./dist/components/*",
+    "./context/*": "./context/*",
+    "./assets/*": "./assets/*"
+  },
+  "files": [
+    "dist",
+    "scss",
+    "context",
+    "assets"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "generate:context": "node scripts/generate-context.mjs",
+    "prepublishOnly": "npm run build && npm run generate:context",
+    "dev": "tsc --watch"
+  },
+  "keywords": [
+    "design-system",
+    "lit",
+    "web-components",
+    "agentic",
+    "ai-ready",
+    "machine-readable",
+    "design-tokens"
+  ],
+  "author": "Christopher Deane",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/scale-design-system"
+  },
+  "dependencies": {
+    "feather-icons": "^4.29.2",
+    "lit": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/feather-icons": "^4.29.4",
+    "typescript": "^5.9.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

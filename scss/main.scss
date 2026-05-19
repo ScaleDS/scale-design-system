@@ -1,0 +1,203 @@
+@use './sc-variables-color';
+@use './sc-variables-border';
+@use './sc-variables-spacing';
+@use './sc-variables-type';
+@use './sc-variables-shadows';
+@use './sc-mixins-type' as type;
+
+/* ---- Reset ---- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Body ---- */
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--sc-type-family-inter), system-ui, sans-serif;
+  background: var(--sc-color-surface-l0);
+  color: var(--sc-color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---- Layout ---- */
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ---- Headings ---- */
+
+h1 { @include type.sc-typography-heading-3xl; }
+h2 { @include type.sc-typography-heading-2xl; }
+h3 { @include type.sc-typography-heading-xl; }
+h4 { @include type.sc-typography-heading-l; }
+h5 { @include type.sc-typography-heading-m; }
+h6 { @include type.sc-typography-heading-s; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--sc-color-text-primary);
+}
+
+/* ---- Body text ---- */
+
+p {
+  @include type.sc-typography-text-l;
+  color: var(--sc-color-text-secondary);
+
+  &.m {
+    @include type.sc-typography-text-m;
+  }
+
+  &.s {
+    @include type.sc-typography-text-s;
+  }
+}
+
+/* ---- Labels ---- */
+
+.label-l { @include type.sc-typography-label-l; }
+.label-m { @include type.sc-typography-label-m; }
+.label-s { @include type.sc-typography-label-s; }
+
+.section-label {
+  @include type.sc-typography-label-s;
+  color: var(--sc-color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: var(--sc-space-xl) 0 var(--sc-space-m);
+}
+
+/* ---- Links ---- */
+
+a {
+  @include type.sc-typography-link-l;
+  color: var(--sc-color-text-link);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--sc-color-text-link-hover);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: var(--sc-color-text-link-pressed);
+  }
+}
+
+/* ---- Lists ---- */
+
+ul, ol {
+  @include type.sc-typography-text-l;
+  color: var(--sc-color-text-secondary);
+  padding-left: var(--sc-space-xl);
+}
+
+li + li {
+  margin-top: var(--sc-space-xs);
+}
+
+/* ---- Horizontal rule ---- */
+
+hr {
+  border: none;
+  border-top: var(--sc-border-width-s) solid var(--sc-color-border-secondary);
+  margin: var(--sc-space-xl) 0;
+}
+
+/* ---- Images ---- */
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ---- Code ---- */
+
+code {
+  font-family: monospace;
+  font-size: var(--sc-type-size-m);
+  background: var(--sc-color-background-neutral);
+  padding: var(--sc-space-2xs) var(--sc-space-xs);
+  border-radius: var(--sc-border-radius-xs);
+}
+
+pre {
+  background: var(--sc-color-background-neutral);
+  padding: var(--sc-space-m);
+  border-radius: var(--sc-border-radius-s);
+  overflow-x: auto;
+
+  code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+  }
+}
+
+/* ---- Glass ---- */
+
+.sc-glass {
+  background: color-mix(in srgb, var(--sc-color-background-neutral) 64%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ---- Selection ---- */
+
+::selection {
+  background: var(--sc-color-background-brand);
+  color: var(--sc-color-text-primary-inverse);
+}
+
+/* ---- Content layout ---- */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sc-space-xl);
+}
+
+/* ---- Header ---- */
+
+sc-header {
+  --sc-header-bg-bottom: 0px;
+}
+
+/* ---- Hero h1 mobile size ---- */
+
+@media (max-width: 402px) {
+  sc-hero h1 { font-size: var(--sc-unit-32); line-height: var(--sc-unit-40); }
+}
+
+/* ---- FAQ section ---- */
+
+@media (min-width: 811px) {
+  sc-section-faq {
+    --sc-section-faq-padding-y: var(--sc-space-4xl);
+  }
+}
+
+/* ---- Licence page ---- */
+
+[data-page='licence'] section {
+  padding-top: 160px;
+  padding-bottom: 32px;
+
+  @media (max-width: 810px) {
+    padding-top: 128px;
+  }
+
+  @media (max-width: 402px) {
+    padding-top: 96px;
+  }
+}

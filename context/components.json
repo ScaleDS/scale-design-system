@@ -1,0 +1,848 @@
+{
+  "name": "@scale/design-system",
+  "version": "1.0.0",
+  "framework": "lit",
+  "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
+  "components": [
+    {
+      "tag": "sc-accordion",
+      "class": "ScAccordion",
+      "category": "navigation",
+      "description": "Vertically stacked sections that expand and collapse with progressive disclosure pattern",
+      "whenToUse": "FAQ sections, settings panels, content that should be hidden by default but accessible on demand",
+      "props": {
+        "open": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "open",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "toggle",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [
+        "sc-divider"
+      ],
+      "example": "<sc-accordion></sc-accordion>"
+    },
+    {
+      "tag": "sc-badge",
+      "class": "ScBadge",
+      "category": "feedback",
+      "description": "Status indicators displayed inline with content or on top of another element",
+      "whenToUse": "Status labels, category tags, notification counts, feature flags",
+      "props": {
+        "status": {
+          "type": "BadgeStatus",
+          "default": "default",
+          "attribute": "status",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-badge></sc-badge>"
+    },
+    {
+      "tag": "sc-button-icon",
+      "class": "ScButtonIcon",
+      "category": "actions",
+      "description": "Icon-only button without a label, used for secondary actions like search, theme toggle, close",
+      "whenToUse": "Toolbar actions, icon buttons where the icon is self-explanatory, space-constrained UIs",
+      "props": {
+        "size": {
+          "type": "ButtonIconSize",
+          "default": "l",
+          "attribute": "size",
+          "reflect": true
+        },
+        "type": {
+          "type": "ButtonIconType",
+          "default": "primary",
+          "attribute": "type",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-button-icon></sc-button-icon>"
+    },
+    {
+      "tag": "sc-button-pill",
+      "class": "ScButtonPill",
+      "category": "actions",
+      "description": "Button with fully rounded ends (pill shape), used for CTAs and navigation",
+      "whenToUse": "Hero CTAs, pill-shaped navigation, floating action buttons, tag-like actions",
+      "props": {
+        "size": {
+          "type": "ButtonPillSize",
+          "default": "l",
+          "attribute": "size",
+          "reflect": true
+        },
+        "type": {
+          "type": "ButtonPillType",
+          "default": "primary",
+          "attribute": "type",
+          "reflect": true
+        },
+        "loading": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "loading",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "leadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "leading-icon",
+          "reflect": false
+        },
+        "trailingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "trailing-icon",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-button-pill></sc-button-pill>"
+    },
+    {
+      "tag": "sc-button",
+      "class": "ScButton",
+      "category": "actions",
+      "description": "Primary action element with 13 visual variants, 3 sizes, loading and disabled states",
+      "whenToUse": "Primary user actions, form submissions, navigation triggers, any interactive CTA",
+      "props": {
+        "size": {
+          "type": "ButtonSize",
+          "default": "l",
+          "attribute": "size",
+          "reflect": true
+        },
+        "type": {
+          "type": "ButtonType",
+          "default": "primary",
+          "attribute": "type",
+          "reflect": true
+        },
+        "loading": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "loading",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "leadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "leading-icon",
+          "reflect": false
+        },
+        "trailingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "trailing-icon",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [
+        {
+          "name": "button",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-button></sc-button>"
+    },
+    {
+      "tag": "sc-card-image",
+      "class": "ScCardImage",
+      "category": "content",
+      "description": "Card surface with image area and content slots, supports default and fill layouts",
+      "whenToUse": "Feature cards, blog post previews, product showcases, any content with image + text",
+      "props": {
+        "variant": {
+          "type": "CardImageVariant",
+          "default": "default",
+          "attribute": "variant",
+          "reflect": true
+        },
+        "imageSrc": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-src",
+          "reflect": false
+        },
+        "imageSrcDark": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-src-dark",
+          "reflect": false
+        },
+        "imageAlt": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-alt",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "heading - Named slot",
+        "description - Named slot",
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-card-image></sc-card-image>"
+    },
+    {
+      "tag": "sc-card-pricing",
+      "class": "ScCardPricing",
+      "category": "content",
+      "description": "Pricing plan card with header, feature rows, and action area",
+      "whenToUse": "Pricing pages, plan comparison, subscription tiers",
+      "props": {},
+      "slots": [
+        "badge - Named slot",
+        "plan - Named slot",
+        "description - Named slot",
+        "default - Content",
+        "actions - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-divider"
+      ],
+      "example": "<sc-card-pricing></sc-card-pricing>"
+    },
+    {
+      "tag": "sc-divider",
+      "class": "ScDivider",
+      "category": "layout",
+      "description": "Thin horizontal line separating content sections",
+      "whenToUse": "Section separators, list item dividers, visual grouping boundaries",
+      "props": {
+        "variant": {
+          "type": "DividerVariant",
+          "default": "default",
+          "attribute": "variant",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-divider></sc-divider>"
+    },
+    {
+      "tag": "sc-footer",
+      "class": "ScFooter",
+      "category": "layout",
+      "description": "Site footer with brand logo, copyright text, and licence link",
+      "whenToUse": "Page footers, bottom of marketing sites, legal pages",
+      "props": {
+        "copyright": {
+          "type": "string",
+          "default": "©2020 - 2026 Christopher Deane. All rights reserved.",
+          "attribute": "copyright",
+          "reflect": false
+        },
+        "licenceLabel": {
+          "type": "string",
+          "default": "Licence Agreement",
+          "attribute": "licence-label",
+          "reflect": false
+        },
+        "licenceHref": {
+          "type": "string",
+          "default": "#",
+          "attribute": "licence-href",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-logo"
+      ],
+      "example": "<sc-footer></sc-footer>"
+    },
+    {
+      "tag": "sc-header",
+      "class": "ScHeader",
+      "category": "layout",
+      "description": "Fixed top navigation bar with logo, nav links, theme toggle, and CTA buttons",
+      "whenToUse": "Site-wide navigation, marketing site headers, app top bars",
+      "props": {
+        "navLinks": {
+          "type": "array",
+          "default": "[]",
+          "attribute": "nav-links",
+          "reflect": false
+        },
+        "navAlign": {
+          "type": "NavAlign",
+          "default": "center",
+          "attribute": "nav-align",
+          "reflect": true
+        },
+        "primaryLabel": {
+          "type": "string",
+          "default": "Buy now",
+          "attribute": "primary-label",
+          "reflect": false
+        },
+        "primaryHref": {
+          "type": "string",
+          "default": "",
+          "attribute": "primary-href",
+          "reflect": false
+        },
+        "secondaryLabel": {
+          "type": "string",
+          "default": "",
+          "attribute": "secondary-label",
+          "reflect": false
+        },
+        "secondaryHref": {
+          "type": "string",
+          "default": "",
+          "attribute": "secondary-href",
+          "reflect": false
+        },
+        "showSearch": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "show-search",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "theme-change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "theme-toggle",
+          "description": ""
+        }
+      ],
+      "dependencies": [
+        "sc-logo",
+        "sc-button",
+        "sc-button-icon"
+      ],
+      "example": "<sc-header></sc-header>"
+    },
+    {
+      "tag": "sc-help-text",
+      "class": "ScHelpText",
+      "category": "feedback",
+      "description": "Small descriptive text near form fields with optional status icons",
+      "whenToUse": "Form field hints, validation messages, input guidance, error/success feedback",
+      "props": {
+        "status": {
+          "type": "HelpTextStatus",
+          "default": "default",
+          "attribute": "status",
+          "reflect": true
+        },
+        "size": {
+          "type": "HelpTextSize",
+          "default": "l",
+          "attribute": "size",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-status-icon"
+      ],
+      "example": "<sc-help-text></sc-help-text>"
+    },
+    {
+      "tag": "sc-hero",
+      "class": "ScHero",
+      "category": "sections",
+      "description": "Full-width hero section with background image, heading, subtitle, CTAs, and optional email form",
+      "whenToUse": "Landing page top section, product introductions, conversion-focused entry points",
+      "props": {
+        "primaryLabel": {
+          "type": "string",
+          "default": "",
+          "attribute": "primary-label",
+          "reflect": false
+        },
+        "primaryHref": {
+          "type": "string",
+          "default": "",
+          "attribute": "primary-href",
+          "reflect": false
+        },
+        "primaryLeadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "primary-leading-icon",
+          "reflect": false
+        },
+        "secondaryLabel": {
+          "type": "string",
+          "default": "",
+          "attribute": "secondary-label",
+          "reflect": false
+        },
+        "secondaryHref": {
+          "type": "string",
+          "default": "",
+          "attribute": "secondary-href",
+          "reflect": false
+        },
+        "secondaryLeadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "secondary-leading-icon",
+          "reflect": false
+        },
+        "imageSrc": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-src",
+          "reflect": false
+        },
+        "imageSrcDark": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-src-dark",
+          "reflect": false
+        },
+        "imageAlt": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-alt",
+          "reflect": false
+        },
+        "showForm": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "show-form",
+          "reflect": false
+        },
+        "formPlaceholder": {
+          "type": "string",
+          "default": "Enter your email",
+          "attribute": "form-placeholder",
+          "reflect": false
+        },
+        "formButtonLabel": {
+          "type": "string",
+          "default": "Subscribe",
+          "attribute": "form-button-label",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "heading - Named slot",
+        "subtext - Named slot",
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-badge",
+        "sc-button",
+        "sc-input"
+      ],
+      "example": "<sc-hero></sc-hero>"
+    },
+    {
+      "tag": "sc-input",
+      "class": "ScInput",
+      "category": "forms",
+      "description": "Single-line text input field with label, icons, help text, and validation states",
+      "whenToUse": "Form fields, search inputs, email capture, any single-line text entry",
+      "props": {
+        "state": {
+          "type": "InputState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        },
+        "helpText": {
+          "type": "string",
+          "default": "Help text",
+          "attribute": "help-text",
+          "reflect": false
+        },
+        "showLabel": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-label",
+          "reflect": true
+        },
+        "showHelpText": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-help-text",
+          "reflect": true
+        },
+        "leadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "leading-icon",
+          "reflect": false
+        },
+        "trailingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "trailing-icon",
+          "reflect": false
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "input",
+          "detail": "{}"
+        },
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [
+        "sc-help-text"
+      ],
+      "example": "<sc-input></sc-input>"
+    },
+    {
+      "tag": "sc-logo",
+      "class": "ScLogo",
+      "category": "brand",
+      "description": "Scale brand logo with mark and wordmark, supports sizes and inverse style",
+      "whenToUse": "Headers, footers, brand references, any place the Scale logo is needed",
+      "props": {
+        "size": {
+          "type": "LogoSize",
+          "default": "l",
+          "attribute": "size",
+          "reflect": true
+        },
+        "logoStyle": {
+          "type": "LogoStyle",
+          "default": "default",
+          "attribute": "logo-style",
+          "reflect": true
+        },
+        "hideText": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-text",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-logo></sc-logo>"
+    },
+    {
+      "tag": "sc-row",
+      "class": "ScRow",
+      "category": "layout",
+      "description": "Horizontal list item with optional leading/trailing icons and a divider",
+      "whenToUse": "Pricing feature lists, settings rows, menu items, any horizontal label-value pair",
+      "props": {
+        "leadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "leading-icon",
+          "reflect": false
+        },
+        "trailingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "trailing-icon",
+          "reflect": false
+        },
+        "hideDivider": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-divider",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-divider"
+      ],
+      "example": "<sc-row></sc-row>"
+    },
+    {
+      "tag": "sc-section-bento",
+      "class": "ScSectionBento",
+      "category": "sections",
+      "description": "Bento grid section with 4 card slots in a Z-pattern layout",
+      "whenToUse": "Feature showcases, product highlights, portfolio displays, visual grid layouts",
+      "props": {},
+      "slots": [
+        "heading - Named slot",
+        "subtext - Named slot",
+        "card-1 - Named slot",
+        "card-2 - Named slot",
+        "card-3 - Named slot",
+        "card-4 - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-section-bento></sc-section-bento>"
+    },
+    {
+      "tag": "sc-section-content",
+      "class": "ScSectionContent",
+      "category": "sections",
+      "description": "Simple content section with heading and subtext, centered or left-aligned",
+      "whenToUse": "Text-only sections, section headers, standalone content blocks",
+      "props": {
+        "align": {
+          "type": "'center' | 'left'",
+          "default": "center",
+          "attribute": "align",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "heading - Named slot",
+        "subtext - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-section-content></sc-section-content>"
+    },
+    {
+      "tag": "sc-section-faq",
+      "class": "ScSectionFaq",
+      "category": "sections",
+      "description": "FAQ section with heading on the left and accordion items on the right",
+      "whenToUse": "FAQ pages, help sections, common questions about a product or feature",
+      "props": {},
+      "slots": [
+        "heading - Named slot",
+        "subtext - Named slot",
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-accordion"
+      ],
+      "example": "<sc-section-faq></sc-section-faq>"
+    },
+    {
+      "tag": "sc-section-feature",
+      "class": "ScSectionFeature",
+      "category": "sections",
+      "description": "Feature section with text column and image column, supports reverse layout",
+      "whenToUse": "Feature highlights, product walkthroughs, alternating text-image sections",
+      "props": {
+        "imageSrc": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-src",
+          "reflect": false
+        },
+        "imageSrcDark": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-src-dark",
+          "reflect": false
+        },
+        "imageAlt": {
+          "type": "string",
+          "default": "",
+          "attribute": "image-alt",
+          "reflect": false
+        },
+        "reverse": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "reverse",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "heading - Named slot",
+        "subtext - Named slot",
+        "actions - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-section-feature></sc-section-feature>"
+    },
+    {
+      "tag": "sc-section-pricing",
+      "class": "ScSectionPricing",
+      "category": "sections",
+      "description": "Pricing section with heading and 3 pricing cards in a responsive grid",
+      "whenToUse": "Pricing pages, plan comparison sections, subscription tiers",
+      "props": {},
+      "slots": [
+        "heading - Named slot",
+        "subtext - Named slot",
+        "card-1 - Named slot",
+        "card-2 - Named slot",
+        "card-3 - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-section-pricing></sc-section-pricing>"
+    },
+    {
+      "tag": "sc-section-signup",
+      "class": "ScSectionSignup",
+      "category": "sections",
+      "description": "Card-based signup section with heading, subtext, input, and action button",
+      "whenToUse": "Email capture sections, newsletter signup, call-to-action blocks",
+      "props": {},
+      "slots": [
+        "heading - Named slot",
+        "subtext - Named slot",
+        "input - Named slot",
+        "action - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-section-signup></sc-section-signup>"
+    },
+    {
+      "tag": "sc-status-icon",
+      "class": "ScStatusIcon",
+      "category": "feedback",
+      "description": "Status indicator icon with info, warning, error, and success variants in 3 sizes",
+      "whenToUse": "Validation feedback, status indicators, alert icons, help text icons",
+      "props": {
+        "status": {
+          "type": "Status",
+          "default": "info",
+          "attribute": "status",
+          "reflect": true
+        },
+        "size": {
+          "type": "number",
+          "default": "24",
+          "attribute": "size",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-status-icon></sc-status-icon>"
+    },
+    {
+      "tag": "sc-toggle",
+      "class": "ScToggle",
+      "category": "forms",
+      "description": "On/off switch toggle for settings and preferences",
+      "whenToUse": "Settings toggles, feature flags, preference switches, enable/disable controls",
+      "props": {
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-toggle></sc-toggle>"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg x="1" y="1" width="14" height="14" viewBox="0 0 14 14">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 0C10.866 0 14 3.13401 14 7C14 10.866 10.866 14 7 14C3.13401 14 0 10.866 0 7C0 3.13401 3.13401 0 7 0Z" fill="var(--sc-color-icon-positive)"/>
+  </svg>
+  <svg x="4.167" y="4.833" width="7.667" height="6.333" viewBox="0 0 7.6667 6.33336">
+    <path d="M7.16667 0.500029L3.16667 5.83336L0.5 3.1667" stroke="var(--sc-color-icon-inverse)" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</svg>

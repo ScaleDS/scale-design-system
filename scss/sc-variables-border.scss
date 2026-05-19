@@ -1,0 +1,25 @@
+@import './sc-variables-unit.scss';
+
+/* Border */
+:root {
+  --sc-border-radius-none: 0px;
+  --sc-border-radius-xs: var(--sc-unit-4);
+  --sc-border-radius-s: var(--sc-unit-8);
+  --sc-border-radius-m: var(--sc-unit-12);
+  --sc-border-radius-l: var(--sc-unit-16);
+  --sc-border-radius-xl: var(--sc-unit-24);
+  --sc-border-radius-2xl: var(--sc-unit-32);
+  --sc-border-radius-3xl: var(--sc-unit-40);
+  --sc-border-radius-4xl: var(--sc-unit-48);
+  --sc-border-radius-5xl: var(--sc-unit-56);
+  --sc-border-radius-6xl: var(--sc-unit-64);
+  --sc-border-radius-circle: 50%;
+  --sc-border-radius-pill: 999px;
+  --sc-border-width-none: 0px;
+  --sc-border-width-xs: 0.5px;
+  --sc-border-width-s: 1px;
+  --sc-border-width-m: 1.5px;
+  --sc-border-width-l: var(--sc-unit-2);
+  --sc-border-width-xl: var(--sc-unit-4);
+  --sc-border-width-2xl: var(--sc-unit-8);
+}

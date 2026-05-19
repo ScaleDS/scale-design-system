@@ -1,0 +1,93 @@
+import { LitElement, html, css } from 'lit'
+import { customElement, property } from 'lit/decorators.js'
+import { textS, linkS } from '@scale/design-system/scss/typography'
+import '@scale/design-system/components/sc-logo'
+
+@customElement('sc-footer')
+export class ScFooter extends LitElement {
+  @property({ attribute: 'copyright' }) copyright = '©2020 - 2026 Christopher Deane. All rights reserved.'
+  @property({ attribute: 'licence-label' }) licenceLabel = 'Licence Agreement'
+  @property({ attribute: 'licence-href' }) licenceHref = '#'
+
+  static styles = css`
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :host {
+      display: block;
+      width: 100%;
+    }
+
+    .container {
+      width: 100%;
+      padding: 0 var(--sc-space-2xl);
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sc-space-xl);
+      padding: var(--sc-space-2xl) 0 var(--sc-space-5xl);
+    }
+
+    .trailing {
+      display: flex;
+      align-items: center;
+      gap: var(--sc-space-xs);
+    }
+
+    .copyright {
+      ${textS}
+      color: var(--sc-color-text-secondary);
+    }
+
+    .licence {
+      ${linkS}
+      color: var(--sc-color-text-link);
+      text-decoration: none;
+      transition: color 150ms ease;
+    }
+
+    .licence:hover {
+      color: var(--sc-color-text-link-hover);
+    }
+
+    .leading sc-logo {
+      --sc-logo-mark-size: 32px;
+    }
+
+    @media (max-width: 402px) {
+      .trailing {
+        flex-direction: column;
+        align-items: center;
+        gap: var(--sc-space-s);
+      }
+    }
+  `
+
+  render() {
+    return html`
+      <div class="container">
+        <div class="content">
+          <div class="leading">
+            <sc-logo size="m" hide-text></sc-logo>
+          </div>
+          <div class="trailing">
+            <span class="copyright">${this.copyright}</span>
+            <a class="licence" href=${this.licenceHref}>${this.licenceLabel}</a>
+          </div>
+        </div>
+      </div>
+    `
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'sc-footer': ScFooter
+  }
+}

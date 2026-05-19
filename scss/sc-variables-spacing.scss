@@ -1,0 +1,20 @@
+/* Scale: Spacing Variables */
+
+@import './sc-variables-unit.scss';
+
+:root {
+    --sc-space-none: 0px;
+    --sc-space-2xs: var(--sc-unit-2);
+    --sc-space-xs: var(--sc-unit-4);
+    --sc-space-s: var(--sc-unit-8);
+    --sc-space-m: var(--sc-unit-12);
+    --sc-space-l: var(--sc-unit-16);
+    --sc-space-xl: var(--sc-unit-24);
+    --sc-space-2xl: var(--sc-unit-32);
+    --sc-space-3xl: var(--sc-unit-40);
+    --sc-space-4xl: var(--sc-unit-48);
+    --sc-space-5xl: var(--sc-unit-56);
+    --sc-space-6xl: var(--sc-unit-64);
+    --sc-space-7xl: var(--sc-unit-72);
+    --sc-space-8xl: var(--sc-unit-80);
+  }

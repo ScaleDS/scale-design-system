@@ -1,0 +1,88 @@
+{
+  "patterns": [
+    {
+      "name": "Hero Section",
+      "description": "Full-width hero with background image, heading, subtitle, CTAs, and optional email form",
+      "components": ["sc-hero"],
+      "usage": "Landing page top section, product introductions, conversion-focused entry points",
+      "template": "<sc-hero badge=\"New\" primary-label=\"Get Started\" primary-href=\"/signup\" image-src=\"/hero.jpg\" image-alt=\"Hero\" image-src-dark=\"/hero-dark.jpg\">\n  <h1 slot=\"heading\">Build better products</h1>\n  <p slot=\"subtext\">The design system for modern teams</p>\n</sc-hero>"
+    },
+    {
+      "name": "Feature Section",
+      "description": "Two-column layout with text and image, supports reverse order",
+      "components": ["sc-section-feature"],
+      "usage": "Feature highlights, product walkthroughs, alternating text-image sections",
+      "template": "<sc-section-feature image-src=\"/feature.jpg\" image-alt=\"Feature\" image-src-dark=\"/feature-dark.jpg\">\n  <h2 slot=\"heading\">Powerful Features</h2>\n  <p slot=\"subtext\">Description of the feature and its benefits</p>\n  <sc-button slot=\"actions\" type=\"primary\" leading-icon=\"arrow-right\">Learn More</sc-button>\n</sc-section-feature>"
+    },
+    {
+      "name": "FAQ Section",
+      "description": "Two-column layout with heading on left and accordion items on right",
+      "components": ["sc-section-faq", "sc-accordion"],
+      "usage": "FAQ pages, help sections, common questions",
+      "template": "<sc-section-faq>\n  <h2 slot=\"heading\">Frequently Asked Questions</h2>\n  <p slot=\"subtext\">Everything you need to know</p>\n  <sc-accordion heading=\"What is Scale?\">Scale is a design system...</sc-accordion>\n  <sc-accordion heading=\"How do I install it?\">npm install @scale/design-system</sc-accordion>\n  <sc-accordion heading=\"Is it free?\">Yes, Scale is open source</sc-accordion>\n</sc-section-faq>"
+    },
+    {
+      "name": "Pricing Section",
+      "description": "3-column pricing grid with heading and plan cards",
+      "components": ["sc-section-pricing", "sc-card-pricing", "sc-badge", "sc-row", "sc-button"],
+      "usage": "Pricing pages, plan comparison, subscription tiers",
+      "template": "<sc-section-pricing>\n  <h2 slot=\"heading\">Simple Pricing</h2>\n  <p slot=\"subtext\">Choose the plan that works for you</p>\n  <sc-card-pricing slot=\"card-1\">\n    <span slot=\"plan\">Free</span>\n    <span slot=\"description\">For individuals</span>\n    <sc-row leading-icon=\"check\">1 project</sc-row>\n    <sc-row leading-icon=\"check\">Basic support</sc-row>\n    <sc-button slot=\"actions\" type=\"outline\">Get Started</sc-button>\n  </sc-card-pricing>\n  <sc-card-pricing slot=\"card-2\">\n    <sc-badge slot=\"badge\" status=\"positive\">Popular</sc-badge>\n    <span slot=\"plan\">Pro</span>\n    <span slot=\"description\">For growing teams</span>\n    <sc-row leading-icon=\"check\">Unlimited projects</sc-row>\n    <sc-row leading-icon=\"check\">Priority support</sc-row>\n    <sc-button slot=\"actions\" type=\"primary\">Get Started</sc-button>\n  </sc-card-pricing>\n  <sc-card-pricing slot=\"card-3\">\n    <span slot=\"plan\">Enterprise</span>\n    <span slot=\"description\">For organizations</span>\n    <sc-row leading-icon=\"check\">Everything in Pro</sc-row>\n    <sc-row leading-icon=\"check\">SSO & SAML</sc-row>\n    <sc-button slot=\"actions\" type=\"outline\">Contact Sales</sc-button>\n  </sc-card-pricing>\n</sc-section-pricing>"
+    },
+    {
+      "name": "Bento Grid Section",
+      "description": "4-card Z-pattern grid layout (3-2 / 2-3 columns)",
+      "components": ["sc-section-bento", "sc-card-image"],
+      "usage": "Feature showcases, product highlights, portfolio displays",
+      "template": "<sc-section-bento>\n  <h2 slot=\"heading\">Features</h2>\n  <p slot=\"subtext\">Everything you need to build great products</p>\n  <sc-card-image slot=\"card-1\" image-src=\"/feature-1.jpg\" image-alt=\"Feature 1\">\n    <span slot=\"heading\">Feature One</span>\n    <span slot=\"description\">Description</span>\n  </sc-card-image>\n  <sc-card-image slot=\"card-2\" image-src=\"/feature-2.jpg\" image-alt=\"Feature 2\">\n    <span slot=\"heading\">Feature Two</span>\n    <span slot=\"description\">Description</span>\n  </sc-card-image>\n  <sc-card-image slot=\"card-3\" image-src=\"/feature-3.jpg\" image-alt=\"Feature 3\">\n    <span slot=\"heading\">Feature Three</span>\n    <span slot=\"description\">Description</span>\n  </sc-card-image>\n  <sc-card-image slot=\"card-4\" image-src=\"/feature-4.jpg\" image-alt=\"Feature 4\">\n    <span slot=\"heading\">Feature Four</span>\n    <span slot=\"description\">Description</span>\n  </sc-card-image>\n</sc-section-bento>"
+    },
+    {
+      "name": "Signup Section",
+      "description": "Card-based email capture with heading, input, and CTA",
+      "components": ["sc-section-signup", "sc-input", "sc-button"],
+      "usage": "Email capture sections, newsletter signup, call-to-action blocks",
+      "template": "<sc-section-signup>\n  <h3 slot=\"heading\">Stay Updated</h3>\n  <p slot=\"subtext\">Get the latest news and product updates</p>\n  <sc-input slot=\"input\" type=\"email\" placeholder=\"you@example.com\" show-label></sc-input>\n  <sc-button slot=\"action\" type=\"primary\">Subscribe</sc-button>\n</sc-section-signup>"
+    },
+    {
+      "name": "Content Section",
+      "description": "Simple centered or left-aligned text section",
+      "components": ["sc-section-content"],
+      "usage": "Text-only sections, section headers, standalone content blocks",
+      "template": "<sc-section-content align=\"center\">\n  <h2 slot=\"heading\">Section Title</h2>\n  <p slot=\"subtext\">Supporting description text</p>\n</sc-section-content>"
+    },
+    {
+      "name": "Form Card",
+      "description": "Card with form fields, help text, and submit button",
+      "components": ["sc-card-image", "sc-input", "sc-button", "sc-help-text"],
+      "usage": "Login forms, registration cards, contact forms",
+      "template": "<sc-card-image variant=\"default\">\n  <span slot=\"heading\">Sign In</span>\n  <span slot=\"description\">Enter your credentials</span>\n  <sc-input label=\"Email\" type=\"email\" placeholder=\"you@example.com\" required></sc-input>\n  <sc-input label=\"Password\" type=\"password\" placeholder=\"••••••••\" required></sc-input>\n  <sc-help-text status=\"negative\" size=\"m\" text=\"Invalid credentials\"></sc-help-text>\n  <sc-button type=\"primary\" size=\"l\">Sign In</sc-button>\n</sc-card-image>"
+    },
+    {
+      "name": "Page Header",
+      "description": "Fixed navigation bar with logo, nav links, theme toggle, and CTAs",
+      "components": ["sc-header"],
+      "usage": "Site-wide navigation, marketing site headers",
+      "template": "<sc-header\n  nav-align=\"center\"\n  primary-label=\"Get Started\"\n  primary-href=\"/signup\"\n  secondary-label=\"Log In\"\n  secondary-href=\"/login\"\n  :nav-links='[{\"label\":\"Features\",\"href\":\"#features\"},{\"label\":\"Pricing\",\"href\":\"#pricing\"},{\"label\":\"Docs\",\"href\":\"/docs\"}]'>\n</sc-header>"
+    },
+    {
+      "name": "Page Footer",
+      "description": "Site footer with brand logo, copyright, and licence link",
+      "components": ["sc-footer"],
+      "usage": "Page footers, bottom of marketing sites",
+      "template": "<sc-footer\n  copyright=\"©2026 Scale. All rights reserved.\"\n  licence-label=\"Terms of Service\"\n  licence-href=\"/terms\">\n</sc-footer>"
+    },
+    {
+      "name": "Status Badge Row",
+      "description": "List of items with status badges and icons",
+      "components": ["sc-row", "sc-badge"],
+      "usage": "Feature lists, status displays, plan features",
+      "template": "<sc-row leading-icon=\"check\">Unlimited projects</sc-row>\n<sc-row leading-icon=\"check\">Priority support</sc-row>\n<sc-row leading-icon=\"x\" disabled>Custom domain</sc-row>"
+    },
+    {
+      "name": "Settings Toggle",
+      "description": "On/off toggle with label and help text",
+      "components": ["sc-toggle", "sc-help-text"],
+      "usage": "Settings pages, feature flags, preference controls",
+      "template": "<div style=\"display:flex;align-items:center;gap:var(--sc-space-m)\">\n  <sc-toggle checked></sc-toggle>\n  <span>Enable notifications</span>\n</div>\n<sc-help-text size=\"s\" text=\"You'll receive email updates\"></sc-help-text>"
+    }
+  ]
+}

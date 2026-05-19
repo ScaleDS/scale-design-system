@@ -1,0 +1,93 @@
+# Scale Design System — Agent Context
+
+> Scale Design System 1.0.0 — Lit-based agentic design system with machine-readable context.
+
+## Overview
+
+Scale is a **Lit web component** design system. When generating code that uses `@scale/design-system`:
+
+- Components are custom elements prefixed with `sc-` (e.g., `<sc-button>`, `<sc-input>`)
+- Components auto-register when imported — no manual `customElements.define` needed
+- Styling uses CSS custom properties (`--sc-*`) — never hardcode colors, spacing, or fonts
+- All components support light/dark themes via `data-theme` attribute on `<html>`
+
+## Rules
+
+1. **Always use `sc-*` custom elements** for UI components, never raw HTML buttons/inputs/cards
+2. **Use CSS custom properties** (`--sc-*`) for theming — never hardcode hex colors or pixel values
+3. **Import SCSS** from `@scale/design-system/scss/main.scss` for global resets and typography classes
+4. **Components auto-register** — importing a component file registers its custom element
+5. **Use Feather Icons** for icon names (e.g., `icon="search"`, `leading-icon="arrow-right"`)
+6. **Theme is managed by `sc-header`** — it dispatches `theme-change` events other components listen to
+
+## Component Discovery
+
+Read `context/components.json` for the full machine-readable component catalog with:
+- All 23 components with their tags, props, slots, events, and examples
+- When-to-use guidance for each component
+- Dependency relationships between components
+
+## Design Tokens
+
+Read `context/tokens.json` for all design tokens in W3C DTCG format:
+- **Colors**: Primitive palette + semantic tokens (light/dark variants)
+- **Spacing**: `--sc-space-*` scale from none to 8xl
+- **Typography**: Font families, weights, sizes, line heights, letter spacing
+- **Border**: Radius scale (none to pill) and width scale (none to 2xl)
+- **Shadows**: 4 elevation levels (l1-l4)
+- **Breakpoints**: mobile (402px), tablet (810px), desktop (1440px)
+
+## Composition Patterns
+
+Read `context/patterns.json` for common component compositions:
+- Form Card, Hero Section, FAQ Section, Pricing Section, Feature Section, etc.
+- Each pattern lists required components and a template structure
+
+## Quick Reference
+
+### Import a single component
+```typescript
+import '@scale/design-system/components/sc-button.js'
+```
+
+### Import all components
+```typescript
+import '@scale/design-system'
+```
+
+### Import SCSS tokens
+```scss
+@use '@scale/design-system/scss/main.scss';
+```
+
+### Use a component
+```html
+<sc-button type="primary" size="l" leading-icon="arrow-right">Get Started</sc-button>
+```
+
+### Theme setup
+```html
+<html data-theme="light"> <!-- or "dark" -->
+```
+
+## Component Categories
+
+| Category | Components |
+|----------|-----------|
+| **Actions** | `sc-button`, `sc-button-icon`, `sc-button-pill` |
+| **Forms** | `sc-input`, `sc-toggle` |
+| **Feedback** | `sc-badge`, `sc-help-text`, `sc-status-icon` |
+| **Content** | `sc-card-image`, `sc-card-pricing` |
+| **Layout** | `sc-divider`, `sc-footer`, `sc-header`, `sc-logo`, `sc-row` |
+| **Navigation** | `sc-accordion` |
+| **Sections** | `sc-hero`, `sc-section-bento`, `sc-section-content`, `sc-section-faq`, `sc-section-feature`, `sc-section-pricing`, `sc-section-signup` |
+
+## Icon Reference
+
+All icon props accept **Feather Icons** names. Common ones:
+- Navigation: `arrow-right`, `arrow-left`, `chevron-down`, `chevron-up`, `menu`
+- Actions: `search`, `plus`, `minus`, `x`, `check`, `trash-2`, `edit`
+- Status: `alert-circle`, `alert-triangle`, `check-circle`, `info`, `x-circle`
+- UI: `sun`, `moon`, `eye`, `eye-off`, `lock`, `unlock`, `user`, `mail`
+
+Full list: https://feathericons.com/

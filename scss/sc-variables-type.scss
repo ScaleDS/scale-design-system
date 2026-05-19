@@ -1,0 +1,253 @@
+/* Scale: Type Variables */
+
+@import './sc-variables-unit.scss';
+
+/* Primitive: Type */
+:root {
+  --sc-type-family-inter: Inter;
+  --sc-type-family-roboto: Roboto;
+  --sc-type-family-sf-pro-text: SF Pro Text;
+
+  --sc-type-weight-light: 300;
+  --sc-type-weight-regular: 400;
+  --sc-type-weight-semi-bold: 600;
+
+  --sc-type-size-s: var(--sc-unit-12);
+  --sc-type-size-m: var(--sc-unit-14);
+  --sc-type-size-l: var(--sc-unit-16);
+  --sc-type-size-xl: var(--sc-unit-18);
+  --sc-type-size-2xl: var(--sc-unit-20);
+  --sc-type-size-3xl: var(--sc-unit-24);
+  --sc-type-size-4xl: var(--sc-unit-28);
+  --sc-type-size-5xl: var(--sc-unit-32);
+  --sc-type-size-6xl: var(--sc-unit-40);
+  --sc-type-size-7xl: var(--sc-unit-48);
+  --sc-type-size-8xl: var(--sc-unit-56);
+  --sc-type-size-9xl: var(--sc-unit-64);
+  --sc-type-size-10xl: var(--sc-unit-72);
+
+  --sc-type-line-height-s: var(--sc-unit-16);
+  --sc-type-line-height-m: var(--sc-unit-20);
+  --sc-type-line-height-l: var(--sc-unit-24);
+  --sc-type-line-height-xl: var(--sc-unit-26);
+  --sc-type-line-height-2xl: var(--sc-unit-28);
+  --sc-type-line-height-3xl: var(--sc-unit-32);
+  --sc-type-line-height-4xl: var(--sc-unit-36);
+  --sc-type-line-height-5xl: var(--sc-unit-40);
+  --sc-type-line-height-6xl: var(--sc-unit-48);
+  --sc-type-line-height-7xl: var(--sc-unit-56);
+  --sc-type-line-height-8xl: var(--sc-unit-64);
+  --sc-type-line-height-9xl: var(--sc-unit-72);
+  --sc-type-line-height-10xl: var(--sc-unit-80);
+
+  --sc-type-letter-spacing-xs: -1px;
+  --sc-type-letter-spacing-s: -0.5px;
+  --sc-type-letter-spacing-none: 0px;
+}
+
+/* Responsive type — tablet/mobile (≤810px) */
+@media (max-width: 810px) {
+  :root {
+    --sc-type-size-10xl: var(--sc-unit-56);
+    --sc-type-size-9xl:  var(--sc-unit-48);
+    --sc-type-size-8xl:  var(--sc-unit-40);
+    --sc-type-size-7xl:  var(--sc-unit-32);
+    --sc-type-size-6xl:  var(--sc-unit-28);
+    --sc-type-size-5xl:  var(--sc-unit-24);
+    --sc-type-size-3xl:  var(--sc-unit-20);
+    --sc-type-size-2xl:  var(--sc-unit-18);
+
+    --sc-type-line-height-10xl: var(--sc-unit-64);
+    --sc-type-line-height-9xl:  var(--sc-unit-56);
+    --sc-type-line-height-8xl:  var(--sc-unit-48);
+    --sc-type-line-height-7xl:  var(--sc-unit-40);
+    --sc-type-line-height-6xl:  var(--sc-unit-36);
+    --sc-type-line-height-5xl:  var(--sc-unit-32);
+    --sc-type-line-height-3xl:  var(--sc-unit-28);
+    --sc-type-line-height-2xl:  var(--sc-unit-26);
+  }
+}
+
+/* Semantic Type - SCSS Maps */
+
+/* Headings */
+$sc-typography-heading-5xl: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-10xl),
+  line-height: var(--sc-type-line-height-10xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-4xl: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-9xl),
+  line-height: var(--sc-type-line-height-9xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-3xl: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-8xl),
+  line-height: var(--sc-type-line-height-8xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-2xl: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-7xl),
+  line-height: var(--sc-type-line-height-7xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-xl: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-6xl),
+  line-height: var(--sc-type-line-height-6xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-l: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-5xl),
+  line-height: var(--sc-type-line-height-5xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-m: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-3xl),
+  line-height: var(--sc-type-line-height-3xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-s: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-2xl),
+  line-height: var(--sc-type-line-height-2xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-xs: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-heading-2xs: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+/* Text */
+$sc-typography-text-2xl: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-3xl),
+  line-height: var(--sc-type-line-height-3xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-text-xl: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-2xl),
+  line-height: var(--sc-type-line-height-2xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-text-l: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-m: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-s: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-s),
+  line-height: var(--sc-type-line-height-s),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+/* Links */
+$sc-typography-link-l: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-link-m: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-link-s: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-s),
+  line-height: var(--sc-type-line-height-s),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+/* Labels */
+$sc-typography-label-l: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-label-m: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-label-s: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-s),
+  line-height: var(--sc-type-line-height-s),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+// Note: The original CSS used a non-standard syntax for typography variables like --sc-typography-heading-5xl: { ... }.
+// These have been converted to SCSS maps (e.g., $sc-typography-heading-5xl: (...)).
+// You might need a mixin or function to apply these maps easily in your components, e.g.:
+// @mixin apply-typography($map) {
+//   @each $property, $value in $map {
+//     #{$property}: $value;
+//   }
+// }
+// .my-heading { @include apply-typography($sc-typography-heading-5xl); }
