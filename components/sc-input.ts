@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 import { icons } from 'feather-icons'
 import '@scale/design-system/components/sc-help-text'
+import { focusRing } from './sc-focus-ring'
 
 type InputState = 'default' | 'negative' | 'positive' | 'disabled'
 
@@ -20,7 +21,9 @@ export class ScInput extends LitElement {
   @property() type = 'text'
   @property({ type: Boolean, reflect: true }) required = false
 
-  static styles = css`
+  static styles = [
+    focusRing,
+    css`
     :host {
       display: flex;
       flex-direction: column;
@@ -58,6 +61,8 @@ export class ScInput extends LitElement {
     }
 
     .field:focus-within {
+      outline: 2px dashed var(--sc-color-border-mono);
+      outline-offset: 1px;
       border-color: var(--sc-color-border-selected);
       box-shadow: 0 0 0 1px var(--sc-color-border-selected);
     }
@@ -93,6 +98,10 @@ export class ScInput extends LitElement {
       width: 100%;
     }
 
+    input:focus-visible {
+      outline: none;
+    }
+
     input::placeholder {
       color: var(--sc-color-text-tertiary);
     }
@@ -126,7 +135,7 @@ export class ScInput extends LitElement {
       width: 20px;
       height: 20px;
     }
-  `
+  `]
 
   reportValidity(): boolean {
     return (this.shadowRoot!.querySelector('input') as HTMLInputElement).reportValidity()

@@ -1,14 +1,17 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { unsafeHTML } from 'lit/directives/unsafe-html.js'
+import { icons } from 'feather-icons'
 import { focusRing } from './sc-focus-ring'
 
-type RadioItemState = 'default' | 'negative'
+type CheckboxItemState = 'default' | 'negative'
 
-@customElement('sc-radio-item')
-export class ScRadioItem extends LitElement {
+@customElement('sc-checkbox-item')
+export class ScCheckboxItem extends LitElement {
   @property({ type: Boolean, reflect: true }) checked = false
   @property({ type: Boolean, reflect: true }) disabled = false
-  @property({ reflect: true }) state: RadioItemState = 'default'
+  @property({ type: Boolean, reflect: true }) indeterminate = false
+  @property({ reflect: true }) state: CheckboxItemState = 'default'
 
   static styles = [
     focusRing,
@@ -27,14 +30,13 @@ export class ScRadioItem extends LitElement {
       padding: 0;
       appearance: none;
       -webkit-appearance: none;
-      border-radius: 50%;
+      border-radius: var(--sc-border-radius-s);
       border: 1px solid var(--sc-color-border-primary);
       background: var(--sc-color-background-primary);
       cursor: pointer;
       transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
       box-sizing: border-box;
       outline: none;
-      position: relative;
     }
 
     button:disabled {
@@ -46,14 +48,16 @@ export class ScRadioItem extends LitElement {
       border-color: var(--sc-color-border-selected);
     }
 
-    /* ---- Checked ---- */
-    :host([checked]) button {
+    /* ---- Checked / Indeterminate ---- */
+    :host([checked]) button,
+    :host([indeterminate]) button {
       background: var(--sc-color-background-brand);
       border-color: var(--sc-color-border-brand);
     }
 
-    /* ---- Hover: checked ---- */
-    :host([checked]) button:not(:disabled):hover {
+    /* ---- Hover: checked / indeterminate ---- */
+    :host([checked]) button:not(:disabled):hover,
+    :host([indeterminate]) button:not(:disabled):hover {
       background: var(--sc-color-background-brand-hover);
       border-color: var(--sc-color-border-brand);
     }
@@ -70,42 +74,49 @@ export class ScRadioItem extends LitElement {
       border-color: var(--sc-color-border-disabled);
     }
 
-    /* ---- Disabled: checked ---- */
-    :host([checked][disabled]) button {
+    /* ---- Disabled: checked / indeterminate ---- */
+    :host([checked][disabled]) button,
+    :host([indeterminate][disabled]) button {
       background: var(--sc-color-background-disabled);
       border-color: var(--sc-color-border-disabled);
     }
 
     /* ---- Focus ---- */
     /* Unchecked + focused: thicker selected border */
-    :host(:not([checked])) button:focus-visible {
+    :host(:not([checked]):not([indeterminate])) button:focus-visible {
       border-color: var(--sc-color-border-selected);
       border-width: 2px;
     }
 
-    /* ---- Dot ---- */
-    .dot {
+    /* ---- Icons ---- */
+    .icon {
       display: none;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--sc-color-icon-inverse);
+      color: var(--sc-color-icon-inverse);
+      line-height: 0;
       pointer-events: none;
     }
 
-    :host([checked]) .dot {
+    .icon svg {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+
+    :host([checked]) .icon-check,
+    :host([indeterminate]) .icon-dash {
       display: block;
     }
 
-    :host([checked][disabled]) .dot {
-      background: var(--sc-color-icon-disabled);
+    :host([checked][disabled]) .icon,
+    :host([indeterminate][disabled]) .icon {
+      color: var(--sc-color-icon-disabled);
     }
   `]
 
   toggle() {
     if (this.disabled) return
-    if (this.checked) return
-    this.checked = true
+    this.checked = !this.checked
+    this.indeterminate = false
     this.dispatchEvent(new CustomEvent('change', {
       detail: { checked: this.checked },
       bubbles: true,
@@ -133,14 +144,19 @@ export class ScRadioItem extends LitElement {
     return html`
       <button
         type="button"
-        role="radio"
-        aria-checked=${this.checked ? 'true' : 'false'}
+        role="checkbox"
+        aria-checked=${this.indeterminate ? 'mixed' : this.checked ? 'true' : 'false'}
         ?disabled=${this.disabled}
         @click=${this._onClick}
         @keydown=${this._onKeyDown}
         part="button"
       >
-        <span class="dot" part="dot"></span>
+        <span class="icon icon-check" part="icon-check">
+          ${unsafeHTML(icons['check'].toSvg({ width: 16, height: 16 }))}
+        </span>
+        <span class="icon icon-dash" part="icon-dash">
+          ${unsafeHTML(icons['minus'].toSvg({ width: 16, height: 16 }))}
+        </span>
       </button>
     `
   }
@@ -148,6 +164,6 @@ export class ScRadioItem extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sc-radio-item': ScRadioItem
+    'sc-checkbox-item': ScCheckboxItem
   }
 }

@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 import { icons } from 'feather-icons'
 import '@scale/design-system/components/sc-divider'
+import { focusRing } from './sc-focus-ring'
 
 let accordionId = 0
 
@@ -13,7 +14,9 @@ export class ScAccordion extends LitElement {
 
   private _id = ++accordionId
 
-  static styles = css`
+  static styles = [
+    focusRing,
+    css`
     :host {
       display: flex;
       flex-direction: column;
@@ -36,11 +39,6 @@ export class ScAccordion extends LitElement {
 
     .header:hover {
       background: var(--sc-color-background-hover);
-    }
-
-    .header:focus-visible {
-      outline: 2px solid var(--sc-color-border-focus);
-      outline-offset: 2px;
     }
 
     h6 {
@@ -109,7 +107,7 @@ export class ScAccordion extends LitElement {
         transition: none;
       }
     }
-  `
+  `]
 
   private toggle() {
     this.open = !this.open

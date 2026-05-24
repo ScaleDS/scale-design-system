@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 import { icons } from 'feather-icons'
+import { focusRing } from './sc-focus-ring'
 
 type ButtonIconSize = 'l' | 's'
 type ButtonIconType =
@@ -22,7 +23,9 @@ export class ScButtonIcon extends LitElement {
   @property() icon = 'circle'
   @property() label = ''
 
-  static styles = css`
+  static styles = [
+    focusRing,
+    css`
     :host {
       display: inline-flex;
     }
@@ -36,11 +39,6 @@ export class ScButtonIcon extends LitElement {
       transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       outline: none;
       position: relative;
-    }
-
-    button:focus-visible {
-      outline: 2px solid var(--sc-color-border-focus);
-      outline-offset: 2px;
     }
 
     /* ---- Sizes ---- */
@@ -176,7 +174,7 @@ export class ScButtonIcon extends LitElement {
       display: block;
       flex-shrink: 0;
     }
-  `
+  `]
 
   render() {
     const icon = icons[this.icon as keyof typeof icons]

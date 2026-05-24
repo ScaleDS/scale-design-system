@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { headingXs, textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-status-icon'
+import { focusRing } from './sc-focus-ring'
 
 type AlertStatus = 'info' | 'warning' | 'negative' | 'positive'
 
@@ -19,7 +20,9 @@ export class ScAlert extends LitElement {
   @property({ attribute: 'show-actions', type: Boolean, reflect: true }) showActions = true
   @property({ attribute: 'show-action-2', type: Boolean, reflect: true }) showAction2 = true
 
-  static styles = css`
+  static styles = [
+    focusRing,
+    css`
     :host {
       display: block;
     }
@@ -115,11 +118,9 @@ export class ScAlert extends LitElement {
     }
 
     .action:focus-visible {
-      outline: 2px solid var(--sc-color-border-focus);
-      outline-offset: 2px;
       border-radius: var(--sc-border-radius-xs);
     }
-  `
+  `]
 
   render() {
     const iconStatus = statusIconMap[this.status]

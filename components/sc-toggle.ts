@@ -1,12 +1,15 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { focusRing } from './sc-focus-ring'
 
 @customElement('sc-toggle')
 export class ScToggle extends LitElement {
   @property({ type: Boolean, reflect: true }) checked = false
   @property({ type: Boolean, reflect: true }) disabled = false
 
-  static styles = css`
+  static styles = [
+    focusRing,
+    css`
     :host {
       display: inline-flex;
     }
@@ -51,7 +54,7 @@ export class ScToggle extends LitElement {
       /* track(66) - knob(40) - right-margin(2) - left-start(2) = 22px */
       transform: translateX(22px);
     }
-  `
+  `]
 
   private _onClick() {
     if (this.disabled) return

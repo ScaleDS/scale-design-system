@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js'
 import { unsafeHTML } from 'lit/directives/unsafe-html.js'
 import { icons } from 'feather-icons'
 import { labelL, labelM, labelS } from '@scale/design-system/scss/typography'
+import { focusRing } from './sc-focus-ring'
 
 type ButtonSize = 'l' | 'm' | 's'
 type ButtonType =
@@ -29,7 +30,9 @@ export class ScButton extends LitElement {
   @property({ attribute: 'leading-icon' }) leadingIcon = ''
   @property({ attribute: 'trailing-icon' }) trailingIcon = ''
 
-  static styles = css`
+  static styles = [
+    focusRing,
+    css`
     :host {
       display: inline-flex;
       width: var(--sc-button-width, auto);
@@ -47,11 +50,6 @@ export class ScButton extends LitElement {
       transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       outline: none;
       position: relative;
-    }
-
-    button:focus-visible {
-      outline: 2px solid var(--sc-color-border-focus);
-      outline-offset: 2px;
     }
 
     /* ---- Sizes ---- */
@@ -299,7 +297,7 @@ export class ScButton extends LitElement {
       display: block;
       flex-shrink: 0;
     }
-  `
+  `]
 
   private renderIcon(name: string) {
     const icon = icons[name as keyof typeof icons]
