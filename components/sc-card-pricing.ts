@@ -52,6 +52,7 @@ export class ScCardPricing extends LitElement {
     .footer ::slotted(a) {
       display: block;
       text-decoration: none;
+      outline: none;
     }
   `
 
