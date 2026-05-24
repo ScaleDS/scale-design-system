@@ -7,7 +7,7 @@ import { dirname, join } from 'path'
 import { z } from 'zod'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const contextDir = join(__dirname, '..', '..', 'context')
+const contextDir = join(process.cwd(), 'context')
 
 const components = JSON.parse(readFileSync(join(contextDir, 'components.json'), 'utf-8'))
 const tokens = JSON.parse(readFileSync(join(contextDir, 'tokens.json'), 'utf-8'))
