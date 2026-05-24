@@ -19,11 +19,12 @@ Scale is a **Lit web component** design system. When generating code that uses `
 4. **Components auto-register** — importing a component file registers its custom element
 5. **Use Feather Icons** for icon names (e.g., `icon="search"`, `leading-icon="arrow-right"`)
 6. **Theme is managed by `sc-header`** — it dispatches `theme-change` events other components listen to
+7. **Keyboard focus ring** — all components use the shared `sc-focus-ring` module for consistent `2px dashed var(--sc-color-border-mono)` outline on `:focus-visible`
 
 ## Component Discovery
 
 Read `context/components.json` for the full machine-readable component catalog with:
-- All 23 components with their tags, props, slots, events, and examples
+- All 24 components with their tags, props, slots, events, and examples
 - When-to-use guidance for each component
 - Dependency relationships between components
 
@@ -76,7 +77,7 @@ import '@scale/design-system'
 |----------|-----------|
 | **Actions** | `sc-button`, `sc-button-icon`, `sc-button-pill` |
 | **Forms** | `sc-input`, `sc-toggle` |
-| **Feedback** | `sc-badge`, `sc-help-text`, `sc-status-icon` |
+| **Feedback** | `sc-badge`, `sc-banner`, `sc-help-text`, `sc-status-icon` |
 | **Content** | `sc-card-image`, `sc-card-pricing` |
 | **Layout** | `sc-divider`, `sc-footer`, `sc-header`, `sc-logo`, `sc-row` |
 | **Navigation** | `sc-accordion` |

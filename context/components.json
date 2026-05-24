@@ -5,6 +5,74 @@
   "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
   "components": [
     {
+      "tag": "sc-avatar",
+      "class": "ScAvatar",
+      "category": "content",
+      "description": "User avatar with image, initials, or icon fallback across 5 sizes",
+      "whenToUse": "User profile pictures, comment sections, user lists, team members, any place a user representation is needed",
+      "props": {
+        "size": {
+          "type": "AvatarSize",
+          "default": "m",
+          "attribute": "size",
+          "reflect": true
+        },
+        "src": {
+          "type": "string",
+          "default": "",
+          "attribute": "src",
+          "reflect": false
+        },
+        "alt": {
+          "type": "string",
+          "default": "",
+          "attribute": "alt",
+          "reflect": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-avatar size=\"m\" src=\"photo.jpg\" alt=\"User name\"></sc-avatar>"
+    },
+    {
+      "tag": "sc-avatar-group",
+      "class": "ScAvatarGroup",
+      "category": "content",
+      "description": "Grouped overlapping avatars with overflow count indicator",
+      "whenToUse": "Team rosters, shared document viewers, multi-user presence indicators, collaborator lists",
+      "props": {
+        "size": {
+          "type": "AvatarGroupSize",
+          "default": "m",
+          "attribute": "size",
+          "reflect": true
+        },
+        "max": {
+          "type": "number",
+          "default": 4,
+          "attribute": "max",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "default - sc-avatar elements"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-avatar"
+      ],
+      "example": "<sc-avatar-group><sc-avatar size=\"m\" src=\"photo.jpg\" alt=\"User\"></sc-avatar></sc-avatar-group>"
+    },
+    {
       "tag": "sc-accordion",
       "class": "ScAccordion",
       "category": "navigation",
@@ -54,6 +122,61 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-badge></sc-badge>"
+    },
+    {
+      "tag": "sc-banner",
+      "class": "ScBanner",
+      "category": "feedback",
+      "description": "Full-width status notification bar with icon, text, optional link, and close button",
+      "whenToUse": "Site-wide notifications, status announcements, dismissible alert bars, promo banners",
+      "props": {
+        "status": {
+          "type": "BannerStatus",
+          "default": "info",
+          "attribute": "status",
+          "reflect": true
+        },
+        "showClose": {
+          "type": "string",
+          "default": "",
+          "attribute": "show-close",
+          "reflect": true
+        },
+        "showLink": {
+          "type": "string",
+          "default": "",
+          "attribute": "show-link",
+          "reflect": true
+        },
+        "linkHref": {
+          "type": "string",
+          "default": "",
+          "attribute": "link-href",
+          "reflect": false
+        },
+        "link": {
+          "type": "string",
+          "default": "",
+          "reflect": false
+        },
+        "text": {
+          "type": "string",
+          "default": "",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "close",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [
+        "sc-status-icon"
+      ],
+      "example": "<sc-banner status=\"info\" text=\"Notification message.\" show-close=\"false\"></sc-banner>"
     },
     {
       "tag": "sc-button-icon",
