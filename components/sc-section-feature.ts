@@ -34,10 +34,6 @@ export class ScSectionFeature extends LitElement {
       gap: var(--sc-space-2xl);
     }
 
-    :host([reverse]) .container {
-      flex-direction: row-reverse;
-    }
-
     /* ---- Content column ---- */
 
     .content {
@@ -133,8 +129,7 @@ export class ScSectionFeature extends LitElement {
 
     return html`
       <div class="container">
-        ${contentCol}
-        ${imageCol}
+        ${this.reverse ? html`${imageCol}${contentCol}` : html`${contentCol}${imageCol}`}
       </div>
     `
   }

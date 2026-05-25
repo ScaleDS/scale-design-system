@@ -35,7 +35,7 @@ export class ScButtonPill extends LitElement {
       display: inline-flex;
     }
 
-    button {
+    :is(button, a) {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -47,11 +47,13 @@ export class ScButtonPill extends LitElement {
       transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       outline: none;
       position: relative;
+      box-sizing: border-box;
+      color: inherit;
     }
 
     /* ---- Sizes ---- */
 
-    :host([size='l']) button {
+    :host([size='l']) :is(button, a) {
       padding: var(--sc-space-m) var(--sc-space-l);
       border-radius: var(--sc-border-radius-xl);
       ${labelL}
@@ -61,7 +63,7 @@ export class ScButtonPill extends LitElement {
       height: 24px;
     }
 
-    :host([size='m']) button {
+    :host([size='m']) :is(button, a) {
       padding: var(--sc-space-s);
       border-radius: var(--sc-border-radius-xl);
       ${labelM}
@@ -71,7 +73,7 @@ export class ScButtonPill extends LitElement {
       height: 20px;
     }
 
-    :host([size='s']) button {
+    :host([size='s']) :is(button, a) {
       padding: var(--sc-space-xs);
       border-radius: var(--sc-border-radius-l);
       ${labelM}

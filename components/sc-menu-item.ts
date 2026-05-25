@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
+import { labelL, labelM } from '@scale/design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
 
@@ -12,13 +13,10 @@ export class ScMenuItem extends LitElement {
   @property({ reflect: true }) type: MenuItemType = 'row'
   @property({ reflect: true }) state: MenuItemState = 'default'
   @property({ type: Boolean, reflect: true }) destructive = false
-  @property() link = ''
+  @property() label = ''
   @property() href = ''
   @property({ attribute: 'leading-icon' }) leadingIcon = ''
   @property({ attribute: 'trailing-icon' }) trailingIcon = ''
-  @property({ attribute: 'aria-label' }) ariaLabel = ''
-  @property({ type: Boolean, attribute: 'show-leading-icon', reflect: true }) showLeadingIcon = false
-  @property({ type: Boolean, attribute: 'show-trailing-icon', reflect: true }) showTrailingIcon = false
 
   static styles = [
     focusRing,
@@ -93,18 +91,12 @@ export class ScMenuItem extends LitElement {
 
     :host([type='row']) .label,
     :host([type='button']) .label {
-      font-size: var(--sc-type-size-l);
-      line-height: var(--sc-type-line-height-l);
-      font-weight: var(--sc-type-weight-semi-bold);
-      letter-spacing: var(--sc-type-letter-spacing-none);
+      ${labelL}
       color: var(--sc-color-text-secondary);
     }
 
     :host([type='link']) .label {
-      font-size: var(--sc-type-size-m);
-      line-height: var(--sc-type-line-height-m);
-      font-weight: var(--sc-type-weight-semi-bold);
-      letter-spacing: var(--sc-type-letter-spacing-none);
+      ${labelM}
       color: var(--sc-color-text-secondary);
     }
 
@@ -196,7 +188,7 @@ export class ScMenuItem extends LitElement {
       return
     }
     this.dispatchEvent(new CustomEvent('select', {
-      detail: { value: this.link },
+      detail: { value: this.label },
       bubbles: true,
       composed: true,
     }))
@@ -216,13 +208,15 @@ export class ScMenuItem extends LitElement {
   render() {
     const disabled = this.state === 'disabled'
     const hasHref = !!(this.href)
+    const hostAriaLabel = this.getAttribute('aria-label')
+    const labelContent = this.label ? html`${this.label}` : html`<slot></slot>`
 
     if (hasHref || this.type === 'link') {
       return html`
         <a
           class="item"
           role="menuitem"
-          aria-label=${ifDefined(this.ariaLabel || undefined)}
+          aria-label=${ifDefined(hostAriaLabel ?? undefined)}
           href=${this.href || '#'}
           tabindex=${disabled ? '-1' : '0'}
           ?aria-disabled=${disabled}
@@ -230,9 +224,9 @@ export class ScMenuItem extends LitElement {
           @keydown=${this._onKeyDown}
         >
           <span class="content">
-            ${this.showLeadingIcon && this.leadingIcon ? html`<span class="icon">${this._icon(this.leadingIcon)}</span>` : ''}
-            <span class="label">${this.link}</span>
-            ${this.showTrailingIcon && this.trailingIcon ? html`<span class="icon">${this._icon(this.trailingIcon)}</span>` : ''}
+            ${this.leadingIcon ? html`<span class="icon">${this._icon(this.leadingIcon)}</span>` : ''}
+            <span class="label">${labelContent}</span>
+            ${this.trailingIcon ? html`<span class="icon">${this._icon(this.trailingIcon)}</span>` : ''}
           </span>
         </a>
       `
@@ -243,7 +237,7 @@ export class ScMenuItem extends LitElement {
         class="item"
         type="button"
         role="menuitem"
-        aria-label=${ifDefined(this.ariaLabel || undefined)}
+        aria-label=${ifDefined(hostAriaLabel ?? undefined)}
         tabindex=${disabled ? '-1' : '0'}
         ?disabled=${disabled}
         ?aria-disabled=${disabled}
@@ -251,9 +245,9 @@ export class ScMenuItem extends LitElement {
         @keydown=${this._onKeyDown}
       >
         <span class="content">
-          ${this.showLeadingIcon && this.leadingIcon ? html`<span class="icon">${this._icon(this.leadingIcon)}</span>` : ''}
-          <span class="label">${this.link}</span>
-          ${this.showTrailingIcon && this.trailingIcon ? html`<span class="icon">${this._icon(this.trailingIcon)}</span>` : ''}
+          ${this.leadingIcon ? html`<span class="icon">${this._icon(this.leadingIcon)}</span>` : ''}
+          <span class="label">${labelContent}</span>
+          ${this.trailingIcon ? html`<span class="icon">${this._icon(this.trailingIcon)}</span>` : ''}
         </span>
       </button>
     `

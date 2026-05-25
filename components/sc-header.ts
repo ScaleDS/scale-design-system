@@ -269,16 +269,19 @@ export class ScHeader extends LitElement {
 
           <div class="actions">
             ${this.secondaryLabel ? html`
-              <sc-button type="secondary" size="m"
-                @click=${() => this.secondaryHref && (window.location.href = this.secondaryHref)}>
-                ${this.secondaryLabel}
-              </sc-button>
+              <sc-button
+                type="secondary"
+                size="m"
+                href=${this.secondaryHref || ''}
+              >${this.secondaryLabel}</sc-button>
             ` : null}
             ${this.primaryLabel ? html`
-              <sc-button type="primary" size="m"
-                @click=${() => this.primaryHref && window.open(this.primaryHref, '_blank', 'noopener,noreferrer')}>
-                ${this.primaryLabel}
-              </sc-button>
+              <sc-button
+                type="primary"
+                size="m"
+                href=${this.primaryHref || ''}
+                target="_blank"
+              >${this.primaryLabel}</sc-button>
             ` : null}
           </div>
 

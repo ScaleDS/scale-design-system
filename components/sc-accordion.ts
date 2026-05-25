@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { headingS, textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-divider'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
@@ -41,13 +42,9 @@ export class ScAccordion extends LitElement {
     }
 
     h6 {
+      ${headingS}
       flex: 1;
       min-width: 0;
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-2xl);
-      line-height: var(--sc-type-line-height-2xl);
-      font-weight: var(--sc-type-weight-semi-bold);
-      letter-spacing: var(--sc-type-letter-spacing-s);
       margin: 0;
     }
 
@@ -67,12 +64,8 @@ export class ScAccordion extends LitElement {
     }
 
     p {
+      ${textL}
       padding: var(--sc-space-s) 0 var(--sc-space-s) var(--sc-space-l);
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-l);
-      line-height: var(--sc-type-line-height-l);
-      font-weight: var(--sc-type-weight-regular);
-      letter-spacing: var(--sc-type-letter-spacing-none);
       color: var(--sc-color-text-primary);
       margin: 0;
     }

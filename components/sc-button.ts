@@ -29,6 +29,9 @@ export class ScButton extends LitElement {
   @property({ type: Boolean, reflect: true }) disabled = false
   @property({ attribute: 'leading-icon' }) leadingIcon = ''
   @property({ attribute: 'trailing-icon' }) trailingIcon = ''
+  @property() href = ''
+  @property() target: '_self' | '_blank' | '_parent' | '_top' | '' = ''
+  @property() rel = ''
 
   static styles = [
     focusRing,
@@ -39,7 +42,7 @@ export class ScButton extends LitElement {
       width: var(--sc-button-width, auto);
     }
 
-    button {
+    :is(button, a) {
       display: inline-flex;
       width: 100%;
       align-items: center;
@@ -51,11 +54,13 @@ export class ScButton extends LitElement {
       transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       outline: none;
       position: relative;
+      box-sizing: border-box;
+      color: inherit;
     }
 
     /* ---- Sizes ---- */
 
-    :host([size='l']) button {
+    :host([size='l']) :is(button, a) {
       padding: var(--sc-space-m);
       border-radius: var(--sc-border-radius-m);
       ${labelL}
@@ -65,7 +70,7 @@ export class ScButton extends LitElement {
       height: 24px;
     }
 
-    :host([size='m']) button {
+    :host([size='m']) :is(button, a) {
       padding: var(--sc-space-s);
       border-radius: var(--sc-border-radius-s);
       ${labelM}
@@ -75,7 +80,7 @@ export class ScButton extends LitElement {
       height: 20px;
     }
 
-    :host([size='s']) button {
+    :host([size='s']) :is(button, a) {
       padding: var(--sc-space-xs);
       border-radius: var(--sc-border-radius-s);
       ${labelS}
@@ -88,38 +93,38 @@ export class ScButton extends LitElement {
     /* ---- Text-only type variants (specific to sc-button) ---- */
 
     /* Text */
-    :host([type='text']) button {
+    :host([type='text']) :is(button, a) {
       background: transparent;
       color: var(--sc-color-text-link);
     }
-    :host([type='text']) button:hover {
+    :host([type='text']) :is(button, a):hover {
       color: var(--sc-color-text-link-hover);
     }
-    :host([type='text']) button:active {
+    :host([type='text']) :is(button, a):active {
       color: var(--sc-color-text-link-pressed);
     }
 
     /* Text Mono */
-    :host([type='text-mono']) button {
+    :host([type='text-mono']) :is(button, a) {
       background: transparent;
       color: var(--sc-color-text-secondary);
     }
-    :host([type='text-mono']) button:hover {
+    :host([type='text-mono']) :is(button, a):hover {
       color: var(--sc-color-text-primary);
     }
-    :host([type='text-mono']) button:active {
+    :host([type='text-mono']) :is(button, a):active {
       color: var(--sc-color-text-primary);
     }
 
     /* Negative Text */
-    :host([type='negative-text']) button {
+    :host([type='negative-text']) :is(button, a) {
       background: transparent;
       color: var(--sc-color-text-negative);
     }
-    :host([type='negative-text']) button:hover {
+    :host([type='negative-text']) :is(button, a):hover {
       color: var(--sc-color-text-negative-hover);
     }
-    :host([type='negative-text']) button:active {
+    :host([type='negative-text']) :is(button, a):active {
       color: var(--sc-color-text-negative-pressed);
     }
 
@@ -144,20 +149,38 @@ export class ScButton extends LitElement {
   `]
 
   render() {
+    const inactive = this.disabled || this.loading
+    const inner = html`
+      <span class="spinner"></span>
+      <span class="label">
+        ${featherIcon(this.leadingIcon)}
+        <slot></slot>
+        ${featherIcon(this.trailingIcon)}
+      </span>
+    `
+
+    if (this.href && !inactive) {
+      const rel = this.target === '_blank'
+        ? (this.rel || 'noopener noreferrer')
+        : (this.rel || undefined)
+      return html`
+        <a
+          part="button"
+          href=${this.href}
+          target=${this.target || '_self'}
+          rel=${rel ?? ''}
+          aria-busy=${this.loading ? 'true' : 'false'}
+        >${inner}</a>
+      `
+    }
+
     return html`
       <button
         part="button"
         type="button"
-        ?disabled=${this.disabled || this.loading}
+        ?disabled=${inactive}
         aria-busy=${this.loading ? 'true' : 'false'}
-      >
-        <span class="spinner"></span>
-        <span class="label">
-          ${featherIcon(this.leadingIcon)}
-          <slot></slot>
-          ${featherIcon(this.trailingIcon)}
-        </span>
-      </button>
+      >${inner}</button>
     `
   }
 }

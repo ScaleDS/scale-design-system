@@ -8,130 +8,130 @@ export const buttonVariants = css`
   /* ---- Types ---- */
 
   /* Primary */
-  :host([type='primary']) button {
+  :host([type='primary']) :is(button, a) {
     background: var(--sc-color-background-brand);
     color: var(--sc-color-text-primary-inverse);
   }
-  :host([type='primary']) button:hover {
+  :host([type='primary']) :is(button, a):hover {
     background: var(--sc-color-background-brand-hover);
   }
-  :host([type='primary']) button:active {
+  :host([type='primary']) :is(button, a):active {
     background: var(--sc-color-background-brand-pressed);
   }
 
   /* Secondary */
-  :host([type='secondary']) button {
+  :host([type='secondary']) :is(button, a) {
     background: var(--sc-color-background-neutral);
     color: var(--sc-color-text-primary);
   }
-  :host([type='secondary']) button:hover {
+  :host([type='secondary']) :is(button, a):hover {
     background: var(--sc-color-background-neutral-hover);
   }
-  :host([type='secondary']) button:active {
+  :host([type='secondary']) :is(button, a):active {
     background: var(--sc-color-background-neutral-pressed);
   }
 
   /* Tertiary */
-  :host([type='tertiary']) button {
+  :host([type='tertiary']) :is(button, a) {
     background: transparent;
     color: var(--sc-color-text-primary);
   }
-  :host([type='tertiary']) button:hover {
+  :host([type='tertiary']) :is(button, a):hover {
     background: var(--sc-color-background-hover);
   }
-  :host([type='tertiary']) button:active {
+  :host([type='tertiary']) :is(button, a):active {
     background: var(--sc-color-background-pressed);
   }
 
   /* Tertiary Mono */
-  :host([type='tertiary-mono']) button {
+  :host([type='tertiary-mono']) :is(button, a) {
     background: transparent;
     color: var(--sc-color-text-primary);
   }
-  :host([type='tertiary-mono']) button:hover {
+  :host([type='tertiary-mono']) :is(button, a):hover {
     background: var(--sc-color-background-hover);
   }
-  :host([type='tertiary-mono']) button:active {
+  :host([type='tertiary-mono']) :is(button, a):active {
     background: var(--sc-color-background-pressed);
   }
 
   /* Inverse */
-  :host([type='inverse']) button {
+  :host([type='inverse']) :is(button, a) {
     background: var(--sc-color-background-inverse);
     color: var(--sc-color-text-primary-inverse);
   }
-  :host([type='inverse']) button:hover {
+  :host([type='inverse']) :is(button, a):hover {
     opacity: 0.9;
   }
-  :host([type='inverse']) button:active {
+  :host([type='inverse']) :is(button, a):active {
     opacity: 0.8;
   }
 
   /* Mono */
-  :host([type='mono']) button {
+  :host([type='mono']) :is(button, a) {
     background: var(--sc-color-background-mono);
     color: var(--sc-color-text-primary-inverse);
   }
-  :host([type='mono']) button:hover {
+  :host([type='mono']) :is(button, a):hover {
     background: var(--sc-color-background-mono-hover);
   }
-  :host([type='mono']) button:active {
+  :host([type='mono']) :is(button, a):active {
     background: var(--sc-color-background-mono-pressed);
   }
 
   /* Outline */
-  :host([type='outline']) button {
+  :host([type='outline']) :is(button, a) {
     background: transparent;
     color: var(--sc-color-text-primary);
     border: var(--sc-border-width-s) solid var(--sc-color-border-primary);
   }
-  :host([type='outline']) button:hover {
+  :host([type='outline']) :is(button, a):hover {
     background: var(--sc-color-background-hover);
   }
-  :host([type='outline']) button:active {
+  :host([type='outline']) :is(button, a):active {
     background: var(--sc-color-background-pressed);
   }
 
   /* Outline Mono */
-  :host([type='outline-mono']) button {
+  :host([type='outline-mono']) :is(button, a) {
     background: transparent;
     color: var(--sc-color-text-primary);
     border: var(--sc-border-width-s) solid var(--sc-color-border-mono);
   }
-  :host([type='outline-mono']) button:hover {
+  :host([type='outline-mono']) :is(button, a):hover {
     background: var(--sc-color-background-hover);
   }
-  :host([type='outline-mono']) button:active {
+  :host([type='outline-mono']) :is(button, a):active {
     background: var(--sc-color-background-pressed);
   }
 
   /* Negative Primary */
-  :host([type='negative-primary']) button {
+  :host([type='negative-primary']) :is(button, a) {
     background: var(--sc-color-background-negative);
     color: var(--sc-color-text-primary-inverse);
   }
-  :host([type='negative-primary']) button:hover {
+  :host([type='negative-primary']) :is(button, a):hover {
     background: var(--sc-color-background-negative-hover);
   }
-  :host([type='negative-primary']) button:active {
+  :host([type='negative-primary']) :is(button, a):active {
     background: var(--sc-color-background-negative-pressed);
   }
 
   /* Negative Outline */
-  :host([type='negative-outline']) button {
+  :host([type='negative-outline']) :is(button, a) {
     background: transparent;
     color: var(--sc-color-text-negative);
     border: var(--sc-border-width-s) solid var(--sc-color-border-negative);
   }
-  :host([type='negative-outline']) button:hover {
+  :host([type='negative-outline']) :is(button, a):hover {
     background: var(--sc-color-background-negative-subtle);
   }
-  :host([type='negative-outline']) button:active {
+  :host([type='negative-outline']) :is(button, a):active {
     background: var(--sc-color-background-negative-subtle);
   }
 
   /* ---- Disabled ---- */
-  :host([disabled]) button {
+  :host([disabled]) :is(button, a) {
     background: var(--sc-color-background-disabled);
     color: var(--sc-color-text-disabled);
     border-color: var(--sc-color-border-disabled);
@@ -140,7 +140,7 @@ export const buttonVariants = css`
   }
 
   /* ---- Loading ---- */
-  :host([loading]) button {
+  :host([loading]) :is(button, a) {
     cursor: not-allowed;
     pointer-events: none;
   }
