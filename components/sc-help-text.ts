@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { textL, textM, textS } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-status-icon'
 
 type HelpTextStatus = 'default' | 'info' | 'warning' | 'negative' | 'positive' | 'disabled'
@@ -47,28 +48,14 @@ export class ScHelpText extends LitElement {
     }
 
     p {
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-weight: var(--sc-type-weight-regular);
-      letter-spacing: var(--sc-type-letter-spacing-none);
       color: var(--sc-color-text-secondary);
       margin: 0;
       flex: 1;
     }
 
-    :host([size='l']) p {
-      font-size: var(--sc-type-size-l);
-      line-height: var(--sc-type-line-height-l);
-    }
-
-    :host([size='m']) p {
-      font-size: var(--sc-type-size-m);
-      line-height: var(--sc-type-line-height-m);
-    }
-
-    :host([size='s']) p {
-      font-size: var(--sc-type-size-s);
-      line-height: var(--sc-type-line-height-s);
-    }
+    :host([size='l']) p { ${textL} }
+    :host([size='m']) p { ${textM} }
+    :host([size='s']) p { ${textS} }
 
     :host([status='disabled']) p {
       color: var(--sc-color-text-disabled);

@@ -1,5 +1,6 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { textL } from '@scale/design-system/scss/typography'
 import { type ScRadioItem } from '@scale/design-system/components/sc-radio-item'
 import '@scale/design-system/components/sc-radio-item'
 
@@ -65,11 +66,7 @@ export class ScRadio extends LitElement {
     }
 
     .label {
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-l);
-      line-height: var(--sc-type-line-height-l);
-      font-weight: var(--sc-type-weight-regular);
-      letter-spacing: var(--sc-type-letter-spacing-none);
+      ${textL}
       color: var(--sc-color-text-secondary);
       cursor: pointer;
       user-select: none;
