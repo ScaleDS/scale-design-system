@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { ThemeController } from './theme-controller'
+import { reset } from './reset'
 
 @customElement('sc-section-feature')
 export class ScSectionFeature extends LitElement {
@@ -11,13 +12,7 @@ export class ScSectionFeature extends LitElement {
 
   private _theme = new ThemeController(this)
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: flex;
       justify-content: center;
@@ -104,7 +99,7 @@ export class ScSectionFeature extends LitElement {
         width: 100%;
       }
     }
-  `
+  `]
 
   render() {
     const src = this.imageSrcDark && this._theme.theme === 'dark' ? this.imageSrcDark : this.imageSrc

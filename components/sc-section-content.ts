@@ -1,17 +1,12 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { reset } from './reset'
 
 @customElement('sc-section-content')
 export class ScSectionContent extends LitElement {
   @property({ reflect: true }) align: 'center' | 'left' = 'center'
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: flex;
       justify-content: center;
@@ -41,7 +36,7 @@ export class ScSectionContent extends LitElement {
         align-items: flex-start;
       }
     }
-  `
+  `]
 
   render() {
     return html`

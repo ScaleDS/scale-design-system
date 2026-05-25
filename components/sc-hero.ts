@@ -4,6 +4,7 @@ import '@scale/design-system/components/sc-badge'
 import '@scale/design-system/components/sc-button'
 import '@scale/design-system/components/sc-input'
 import { ThemeController } from './theme-controller'
+import { reset } from './reset'
 
 @customElement('sc-hero')
 export class ScHero extends LitElement {
@@ -23,13 +24,7 @@ export class ScHero extends LitElement {
 
   private _theme = new ThemeController(this)
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: block;
       position: relative;
@@ -150,7 +145,7 @@ export class ScHero extends LitElement {
       }
     }
 
-  `
+  `]
 
   render() {
     return html`

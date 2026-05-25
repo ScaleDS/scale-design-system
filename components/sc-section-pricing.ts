@@ -1,16 +1,11 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
+import { reset } from './reset'
 
 @customElement('sc-section-pricing')
 export class ScSectionPricing extends LitElement {
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: flex;
       justify-content: center;
@@ -54,7 +49,7 @@ export class ScSectionPricing extends LitElement {
         text-align: left;
       }
     }
-  `
+  `]
 
   render() {
     return html`

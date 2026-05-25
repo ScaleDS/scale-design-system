@@ -3,21 +3,15 @@ import { customElement, property } from 'lit/decorators.js'
 import { textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-divider'
 import { featherIcon } from './feather'
+import { reset } from './reset'
 
 @customElement('sc-row')
 export class ScRow extends LitElement {
   @property({ attribute: 'leading-icon' }) leadingIcon = ''
   @property({ attribute: 'trailing-icon' }) trailingIcon = ''
   @property({ type: Boolean, attribute: 'hide-divider', reflect: true }) hideDivider = false
-  @property({ type: Boolean, reflect: true }) disabled = false
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: block;
     }
@@ -32,10 +26,6 @@ export class ScRow extends LitElement {
       ${textL}
     }
 
-    :host([disabled]) .content {
-      color: var(--sc-color-text-disabled);
-    }
-
     .label {
       flex: 1;
     }
@@ -46,10 +36,6 @@ export class ScRow extends LitElement {
       color: var(--sc-color-icon-primary);
     }
 
-    :host([disabled]) svg {
-      color: var(--sc-color-icon-disabled);
-    }
-
     sc-divider {
       display: var(--sc-row-divider-display, block);
     }
@@ -57,7 +43,7 @@ export class ScRow extends LitElement {
     :host([hide-divider]) sc-divider {
       display: none;
     }
-  `
+  `]
 
   render() {
     return html`

@@ -175,6 +175,15 @@ export class ScButtonIcon extends LitElement {
     }
   `]
 
+  protected firstUpdated() {
+    if (!this.label) {
+      console.warn(
+        `<sc-button-icon icon="${this.icon}"> has no \`label\` — screen readers will announce the icon name as the accessible label. Pass a meaningful \`label\` describing the action.`,
+        this,
+      )
+    }
+  }
+
   render() {
     return html`
       <button
