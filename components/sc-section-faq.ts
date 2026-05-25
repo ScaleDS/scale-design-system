@@ -1,17 +1,12 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import '@scale/design-system/components/sc-accordion'
+import { reset } from './reset'
 
 @customElement('sc-section-faq')
 export class ScSectionFaq extends LitElement {
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: flex;
       justify-content: center;
@@ -42,7 +37,7 @@ export class ScSectionFaq extends LitElement {
       display: flex;
       flex-direction: column;
     }
-  `
+  `]
 
   render() {
     return html`

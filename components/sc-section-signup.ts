@@ -1,17 +1,12 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { headingL, textL } from '@scale/design-system/scss/typography'
+import { reset } from './reset'
 
 @customElement('sc-section-signup')
 export class ScSectionSignup extends LitElement {
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: flex;
       justify-content: center;
@@ -99,7 +94,7 @@ export class ScSectionSignup extends LitElement {
         width: 100%;
       }
     }
-  `
+  `]
 
   render() {
     return html`

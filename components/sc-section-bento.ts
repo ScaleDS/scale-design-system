@@ -1,16 +1,11 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
+import { reset } from './reset'
 
 @customElement('sc-section-bento')
 export class ScSectionBento extends LitElement {
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: flex;
       justify-content: center;
@@ -94,7 +89,7 @@ export class ScSectionBento extends LitElement {
         grid-row: auto;
       }
     }
-  `
+  `]
 
   render() {
     return html`

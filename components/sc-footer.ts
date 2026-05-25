@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { textS, linkS } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-logo'
+import { reset } from './reset'
 
 @customElement('sc-footer')
 export class ScFooter extends LitElement {
@@ -9,13 +10,7 @@ export class ScFooter extends LitElement {
   @property({ attribute: 'licence-label' }) licenceLabel = 'Licence Agreement'
   @property({ attribute: 'licence-href' }) licenceHref = '#'
 
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: block;
       width: 100%;
@@ -67,7 +62,7 @@ export class ScFooter extends LitElement {
         gap: var(--sc-space-s);
       }
     }
-  `
+  `]
 
   render() {
     return html`
