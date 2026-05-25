@@ -2,16 +2,11 @@ import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { headingXl, textM } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-divider'
+import { reset } from './reset'
 
 @customElement('sc-card-pricing')
 export class ScCardPricing extends LitElement {
-  static styles = css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, css`
     :host {
       display: block;
       background: var(--sc-color-surface-l1);
@@ -54,7 +49,7 @@ export class ScCardPricing extends LitElement {
       text-decoration: none;
       outline: none;
     }
-  `
+  `]
 
   render() {
     return html`

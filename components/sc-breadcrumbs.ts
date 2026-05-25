@@ -2,6 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { linkM, textM } from '@scale/design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
+import { reset } from './reset'
 
 export interface Crumb {
   label: string
@@ -13,13 +14,7 @@ export class ScBreadcrumbs extends LitElement {
   @property({ type: Array }) crumbs: Crumb[] = []
   @property() current = ''
 
-  static styles = [focusRing, css`
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+  static styles = [reset, focusRing, css`
     :host {
       display: block;
     }

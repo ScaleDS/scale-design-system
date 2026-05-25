@@ -1,6 +1,12 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, svg } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { featherIcon } from './feather'
+
+const userSilhouette = svg`
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+    <circle cx="12" cy="7" r="4"/>
+  </svg>
+`
 
 type AvatarSize = 'xl' | 'l' | 'm' | 's' | 'xs'
 
@@ -124,7 +130,7 @@ export class ScAvatar extends LitElement {
     } else if (initial) {
       content = html`<span class="initials" aria-hidden="true">${initial}</span>`
     } else {
-      content = featherIcon('user')
+      content = userSilhouette
     }
 
     return html`
