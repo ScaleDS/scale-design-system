@@ -2,10 +2,16 @@
 
 A Lit-based agentic design system with machine-readable context for AI and human developers.
 
+- 34 web components built with Lit + Shadow DOM
+- W3C DTCG design tokens (colors, spacing, typography, borders, shadows)
+- Form-associated inputs that work in real `<form>` submissions
+- Theme controller + reset/typography helpers shared across components
+- MCP server + `components.json` / `tokens.json` / `patterns.json` for AI agents
+
 ## Installation
 
 ```bash
-npm install @scale/design-system
+npm install github:ScaleDS/scale-design-system
 ```
 
 ## Quick Start
@@ -21,86 +27,172 @@ npm install @scale/design-system
 </head>
 <body>
   <sc-button type="primary" size="l">Get Started</sc-button>
+  <sc-input label="Email" name="email" type="email" required></sc-input>
 </body>
 </html>
 ```
 
 ## Components
 
-23 Lit web components across 7 categories:
+34 components across UI, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
 
-| Category | Components |
-|----------|-----------|
-| Actions | `sc-button`, `sc-button-icon`, `sc-button-pill` |
-| Forms | `sc-input`, `sc-toggle` |
-| Feedback | `sc-badge`, `sc-help-text`, `sc-status-icon` |
-| Content | `sc-card-image`, `sc-card-pricing` |
-| Layout | `sc-divider`, `sc-footer`, `sc-header`, `sc-logo`, `sc-row` |
-| Navigation | `sc-accordion` |
-| Sections | `sc-hero`, `sc-section-bento`, `sc-section-content`, `sc-section-faq`, `sc-section-feature`, `sc-section-pricing`, `sc-section-signup` |
+### UI
 
-## Design Tokens
+`sc-accordion`, `sc-alert`, `sc-avatar`, `sc-avatar-group`, `sc-badge`, `sc-banner`, `sc-breadcrumbs`, `sc-button`, `sc-button-icon`, `sc-button-pill`, `sc-checkbox`, `sc-checkbox-item`, `sc-divider`, `sc-help-text`, `sc-input`, `sc-logo`, `sc-menu-dropdown`, `sc-menu-item`, `sc-radio`, `sc-radio-item`, `sc-row`, `sc-status-icon`, `sc-toggle`
 
-All components use CSS custom properties for theming:
+### Layout & sections
 
-```css
-:root {
-  --sc-color-brand-500: #3355ff;
-  --sc-space-l: 16px;
-  --sc-border-radius-m: 12px;
+| Component | Description |
+|---|---|
+| `sc-header` | Fixed header with frosted-glass background, single-pill theme toggle, mobile drawer; CTAs render as real `<a>` elements |
+| `sc-hero` | Full-width hero with badge, CTAs, and theme-reactive image |
+| `sc-footer` | Footer with logo, optional copyright, licence link |
+| `sc-section-content` | Centred heading + subtext |
+| `sc-section-feature` | Side-by-side content + image (`reverse` reorders the DOM, not just CSS) |
+| `sc-section-bento` | 4-cell bento grid |
+| `sc-section-pricing` | 3-column pricing card grid |
+| `sc-section-faq` | FAQ accordion section |
+| `sc-section-signup` | Email signup card |
+| `sc-card-image` | Image card with `default` and `fill` variants |
+| `sc-card-pricing` | Pricing tier card |
+
+### Shared modules (non-element exports)
+
+These live in `components/` but don't define custom elements — they're utilities consumed by the elements:
+
+| Module | Purpose |
+|---|---|
+| `feather.ts` | `featherIcon(name, opts?)` helper returning a Lit `TemplateResult` |
+| `theme-controller.ts` | `ThemeController` (Lit `ReactiveController`) — pub/sub theme state with optional `documentAttribute` / `storageKey` / `eventName` overrides |
+| `button-variants.ts` | 10 shared type variants + disabled + loading + spinner CSS for `sc-button` and `sc-button-pill` |
+| `reset.ts` | Local `* { box-sizing: border-box; margin: 0; padding: 0 }` reset for section-style components |
+| `sc-focus-ring.ts` | `:focus-visible` outline shared across components |
+
+`ThemeController` is exported from the package root for consumer reuse:
+
+```ts
+import { ThemeController } from '@scale/design-system'
+
+class MyElement extends LitElement {
+  private _theme = new ThemeController(this, { storageKey: 'my-app-theme' })
+  render() {
+    return html`<p>Theme: ${this._theme.theme}</p>`
+  }
 }
 ```
 
-Import the full SCSS token set:
+## Form association
+
+`sc-input`, `sc-checkbox`, `sc-radio`, and `sc-toggle` are form-associated custom elements. They participate in `FormData`, browser-native validation, `formdata` events, and form `reset`:
+
+```html
+<form>
+  <sc-input name="email" type="email" required></sc-input>
+  <sc-checkbox name="newsletter" value="yes">Subscribe</sc-checkbox>
+  <sc-radio name="plan" value="free">Free</sc-radio>
+  <sc-radio name="plan" value="pro" checked>Pro</sc-radio>
+  <sc-toggle name="marketing" value="yes"></sc-toggle>
+  <button type="submit">Submit</button>
+</form>
+```
+
+Each control exposes `form`, `validity`, `validationMessage`, `willValidate`, `checkValidity()`, `reportValidity()`, plus the standard `formResetCallback` / `formDisabledCallback` lifecycle hooks.
+
+## Polymorphic button
+
+`sc-button` accepts `href`, `target`, and `rel` props. When `href` is set (and the button isn't disabled/loading), it renders an `<a>` instead of a `<button>` — middle-click, ⌘-click, and the browser context menu all work as expected. When `target='_blank'`, `rel='noopener noreferrer'` is applied by default (override via the `rel` prop).
+
+```html
+<sc-button type="primary" href="/docs">Read the docs</sc-button>
+<sc-button type="secondary" href="https://example.com" target="_blank">External</sc-button>
+```
+
+## Design tokens
+
+All visual properties come from CSS custom properties. Tokens are defined in `scss/sc-variables-*.scss` and aggregated by `scss/main.scss`. Use the brand scale to retheme:
+
+```css
+:root {
+  --sc-color-brand-500: #ff3355;
+  --sc-color-brand-400: #ff5a76;
+  --sc-color-brand-600: #ce2945;
+}
+```
+
+`sc-logo` references `--sc-color-brand-400/500/600` directly, so it follows brand changes automatically.
+
+Import the full SCSS bundle:
 
 ```scss
 @use '@scale/design-system/scss/main.scss';
 ```
 
-## AI Agent Integration
+Or pick individual modules:
+
+```scss
+@use '@scale/design-system/scss/sc-variables-color';
+@use '@scale/design-system/scss/sc-mixins-type' as type;
+
+.my-heading { @include type.sc-typography-heading-m; }
+```
+
+Typography is also available as Lit `css` template tags for use inside Shadow DOM:
+
+```ts
+import { textL, labelM, headingS } from '@scale/design-system/scss/typography'
+```
+
+## Theming
+
+Theme state is managed via `ThemeController`. `sc-header` is the publisher (theme toggle calls `.set()`), and `sc-hero`, `sc-card-image`, `sc-section-feature` consume it. The controller reads `document.documentElement.dataset.theme` on connect, listens for a `theme-change` window event, and persists to `localStorage['sc-theme']` by default (all overridable).
+
+The host page needs a small inline script before any CSS renders to prevent FOUC:
+
+```html
+<script>
+  const saved = localStorage.getItem('sc-theme')
+  const prefers = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  document.documentElement.dataset.theme = saved ?? prefers
+</script>
+```
+
+## AI agent integration
 
 Scale ships with machine-readable context for AI agents:
 
-### `context/components.json`
-Full component catalog with props, slots, events, and usage examples.
+| File | Purpose |
+|---|---|
+| `context/AGENTS.md` | Agent entry point with rules, categories, and quick reference |
+| `context/components.json` | Full component catalog — props, slots, events, examples |
+| `context/tokens.json` | W3C DTCG design tokens |
+| `context/patterns.json` | Composition patterns with ready-to-use templates |
 
-### `context/tokens.json`
-W3C DTCG format design tokens for colors, spacing, typography, borders, and shadows.
+### MCP server
 
-### `context/patterns.json`
-Common composition patterns with ready-to-use templates.
+An MCP server is bundled in the package for IDE integration (Cursor, Claude Code, Claude Desktop, etc.):
 
-### `context/AGENTS.md`
-Agent instructions and rules for using the design system correctly.
-
-### MCP Server
-For IDE integration (Cursor, Claude Code, etc.):
-
-```bash
-cd mcp
-npm install
-npm run build
-```
-
-Configure in your MCP client:
 ```json
 {
   "mcpServers": {
-    "scale-design-system": {
+    "scale": {
       "command": "npx",
-      "args": ["@scale/design-system-mcp"]
+      "args": ["@scale/design-system"]
     }
   }
 }
 ```
 
+Once connected, AI agents can query Scale directly for component APIs, design tokens, and composition patterns — no guessing, no web search.
+
 ## Development
 
 ```bash
-npm run build          # Compile TypeScript
-npm run build:watch    # Watch mode
+npm run build           # Compile TypeScript
+npm run build:watch     # Watch mode
 npm run generate:context  # Regenerate components.json from source
 ```
+
+A sibling repo at [scale-docs](https://github.com/ScaleDS/scale-docs) consumes this package and ships a live preview gallery at [scaledesignsystem.com/preview.html](https://scaledesignsystem.com/preview.html). For coordinated cross-repo development, the consumer repo includes `link-ds` / `unlink-ds` scripts that symlink this directory into its `node_modules`.
 
 ## Publishing
 
@@ -108,6 +200,14 @@ npm run generate:context  # Regenerate components.json from source
 npm version patch
 npm publish --access public
 ```
+
+Or, from the consumer repo:
+
+```bash
+npm run release-ds -- "<commit message>"
+```
+
+This commits + pushes this repo, bumps `@scale/design-system` to the new HEAD in the consumer's lockfile, and commits + pushes the consumer.
 
 ## License
 
