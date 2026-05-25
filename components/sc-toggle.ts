@@ -1,11 +1,44 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { focusRing } from './sc-focus-ring'
 
 @customElement('sc-toggle')
 export class ScToggle extends LitElement {
+  static formAssociated = true
+
   @property({ type: Boolean, reflect: true }) checked = false
   @property({ type: Boolean, reflect: true }) disabled = false
+  @property() name = ''
+  @property() value = 'on'
+
+  private _internals = this.attachInternals()
+  private _initialChecked = false
+
+  get form() { return this._internals.form }
+  get validity() { return this._internals.validity }
+  get validationMessage() { return this._internals.validationMessage }
+  get willValidate() { return this._internals.willValidate }
+  checkValidity() { return this._internals.checkValidity() }
+  reportValidity() { return this._internals.reportValidity() }
+
+  connectedCallback() {
+    super.connectedCallback()
+    this._initialChecked = this.checked
+  }
+
+  protected updated(changed: PropertyValues) {
+    if (changed.has('checked')) {
+      this._internals.setFormValue(this.checked ? this.value : null)
+    }
+  }
+
+  formResetCallback() {
+    this.checked = this._initialChecked
+  }
+
+  formDisabledCallback(disabled: boolean) {
+    this.disabled = disabled
+  }
 
   static styles = [
     focusRing,

@@ -5,7 +5,7 @@ import '@scale/design-system/components/sc-logo'
 
 @customElement('sc-footer')
 export class ScFooter extends LitElement {
-  @property({ attribute: 'copyright' }) copyright = '©2020 - 2026 Christopher Deane. All rights reserved.'
+  @property({ attribute: 'copyright' }) copyright = ''
   @property({ attribute: 'licence-label' }) licenceLabel = 'Licence Agreement'
   @property({ attribute: 'licence-href' }) licenceHref = '#'
 
@@ -77,7 +77,7 @@ export class ScFooter extends LitElement {
             <sc-logo size="m" hide-text></sc-logo>
           </div>
           <div class="trailing">
-            <span class="copyright">${this.copyright}</span>
+            ${this.copyright ? html`<span class="copyright">${this.copyright}</span>` : ''}
             <a class="licence" href=${this.licenceHref}>${this.licenceLabel}</a>
           </div>
         </div>

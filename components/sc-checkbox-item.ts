@@ -1,8 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import { focusRing } from './sc-focus-ring'
+import { featherIcon } from './feather'
 
 type CheckboxItemState = 'default' | 'negative'
 
@@ -152,10 +151,10 @@ export class ScCheckboxItem extends LitElement {
         part="button"
       >
         <span class="icon icon-check" part="icon-check">
-          ${unsafeHTML(icons['check'].toSvg({ width: 16, height: 16 }))}
+          ${featherIcon('check', { width: 16, height: 16 })}
         </span>
         <span class="icon icon-dash" part="icon-dash">
-          ${unsafeHTML(icons['minus'].toSvg({ width: 16, height: 16 }))}
+          ${featherIcon('minus', { width: 16, height: 16 })}
         </span>
       </button>
     `

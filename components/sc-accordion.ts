@@ -1,9 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import '@scale/design-system/components/sc-divider'
 import { focusRing } from './sc-focus-ring'
+import { featherIcon } from './feather'
 
 let accordionId = 0
 
@@ -128,7 +127,7 @@ export class ScAccordion extends LitElement {
       >
         <h6>${this.heading}</h6>
         <span class="chevron">
-          ${unsafeHTML(icons['chevron-down' as keyof typeof icons].toSvg())}
+          ${featherIcon('chevron-down')}
         </span>
       </button>
       <div class="body" id=${contentId} role="region" aria-labelledby=${headerId}>

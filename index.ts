@@ -1,5 +1,6 @@
 export { ScAccordion } from './components/sc-accordion.js'
 export { ScBadge } from './components/sc-badge.js'
+export { ScBreadcrumbs, type Crumb } from './components/sc-breadcrumbs.js'
 export { ScButton } from './components/sc-button.js'
 export { ScButtonIcon } from './components/sc-button-icon.js'
 export { ScButtonPill } from './components/sc-button-pill.js'
