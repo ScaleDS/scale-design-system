@@ -1,8 +1,9 @@
 import { LitElement, html, css } from 'lit'
-import { customElement, property, state } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import '@scale/design-system/components/sc-badge'
 import '@scale/design-system/components/sc-button'
 import '@scale/design-system/components/sc-input'
+import { ThemeController } from './theme-controller'
 
 @customElement('sc-hero')
 export class ScHero extends LitElement {
@@ -20,22 +21,7 @@ export class ScHero extends LitElement {
   @property({ attribute: 'form-placeholder' }) formPlaceholder = 'Enter your email'
   @property({ attribute: 'form-button-label' }) formButtonLabel = 'Subscribe'
 
-  @state() private _theme: 'light' | 'dark' = 'light'
-
-  private _onThemeChange = (e: Event) => {
-    this._theme = (e as CustomEvent).detail.theme
-  }
-
-  connectedCallback() {
-    super.connectedCallback()
-    this._theme = (document.documentElement.dataset.theme as 'light' | 'dark') ?? 'light'
-    window.addEventListener('theme-change', this._onThemeChange)
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback()
-    window.removeEventListener('theme-change', this._onThemeChange)
-  }
+  private _theme = new ThemeController(this)
 
   static styles = css`
     *, *::before, *::after {
@@ -169,7 +155,7 @@ export class ScHero extends LitElement {
   render() {
     return html`
       ${this.imageSrc ? html`
-        <img class="image" src=${this.imageSrcDark && this._theme === 'dark' ? this.imageSrcDark : this.imageSrc} alt=${this.imageAlt} />
+        <img class="image" src=${this.imageSrcDark && this._theme.theme === 'dark' ? this.imageSrcDark : this.imageSrc} alt=${this.imageAlt} />
         <div class="gradient"></div>
       ` : null}
 

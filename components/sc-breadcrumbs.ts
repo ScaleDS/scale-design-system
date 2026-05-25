@@ -2,16 +2,15 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { focusRing } from './sc-focus-ring'
 
+export interface Crumb {
+  label: string
+  href?: string
+}
+
 @customElement('sc-breadcrumbs')
 export class ScBreadcrumbs extends LitElement {
-  @property({ attribute: 'page-1' }) page1 = 'Page 1'
-  @property({ attribute: 'page-2' }) page2 = 'Page 2'
-  @property({ attribute: 'page-3' }) page3 = 'Page 3'
-  @property({ attribute: 'page-4' }) page4 = 'Page 4'
-  @property({ type: Boolean, attribute: 'show-page-2', reflect: true }) showPage2 = true
-  @property({ type: Boolean, attribute: 'show-page-3', reflect: true }) showPage3 = true
-  @property({ type: Boolean, attribute: 'show-page-4', reflect: true }) showPage4 = true
-  @property({ attribute: 'current-page' }) currentPage = 'Current page'
+  @property({ type: Array }) crumbs: Crumb[] = []
+  @property() current = ''
 
   static styles = [focusRing, css`
     *, *::before, *::after {
@@ -78,40 +77,38 @@ export class ScBreadcrumbs extends LitElement {
     }
   `]
 
-  private _onPageClick(e: Event, page: string) {
+  private _onCrumbClick(e: Event, crumb: Crumb, index: number) {
+    // Only intercept when there's no href — let real links navigate.
+    if (!crumb.href) e.preventDefault()
     this.dispatchEvent(new CustomEvent('navigate', {
-      detail: { page },
+      detail: { label: crumb.label, href: crumb.href, index },
       bubbles: true,
       composed: true,
     }))
-  }
-
-  private _renderPage(page: string) {
-    return html`
-      <li>
-        <a
-          class="link"
-          href="#"
-          @click=${(e: Event) => { e.preventDefault(); this._onPageClick(e, page) }}
-        >
-          ${page}
-        </a>
-        <span class="separator" aria-hidden="true">/</span>
-      </li>
-    `
   }
 
   render() {
     return html`
       <nav aria-label="Breadcrumb">
         <ol>
-          ${this._renderPage(this.page1)}
-          ${this.showPage2 ? this._renderPage(this.page2) : null}
-          ${this.showPage3 ? this._renderPage(this.page3) : null}
-          ${this.showPage4 ? this._renderPage(this.page4) : null}
-          <li aria-current="page">
-            <span class="current">${this.currentPage}</span>
-          </li>
+          ${this.crumbs.map((c, i) => {
+            const hasFollowing = i < this.crumbs.length - 1 || !!this.current
+            return html`
+              <li>
+                <a
+                  class="link"
+                  href=${c.href ?? '#'}
+                  @click=${(e: Event) => this._onCrumbClick(e, c, i)}
+                >${c.label}</a>
+                ${hasFollowing ? html`<span class="separator" aria-hidden="true">/</span>` : ''}
+              </li>
+            `
+          })}
+          ${this.current ? html`
+            <li aria-current="page">
+              <span class="current">${this.current}</span>
+            </li>
+          ` : ''}
         </ol>
       </nav>
     `

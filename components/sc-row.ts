@@ -1,9 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import { textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-divider'
+import { featherIcon } from './feather'
 
 @customElement('sc-row')
 export class ScRow extends LitElement {
@@ -60,18 +59,12 @@ export class ScRow extends LitElement {
     }
   `
 
-  private renderIcon(name: string) {
-    const icon = icons[name as keyof typeof icons]
-    if (!icon) return null
-    return unsafeHTML(icon.toSvg({ width: 24, height: 24 }))
-  }
-
   render() {
     return html`
       <div class="content">
-        ${this.leadingIcon ? this.renderIcon(this.leadingIcon) : null}
+        ${featherIcon(this.leadingIcon, { width: 24, height: 24 })}
         <span class="label"><slot></slot></span>
-        ${this.trailingIcon ? this.renderIcon(this.trailingIcon) : null}
+        ${featherIcon(this.trailingIcon, { width: 24, height: 24 })}
       </div>
       <sc-divider variant="subtle"></sc-divider>
     `

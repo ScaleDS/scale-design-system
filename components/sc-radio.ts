@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { type ScRadioItem } from '@scale/design-system/components/sc-radio-item'
 import '@scale/design-system/components/sc-radio-item'
@@ -7,11 +7,55 @@ type RadioState = 'default' | 'negative'
 
 @customElement('sc-radio')
 export class ScRadio extends LitElement {
+  static formAssociated = true
+
   @property({ type: Boolean, reflect: true }) checked = false
   @property({ type: Boolean, reflect: true }) disabled = false
+  @property({ type: Boolean, reflect: true }) required = false
   @property({ reflect: true }) state: RadioState = 'default'
   @property() value = ''
   @property() name = ''
+
+  private _internals = this.attachInternals()
+  private _initialChecked = false
+
+  get form() { return this._internals.form }
+  get validity() { return this._internals.validity }
+  get validationMessage() { return this._internals.validationMessage }
+  get willValidate() { return this._internals.willValidate }
+  checkValidity() { return this._internals.checkValidity() }
+  reportValidity() { return this._internals.reportValidity() }
+
+  protected updated(changed: PropertyValues) {
+    if (changed.has('checked') || changed.has('required')) {
+      this._internals.setFormValue(this.checked ? this.value : null)
+      if (this.required && !this.checked && !this._anyGroupMemberChecked()) {
+        this._internals.setValidity({ valueMissing: true }, 'Please select one of these options.')
+      } else {
+        this._internals.setValidity({})
+      }
+    }
+  }
+
+  formResetCallback() {
+    this.checked = this._initialChecked
+  }
+
+  formDisabledCallback(disabled: boolean) {
+    this.disabled = disabled
+  }
+
+  // Scope sibling-lookup to the containing form (if any), then to the root node.
+  // Never falls back to `document` — that would cross unrelated radio groups.
+  private _groupSiblings(): ScRadio[] {
+    if (!this.name) return []
+    const scope: ParentNode = this._internals.form ?? (this.getRootNode() as ParentNode)
+    return Array.from(scope.querySelectorAll(`sc-radio[name="${CSS.escape(this.name)}"]`)) as ScRadio[]
+  }
+
+  private _anyGroupMemberChecked(): boolean {
+    return this._groupSiblings().some(r => r.checked)
+  }
 
   static styles = css`
     :host {
@@ -39,34 +83,24 @@ export class ScRadio extends LitElement {
 
   connectedCallback() {
     super.connectedCallback()
-    if (this.checked && this.name) {
-      const siblings = document.querySelectorAll(`sc-radio[name="${this.name}"]`)
-      siblings.forEach((sib: HTMLElement) => {
-        if (sib !== this) {
-          const radio = sib as ScRadio
-          radio.checked = false
-        }
-      })
-    }
+    this._initialChecked = this.checked
+    if (this.checked) this._uncheckGroupSiblings()
   }
 
   private _item(): ScRadioItem | null {
     return this.shadowRoot?.querySelector('sc-radio-item') ?? null
   }
 
+  private _uncheckGroupSiblings() {
+    this._groupSiblings().forEach(sib => {
+      if (sib !== this) sib.checked = false
+    })
+  }
+
   private _onItemChange(e: CustomEvent) {
     e.stopPropagation()
     this.checked = e.detail.checked
-
-    if (this.checked && this.name) {
-      const siblings = document.querySelectorAll(`sc-radio[name="${this.name}"]`)
-      siblings.forEach((sib: HTMLElement) => {
-        if (sib !== this) {
-          const radio = sib as ScRadio
-          radio.checked = false
-        }
-      })
-    }
+    if (this.checked) this._uncheckGroupSiblings()
 
     this.dispatchEvent(new CustomEvent('change', {
       detail: { checked: this.checked, value: this.value, name: this.name },

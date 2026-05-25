@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit'
-import { customElement, property, state } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
+import { ThemeController } from './theme-controller'
 
 type CardImageVariant = 'default' | 'fill'
 
@@ -10,22 +11,7 @@ export class ScCardImage extends LitElement {
   @property({ attribute: 'image-src-dark' }) imageSrcDark = ''
   @property({ attribute: 'image-alt' }) imageAlt = ''
 
-  @state() private _theme: 'light' | 'dark' = 'light'
-
-  private _onThemeChange = (e: Event) => {
-    this._theme = (e as CustomEvent).detail.theme
-  }
-
-  connectedCallback() {
-    super.connectedCallback()
-    this._theme = (document.documentElement.dataset.theme as 'light' | 'dark') ?? 'light'
-    window.addEventListener('theme-change', this._onThemeChange)
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback()
-    window.removeEventListener('theme-change', this._onThemeChange)
-  }
+  private _theme = new ThemeController(this)
 
   static styles = css`
     :host {
@@ -114,7 +100,7 @@ export class ScCardImage extends LitElement {
   `
 
   render() {
-    const src = this.imageSrcDark && this._theme === 'dark' ? this.imageSrcDark : this.imageSrc
+    const src = this.imageSrcDark && this._theme.theme === 'dark' ? this.imageSrcDark : this.imageSrc
 
     const imageWrap = html`
       <div class="image-wrap">

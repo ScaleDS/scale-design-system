@@ -1,14 +1,15 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import '@scale/design-system/components/sc-help-text'
 import { focusRing } from './sc-focus-ring'
+import { featherIcon } from './feather'
 
 type InputState = 'default' | 'negative' | 'positive' | 'disabled'
 
 @customElement('sc-input')
 export class ScInput extends LitElement {
+  static formAssociated = true
+
   @property({ reflect: true }) state: InputState = 'default'
   @property() label = 'Label'
   @property() placeholder = 'Text'
@@ -19,7 +20,48 @@ export class ScInput extends LitElement {
   @property({ attribute: 'leading-icon' }) leadingIcon = ''
   @property({ attribute: 'trailing-icon' }) trailingIcon = ''
   @property() type = 'text'
+  @property() name = ''
+  @property() autocomplete = ''
+  @property() inputmode: string | undefined
+  @property() pattern: string | undefined
   @property({ type: Boolean, reflect: true }) required = false
+
+  private _internals = this.attachInternals()
+  private _initialValue = ''
+
+  get form() { return this._internals.form }
+  get validity() { return this._internals.validity }
+  get validationMessage() { return this._internals.validationMessage }
+  get willValidate() { return this._internals.willValidate }
+  checkValidity() { return this._internals.checkValidity() }
+  reportValidity() { return this._internals.reportValidity() }
+
+  connectedCallback() {
+    super.connectedCallback()
+    this._initialValue = this.value
+  }
+
+  protected updated(changed: PropertyValues) {
+    if (changed.has('value') || changed.has('required')) this._syncFormState()
+  }
+
+  private _syncFormState() {
+    this._internals.setFormValue(this.value)
+    const input = this.shadowRoot?.querySelector('input') ?? undefined
+    if (this.required && !this.value) {
+      this._internals.setValidity({ valueMissing: true }, 'Please fill out this field.', input)
+    } else {
+      this._internals.setValidity({})
+    }
+  }
+
+  formResetCallback() {
+    this.value = this._initialValue
+  }
+
+  formDisabledCallback(disabled: boolean) {
+    this.state = disabled ? 'disabled' : 'default'
+  }
 
   static styles = [
     focusRing,
@@ -137,10 +179,6 @@ export class ScInput extends LitElement {
     }
   `]
 
-  reportValidity(): boolean {
-    return (this.shadowRoot!.querySelector('input') as HTMLInputElement).reportValidity()
-  }
-
   private _onInput(e: Event) {
     this.value = (e.target as HTMLInputElement).value
     this.dispatchEvent(new CustomEvent('input', { detail: { value: this.value }, bubbles: true, composed: true }))
@@ -158,12 +196,6 @@ export class ScInput extends LitElement {
     return 'default'
   }
 
-  private _icon(name: string) {
-    const icon = icons[name as keyof typeof icons]
-    if (!icon) return ''
-    return unsafeHTML(icon.toSvg({ width: 20, height: 20 }))
-  }
-
   render() {
     const disabled = this.state === 'disabled'
 
@@ -171,7 +203,7 @@ export class ScInput extends LitElement {
       ${this.showLabel ? html`<p class="label">${this.label}</p>` : ''}
 
       <div class="field">
-        ${this.leadingIcon ? html`<span class="icon">${this._icon(this.leadingIcon)}</span>` : ''}
+        ${this.leadingIcon ? html`<span class="icon">${featherIcon(this.leadingIcon, { width: 20, height: 20 })}</span>` : ''}
 
         <input
           .value=${this.value}
@@ -179,11 +211,15 @@ export class ScInput extends LitElement {
           ?disabled=${disabled}
           ?required=${this.required}
           type=${this.type}
+          name=${this.name}
+          autocomplete=${this.autocomplete}
+          inputmode=${this.inputmode ?? ''}
+          pattern=${this.pattern ?? ''}
           @input=${this._onInput}
           @change=${this._onChange}
         />
 
-        ${this.trailingIcon ? html`<span class="icon">${this._icon(this.trailingIcon)}</span>` : ''}
+        ${this.trailingIcon ? html`<span class="icon">${featherIcon(this.trailingIcon, { width: 20, height: 20 })}</span>` : ''}
       </div>
 
       ${this.showHelpText ? html`

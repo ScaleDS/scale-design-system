@@ -1,9 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import { focusRing } from './sc-focus-ring'
+import { featherIcon } from './feather'
 
 type MenuItemType = 'row' | 'button' | 'link'
 type MenuItemState = 'default' | 'selected' | 'selected-open' | 'disabled'
@@ -211,9 +210,7 @@ export class ScMenuItem extends LitElement {
   }
 
   private _icon(name: string) {
-    const icon = icons[name as keyof typeof icons]
-    if (!icon) return ''
-    return unsafeHTML(icon.toSvg({ width: 20, height: 20 }))
+    return featherIcon(name, { width: 20, height: 20 })
   }
 
   render() {

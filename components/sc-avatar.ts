@@ -1,7 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
+import { featherIcon } from './feather'
 
 type AvatarSize = 'xl' | 'l' | 'm' | 's' | 'xs'
 
@@ -125,7 +124,7 @@ export class ScAvatar extends LitElement {
     } else if (initial) {
       content = html`<span class="initials" aria-hidden="true">${initial}</span>`
     } else {
-      content = html`${unsafeHTML(icons['user'].toSvg())}`
+      content = featherIcon('user')
     }
 
     return html`
