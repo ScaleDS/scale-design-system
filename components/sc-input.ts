@@ -1,5 +1,5 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import { labelL, textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-help-text'
 import { focusRing } from './sc-focus-ring'
@@ -29,6 +29,13 @@ export class ScInput extends LitElement {
 
   private _internals = this.attachInternals()
   private _initialValue = ''
+
+  // Pointer-vs-keyboard focus tracking. Browsers treat text inputs as always
+  // :focus-visible (since you need the keyboard to type once focused), so we
+  // can't use CSS alone — we flag pointer-originated focus and suppress the
+  // ring for those cases.
+  @state() private _kbdFocus = false
+  private _focusedByPointer = false
 
   get form() { return this._internals.form }
   get validity() { return this._internals.validity }
@@ -62,6 +69,22 @@ export class ScInput extends LitElement {
 
   formDisabledCallback(disabled: boolean) {
     this.state = disabled ? 'disabled' : 'default'
+  }
+
+  private _onPointerDown = () => {
+    this._focusedByPointer = true
+    // Reset on next tick — the focus event fires synchronously after this and
+    // will consume the flag; anything later (e.g. unrelated pointerdown that
+    // didn't land on the input) shouldn't poison the next keyboard focus.
+    setTimeout(() => { this._focusedByPointer = false }, 0)
+  }
+
+  private _onInputFocus = () => {
+    this._kbdFocus = !this._focusedByPointer
+  }
+
+  private _onInputBlur = () => {
+    this._kbdFocus = false
   }
 
   static styles = [
@@ -99,11 +122,18 @@ export class ScInput extends LitElement {
       box-sizing: border-box;
     }
 
-    .field:focus-within {
+    /* Keyboard-only focus ring — toggled by JS (input :focus-visible matches
+       even on mouse click for text inputs, so we can't rely on CSS alone). */
+    .field.kbd-focus {
       outline: 2px dashed var(--sc-color-border-mono);
       outline-offset: 1px;
       border-color: var(--sc-color-border-selected);
       box-shadow: 0 0 0 1px var(--sc-color-border-selected);
+    }
+
+    /* Mouse focus — keep the subtle "this is focused" border, no loud outline. */
+    .field:focus-within:not(.kbd-focus) {
+      border-color: var(--sc-color-border-selected);
     }
 
     :host([state='negative']) .field {
@@ -195,7 +225,10 @@ export class ScInput extends LitElement {
     return html`
       ${this.showLabel ? html`<p class="label">${this.label}</p>` : ''}
 
-      <div class="field">
+      <div
+        class="field ${this._kbdFocus ? 'kbd-focus' : ''}"
+        @pointerdown=${this._onPointerDown}
+      >
         ${this.leadingIcon ? html`<span class="icon">${featherIcon(this.leadingIcon, { width: 20, height: 20 })}</span>` : ''}
 
         <input
@@ -210,6 +243,8 @@ export class ScInput extends LitElement {
           pattern=${this.pattern ?? ''}
           @input=${this._onInput}
           @change=${this._onChange}
+          @focus=${this._onInputFocus}
+          @blur=${this._onInputBlur}
         />
 
         ${this.trailingIcon ? html`<span class="icon">${featherIcon(this.trailingIcon, { width: 20, height: 20 })}</span>` : ''}
