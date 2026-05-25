@@ -1,12 +1,28 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, unsafeCSS } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 
 type AvatarGroupSize = 'l' | 'm' | 's'
 
+// Avatars stack with the first one painting on top. Bounded by the max
+// supported value of the `max` attribute (controls hide-past-N rules below).
+const STACK_MAX = 20
+
+const stackingRules = unsafeCSS(
+  Array.from({ length: STACK_MAX }, (_, i) =>
+    `::slotted(sc-avatar:nth-child(${i + 1})) { z-index: ${STACK_MAX - i}; }`
+  ).join('\n')
+)
+
+const hidingRules = unsafeCSS(
+  Array.from({ length: STACK_MAX }, (_, i) =>
+    `:host([max="${i + 1}"]) ::slotted(sc-avatar:nth-child(n+${i + 2})) { display: none; }`
+  ).join('\n')
+)
+
 @customElement('sc-avatar-group')
 export class ScAvatarGroup extends LitElement {
   @property({ reflect: true }) size: AvatarGroupSize = 'm'
-  @property({ type: Number }) max = 4
+  @property({ type: Number, reflect: true }) max = 4
   @state() private _overflow = 0
 
   static styles = css`
@@ -28,11 +44,15 @@ export class ScAvatarGroup extends LitElement {
       border-radius: 50%;
       flex-shrink: 0;
       position: relative;
+      margin-left: -4px;
     }
 
-    ::slotted(sc-avatar.hidden) {
-      display: none;
+    ::slotted(sc-avatar:first-child) {
+      margin-left: 0;
     }
+
+    ${stackingRules}
+    ${hidingRules}
 
     .overflow {
       display: flex;
@@ -68,24 +88,27 @@ export class ScAvatarGroup extends LitElement {
     }
   `
 
-  private _updateOverflow(slot: HTMLSlotElement) {
-    const assigned = slot.assignedElements()
-    this._overflow = assigned.length > this.max ? assigned.length - this.max : 0
-    assigned.forEach((el, i) => {
-      const hidden = i >= this.max
-      el.classList.toggle('hidden', hidden)
-      el.style.marginRight = hidden ? '' : '-4px'
-      el.style.zIndex = hidden ? '' : `${assigned.length - i + 1}`
-    })
-  }
-
   private _onSlotChange(e: Event) {
-    this._updateOverflow(e.target as HTMLSlotElement)
+    const assigned = (e.target as HTMLSlotElement).assignedElements()
+    this._overflow = Math.max(0, assigned.length - this.max)
   }
 
   firstUpdated() {
     const slot = this.shadowRoot?.querySelector('slot')
-    if (slot) this._updateOverflow(slot)
+    if (slot) {
+      const assigned = slot.assignedElements()
+      this._overflow = Math.max(0, assigned.length - this.max)
+    }
+  }
+
+  protected updated(changed: Map<string, unknown>) {
+    if (changed.has('max')) {
+      const slot = this.shadowRoot?.querySelector('slot')
+      if (slot) {
+        const assigned = slot.assignedElements()
+        this._overflow = Math.max(0, assigned.length - this.max)
+      }
+    }
   }
 
   render() {
