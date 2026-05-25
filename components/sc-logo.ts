@@ -85,9 +85,9 @@ export class ScLogo extends LitElement {
     return svg`
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g clip-path="url(#sc-mark-clip)">
-          <path d="M32 16H0V44C0 46.2091 1.79086 48 4 48H32C40.8366 48 48 40.8366 48 32C48 23.1634 40.8366 16 32 16Z" fill="#5A76FF"/>
-          <path d="M16 0H44C46.2091 0 48 1.79086 48 4V32H16C7.16344 32 0 24.8366 0 16C0 7.16344 7.16344 0 16 0Z" fill="#3355FF"/>
-          <path d="M48 32C48 23.1634 40.8366 16 32 16H0C0 24.8366 7.16344 32 16 32H48Z" fill="#2945CE"/>
+          <path d="M32 16H0V44C0 46.2091 1.79086 48 4 48H32C40.8366 48 48 40.8366 48 32C48 23.1634 40.8366 16 32 16Z" fill="var(--sc-color-brand-400)"/>
+          <path d="M16 0H44C46.2091 0 48 1.79086 48 4V32H16C7.16344 32 0 24.8366 0 16C0 7.16344 7.16344 0 16 0Z" fill="var(--sc-color-brand-500)"/>
+          <path d="M48 32C48 23.1634 40.8366 16 32 16H0C0 24.8366 7.16344 32 16 32H48Z" fill="var(--sc-color-brand-600)"/>
         </g>
         <defs>
           <clipPath id="sc-mark-clip">

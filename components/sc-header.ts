@@ -1,11 +1,11 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import { linkM } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-logo'
 import '@scale/design-system/components/sc-button'
 import '@scale/design-system/components/sc-button-icon'
+import { featherIcon } from './feather'
+import { ThemeController } from './theme-controller'
 
 export interface NavLink {
   label: string
@@ -24,15 +24,14 @@ export class ScHeader extends LitElement {
   @property({ attribute: 'secondary-href' }) secondaryHref = ''
   @property({ type: Boolean, reflect: true, attribute: 'show-search' }) showSearch = false
 
-  @state() private _theme: 'light' | 'dark' = 'light'
   @state() private _mobile = false
 
+  private _theme = new ThemeController(this)
   private _mq = window.matchMedia('(max-width: 810px)')
   private _onMqChange = (e: MediaQueryListEvent) => { this._mobile = e.matches }
 
   connectedCallback() {
     super.connectedCallback()
-    this._theme = (document.documentElement.dataset.theme as 'light' | 'dark') ?? 'light'
     this._mobile = this._mq.matches
     this._mq.addEventListener('change', this._onMqChange)
   }
@@ -40,13 +39,6 @@ export class ScHeader extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback()
     this._mq.removeEventListener('change', this._onMqChange)
-  }
-
-  private _setTheme(theme: 'light' | 'dark') {
-    this._theme = theme
-    document.documentElement.dataset.theme = theme
-    localStorage.setItem('sc-theme', theme)
-    this.dispatchEvent(new CustomEvent('theme-change', { detail: { theme }, bubbles: true, composed: true }))
   }
 
   static styles = css`
@@ -244,14 +236,6 @@ export class ScHeader extends LitElement {
     }
   `
 
-  private _sunIcon() {
-    return unsafeHTML(icons['sun'].toSvg({ width: 14, height: 14 }))
-  }
-
-  private _moonIcon() {
-    return unsafeHTML(icons['moon'].toSvg({ width: 14, height: 14 }))
-  }
-
   render() {
     return html`
       <header class="header">
@@ -269,14 +253,14 @@ export class ScHeader extends LitElement {
             class="theme-toggle"
             part="theme-toggle"
             role="switch"
-            aria-checked=${this._theme === 'dark'}
+            aria-checked=${this._theme.theme === 'dark'}
             aria-label="Toggle theme"
-            title=${this._theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-            @click=${() => this._setTheme(this._theme === 'light' ? 'dark' : 'light')}
+            title=${this._theme.theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            @click=${() => this._theme.set(this._theme.theme === 'light' ? 'dark' : 'light')}
           >
-            <span class="theme-toggle-thumb ${this._theme}"></span>
-            <span class="theme-toggle-icon ${this._theme === 'light' ? 'active' : ''}">${this._sunIcon()}</span>
-            <span class="theme-toggle-icon ${this._theme === 'dark' ? 'active' : ''}">${this._moonIcon()}</span>
+            <span class="theme-toggle-thumb ${this._theme.theme}"></span>
+            <span class="theme-toggle-icon ${this._theme.theme === 'light' ? 'active' : ''}">${featherIcon('sun', { width: 14, height: 14 })}</span>
+            <span class="theme-toggle-icon ${this._theme.theme === 'dark' ? 'active' : ''}">${featherIcon('moon', { width: 14, height: 14 })}</span>
           </button>
 
           ${this.showSearch ? html`

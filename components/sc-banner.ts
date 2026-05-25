@@ -1,10 +1,9 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import { textL, linkL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-status-icon'
 import { focusRing } from './sc-focus-ring'
+import { featherIcon } from './feather'
 
 type BannerStatus = 'info' | 'warning' | 'negative' | 'positive' | 'mono'
 
@@ -18,8 +17,8 @@ const statusIconMap: Partial<Record<BannerStatus, string>> = {
 @customElement('sc-banner')
 export class ScBanner extends LitElement {
   @property({ reflect: true }) status: BannerStatus = 'info'
-  @property({ attribute: 'show-close', reflect: true }) showClose = ''
-  @property({ attribute: 'show-link', reflect: true }) showLink = ''
+  @property({ type: Boolean, attribute: 'hide-close', reflect: true }) hideClose = false
+  @property({ type: Boolean, attribute: 'hide-link', reflect: true }) hideLink = false
   @property({ attribute: 'link-href' }) linkHref = ''
   @property() link = ''
   @property() text = ''
@@ -165,9 +164,9 @@ export class ScBanner extends LitElement {
 
   render() {
     const iconStatus = statusIconMap[this.status]
-    const showClose = this.showClose !== 'false'
-    const showLink = this.showLink !== 'false'
-    const hasTrailing = (showLink && this.link) || showClose
+    const showLink = !this.hideLink && !!this.link
+    const showClose = !this.hideClose
+    const hasTrailing = showLink || showClose
 
     return html`
       <div class="banner" role="status" aria-label="Notification" @keydown=${this._onKeyDown}>
@@ -179,7 +178,7 @@ export class ScBanner extends LitElement {
         <p class="text">${this.text}</p>
         ${hasTrailing ? html`
           <div class="trailing">
-            ${showLink && this.link ? html`
+            ${showLink ? html`
               ${this.linkHref ? html`
                 <a class="link" href=${this.linkHref}>${this.link}</a>
               ` : html`
@@ -188,7 +187,7 @@ export class ScBanner extends LitElement {
             ` : ''}
             ${showClose ? html`
               <button class="close" type="button" aria-label="Close notification" @click=${this._onClose}>
-                ${unsafeHTML(icons['x'].toSvg())}
+                ${featherIcon('x')}
               </button>
             ` : ''}
           </div>

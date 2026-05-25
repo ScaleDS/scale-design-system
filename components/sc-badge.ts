@@ -1,8 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import { textS } from '@scale/design-system/scss/typography'
+import { featherIcon } from './feather'
 
 type BadgeStatus = 'default' | 'info' | 'warning' | 'negative' | 'positive' | 'mono' | 'disabled'
 
@@ -81,12 +80,10 @@ export class ScBadge extends LitElement {
   `
 
   render() {
-    const icon = this.icon ? icons[this.icon as keyof typeof icons] : null
-
     return html`
       <span class="badge">
         <slot></slot>
-        ${icon ? html`${unsafeHTML(icon.toSvg())}` : null}
+        ${featherIcon(this.icon)}
       </span>
     `
   }

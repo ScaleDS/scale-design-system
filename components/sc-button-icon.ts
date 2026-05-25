@@ -1,8 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { unsafeHTML } from 'lit/directives/unsafe-html.js'
-import { icons } from 'feather-icons'
 import { focusRing } from './sc-focus-ring'
+import { featherIcon } from './feather'
 
 type ButtonIconSize = 'l' | 's'
 type ButtonIconType =
@@ -177,16 +176,13 @@ export class ScButtonIcon extends LitElement {
   `]
 
   render() {
-    const icon = icons[this.icon as keyof typeof icons]
-    if (!icon) return null
-
     return html`
       <button
         type="button"
         ?disabled=${this.disabled}
         aria-label=${this.label || this.icon}
       >
-        ${unsafeHTML(icon.toSvg())}
+        ${featherIcon(this.icon)}
       </button>
     `
   }
