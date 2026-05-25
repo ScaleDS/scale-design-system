@@ -1,5 +1,6 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { labelL, textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-help-text'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
@@ -75,11 +76,7 @@ export class ScInput extends LitElement {
 
     /* ---- Label ---- */
     .label {
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-l);
-      line-height: var(--sc-type-line-height-l);
-      font-weight: var(--sc-type-weight-semi-bold);
-      letter-spacing: var(--sc-type-letter-spacing-none);
+      ${labelL}
       color: var(--sc-color-text-secondary);
       margin: 0;
     }
@@ -126,16 +123,12 @@ export class ScInput extends LitElement {
 
     /* ---- Input ---- */
     input {
+      ${textL}
       flex: 1;
       min-width: 0;
       border: none;
       background: none;
       outline: none;
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-l);
-      line-height: var(--sc-type-line-height-l);
-      font-weight: var(--sc-type-weight-regular);
-      letter-spacing: var(--sc-type-letter-spacing-none);
       color: var(--sc-color-text-secondary);
       width: 100%;
     }

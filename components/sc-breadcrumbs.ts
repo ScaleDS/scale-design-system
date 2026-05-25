@@ -1,5 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { linkM, textM } from '@scale/design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
 
 export interface Crumb {
@@ -43,11 +44,7 @@ export class ScBreadcrumbs extends LitElement {
     }
 
     .link {
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-m);
-      line-height: var(--sc-type-line-height-m);
-      font-weight: var(--sc-type-weight-semi-bold);
-      letter-spacing: var(--sc-type-letter-spacing-none);
+      ${linkM}
       color: var(--sc-color-text-link);
       text-decoration: none;
       cursor: pointer;
@@ -58,21 +55,13 @@ export class ScBreadcrumbs extends LitElement {
     }
 
     .separator {
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-m);
-      line-height: var(--sc-type-line-height-m);
-      font-weight: var(--sc-type-weight-regular);
-      letter-spacing: var(--sc-type-letter-spacing-none);
+      ${textM}
       color: var(--sc-color-text-tertiary);
       user-select: none;
     }
 
     .current {
-      font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      font-size: var(--sc-type-size-m);
-      line-height: var(--sc-type-line-height-m);
-      font-weight: var(--sc-type-weight-regular);
-      letter-spacing: var(--sc-type-letter-spacing-none);
+      ${textM}
       color: var(--sc-color-text-secondary);
     }
   `]

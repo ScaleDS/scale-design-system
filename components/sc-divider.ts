@@ -7,6 +7,11 @@ type DividerVariant = 'default' | 'subtle' | 'selected'
 export class ScDivider extends LitElement {
   @property({ reflect: true }) variant: DividerVariant = 'default'
 
+  connectedCallback() {
+    super.connectedCallback()
+    if (!this.hasAttribute('role')) this.setAttribute('role', 'separator')
+  }
+
   static styles = css`
     :host {
       display: block;
@@ -35,7 +40,7 @@ export class ScDivider extends LitElement {
   `
 
   render() {
-    return html`<div class="line" role="separator"></div>`
+    return html`<div class="line"></div>`
   }
 }
 
