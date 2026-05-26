@@ -5,74 +5,6 @@
   "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
   "components": [
     {
-      "tag": "sc-avatar",
-      "class": "ScAvatar",
-      "category": "content",
-      "description": "User avatar with image, initials, or icon fallback across 5 sizes",
-      "whenToUse": "User profile pictures, comment sections, user lists, team members, any place a user representation is needed",
-      "props": {
-        "size": {
-          "type": "AvatarSize",
-          "default": "m",
-          "attribute": "size",
-          "reflect": true
-        },
-        "src": {
-          "type": "string",
-          "default": "",
-          "attribute": "src",
-          "reflect": false
-        },
-        "alt": {
-          "type": "string",
-          "default": "",
-          "attribute": "alt",
-          "reflect": false
-        },
-        "disabled": {
-          "type": "boolean",
-          "default": false,
-          "attribute": "disabled",
-          "reflect": true
-        }
-      },
-      "slots": [],
-      "events": [],
-      "cssParts": [],
-      "dependencies": [],
-      "example": "<sc-avatar size=\"m\" src=\"photo.jpg\" alt=\"User name\"></sc-avatar>"
-    },
-    {
-      "tag": "sc-avatar-group",
-      "class": "ScAvatarGroup",
-      "category": "content",
-      "description": "Grouped overlapping avatars with overflow count indicator",
-      "whenToUse": "Team rosters, shared document viewers, multi-user presence indicators, collaborator lists",
-      "props": {
-        "size": {
-          "type": "AvatarGroupSize",
-          "default": "m",
-          "attribute": "size",
-          "reflect": true
-        },
-        "max": {
-          "type": "number",
-          "default": 4,
-          "attribute": "max",
-          "reflect": false
-        }
-      },
-      "slots": [
-        "default - sc-avatar elements"
-      ],
-      "events": [],
-      "cssParts": [],
-      "dependencies": [
-        "sc-avatar"
-      ],
-      "example": "<sc-avatar-group><sc-avatar size=\"m\" src=\"photo.jpg\" alt=\"User\"></sc-avatar></sc-avatar-group>"
-    },
-    {
       "tag": "sc-accordion",
       "class": "ScAccordion",
       "category": "navigation",
@@ -102,6 +34,105 @@
       "example": "<sc-accordion></sc-accordion>"
     },
     {
+      "tag": "sc-alert",
+      "class": "ScAlert",
+      "category": "feedback",
+      "description": "Bordered alert card with status icon, heading, body text, and up to two action buttons",
+      "whenToUse": "Persistent inline alerts inside a panel or card — info/warning/negative/positive states with optional actions",
+      "props": {
+        "status": {
+          "type": "AlertStatus",
+          "default": "info",
+          "attribute": "status",
+          "reflect": true
+        },
+        "showHeading": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-heading",
+          "reflect": true
+        },
+        "showActions": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-actions",
+          "reflect": true
+        },
+        "showAction2": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-action-2",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "heading - Named slot",
+        "default - Content",
+        "action - Named slot",
+        "action-2 - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [
+        "sc-status-icon"
+      ],
+      "example": "<sc-alert></sc-alert>"
+    },
+    {
+      "tag": "sc-avatar-group",
+      "class": "ScAvatarGroup",
+      "category": "content",
+      "description": "Grouped overlapping avatars with overflow count indicator",
+      "whenToUse": "Team rosters, shared document viewers, multi-user presence indicators, collaborator lists",
+      "props": {
+        "size": {
+          "type": "AvatarGroupSize",
+          "default": "m",
+          "attribute": "size",
+          "reflect": true
+        },
+        "max": {
+          "type": "number",
+          "default": "4",
+          "attribute": "max",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-avatar-group></sc-avatar-group>"
+    },
+    {
+      "tag": "sc-avatar",
+      "class": "ScAvatar",
+      "category": "content",
+      "description": "User avatar with image, initials, or icon fallback across 5 sizes",
+      "whenToUse": "User profile pictures, comment sections, user lists, team members, any place a user representation is needed",
+      "props": {
+        "size": {
+          "type": "AvatarSize",
+          "default": "m",
+          "attribute": "size",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-avatar></sc-avatar>"
+    },
+    {
       "tag": "sc-badge",
       "class": "ScBadge",
       "category": "feedback",
@@ -127,8 +158,8 @@
       "tag": "sc-banner",
       "class": "ScBanner",
       "category": "feedback",
-      "description": "Full-width status notification bar with icon, text, optional link, and close button",
-      "whenToUse": "Site-wide notifications, status announcements, dismissible alert bars, promo banners",
+      "description": "Full-width inline banner with status icon, text, optional link, and dismiss control",
+      "whenToUse": "Full-width page-level announcements, system status, marketing banners, dismissable notices",
       "props": {
         "status": {
           "type": "BannerStatus",
@@ -136,32 +167,22 @@
           "attribute": "status",
           "reflect": true
         },
-        "showClose": {
-          "type": "string",
-          "default": "",
-          "attribute": "show-close",
+        "hideClose": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-close",
           "reflect": true
         },
-        "showLink": {
-          "type": "string",
-          "default": "",
-          "attribute": "show-link",
+        "hideLink": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-link",
           "reflect": true
         },
         "linkHref": {
           "type": "string",
           "default": "",
           "attribute": "link-href",
-          "reflect": false
-        },
-        "link": {
-          "type": "string",
-          "default": "",
-          "reflect": false
-        },
-        "text": {
-          "type": "string",
-          "default": "",
           "reflect": false
         }
       },
@@ -176,7 +197,32 @@
       "dependencies": [
         "sc-status-icon"
       ],
-      "example": "<sc-banner status=\"info\" text=\"Notification message.\" show-close=\"false\"></sc-banner>"
+      "example": "<sc-banner></sc-banner>"
+    },
+    {
+      "tag": "sc-breadcrumbs",
+      "class": "ScBreadcrumbs",
+      "category": "navigation",
+      "description": "Inline breadcrumb trail with chevron separators showing navigation hierarchy",
+      "whenToUse": "Navigation trails on deep pages, app hierarchy indication, location context",
+      "props": {
+        "crumbs": {
+          "type": "array",
+          "default": "[]",
+          "attribute": "crumbs",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "navigate",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-breadcrumbs></sc-breadcrumbs>"
     },
     {
       "tag": "sc-button-icon",
@@ -314,6 +360,10 @@
         {
           "name": "button",
           "description": ""
+        },
+        {
+          "name": "button",
+          "description": ""
         }
       ],
       "dependencies": [],
@@ -383,6 +433,116 @@
       "example": "<sc-card-pricing></sc-card-pricing>"
     },
     {
+      "tag": "sc-checkbox-item",
+      "class": "ScCheckboxItem",
+      "category": "forms",
+      "description": "Standalone checkbox visual primitive (square + tick) without a label or form binding",
+      "whenToUse": "Custom layouts that need the checkbox visual without label or form-association (e.g. cards, list items)",
+      "props": {
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "indeterminate": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "indeterminate",
+          "reflect": true
+        },
+        "state": {
+          "type": "CheckboxItemState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "button",
+          "description": ""
+        },
+        {
+          "name": "icon-check",
+          "description": ""
+        },
+        {
+          "name": "icon-dash",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-checkbox-item></sc-checkbox-item>"
+    },
+    {
+      "tag": "sc-checkbox",
+      "class": "ScCheckbox",
+      "category": "forms",
+      "description": "Checkbox form control with label and form-association — emits change events",
+      "whenToUse": "Form fields for multi-select options, terms acceptance, settings toggles that need a label and form binding",
+      "props": {
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "indeterminate": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "indeterminate",
+          "reflect": true
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
+          "reflect": true
+        },
+        "state": {
+          "type": "CheckboxState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [
+        "sc-checkbox-item",
+        "sc-checkbox-item"
+      ],
+      "example": "<sc-checkbox></sc-checkbox>"
+    },
+    {
       "tag": "sc-divider",
       "class": "ScDivider",
       "category": "layout",
@@ -411,7 +571,7 @@
       "props": {
         "copyright": {
           "type": "string",
-          "default": "©2020 - 2026 Christopher Deane. All rights reserved.",
+          "default": "",
           "attribute": "copyright",
           "reflect": false
         },
@@ -487,12 +647,7 @@
         }
       },
       "slots": [],
-      "events": [
-        {
-          "name": "theme-change",
-          "detail": "{}"
-        }
-      ],
+      "events": [],
       "cssParts": [
         {
           "name": "theme-toggle",
@@ -728,6 +883,174 @@
       "example": "<sc-logo></sc-logo>"
     },
     {
+      "tag": "sc-menu-dropdown",
+      "class": "ScMenuDropdown",
+      "category": "navigation",
+      "description": "Elevated dropdown surface that hosts sc-menu-item children",
+      "whenToUse": "Floating menu surface for header nav menus, user menus, action menus — wraps sc-menu-item children",
+      "props": {},
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "close",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [
+        "sc-menu-item",
+        "sc-menu-item"
+      ],
+      "example": "<sc-menu-dropdown></sc-menu-dropdown>"
+    },
+    {
+      "tag": "sc-menu-item",
+      "class": "ScMenuItem",
+      "category": "navigation",
+      "description": "Menu row with leading/trailing icons, label, link or button behaviour, and selection states",
+      "whenToUse": "Individual menu rows inside sc-menu-dropdown or standalone lists — supports row/button/link types",
+      "props": {
+        "type": {
+          "type": "MenuItemType",
+          "default": "row",
+          "attribute": "type",
+          "reflect": true
+        },
+        "state": {
+          "type": "MenuItemState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        },
+        "destructive": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "destructive",
+          "reflect": true
+        },
+        "leadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "leading-icon",
+          "reflect": false
+        },
+        "trailingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "trailing-icon",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "select",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-menu-item></sc-menu-item>"
+    },
+    {
+      "tag": "sc-radio-item",
+      "class": "ScRadioItem",
+      "category": "forms",
+      "description": "Standalone radio visual primitive (circle + dot) without a label or form binding",
+      "whenToUse": "Custom layouts that need the radio visual without label or form-association (e.g. cards, list items)",
+      "props": {
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "state": {
+          "type": "RadioItemState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "button",
+          "description": ""
+        },
+        {
+          "name": "dot",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-radio-item></sc-radio-item>"
+    },
+    {
+      "tag": "sc-radio",
+      "class": "ScRadio",
+      "category": "forms",
+      "description": "Radio form control with label and form-association — emits change events",
+      "whenToUse": "Form fields for single-select choices that need a label and form binding",
+      "props": {
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
+          "reflect": true
+        },
+        "state": {
+          "type": "RadioState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [
+        "sc-radio-item",
+        "sc-radio-item"
+      ],
+      "example": "<sc-radio></sc-radio>"
+    },
+    {
       "tag": "sc-row",
       "class": "ScRow",
       "category": "layout",
@@ -750,12 +1073,6 @@
           "type": "boolean",
           "default": false,
           "attribute": "hide-divider",
-          "reflect": true
-        },
-        "disabled": {
-          "type": "boolean",
-          "default": false,
-          "attribute": "disabled",
           "reflect": true
         }
       },
