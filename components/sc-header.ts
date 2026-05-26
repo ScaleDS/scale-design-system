@@ -27,18 +27,19 @@ export class ScHeader extends LitElement {
   @state() private _mobile = false
 
   private _theme = new ThemeController(this)
-  private _mq = window.matchMedia('(max-width: 810px)')
+  private _mq?: MediaQueryList
   private _onMqChange = (e: MediaQueryListEvent) => { this._mobile = e.matches }
 
   connectedCallback() {
     super.connectedCallback()
+    this._mq = window.matchMedia('(max-width: 810px)')
     this._mobile = this._mq.matches
     this._mq.addEventListener('change', this._onMqChange)
   }
 
   disconnectedCallback() {
     super.disconnectedCallback()
-    this._mq.removeEventListener('change', this._onMqChange)
+    this._mq?.removeEventListener('change', this._onMqChange)
   }
 
   static styles = css`
