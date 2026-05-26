@@ -5,16 +5,29 @@ import { join } from 'path'
 const componentsDir = join(process.cwd(), 'components')
 const outputFile = join(process.cwd(), 'context', 'components.json')
 
-const componentFiles = readdirSync(componentsDir).filter(f => f.endsWith('.ts'))
+const componentFiles = readdirSync(componentsDir)
+  .filter(f => f.endsWith('.ts'))
+  .filter(f => {
+    // Only files that actually register a custom element are components.
+    const content = readFileSync(join(componentsDir, f), 'utf-8')
+    return /@customElement\('sc-[^']+'\)/.test(content)
+  })
 
 const categoryMap = {
   'sc-accordion': 'navigation',
+  'sc-alert': 'feedback',
+  'sc-avatar': 'content',
+  'sc-avatar-group': 'content',
   'sc-badge': 'feedback',
+  'sc-banner': 'feedback',
+  'sc-breadcrumbs': 'navigation',
   'sc-button': 'actions',
   'sc-button-icon': 'actions',
   'sc-button-pill': 'actions',
   'sc-card-image': 'content',
   'sc-card-pricing': 'content',
+  'sc-checkbox': 'forms',
+  'sc-checkbox-item': 'forms',
   'sc-divider': 'layout',
   'sc-footer': 'layout',
   'sc-header': 'layout',
@@ -22,6 +35,10 @@ const categoryMap = {
   'sc-hero': 'sections',
   'sc-input': 'forms',
   'sc-logo': 'brand',
+  'sc-menu-dropdown': 'navigation',
+  'sc-menu-item': 'navigation',
+  'sc-radio': 'forms',
+  'sc-radio-item': 'forms',
   'sc-row': 'layout',
   'sc-section-bento': 'sections',
   'sc-section-content': 'sections',
@@ -35,12 +52,19 @@ const categoryMap = {
 
 const descriptions = {
   'sc-accordion': 'Vertically stacked sections that expand and collapse with progressive disclosure pattern',
+  'sc-alert': 'Bordered alert card with status icon, heading, body text, and up to two action buttons',
+  'sc-avatar': 'User avatar with image, initials, or icon fallback across 5 sizes',
+  'sc-avatar-group': 'Grouped overlapping avatars with overflow count indicator',
   'sc-badge': 'Status indicators displayed inline with content or on top of another element',
+  'sc-banner': 'Full-width inline banner with status icon, text, optional link, and dismiss control',
+  'sc-breadcrumbs': 'Inline breadcrumb trail with chevron separators showing navigation hierarchy',
   'sc-button': 'Primary action element with 13 visual variants, 3 sizes, loading and disabled states',
   'sc-button-icon': 'Icon-only button without a label, used for secondary actions like search, theme toggle, close',
   'sc-button-pill': 'Button with fully rounded ends (pill shape), used for CTAs and navigation',
   'sc-card-image': 'Card surface with image area and content slots, supports default and fill layouts',
   'sc-card-pricing': 'Pricing plan card with header, feature rows, and action area',
+  'sc-checkbox': 'Checkbox form control with label and form-association — emits change events',
+  'sc-checkbox-item': 'Standalone checkbox visual primitive (square + tick) without a label or form binding',
   'sc-divider': 'Thin horizontal line separating content sections',
   'sc-footer': 'Site footer with brand logo, copyright text, and licence link',
   'sc-header': 'Fixed top navigation bar with logo, nav links, theme toggle, and CTA buttons',
@@ -48,6 +72,10 @@ const descriptions = {
   'sc-hero': 'Full-width hero section with background image, heading, subtitle, CTAs, and optional email form',
   'sc-input': 'Single-line text input field with label, icons, help text, and validation states',
   'sc-logo': 'Scale brand logo with mark and wordmark, supports sizes and inverse style',
+  'sc-menu-dropdown': 'Elevated dropdown surface that hosts sc-menu-item children',
+  'sc-menu-item': 'Menu row with leading/trailing icons, label, link or button behaviour, and selection states',
+  'sc-radio': 'Radio form control with label and form-association — emits change events',
+  'sc-radio-item': 'Standalone radio visual primitive (circle + dot) without a label or form binding',
   'sc-row': 'Horizontal list item with optional leading/trailing icons and a divider',
   'sc-section-bento': 'Bento grid section with 4 card slots in a Z-pattern layout',
   'sc-section-content': 'Simple content section with heading and subtext, centered or left-aligned',
@@ -61,12 +89,19 @@ const descriptions = {
 
 const whenToUse = {
   'sc-accordion': 'FAQ sections, settings panels, content that should be hidden by default but accessible on demand',
+  'sc-alert': 'Persistent inline alerts inside a panel or card — info/warning/negative/positive states with optional actions',
+  'sc-avatar': 'User profile pictures, comment sections, user lists, team members, any place a user representation is needed',
+  'sc-avatar-group': 'Team rosters, shared document viewers, multi-user presence indicators, collaborator lists',
   'sc-badge': 'Status labels, category tags, notification counts, feature flags',
+  'sc-banner': 'Full-width page-level announcements, system status, marketing banners, dismissable notices',
+  'sc-breadcrumbs': 'Navigation trails on deep pages, app hierarchy indication, location context',
   'sc-button': 'Primary user actions, form submissions, navigation triggers, any interactive CTA',
   'sc-button-icon': 'Toolbar actions, icon buttons where the icon is self-explanatory, space-constrained UIs',
   'sc-button-pill': 'Hero CTAs, pill-shaped navigation, floating action buttons, tag-like actions',
   'sc-card-image': 'Feature cards, blog post previews, product showcases, any content with image + text',
   'sc-card-pricing': 'Pricing pages, plan comparison, subscription tiers',
+  'sc-checkbox': 'Form fields for multi-select options, terms acceptance, settings toggles that need a label and form binding',
+  'sc-checkbox-item': 'Custom layouts that need the checkbox visual without label or form-association (e.g. cards, list items)',
   'sc-divider': 'Section separators, list item dividers, visual grouping boundaries',
   'sc-footer': 'Page footers, bottom of marketing sites, legal pages',
   'sc-header': 'Site-wide navigation, marketing site headers, app top bars',
@@ -74,6 +109,10 @@ const whenToUse = {
   'sc-hero': 'Landing page top section, product introductions, conversion-focused entry points',
   'sc-input': 'Form fields, search inputs, email capture, any single-line text entry',
   'sc-logo': 'Headers, footers, brand references, any place the Scale logo is needed',
+  'sc-menu-dropdown': 'Floating menu surface for header nav menus, user menus, action menus — wraps sc-menu-item children',
+  'sc-menu-item': 'Individual menu rows inside sc-menu-dropdown or standalone lists — supports row/button/link types',
+  'sc-radio': 'Form fields for single-select choices that need a label and form binding',
+  'sc-radio-item': 'Custom layouts that need the radio visual without label or form-association (e.g. cards, list items)',
   'sc-row': 'Pricing feature lists, settings rows, menu items, any horizontal label-value pair',
   'sc-section-bento': 'Feature showcases, product highlights, portfolio displays, visual grid layouts',
   'sc-section-content': 'Text-only sections, section headers, standalone content blocks',
