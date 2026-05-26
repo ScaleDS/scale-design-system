@@ -5,14 +5,12 @@ import '@scale/design-system/components/sc-divider'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
 
-let accordionId = 0
-
 @customElement('sc-accordion')
 export class ScAccordion extends LitElement {
   @property({ type: Boolean, reflect: true }) open = false
   @property() heading = 'Heading'
 
-  private _id = ++accordionId
+  private _id = Math.random().toString(36).slice(2, 11)
 
   static styles = [
     focusRing,
