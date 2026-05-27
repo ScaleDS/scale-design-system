@@ -7,8 +7,23 @@
 
 /* ---- Reset ---- */
 
+// box-sizing stays universal — harmless on custom elements and expected by
+// every width/padding calc in the system.
 *, *::before, *::after {
   box-sizing: border-box;
+}
+
+// Margin/padding reset is targeted at native flow elements only. Applying it
+// via `*` also targets custom-element hosts, which silently overrides any
+// `:host` margin/padding rule from inside a component's shadow DOM (the
+// document-tree selector wins despite lower specificity). Keeping this list
+// explicit lets sc-* components style their host without surprise.
+html, body,
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+ul, ol, li, dl, dd, dt,
+figure, figcaption,
+form, fieldset, legend {
   margin: 0;
   padding: 0;
 }

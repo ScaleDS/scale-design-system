@@ -225,6 +225,63 @@
       "example": "<sc-breadcrumbs></sc-breadcrumbs>"
     },
     {
+      "tag": "sc-button-group",
+      "class": "ScButtonGroup",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "gap": {
+          "type": "ButtonGroupGap",
+          "default": "m",
+          "attribute": "gap",
+          "reflect": true
+        },
+        "orientation": {
+          "type": "ButtonGroupOrientation",
+          "default": "horizontal",
+          "attribute": "orientation",
+          "reflect": true
+        },
+        "align": {
+          "type": "ButtonGroupAlign",
+          "default": "start",
+          "attribute": "align",
+          "reflect": true
+        },
+        "nowrap": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "nowrap",
+          "reflect": true
+        },
+        "selectable": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "selectable",
+          "reflect": true
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-button-group></sc-button-group>"
+    },
+    {
       "tag": "sc-button-icon",
       "class": "ScButtonIcon",
       "category": "actions",
@@ -431,6 +488,85 @@
         "sc-divider"
       ],
       "example": "<sc-card-pricing></sc-card-pricing>"
+    },
+    {
+      "tag": "sc-card-selector",
+      "class": "ScCardSelector",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "type": {
+          "type": "CardSelectorType",
+          "default": "checkbox",
+          "attribute": "type",
+          "reflect": true
+        },
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "hideIndicator": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-indicator",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-card-selector></sc-card-selector>"
+    },
+    {
+      "tag": "sc-card",
+      "class": "ScCard",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "surface": {
+          "type": "CardSurface",
+          "default": "l1",
+          "attribute": "surface",
+          "reflect": true
+        },
+        "radius": {
+          "type": "CardRadius",
+          "default": "m",
+          "attribute": "radius",
+          "reflect": true
+        },
+        "padding": {
+          "type": "CardPadding",
+          "default": "none",
+          "attribute": "padding",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-card></sc-card>"
     },
     {
       "tag": "sc-checkbox-item",
