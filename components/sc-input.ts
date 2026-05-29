@@ -4,8 +4,19 @@ import { labelL, textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-help-text'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
+import type { DateKind } from './kinds/date'
 
 type InputState = 'default' | 'negative' | 'positive' | 'disabled'
+type InputKind = 'default' | 'date'
+type DateMode = 'single' | 'range'
+
+/** Parse `YYYY-MM-DD` into a local Date, or null. Used only for date-kind display. */
+function parseISO(value: string): Date | null {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value.trim())
+  if (!m) return null
+  const d = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]))
+  return Number.isNaN(d.getTime()) ? null : d
+}
 
 @customElement('sc-input')
 export class ScInput extends LitElement {
@@ -27,8 +38,27 @@ export class ScInput extends LitElement {
   @property() pattern: string | undefined
   @property({ type: Boolean, reflect: true }) required = false
 
+  // ---- Date kind (kind="date") ----
+  /** Behavioral kind. `default` is a text field; `date` opens a date-picker dropdown. */
+  @property({ reflect: true }) kind: InputKind = 'default'
+  /** Date selection mode. */
+  @property() mode: DateMode = 'single'
+  /** Range end date (mode="range"), ISO `YYYY-MM-DD`. */
+  @property() end = ''
+  /** Earliest selectable date, ISO `YYYY-MM-DD`. */
+  @property() min = ''
+  /** Latest selectable date, ISO `YYYY-MM-DD`. */
+  @property() max = ''
+  /** Locale for date display + calendar. */
+  @property() locale = 'en-US'
+  /** Week start for the calendar. */
+  @property({ attribute: 'first-day-of-week' }) firstDayOfWeek: 'monday' | 'sunday' = 'monday'
+
   private _internals = this.attachInternals()
   private _initialValue = ''
+  // Lazily created when kind="date" first activates (dynamic import — keeps the
+  // calendar out of the base sc-input bundle).
+  private _dateKind?: DateKind
 
   // Pointer-vs-keyboard focus tracking. Browsers treat text inputs as always
   // :focus-visible (since you need the keyboard to type once focused), so we
@@ -50,17 +80,35 @@ export class ScInput extends LitElement {
   }
 
   protected updated(changed: PropertyValues) {
-    if (changed.has('value') || changed.has('required')) this._syncFormState()
+    if (['value', 'end', 'mode', 'kind', 'required'].some(k => changed.has(k))) this._syncFormState()
+    // Lazily load the date-picker dropdown only when this input is a date field.
+    if (this.kind === 'date') this._ensureDateKind()
   }
 
   private _syncFormState() {
-    this._internals.setFormValue(this.value)
+    const formValue = (this.kind === 'date' && this.mode === 'range')
+      ? (this.value && this.end ? `${this.value}/${this.end}` : null)
+      : (this.value || null)
+    this._internals.setFormValue(formValue)
     const input = this.shadowRoot?.querySelector('input') ?? undefined
     if (this.required && !this.value) {
       this._internals.setValidity({ valueMissing: true }, 'Please fill out this field.', input)
     } else {
       this._internals.setValidity({})
     }
+  }
+
+  private async _ensureDateKind() {
+    if (this._dateKind) return
+    const { DateKind } = await import('./kinds/date.js')
+    this._dateKind = new DateKind(this)
+    this.requestUpdate()
+  }
+
+  private async _onDateOpen() {
+    if (this.state === 'disabled') return
+    await this._ensureDateKind()
+    this._dateKind!.toggle()
   }
 
   formResetCallback() {
@@ -95,6 +143,7 @@ export class ScInput extends LitElement {
       flex-direction: column;
       gap: var(--sc-space-s);
       width: 100%;
+      position: relative;
     }
 
     /* ---- Label ---- */
@@ -149,6 +198,59 @@ export class ScInput extends LitElement {
     :host([state='disabled']) .field {
       background: var(--sc-color-background-disabled);
       border-color: var(--sc-color-border-disabled);
+    }
+
+    /* ---- Date field (kind="date") ---- */
+    button.field {
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+    }
+
+    .field[aria-expanded='true'] {
+      border-color: var(--sc-color-border-selected);
+      box-shadow: 0 0 0 1px var(--sc-color-border-selected);
+    }
+
+    .field:disabled {
+      cursor: not-allowed;
+    }
+
+    .value {
+      ${textL}
+      flex: 1;
+      min-width: 0;
+      color: var(--sc-color-text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .value.placeholder {
+      color: var(--sc-color-text-tertiary);
+    }
+
+    .field:disabled .value,
+    .field:disabled .value.placeholder {
+      color: var(--sc-color-text-disabled);
+    }
+
+    /* Wrapper around just the field + dropdown so the popover anchors to the
+       field's bottom (not the host's, which sits below any help text). */
+    .date-field {
+      position: relative;
+      width: 100%;
+    }
+
+    .popover {
+      position: absolute;
+      top: calc(100% + var(--sc-space-s));
+      left: 0;
+      z-index: 20;
+    }
+
+    .popover sc-date-picker {
+      box-shadow: var(--sc-shadow-l2);
     }
 
     /* ---- Input ---- */
@@ -220,11 +322,24 @@ export class ScInput extends LitElement {
   }
 
   render() {
-    const disabled = this.state === 'disabled'
-
     return html`
-      ${this.showLabel ? html`<p class="label">${this.label}</p>` : ''}
+      ${this.showLabel ? html`<p class="label" id="input-label">${this.label}</p>` : ''}
 
+      ${this.kind === 'date' ? this._renderDateField() : this._renderTextField()}
+
+      ${this.showHelpText ? html`
+        <sc-help-text
+          size="m"
+          status=${this._helpTextStatus()}
+          text=${this.helpText}
+        ></sc-help-text>
+      ` : ''}
+    `
+  }
+
+  private _renderTextField() {
+    const disabled = this.state === 'disabled'
+    return html`
       <div
         class="field ${this._kbdFocus ? 'kbd-focus' : ''}"
         @pointerdown=${this._onPointerDown}
@@ -249,14 +364,42 @@ export class ScInput extends LitElement {
 
         ${this.trailingIcon ? html`<span class="icon">${featherIcon(this.trailingIcon, { width: 20, height: 20 })}</span>` : ''}
       </div>
+    `
+  }
 
-      ${this.showHelpText ? html`
-        <sc-help-text
-          size="m"
-          status=${this._helpTextStatus()}
-          text=${this.helpText}
-        ></sc-help-text>
-      ` : ''}
+  private _formatDisplay(): string {
+    const fmt = (iso: string) => {
+      const d = parseISO(iso)
+      return d ? new Intl.DateTimeFormat(this.locale, { dateStyle: 'medium' }).format(d) : ''
+    }
+    if (this.mode === 'range') {
+      const start = fmt(this.value)
+      const end = fmt(this.end)
+      return start && end ? `${start} – ${end}` : start
+    }
+    return fmt(this.value)
+  }
+
+  private _renderDateField() {
+    const disabled = this.state === 'disabled'
+    const display = this._formatDisplay()
+    return html`
+      <div class="date-field">
+        <button
+          class="field"
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded=${this._dateKind?.open ? 'true' : 'false'}
+          aria-labelledby=${this.showLabel ? 'input-label' : ''}
+          ?disabled=${disabled}
+          @click=${this._onDateOpen}
+          @keydown=${(e: KeyboardEvent) => this._dateKind?.onKeyDown(e)}
+        >
+          <span class="value ${display ? '' : 'placeholder'}">${display || this.placeholder}</span>
+          <span class="icon">${featherIcon('calendar', { width: 20, height: 20 })}</span>
+        </button>
+        ${this._dateKind?.renderOverlay() ?? ''}
+      </div>
     `
   }
 }

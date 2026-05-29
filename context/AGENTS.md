@@ -24,7 +24,7 @@ Scale is a **Lit web component** design system. When generating code that uses `
 ## Component Discovery
 
 Read `context/components.json` for the full machine-readable component catalog with:
-- All 34 components with their tags, props, slots, events, and examples
+- All 37 components with their tags, props, slots, events, and examples
 - When-to-use guidance for each component
 - Dependency relationships between components
 
@@ -77,10 +77,10 @@ import '@scale/design-system'
 
 | Category | Components |
 |----------|-----------|
-| **Actions** | `sc-button`, `sc-button-icon`, `sc-button-pill` |
-| **Forms** | `sc-input`, `sc-toggle`, `sc-checkbox`, `sc-checkbox-item`, `sc-radio`, `sc-radio-item` |
+| **Actions** | `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill` |
+| **Forms** | `sc-input`, `sc-toggle`, `sc-checkbox`, `sc-checkbox-item`, `sc-radio`, `sc-radio-item`, `sc-card-selector` |
 | **Feedback** | `sc-alert`, `sc-badge`, `sc-banner`, `sc-help-text`, `sc-status-icon` |
-| **Content** | `sc-avatar`, `sc-avatar-group`, `sc-card-image`, `sc-card-pricing` |
+| **Content** | `sc-avatar`, `sc-avatar-group`, `sc-card`, `sc-card-image`, `sc-card-pricing` |
 | **Layout** | `sc-divider`, `sc-footer`, `sc-header`, `sc-row` |
 | **Brand** | `sc-logo` |
 | **Navigation** | `sc-accordion`, `sc-breadcrumbs`, `sc-menu-dropdown`, `sc-menu-item` |
