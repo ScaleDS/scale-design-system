@@ -679,6 +679,57 @@
       "example": "<sc-checkbox></sc-checkbox>"
     },
     {
+      "tag": "sc-date-picker",
+      "class": "ScDatePicker",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "mode": {
+          "type": "DatePickerMode",
+          "default": "single",
+          "attribute": "mode",
+          "reflect": true
+        },
+        "firstDayOfWeek": {
+          "type": "FirstDayOfWeek",
+          "default": "monday",
+          "attribute": "first-day-of-week",
+          "reflect": true
+        },
+        "showActions": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "show-actions",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        },
+        {
+          "name": "change",
+          "detail": "{}"
+        },
+        {
+          "name": "cancel",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-date-picker></sc-date-picker>"
+    },
+    {
       "tag": "sc-divider",
       "class": "ScDivider",
       "category": "layout",
@@ -967,6 +1018,18 @@
           "default": false,
           "attribute": "required",
           "reflect": true
+        },
+        "kind": {
+          "type": "InputKind",
+          "default": "default",
+          "attribute": "kind",
+          "reflect": true
+        },
+        "firstDayOfWeek": {
+          "type": "'monday' | 'sunday'",
+          "default": "monday",
+          "attribute": "first-day-of-week",
+          "reflect": false
         }
       },
       "slots": [],
