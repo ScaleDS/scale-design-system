@@ -179,7 +179,7 @@ export class ScMenuItem extends LitElement {
   `]
 
   focus(options?: FocusOptions) {
-    this.shadowRoot?.querySelector('.item')?.focus(options)
+    this.shadowRoot?.querySelector<HTMLElement>('.item')?.focus(options)
   }
 
   private _onClick(e: Event) {

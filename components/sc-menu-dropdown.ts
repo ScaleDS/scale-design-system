@@ -1,7 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, query } from 'lit/decorators.js'
-import { type ScMenuItem } from '@scale/design-system/components/sc-menu-item'
-import '@scale/design-system/components/sc-menu-item'
+import { ScMenuItem } from '@scale/design-system/components/sc-menu-item'
 
 @customElement('sc-menu-dropdown')
 export class ScMenuDropdown extends LitElement {
