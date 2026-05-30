@@ -1128,6 +1128,96 @@
       "example": "<sc-hero></sc-hero>"
     },
     {
+      "tag": "sc-input-pin",
+      "class": "ScInputPin",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "length": {
+          "type": "number",
+          "default": "4",
+          "attribute": "length",
+          "reflect": true
+        },
+        "size": {
+          "type": "PinSize",
+          "default": "l",
+          "attribute": "size",
+          "reflect": true
+        },
+        "state": {
+          "type": "PinState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        },
+        "showLabel": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-label",
+          "reflect": true
+        },
+        "helpText": {
+          "type": "string",
+          "default": "Help text",
+          "attribute": "help-text",
+          "reflect": false
+        },
+        "showHelpText": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-help-text",
+          "reflect": true
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "input",
+          "detail": "{}"
+        },
+        {
+          "name": "change",
+          "detail": "{}"
+        },
+        {
+          "name": "complete",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "fields",
+          "description": ""
+        },
+        {
+          "name": "cell",
+          "description": ""
+        },
+        {
+          "name": "help-text",
+          "description": ""
+        }
+      ],
+      "dependencies": [
+        "sc-help-text"
+      ],
+      "example": "<sc-input-pin></sc-input-pin>"
+    },
+    {
       "tag": "sc-input",
       "class": "ScInput",
       "category": "forms",
