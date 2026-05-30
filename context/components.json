@@ -750,6 +750,163 @@
       "example": "<sc-divider></sc-divider>"
     },
     {
+      "tag": "sc-file-upload-item",
+      "class": "ScFileUploadItem",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "state": {
+          "type": "FileUploadItemState",
+          "default": "uploaded",
+          "attribute": "state",
+          "reflect": true
+        },
+        "value": {
+          "type": "number",
+          "default": "0",
+          "attribute": "value",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "remove",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "remove",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "description": ""
+        },
+        {
+          "name": "text",
+          "description": ""
+        },
+        {
+          "name": "progress",
+          "description": ""
+        },
+        {
+          "name": "row",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "description": ""
+        },
+        {
+          "name": "row",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "description": ""
+        }
+      ],
+      "dependencies": [
+        "sc-progress-bar",
+        "sc-status-icon"
+      ],
+      "example": "<sc-file-upload-item></sc-file-upload-item>"
+    },
+    {
+      "tag": "sc-file-upload",
+      "class": "ScFileUpload",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "layout": {
+          "type": "FileUploadLayout",
+          "default": "vertical",
+          "attribute": "layout",
+          "reflect": true
+        },
+        "multiple": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "multiple",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
+          "reflect": true
+        },
+        "maxSize": {
+          "type": "number",
+          "default": "0",
+          "attribute": "max-size",
+          "reflect": false
+        },
+        "secondaryText": {
+          "type": "string",
+          "default": "Files can be up to 5mb.",
+          "attribute": "secondary-text",
+          "reflect": false
+        },
+        "showSecondaryText": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-secondary-text",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "remove",
+          "detail": "{}"
+        },
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "dropzone",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "description": ""
+        },
+        {
+          "name": "browse",
+          "description": ""
+        },
+        {
+          "name": "list",
+          "description": ""
+        }
+      ],
+      "dependencies": [
+        "sc-file-upload-item"
+      ],
+      "example": "<sc-file-upload></sc-file-upload>"
+    },
+    {
       "tag": "sc-footer",
       "class": "ScFooter",
       "category": "layout",
@@ -1154,6 +1311,41 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-menu-item></sc-menu-item>"
+    },
+    {
+      "tag": "sc-progress-bar",
+      "class": "ScProgressBar",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "value": {
+          "type": "number",
+          "default": "0",
+          "attribute": "value",
+          "reflect": true
+        },
+        "status": {
+          "type": "ProgressStatus",
+          "default": "uploading",
+          "attribute": "status",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [
+        {
+          "name": "track",
+          "description": ""
+        },
+        {
+          "name": "fill",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-progress-bar></sc-progress-bar>"
     },
     {
       "tag": "sc-radio-item",
