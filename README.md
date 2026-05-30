@@ -2,7 +2,7 @@
 
 A Lit-based agentic design system with machine-readable context for AI and human developers.
 
-- 34 web components built with Lit + Shadow DOM
+- 42 web components built with Lit + Shadow DOM
 - W3C DTCG design tokens (colors, spacing, typography, borders, shadows)
 - Form-associated inputs that work in real `<form>` submissions
 - Theme controller + reset/typography helpers shared across components
@@ -34,11 +34,11 @@ npm install github:ScaleDS/scale-design-system
 
 ## Components
 
-34 components across UI, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
+42 components across UI, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
 
 ### UI
 
-`sc-accordion`, `sc-alert`, `sc-avatar`, `sc-avatar-group`, `sc-badge`, `sc-banner`, `sc-breadcrumbs`, `sc-button`, `sc-button-icon`, `sc-button-pill`, `sc-checkbox`, `sc-checkbox-item`, `sc-divider`, `sc-help-text`, `sc-input`, `sc-logo`, `sc-menu-dropdown`, `sc-menu-item`, `sc-radio`, `sc-radio-item`, `sc-row`, `sc-status-icon`, `sc-toggle`
+`sc-accordion`, `sc-alert`, `sc-avatar`, `sc-avatar-group`, `sc-badge`, `sc-banner`, `sc-breadcrumbs`, `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill`, `sc-card`, `sc-card-selector`, `sc-checkbox`, `sc-checkbox-item`, `sc-date-picker`, `sc-divider`, `sc-file-upload`, `sc-file-upload-item`, `sc-help-text`, `sc-input`, `sc-input-pin`, `sc-logo`, `sc-menu-dropdown`, `sc-menu-item`, `sc-progress-bar`, `sc-radio`, `sc-radio-item`, `sc-row`, `sc-status-icon`, `sc-toggle`
 
 ### Layout & sections
 
@@ -83,7 +83,7 @@ class MyElement extends LitElement {
 
 ## Form association
 
-`sc-input`, `sc-checkbox`, `sc-radio`, and `sc-toggle` are form-associated custom elements. They participate in `FormData`, browser-native validation, `formdata` events, and form `reset`:
+`sc-input`, `sc-input-pin`, `sc-checkbox`, `sc-radio`, `sc-toggle`, and `sc-file-upload` are form-associated custom elements. They participate in `FormData`, browser-native validation, `formdata` events, and form `reset`:
 
 ```html
 <form>
@@ -191,6 +191,8 @@ npm run build           # Compile TypeScript
 npm run build:watch     # Watch mode
 npm run generate:context  # Regenerate components.json from source
 ```
+
+The package builds on install via the `prepare` script and ships compiled `dist/` (plus `scss/`, `context/`, `assets/`) through the `files` allowlist — so `github:` installs resolve `@scale/design-system/components/*` with no manual build step.
 
 A sibling repo at [scale-docs](https://github.com/ScaleDS/scale-docs) consumes this package and ships a live preview gallery at [scaledesignsystem.com/preview.html](https://scaledesignsystem.com/preview.html). For coordinated cross-repo development, the consumer repo includes `link-ds` / `unlink-ds` scripts that symlink this directory into its `node_modules`.
 
