@@ -6,6 +6,13 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "scss",
+    "context",
+    "assets",
+    "mcp/dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
