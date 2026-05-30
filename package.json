@@ -21,6 +21,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
+    "prepare": "npm run build",
     "generate:context": "node scripts/generate-context.mjs",
     "prepublishOnly": "npm run build && npm run generate:context",
     "dev": "tsc --watch"
