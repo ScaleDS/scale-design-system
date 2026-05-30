@@ -20,7 +20,8 @@
     },
     "./scss/*": "./scss/*",
     "./scss/typography": "./dist/scss/typography.js",
-    "./components/*": "./dist/components/*",
+    "./components/*.js": "./dist/components/*.js",
+    "./components/*": "./dist/components/*.js",
     "./context/*": "./context/*",
     "./assets/*": "./assets/*",
     "./mcp": "./mcp/dist/index.js"
