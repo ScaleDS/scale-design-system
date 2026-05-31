@@ -2021,6 +2021,41 @@
       "example": "<sc-status-indicator></sc-status-indicator>"
     },
     {
+      "tag": "sc-table-basic",
+      "class": "ScTableBasic",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "pageSize": {
+          "type": "number",
+          "default": "0",
+          "attribute": "page-size",
+          "reflect": true
+        },
+        "page": {
+          "type": "number",
+          "default": "0",
+          "attribute": "page",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "header - Named slot",
+        "default - Content",
+        "footer - Named slot"
+      ],
+      "events": [
+        {
+          "name": "sort-change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-table-basic></sc-table-basic>"
+    },
+    {
       "tag": "sc-table-cell",
       "class": "ScTableCell",
       "category": "unknown",
@@ -2107,6 +2142,38 @@
       ],
       "dependencies": [],
       "example": "<sc-table-cell></sc-table-cell>"
+    },
+    {
+      "tag": "sc-table-dynamic",
+      "class": "ScTableDynamic",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "columns": {
+          "type": "ScTableColumn[]",
+          "default": "[]",
+          "attribute": "columns",
+          "reflect": false
+        },
+        "rows": {
+          "type": "ScTableRowData[]",
+          "default": "[]",
+          "attribute": "rows",
+          "reflect": false
+        },
+        "pageSize": {
+          "type": "number",
+          "default": "0",
+          "attribute": "page-size",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-table-dynamic></sc-table-dynamic>"
     },
     {
       "tag": "sc-table-footer",
@@ -2283,41 +2350,6 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-table-row></sc-table-row>"
-    },
-    {
-      "tag": "sc-table",
-      "class": "ScTable",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
-      "props": {
-        "pageSize": {
-          "type": "number",
-          "default": "0",
-          "attribute": "page-size",
-          "reflect": true
-        },
-        "page": {
-          "type": "number",
-          "default": "0",
-          "attribute": "page",
-          "reflect": true
-        }
-      },
-      "slots": [
-        "header - Named slot",
-        "default - Content",
-        "footer - Named slot"
-      ],
-      "events": [
-        {
-          "name": "sort-change",
-          "detail": "{}"
-        }
-      ],
-      "cssParts": [],
-      "dependencies": [],
-      "example": "<sc-table></sc-table>"
     },
     {
       "tag": "sc-toggle",

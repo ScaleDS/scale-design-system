@@ -2,7 +2,7 @@
 
 A Lit-based agentic design system with machine-readable context for AI and human developers.
 
-- 53 web components built with Lit + Shadow DOM
+- 54 web components built with Lit + Shadow DOM
 - W3C DTCG design tokens (colors, spacing, typography, borders, shadows)
 - Form-associated inputs that work in real `<form>` submissions
 - Theme controller + reset/typography helpers shared across components
@@ -34,7 +34,7 @@ npm install github:ScaleDS/scale-design-system
 
 ## Components
 
-53 components across UI, data, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
+54 components across UI, data, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
 
 ### UI
 
@@ -42,15 +42,32 @@ npm install github:ScaleDS/scale-design-system
 
 ### Data table
 
-`sc-table` is a row-major data table — CSS subgrid keeps columns aligned across rows — with built-in column sorting, row selection, and pagination. Compose it from:
+`sc-table-basic` is a row-major data table — CSS subgrid keeps columns aligned across rows — with built-in column sorting, row selection, and pagination. Compose it from the primitives below, or drive it from data with `sc-table-dynamic`:
 
 | Component | Role |
 |---|---|
-| `sc-table` | Container (`role="table"`); owns sorting, selection, and `page-size` pagination |
+| `sc-table-dynamic` | Data-driven entry point — pass `.columns` + `.rows` and it generates the markup, delegating sort/select/paginate to `sc-table-basic`. Far less boilerplate than hand-composing rows. |
+| `sc-table-basic` | Container (`role="table"`); owns sorting, selection, and `page-size` pagination |
 | `sc-table-row` | Row (`role="row"`); `selected` + hover state |
 | `sc-table-head` | Column header; `sortable` (cycles asc/desc/none with `aria-sort`), `selectable` (select-all), `align` |
 | `sc-table-cell` | Body cell; slotted content, `secondary-text`, `selectable`, `href` (renders a real link), `align` |
 | `sc-table-footer` | Pagination — Prev/Next `sc-button`s + `sc-page-controls` dots, emits `page-change` |
+
+`sc-table-dynamic` columns are `{ key, label?, sortable?, selectable?, align?, width?, href?(row), secondaryText?(row), leadingIcon?(row), trailingIcon?(row) }`; rows are plain objects keyed by column `key` (values may be strings, numbers, or Lit templates for rich cells). Column tracks default to `minmax(0, 1fr)` — stable widths that don't reflow on sort — so set `width` per column (e.g. `auto`, `120px`) only when you need to override.
+
+```ts
+import '@scale/design-system/components/sc-table-dynamic'
+
+const columns = [
+  { key: 'name', label: 'Name', sortable: true },
+  { key: 'email', label: 'Email', sortable: true },
+  { key: 'role', label: 'Role', sortable: true, align: 'trailing' },
+]
+const table = document.querySelector('sc-table-dynamic')
+table.columns = columns
+table.pageSize = 10
+table.rows = users.map(u => ({ name: u.name, email: u.email, role: u.role }))
+```
 
 ### Layout & sections
 
