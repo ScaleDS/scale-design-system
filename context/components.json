@@ -1996,6 +1996,330 @@
       "example": "<sc-status-icon></sc-status-icon>"
     },
     {
+      "tag": "sc-status-indicator",
+      "class": "ScStatusIndicator",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "status": {
+          "type": "StatusIndicatorStatus",
+          "default": "default",
+          "attribute": "status",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [
+        {
+          "name": "dot",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-status-indicator></sc-status-indicator>"
+    },
+    {
+      "tag": "sc-table-cell",
+      "class": "ScTableCell",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "align": {
+          "type": "TableCellAlign",
+          "default": "leading",
+          "attribute": "align",
+          "reflect": true
+        },
+        "selectable": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "selectable",
+          "reflect": true
+        },
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "leadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "leading-icon",
+          "reflect": false
+        },
+        "trailingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "trailing-icon",
+          "reflect": false
+        },
+        "secondaryText": {
+          "type": "string",
+          "default": "",
+          "attribute": "secondary-text",
+          "reflect": false
+        },
+        "hideDivider": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-divider",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "select",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "content",
+          "description": ""
+        },
+        {
+          "name": "checkbox",
+          "description": ""
+        },
+        {
+          "name": "text",
+          "description": ""
+        },
+        {
+          "name": "link",
+          "description": ""
+        },
+        {
+          "name": "secondary",
+          "description": ""
+        },
+        {
+          "name": "divider",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-table-cell></sc-table-cell>"
+    },
+    {
+      "tag": "sc-table-footer",
+      "class": "ScTableFooter",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "total": {
+          "type": "number",
+          "default": "6",
+          "attribute": "total",
+          "reflect": true
+        },
+        "current": {
+          "type": "number",
+          "default": "0",
+          "attribute": "current",
+          "reflect": true
+        },
+        "prevLabel": {
+          "type": "string",
+          "default": "Prev",
+          "attribute": "prev-label",
+          "reflect": false
+        },
+        "nextLabel": {
+          "type": "string",
+          "default": "Next",
+          "attribute": "next-label",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "page-change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "footer",
+          "description": ""
+        },
+        {
+          "name": "prev",
+          "description": ""
+        },
+        {
+          "name": "dots",
+          "description": ""
+        },
+        {
+          "name": "next",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-table-footer></sc-table-footer>"
+    },
+    {
+      "tag": "sc-table-head",
+      "class": "ScTableHead",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "align": {
+          "type": "TableHeadAlign",
+          "default": "leading",
+          "attribute": "align",
+          "reflect": true
+        },
+        "selectable": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "selectable",
+          "reflect": true
+        },
+        "checked": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "checked",
+          "reflect": true
+        },
+        "indeterminate": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "indeterminate",
+          "reflect": true
+        },
+        "sortable": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "sortable",
+          "reflect": true
+        },
+        "sort": {
+          "type": "TableHeadSort",
+          "default": "none",
+          "attribute": "sort",
+          "reflect": true
+        },
+        "hideDivider": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-divider",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "sort",
+          "detail": "{}"
+        },
+        {
+          "name": "select-all",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "heading",
+          "description": ""
+        },
+        {
+          "name": "sort",
+          "description": ""
+        },
+        {
+          "name": "content",
+          "description": ""
+        },
+        {
+          "name": "checkbox",
+          "description": ""
+        },
+        {
+          "name": "divider",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-table-head></sc-table-head>"
+    },
+    {
+      "tag": "sc-table-row",
+      "class": "ScTableRow",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "selected": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "selected",
+          "reflect": true
+        },
+        "header": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "header",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-table-row></sc-table-row>"
+    },
+    {
+      "tag": "sc-table",
+      "class": "ScTable",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "pageSize": {
+          "type": "number",
+          "default": "0",
+          "attribute": "page-size",
+          "reflect": true
+        },
+        "page": {
+          "type": "number",
+          "default": "0",
+          "attribute": "page",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "header - Named slot",
+        "default - Content",
+        "footer - Named slot"
+      ],
+      "events": [
+        {
+          "name": "sort-change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-table></sc-table>"
+    },
+    {
       "tag": "sc-toggle",
       "class": "ScToggle",
       "category": "forms",

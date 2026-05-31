@@ -72,7 +72,7 @@ Once connected, ask your AI agent questions like:
 
 | Tool | Description | Parameters |
 |------|-------------|------------|
-| `list-components` | Lists all 23 components with category and description | _(none)_ |
+| `list-components` | Lists all 53 components with category and description | _(none)_ |
 | `get-component` | Full API for a specific component: props, slots, events, example, whenToUse | `tag` (e.g. `"sc-button"`) |
 | `search-components` | Find components by keyword in description, category, or whenToUse | `query` (e.g. `"form"`) |
 | `get-tokens` | Design tokens in W3C DTCG format | `category` (optional: `color`, `spacing`, `typography`, `borderRadius`, `borderWidth`, `shadow`, `unit`, `breakpoint`) |

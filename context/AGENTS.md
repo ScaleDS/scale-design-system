@@ -24,7 +24,7 @@ Scale is a **Lit web component** design system. When generating code that uses `
 ## Component Discovery
 
 Read `context/components.json` for the full machine-readable component catalog with:
-- All 42 components with their tags, props, slots, events, and examples
+- All 53 components with their tags, props, slots, events, and examples
 - When-to-use guidance for each component
 - Dependency relationships between components
 
@@ -78,12 +78,13 @@ import '@scale/design-system'
 | Category | Components |
 |----------|-----------|
 | **Actions** | `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill` |
-| **Forms** | `sc-input`, `sc-toggle`, `sc-checkbox`, `sc-checkbox-item`, `sc-radio`, `sc-radio-item`, `sc-card-selector` |
-| **Feedback** | `sc-alert`, `sc-badge`, `sc-banner`, `sc-help-text`, `sc-status-icon` |
+| **Forms** | `sc-input`, `sc-input-pin`, `sc-toggle`, `sc-checkbox`, `sc-checkbox-item`, `sc-radio`, `sc-radio-item`, `sc-card-selector`, `sc-slider`, `sc-date-picker`, `sc-file-upload`, `sc-file-upload-item`, `sc-signup` |
+| **Feedback** | `sc-alert`, `sc-badge`, `sc-banner`, `sc-help-text`, `sc-status-icon`, `sc-status-indicator`, `sc-spinner`, `sc-progress-bar`, `sc-modal` |
 | **Content** | `sc-avatar`, `sc-avatar-group`, `sc-card`, `sc-card-image`, `sc-card-pricing` |
+| **Data display** | `sc-table`, `sc-table-row`, `sc-table-head`, `sc-table-cell`, `sc-table-footer` |
 | **Layout** | `sc-divider`, `sc-footer`, `sc-header`, `sc-row` |
 | **Brand** | `sc-logo` |
-| **Navigation** | `sc-accordion`, `sc-breadcrumbs`, `sc-menu-dropdown`, `sc-menu-item` |
+| **Navigation** | `sc-accordion`, `sc-breadcrumbs`, `sc-menu-dropdown`, `sc-menu-item`, `sc-page-controls` |
 | **Sections** | `sc-hero`, `sc-section-bento`, `sc-section-content`, `sc-section-faq`, `sc-section-feature`, `sc-section-pricing`, `sc-section-signup` |
 
 ## Icon Reference
