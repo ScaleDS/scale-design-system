@@ -1346,7 +1346,6 @@
       ],
       "cssParts": [],
       "dependencies": [
-        "sc-menu-item",
         "sc-menu-item"
       ],
       "example": "<sc-menu-dropdown></sc-menu-dropdown>"
@@ -1401,6 +1400,80 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-menu-item></sc-menu-item>"
+    },
+    {
+      "tag": "sc-modal",
+      "class": "ScModal",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "open": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "open",
+          "reflect": true
+        },
+        "closeLabel": {
+          "type": "string",
+          "default": "Close",
+          "attribute": "close-label",
+          "reflect": false
+        },
+        "noDismiss": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "no-dismiss",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "heading - Named slot",
+        "default - Content",
+        "actions - Named slot"
+      ],
+      "events": [
+        {
+          "name": "sc-open",
+          "detail": "{}"
+        },
+        {
+          "name": "sc-close",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "dialog",
+          "description": ""
+        },
+        {
+          "name": "modal",
+          "description": ""
+        },
+        {
+          "name": "header",
+          "description": ""
+        },
+        {
+          "name": "heading",
+          "description": ""
+        },
+        {
+          "name": "close",
+          "description": ""
+        },
+        {
+          "name": "body",
+          "description": ""
+        },
+        {
+          "name": "actions",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-modal></sc-modal>"
     },
     {
       "tag": "sc-progress-bar",
