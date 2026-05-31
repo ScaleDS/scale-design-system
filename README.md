@@ -2,7 +2,7 @@
 
 A Lit-based agentic design system with machine-readable context for AI and human developers.
 
-- 42 web components built with Lit + Shadow DOM
+- 53 web components built with Lit + Shadow DOM
 - W3C DTCG design tokens (colors, spacing, typography, borders, shadows)
 - Form-associated inputs that work in real `<form>` submissions
 - Theme controller + reset/typography helpers shared across components
@@ -34,11 +34,23 @@ npm install github:ScaleDS/scale-design-system
 
 ## Components
 
-42 components across UI, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
+53 components across UI, data, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
 
 ### UI
 
-`sc-accordion`, `sc-alert`, `sc-avatar`, `sc-avatar-group`, `sc-badge`, `sc-banner`, `sc-breadcrumbs`, `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill`, `sc-card`, `sc-card-selector`, `sc-checkbox`, `sc-checkbox-item`, `sc-date-picker`, `sc-divider`, `sc-file-upload`, `sc-file-upload-item`, `sc-help-text`, `sc-input`, `sc-input-pin`, `sc-logo`, `sc-menu-dropdown`, `sc-menu-item`, `sc-progress-bar`, `sc-radio`, `sc-radio-item`, `sc-row`, `sc-status-icon`, `sc-toggle`
+`sc-accordion`, `sc-alert`, `sc-avatar`, `sc-avatar-group`, `sc-badge`, `sc-banner`, `sc-breadcrumbs`, `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill`, `sc-card`, `sc-card-selector`, `sc-checkbox`, `sc-checkbox-item`, `sc-date-picker`, `sc-divider`, `sc-file-upload`, `sc-file-upload-item`, `sc-help-text`, `sc-input`, `sc-input-pin`, `sc-logo`, `sc-menu-dropdown`, `sc-menu-item`, `sc-modal`, `sc-page-controls`, `sc-progress-bar`, `sc-radio`, `sc-radio-item`, `sc-row`, `sc-signup`, `sc-slider`, `sc-spinner`, `sc-status-icon`, `sc-status-indicator`, `sc-toggle`
+
+### Data table
+
+`sc-table` is a row-major data table — CSS subgrid keeps columns aligned across rows — with built-in column sorting, row selection, and pagination. Compose it from:
+
+| Component | Role |
+|---|---|
+| `sc-table` | Container (`role="table"`); owns sorting, selection, and `page-size` pagination |
+| `sc-table-row` | Row (`role="row"`); `selected` + hover state |
+| `sc-table-head` | Column header; `sortable` (cycles asc/desc/none with `aria-sort`), `selectable` (select-all), `align` |
+| `sc-table-cell` | Body cell; slotted content, `secondary-text`, `selectable`, `href` (renders a real link), `align` |
+| `sc-table-footer` | Pagination — Prev/Next `sc-button`s + `sc-page-controls` dots, emits `page-change` |
 
 ### Layout & sections
 
@@ -64,7 +76,7 @@ These live in `components/` but don't define custom elements — they're utiliti
 |---|---|
 | `feather.ts` | `featherIcon(name, opts?)` helper returning a Lit `TemplateResult` |
 | `theme-controller.ts` | `ThemeController` (Lit `ReactiveController`) — pub/sub theme state with optional `documentAttribute` / `storageKey` / `eventName` overrides |
-| `button-variants.ts` | 10 shared type variants + disabled + loading + spinner CSS for `sc-button` and `sc-button-pill` |
+| `button-variants.ts` | 10 shared type variants + disabled + loading state (positions the shared `<sc-spinner>` via `spinnerTypeForButton`) for `sc-button` and `sc-button-pill` |
 | `reset.ts` | Local `* { box-sizing: border-box; margin: 0; padding: 0 }` reset for section-style components |
 | `sc-focus-ring.ts` | `:focus-visible` outline shared across components |
 
