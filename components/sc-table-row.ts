@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 
 // Table Row — the row-major wrapper. It lays its head/cell children onto the
-// parent <sc-table>'s columns via CSS subgrid, so columns stay aligned across
+// parent <sc-table-basic>'s columns via CSS subgrid, so columns stay aligned across
 // every row while each row remains a real box that can carry hover, selection,
 // and zebra backgrounds. Host carries role="row".
 @customElement('sc-table-row')
