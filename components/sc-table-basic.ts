@@ -9,8 +9,8 @@ import { customElement, property } from 'lit/decorators.js'
 //
 // Column widths are configured once, on the header cells — "define columns,
 // render rows".
-@customElement('sc-table')
-export class ScTable extends LitElement {
+@customElement('sc-table-basic')
+export class ScTableBasic extends LitElement {
   /** Accessible name for the table. */
   @property() label = ''
   /** Rows shown per page. `0` (default) disables pagination — all rows show. */
@@ -278,6 +278,6 @@ export class ScTable extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'sc-table': ScTable
+    'sc-table-basic': ScTableBasic
   }
 }
