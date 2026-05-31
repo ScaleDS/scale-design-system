@@ -1476,6 +1476,43 @@
       "example": "<sc-modal></sc-modal>"
     },
     {
+      "tag": "sc-page-controls",
+      "class": "ScPageControls",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "total": {
+          "type": "number",
+          "default": "6",
+          "attribute": "total",
+          "reflect": true
+        },
+        "current": {
+          "type": "number",
+          "default": "0",
+          "attribute": "current",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-page-controls></sc-page-controls>"
+    },
+    {
       "tag": "sc-progress-bar",
       "class": "ScProgressBar",
       "category": "unknown",
@@ -1780,6 +1817,157 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-section-signup></sc-section-signup>"
+    },
+    {
+      "tag": "sc-signup",
+      "class": "ScSignup",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "buttonLabel": {
+          "type": "string",
+          "default": "Sign up",
+          "attribute": "button-label",
+          "reflect": false
+        },
+        "state": {
+          "type": "SignupState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        },
+        "helpText": {
+          "type": "string",
+          "default": "",
+          "attribute": "help-text",
+          "reflect": false
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "loading": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "loading",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "submit",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "container",
+          "description": ""
+        },
+        {
+          "name": "input",
+          "description": ""
+        },
+        {
+          "name": "button",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-signup></sc-signup>"
+    },
+    {
+      "tag": "sc-slider",
+      "class": "ScSlider",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "value": {
+          "type": "number",
+          "default": "0",
+          "attribute": "value",
+          "reflect": true
+        },
+        "min": {
+          "type": "number",
+          "default": "0",
+          "attribute": "min",
+          "reflect": true
+        },
+        "max": {
+          "type": "number",
+          "default": "100",
+          "attribute": "max",
+          "reflect": true
+        },
+        "step": {
+          "type": "number",
+          "default": "1",
+          "attribute": "step",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "input",
+          "detail": "{}"
+        },
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "input",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-slider></sc-slider>"
+    },
+    {
+      "tag": "sc-spinner",
+      "class": "ScSpinner",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "size": {
+          "type": "SpinnerSize",
+          "default": "l",
+          "attribute": "size",
+          "reflect": true
+        },
+        "type": {
+          "type": "SpinnerType",
+          "default": "primary",
+          "attribute": "type",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [],
+      "cssParts": [
+        {
+          "name": "svg",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-spinner></sc-spinner>"
     },
     {
       "tag": "sc-status-icon",

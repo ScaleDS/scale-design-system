@@ -145,24 +145,39 @@ export const buttonVariants = css`
     pointer-events: none;
   }
 
-  .spinner {
-    display: none;
-    width: 16px;
-    height: 16px;
-    border: 2px solid currentColor;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 0.75s linear infinite;
+  /* The loading indicator is the shared <sc-spinner> component, rendered only
+     while [loading]. It's overlaid, centred over the (hidden-but-in-flow)
+     label; its colour comes from the spinner's own type tokens (see
+     spinnerTypeForButton), not the button label colour. */
+  sc-spinner.spinner {
     position: absolute;
     inset: 0;
     margin: auto;
   }
-
-  :host([loading]) .spinner {
-    display: block;
-  }
-
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
 `
+
+/** sc-spinner `type` values used by the buttons' loading indicator. */
+export type ButtonSpinnerType = 'primary' | 'negative' | 'mono' | 'inverse'
+
+// Maps a button `type` to the sc-spinner `type` whose token colour reads
+// correctly against that button's background:
+//   • solid colour backgrounds with inverse (white) text → `inverse`
+//   • negative outline/text variants → `negative` (red)
+//   • text (link) variant → `primary` (brand)
+//   • everything else (light/transparent backgrounds) → `mono`
+export function spinnerTypeForButton(type: string): ButtonSpinnerType {
+  switch (type) {
+    case 'primary':
+    case 'mono':
+    case 'inverse':
+    case 'negative-primary':
+      return 'inverse'
+    case 'negative-outline':
+    case 'negative-text':
+      return 'negative'
+    case 'text':
+      return 'primary'
+    default:
+      return 'mono'
+  }
+}

@@ -2,8 +2,9 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { labelL, labelM } from '@scale/design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
-import { buttonVariants } from './button-variants'
+import { buttonVariants, spinnerTypeForButton } from './button-variants'
 import { featherIcon } from './feather'
+import './sc-spinner'
 
 type ButtonPillSize = 'l' | 'm' | 's'
 type ButtonPillType =
@@ -91,7 +92,6 @@ export class ScButtonPill extends LitElement {
 
     :host([loading]) .label {
       visibility: hidden;
-      position: absolute;
     }
 
     svg {
@@ -107,7 +107,7 @@ export class ScButtonPill extends LitElement {
         ?disabled=${this.disabled || this.loading}
         aria-busy=${this.loading ? 'true' : 'false'}
       >
-        <span class="spinner"></span>
+        ${this.loading ? html`<sc-spinner class="spinner" size="s" type=${spinnerTypeForButton(this.type)}></sc-spinner>` : null}
         <span class="label">
           ${featherIcon(this.leadingIcon)}
           <slot></slot>
