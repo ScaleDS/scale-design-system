@@ -2,8 +2,9 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { labelL, labelM, labelS } from '@scale/design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
-import { buttonVariants } from './button-variants'
+import { buttonVariants, spinnerTypeForButton } from './button-variants'
 import { featherIcon } from './feather'
+import './sc-spinner'
 
 type ButtonSize = 'l' | 'm' | 's'
 type ButtonType =
@@ -139,7 +140,6 @@ export class ScButton extends LitElement {
 
     :host([loading]) .label {
       visibility: hidden;
-      position: absolute;
     }
 
     svg {
@@ -151,7 +151,7 @@ export class ScButton extends LitElement {
   render() {
     const inactive = this.disabled || this.loading
     const inner = html`
-      <span class="spinner"></span>
+      ${this.loading ? html`<sc-spinner class="spinner" size="s" type=${spinnerTypeForButton(this.type)}></sc-spinner>` : null}
       <span class="label">
         ${featherIcon(this.leadingIcon)}
         <slot></slot>
