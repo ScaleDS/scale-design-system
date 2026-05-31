@@ -152,9 +152,7 @@ export class ScDatePicker extends LitElement {
       display: inline-block;
       box-sizing: border-box;
       width: 256px;
-      padding: var(--sc-space-l);
       background: var(--sc-color-background-primary);
-      border: var(--sc-border-width-s) solid var(--sc-color-border-subtle);
       border-radius: var(--sc-border-radius-m);
     }
 
