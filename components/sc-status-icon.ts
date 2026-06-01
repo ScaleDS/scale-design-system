@@ -28,10 +28,23 @@ const icons: Record<Status, Record<IconSize, string>> = {
   success: { 16: success16, 24: success24, 32: success32 },
 }
 
+// The fill token each status uses for its disc (the glyph always uses
+// --sc-color-icon-inverse). Inverse mode swaps the two so the disc becomes
+// white and the glyph picks up the status colour — used on coloured surfaces
+// like sc-toast where the default (coloured disc / white glyph) would vanish.
+const discToken: Record<Status, string> = {
+  info:    '--sc-color-icon-info',
+  warning: '--sc-color-icon-warning',
+  error:   '--sc-color-icon-negative',
+  success: '--sc-color-icon-positive',
+}
+
 @customElement('sc-status-icon')
 export class ScStatusIcon extends LitElement {
   @property({ reflect: true }) status: Status = 'info'
   @property({ type: Number, reflect: true }) size: IconSize = 24
+  /** Swap disc/glyph colours for use on a status-coloured surface (e.g. sc-toast). */
+  @property({ type: Boolean, reflect: true }) inverse = false
 
   static styles = css`
     :host {
@@ -44,7 +57,16 @@ export class ScStatusIcon extends LitElement {
   `
 
   render() {
-    const svg = icons[this.status]?.[this.size] ?? icons.info[24]
+    let svg = icons[this.status]?.[this.size] ?? icons.info[24]
+    if (this.inverse) {
+      const disc = discToken[this.status] ?? discToken.info
+      // Swap disc colour ↔ inverse glyph colour via a sentinel so the two
+      // replacements don't clobber each other.
+      svg = svg
+        .split(disc).join('__SC_TMP__')
+        .split('--sc-color-icon-inverse').join(disc)
+        .split('__SC_TMP__').join('--sc-color-icon-inverse')
+    }
     return html`${unsafeHTML(svg)}`
   }
 }
