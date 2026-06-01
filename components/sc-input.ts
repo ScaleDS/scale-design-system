@@ -1,5 +1,6 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
+import { ifDefined } from 'lit/directives/if-defined.js'
 import { labelL, textL } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-help-text'
 import { focusRing } from './sc-focus-ring'
@@ -80,7 +81,7 @@ export class ScInput extends LitElement {
   }
 
   protected updated(changed: PropertyValues) {
-    if (['value', 'end', 'mode', 'kind', 'required'].some(k => changed.has(k))) this._syncFormState()
+    if (['value', 'end', 'mode', 'kind', 'required', 'type', 'pattern'].some(k => changed.has(k))) this._syncFormState()
     // Lazily load the date-picker dropdown only when this input is a date field.
     if (this.kind === 'date') this._ensureDateKind()
   }
@@ -93,6 +94,12 @@ export class ScInput extends LitElement {
     const input = this.shadowRoot?.querySelector('input') ?? undefined
     if (this.required && !this.value) {
       this._internals.setValidity({ valueMissing: true }, 'Please fill out this field.', input)
+    } else if (input && !input.validity.valid) {
+      // Mirror the inner input's native constraint validation (type="email"
+      // typeMismatch, pattern mismatch, too short/long, …) onto the host —
+      // shadow-DOM validity doesn't propagate to ElementInternals on its own.
+      // (Date kind renders a button, not an input, so this branch is skipped.)
+      this._internals.setValidity(input.validity, input.validationMessage, input)
     } else {
       this._internals.setValidity({})
     }
@@ -354,8 +361,8 @@ export class ScInput extends LitElement {
           type=${this.type}
           name=${this.name}
           autocomplete=${this.autocomplete}
-          inputmode=${this.inputmode ?? ''}
-          pattern=${this.pattern ?? ''}
+          inputmode=${ifDefined(this.inputmode || undefined)}
+          pattern=${ifDefined(this.pattern || undefined)}
           @input=${this._onInput}
           @change=${this._onChange}
           @focus=${this._onInputFocus}

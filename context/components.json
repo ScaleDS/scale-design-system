@@ -1987,6 +1987,12 @@
           "default": "24",
           "attribute": "size",
           "reflect": true
+        },
+        "inverse": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "inverse",
+          "reflect": true
         }
       },
       "slots": [],
@@ -2019,6 +2025,76 @@
       ],
       "dependencies": [],
       "example": "<sc-status-indicator></sc-status-indicator>"
+    },
+    {
+      "tag": "sc-tab-panel",
+      "class": "ScTabPanel",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": true
+        },
+        "active": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "active",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-tab-panel></sc-tab-panel>"
+    },
+    {
+      "tag": "sc-tab",
+      "class": "ScTab",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "panel": {
+          "type": "string",
+          "default": "",
+          "attribute": "panel",
+          "reflect": true
+        },
+        "active": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "active",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "controls": {
+          "type": "string",
+          "default": "",
+          "attribute": "controls",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "prefix - Named slot",
+        "default - Content",
+        "suffix - Named slot"
+      ],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-tab></sc-tab>"
     },
     {
       "tag": "sc-table-basic",
@@ -2350,6 +2426,293 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-table-row></sc-table-row>"
+    },
+    {
+      "tag": "sc-tabs",
+      "class": "ScTabs",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "active": {
+          "type": "string",
+          "default": "",
+          "attribute": "active",
+          "reflect": true
+        },
+        "activation": {
+          "type": "TabActivation",
+          "default": "auto",
+          "attribute": "activation",
+          "reflect": true
+        },
+        "placement": {
+          "type": "TabPlacement",
+          "default": "top",
+          "attribute": "placement",
+          "reflect": true
+        }
+      },
+      "slots": [
+        "nav - Named slot",
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "sc-tab-hide",
+          "detail": "{}"
+        },
+        {
+          "name": "sc-tab-show",
+          "detail": "{}"
+        },
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [],
+      "dependencies": [
+        "sc-tab",
+        "sc-tab-panel",
+        "sc-tab",
+        "sc-tab-panel"
+      ],
+      "example": "<sc-tabs></sc-tabs>"
+    },
+    {
+      "tag": "sc-tag",
+      "class": "ScTag",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "selected": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "selected",
+          "reflect": true
+        },
+        "selectable": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "selectable",
+          "reflect": true
+        },
+        "removable": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "removable",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "leadingIcon": {
+          "type": "string",
+          "default": "",
+          "attribute": "leading-icon",
+          "reflect": false
+        },
+        "avatarAlt": {
+          "type": "string",
+          "default": "",
+          "attribute": "avatar-alt",
+          "reflect": false
+        },
+        "removeLabel": {
+          "type": "string",
+          "default": "Remove",
+          "attribute": "remove-label",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "default - Content"
+      ],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        },
+        {
+          "name": "remove",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "avatar",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "description": ""
+        },
+        {
+          "name": "close",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-tag></sc-tag>"
+    },
+    {
+      "tag": "sc-text-area",
+      "class": "ScTextArea",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "state": {
+          "type": "TextAreaState",
+          "default": "default",
+          "attribute": "state",
+          "reflect": true
+        },
+        "helpText": {
+          "type": "string",
+          "default": "Help text",
+          "attribute": "help-text",
+          "reflect": false
+        },
+        "showLabel": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-label",
+          "reflect": true
+        },
+        "showHelpText": {
+          "type": "boolean",
+          "default": true,
+          "attribute": "show-help-text",
+          "reflect": true
+        },
+        "rows": {
+          "type": "number",
+          "default": "3",
+          "attribute": "rows",
+          "reflect": false
+        },
+        "resize": {
+          "type": "TextAreaResize",
+          "default": "vertical",
+          "attribute": "resize",
+          "reflect": true
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
+          "reflect": true
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "input",
+          "detail": "{}"
+        },
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "textarea",
+          "description": ""
+        }
+      ],
+      "dependencies": [
+        "sc-help-text"
+      ],
+      "example": "<sc-text-area></sc-text-area>"
+    },
+    {
+      "tag": "sc-toast",
+      "class": "ScToast",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "status": {
+          "type": "ToastStatus",
+          "default": "default",
+          "attribute": "status",
+          "reflect": true
+        },
+        "placement": {
+          "type": "ToastPlacement",
+          "default": "top-end",
+          "attribute": "placement",
+          "reflect": true
+        },
+        "duration": {
+          "type": "number",
+          "default": "4000",
+          "attribute": "duration",
+          "reflect": true
+        },
+        "hideClose": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-close",
+          "reflect": true
+        },
+        "hideLink": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "hide-link",
+          "reflect": true
+        },
+        "linkHref": {
+          "type": "string",
+          "default": "",
+          "attribute": "link-href",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "close",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "icon",
+          "description": ""
+        },
+        {
+          "name": "text",
+          "description": ""
+        },
+        {
+          "name": "link",
+          "description": ""
+        },
+        {
+          "name": "link",
+          "description": ""
+        },
+        {
+          "name": "close",
+          "description": ""
+        }
+      ],
+      "dependencies": [
+        "sc-status-icon"
+      ],
+      "example": "<sc-toast></sc-toast>"
     },
     {
       "tag": "sc-toggle",
