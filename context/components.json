@@ -2744,6 +2744,87 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-toggle></sc-toggle>"
+    },
+    {
+      "tag": "sc-tooltip",
+      "class": "ScTooltip",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "placement": {
+          "type": "TooltipPlacement",
+          "default": "top",
+          "attribute": "placement",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "open": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "open",
+          "reflect": true
+        },
+        "withoutArrow": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "without-arrow",
+          "reflect": true
+        },
+        "distance": {
+          "type": "number",
+          "default": "8",
+          "attribute": "distance",
+          "reflect": false
+        },
+        "showDelay": {
+          "type": "number",
+          "default": "150",
+          "attribute": "show-delay",
+          "reflect": false
+        },
+        "hideDelay": {
+          "type": "number",
+          "default": "0",
+          "attribute": "hide-delay",
+          "reflect": false
+        }
+      },
+      "slots": [
+        "default - Content",
+        "content - Named slot"
+      ],
+      "events": [
+        {
+          "name": "show",
+          "detail": "{}"
+        },
+        {
+          "name": "hide",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "popup",
+          "description": ""
+        },
+        {
+          "name": "body",
+          "description": ""
+        },
+        {
+          "name": "arrow",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-tooltip></sc-tooltip>"
     }
   ]
 }
