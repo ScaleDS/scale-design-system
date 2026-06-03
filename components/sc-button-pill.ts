@@ -86,8 +86,14 @@ export class ScButtonPill extends LitElement {
 
     /* ---- Label / spinner positioning (specific to sc-button-pill) ---- */
 
+    /* The label carries its own 4px (space-xs) side padding — matching Figma's
+       Label node — on top of the pill's own padding, so text sits space-l +
+       space-xs in from the edge. */
     .label {
-      display: contents;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sc-space-s);
+      padding: 0 var(--sc-space-xs);
     }
 
     :host([loading]) .label {

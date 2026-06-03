@@ -131,11 +131,14 @@ export class ScButton extends LitElement {
 
     /* ---- Label / spinner positioning (specific to sc-button) ---- */
 
+    /* The label carries its own 4px (space-xs) side padding — matching Figma's
+       Label node — on top of the button's own padding, so text sits space-m +
+       space-xs in from the edge. */
     .label {
       display: inline-flex;
       align-items: center;
       gap: var(--sc-space-s);
-      margin: 0 var(--sc-space-xs);
+      padding: 0 var(--sc-space-xs);
     }
 
     :host([loading]) .label {
