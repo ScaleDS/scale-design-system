@@ -6,6 +6,16 @@ import { focusRing } from './sc-focus-ring'
 
 type AlertStatus = 'info' | 'warning' | 'negative' | 'positive'
 
+/**
+ * Boolean attribute that respects an explicit string value. Unlike Lit's
+ * built-in Boolean converter (where any present attribute is `true`), this
+ * treats `="false"` as `false`, so `show-heading="false"` works as written.
+ */
+const booleanString = {
+  fromAttribute: (value: string | null) => value !== null && value !== 'false',
+  toAttribute: (value: boolean) => (value ? null : 'false'),
+}
+
 const statusIconMap: Record<AlertStatus, string> = {
   info: 'info',
   warning: 'warning',
@@ -16,9 +26,9 @@ const statusIconMap: Record<AlertStatus, string> = {
 @customElement('sc-alert')
 export class ScAlert extends LitElement {
   @property({ reflect: true }) status: AlertStatus = 'info'
-  @property({ attribute: 'show-heading', type: Boolean, reflect: true }) showHeading = true
-  @property({ attribute: 'show-actions', type: Boolean, reflect: true }) showActions = true
-  @property({ attribute: 'show-action-2', type: Boolean, reflect: true }) showAction2 = true
+  @property({ attribute: 'show-heading', converter: booleanString, reflect: true }) showHeading: boolean = true
+  @property({ attribute: 'show-actions', converter: booleanString, reflect: true }) showActions: boolean = true
+  @property({ attribute: 'show-action-2', converter: booleanString, reflect: true }) showAction2: boolean = true
 
   static styles = [
     focusRing,

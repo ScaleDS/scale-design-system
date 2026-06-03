@@ -63,7 +63,7 @@ export class ScAccordion extends LitElement {
 
     p {
       ${textL}
-      padding: var(--sc-space-s) 0 var(--sc-space-s) var(--sc-space-l);
+      padding: 0 var(--sc-space-l) var(--sc-space-l) var(--sc-space-l);
       color: var(--sc-color-text-primary);
       margin: 0;
     }

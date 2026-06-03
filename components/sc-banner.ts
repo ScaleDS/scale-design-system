@@ -65,6 +65,14 @@ export class ScBanner extends LitElement {
       align-items: center;
     }
 
+    /* Warning sits on a light surface, so its icon disc uses the dark static
+       colour (like the static text/link/close below) while the "!" glyph keeps
+       the warning accent. After sc-status-icon's inverse swap the disc fill
+       resolves --sc-color-icon-inverse, so re-point that token for this icon. */
+    :host([status='warning']) .icon sc-status-icon {
+      --sc-color-icon-inverse: var(--sc-color-icon-primary-static);
+    }
+
     /* ---- Text ---- */
     .text {
       ${textL}
@@ -172,7 +180,7 @@ export class ScBanner extends LitElement {
       <div class="banner" role="status" aria-label="Notification" @keydown=${this._onKeyDown}>
         ${this.status !== 'mono' && iconStatus ? html`
           <span class="icon">
-            <sc-status-icon status=${iconStatus} size="24"></sc-status-icon>
+            <sc-status-icon status=${iconStatus} size="24" inverse></sc-status-icon>
           </span>
         ` : ''}
         <p class="text">${this.text}</p>
