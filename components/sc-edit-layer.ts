@@ -1,10 +1,10 @@
 import { LitElement, html, css, nothing, type TemplateResult } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { ThemeController } from './theme-controller'
+import { ThemeController } from './theme-controller.js'
 // Scale Edit's own chrome is built from real design-system components.
-import './sc-button'
-import './sc-button-icon'
-import './sc-badge'
+import './sc-button.js'
+import './sc-button-icon.js'
+import './sc-badge.js'
 
 /** One captured annotation or edit, mirrored to `.scale/edits.json` by the bridge. */
 export interface EditItem {

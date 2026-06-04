@@ -1,6 +1,6 @@
 import { LitElement, html, css, isServer } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
-import './sc-button-icon'
+import './sc-button-icon.js'
 
 /**
  * sc-modal — a modal dialog built on the native `<dialog>` element.

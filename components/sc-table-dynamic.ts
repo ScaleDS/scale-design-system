@@ -1,10 +1,10 @@
 import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import './sc-table-basic'
-import './sc-table-row'
-import './sc-table-head'
-import './sc-table-cell'
-import './sc-table-footer'
+import './sc-table-basic.js'
+import './sc-table-row.js'
+import './sc-table-head.js'
+import './sc-table-cell.js'
+import './sc-table-footer.js'
 
 /** A column definition for `sc-table-dynamic`. */
 export interface ScTableColumn {

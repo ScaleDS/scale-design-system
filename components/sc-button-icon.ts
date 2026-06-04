@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { focusRing } from './sc-focus-ring'
-import { featherIcon } from './feather'
+import { focusRing } from './sc-focus-ring.js'
+import { featherIcon } from './feather.js'
 
 type ButtonIconSize = 'l' | 's'
 type ButtonIconType =

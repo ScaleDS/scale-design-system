@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { textS, linkS } from '@scale-ds/scale-design-system/scss/typography'
 import '@scale-ds/scale-design-system/components/sc-logo'
-import { reset } from './reset'
+import { reset } from './reset.js'
 
 @customElement('sc-footer')
 export class ScFooter extends LitElement {

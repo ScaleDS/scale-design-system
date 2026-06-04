@@ -2,8 +2,8 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { textL } from '@scale-ds/scale-design-system/scss/typography'
 import '@scale-ds/scale-design-system/components/sc-divider'
-import { featherIcon } from './feather'
-import { reset } from './reset'
+import { featherIcon } from './feather.js'
+import { reset } from './reset.js'
 
 @customElement('sc-row')
 export class ScRow extends LitElement {

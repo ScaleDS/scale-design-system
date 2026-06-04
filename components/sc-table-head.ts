@@ -1,9 +1,9 @@
 import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { heading2xs } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import { featherIcon } from './feather'
-import './sc-checkbox'
+import { focusRing } from './sc-focus-ring.js'
+import { featherIcon } from './feather.js'
+import './sc-checkbox.js'
 
 type TableHeadAlign = 'leading' | 'trailing'
 type TableHeadSort = 'none' | 'ascending' | 'descending'

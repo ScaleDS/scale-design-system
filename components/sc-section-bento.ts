@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { reset } from './reset'
+import { reset } from './reset.js'
 
 @customElement('sc-section-bento')
 export class ScSectionBento extends LitElement {

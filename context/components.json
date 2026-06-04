@@ -1,6 +1,6 @@
 {
   "name": "@scale-ds/scale-design-system",
-  "version": "1.0.0",
+  "version": "4.0.0-alpha.3",
   "framework": "lit",
   "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
   "components": [
@@ -28,7 +28,9 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-divider"
+      ],
       "example": "<sc-accordion></sc-accordion>"
     },
     {
@@ -71,7 +73,9 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-status-icon"
+      ],
       "example": "<sc-alert></sc-alert>"
     },
     {
@@ -99,7 +103,9 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-avatar"
+      ],
       "example": "<sc-avatar-group></sc-avatar-group>"
     },
     {
@@ -190,7 +196,9 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-status-icon"
+      ],
       "example": "<sc-banner></sc-banner>"
     },
     {
@@ -356,7 +364,9 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-spinner"
+      ],
       "example": "<sc-button-pill></sc-button-pill>"
     },
     {
@@ -417,7 +427,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-spinner"
+      ],
       "example": "<sc-button></sc-button>"
     },
     {
@@ -478,7 +490,9 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-divider"
+      ],
       "example": "<sc-card-pricing></sc-card-pricing>"
     },
     {
@@ -664,7 +678,9 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-checkbox-item"
+      ],
       "example": "<sc-checkbox></sc-checkbox>"
     },
     {
@@ -715,7 +731,10 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-button-icon",
+        "sc-button"
+      ],
       "example": "<sc-date-picker></sc-date-picker>"
     },
     {
@@ -748,7 +767,11 @@
       "slots": [],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-button",
+        "sc-button-icon",
+        "sc-badge"
+      ],
       "example": "<sc-edit-layer></sc-edit-layer>"
     },
     {
@@ -818,7 +841,10 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-progress-bar",
+        "sc-status-icon"
+      ],
       "example": "<sc-file-upload-item></sc-file-upload-item>"
     },
     {
@@ -900,7 +926,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-file-upload-item"
+      ],
       "example": "<sc-file-upload></sc-file-upload>"
     },
     {
@@ -932,7 +960,9 @@
       "slots": [],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-logo"
+      ],
       "example": "<sc-footer></sc-footer>"
     },
     {
@@ -1023,7 +1053,11 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-logo",
+        "sc-button",
+        "sc-button-icon"
+      ],
       "example": "<sc-header></sc-header>"
     },
     {
@@ -1049,7 +1083,9 @@
       "slots": [],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-status-icon"
+      ],
       "example": "<sc-help-text></sc-help-text>"
     },
     {
@@ -1139,7 +1175,11 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-badge",
+        "sc-button",
+        "sc-input"
+      ],
       "example": "<sc-hero></sc-hero>"
     },
     {
@@ -1227,7 +1267,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-help-text"
+      ],
       "example": "<sc-input-pin></sc-input-pin>"
     },
     {
@@ -1304,7 +1346,9 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-help-text"
+      ],
       "example": "<sc-input></sc-input>"
     },
     {
@@ -1356,7 +1400,9 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-menu-item"
+      ],
       "example": "<sc-menu-dropdown></sc-menu-dropdown>"
     },
     {
@@ -1481,7 +1527,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-button-icon"
+      ],
       "example": "<sc-modal></sc-modal>"
     },
     {
@@ -1644,7 +1692,9 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-radio-item"
+      ],
       "example": "<sc-radio></sc-radio>"
     },
     {
@@ -1678,7 +1728,9 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-divider"
+      ],
       "example": "<sc-row></sc-row>"
     },
     {
@@ -1738,7 +1790,9 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-accordion"
+      ],
       "example": "<sc-section-faq></sc-section-faq>"
     },
     {
@@ -1941,7 +1995,10 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-input",
+        "sc-button"
+      ],
       "example": "<sc-signup></sc-signup>"
     },
     {
@@ -2280,7 +2337,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-checkbox"
+      ],
       "example": "<sc-table-cell></sc-table-cell>"
     },
     {
@@ -2312,7 +2371,13 @@
       "slots": [],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-table-basic",
+        "sc-table-row",
+        "sc-table-head",
+        "sc-table-cell",
+        "sc-table-footer"
+      ],
       "example": "<sc-table-dynamic></sc-table-dynamic>"
     },
     {
@@ -2372,7 +2437,10 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-button",
+        "sc-page-controls"
+      ],
       "example": "<sc-table-footer></sc-table-footer>"
     },
     {
@@ -2460,7 +2528,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-checkbox"
+      ],
       "example": "<sc-table-head></sc-table-head>"
     },
     {
@@ -2536,7 +2606,10 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-tab",
+        "sc-tab-panel"
+      ],
       "example": "<sc-tabs></sc-tabs>"
     },
     {
@@ -2690,7 +2763,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-help-text"
+      ],
       "example": "<sc-text-area></sc-text-area>"
     },
     {
@@ -2766,7 +2841,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-status-icon"
+      ],
       "example": "<sc-toast></sc-toast>"
     },
     {
