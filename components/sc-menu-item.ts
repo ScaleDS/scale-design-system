@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
-import { labelL, labelM } from '@scale/design-system/scss/typography'
+import { linkL, labelM } from '@scale/design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
 
@@ -91,7 +91,7 @@ export class ScMenuItem extends LitElement {
 
     :host([type='row']) .label,
     :host([type='button']) .label {
-      ${labelL}
+      ${linkL}
       color: var(--sc-color-text-secondary);
     }
 
