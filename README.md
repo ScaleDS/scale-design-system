@@ -73,7 +73,7 @@ table.rows = users.map(u => ({ name: u.name, email: u.email, role: u.role }))
 
 | Component | Description |
 |---|---|
-| `sc-header` | Fixed header with frosted-glass background, single-pill theme toggle, mobile drawer; CTAs render as real `<a>` elements |
+| `sc-header` | Fixed header with frosted-glass background, single-pill theme toggle, opt-in search overlay (`show-search` + `.searchItems`), and a responsive two-level mobile menu below 810px (`.navTree` + `active-section`/`active-href`); CTAs render as real `<a>` elements |
 | `sc-hero` | Full-width hero with badge, CTAs, and theme-reactive image |
 | `sc-footer` | Footer with logo, optional copyright, licence link |
 | `sc-section-content` | Centred heading + subtext |
