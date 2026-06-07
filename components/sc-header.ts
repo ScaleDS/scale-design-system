@@ -1,6 +1,6 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { linkM } from '@scale/design-system/scss/typography'
+import { linkM, textM, headingM } from '@scale/design-system/scss/typography'
 import '@scale/design-system/components/sc-logo'
 import '@scale/design-system/components/sc-button'
 import '@scale/design-system/components/sc-button-icon'
@@ -12,7 +12,26 @@ export interface NavLink {
   href: string
 }
 
+/** A page the header search can match against. */
+export interface SearchItem {
+  label: string
+  href: string
+  /** Optional group label shown muted after the page title (e.g. "Components"). */
+  group?: string
+}
+
+/** A top-level entry in the mobile menu. Sections carry child `entries` (which
+ *  surface as a second-level panel); plain links omit them. */
+export interface NavTreeSection {
+  id?: string
+  label: string
+  href: string
+  entries?: NavLink[]
+}
+
 type NavAlign = 'leading' | 'center' | 'trailing'
+
+const MAX_RESULTS = 8
 
 @customElement('sc-header')
 export class ScHeader extends LitElement {
@@ -23,8 +42,27 @@ export class ScHeader extends LitElement {
   @property({ attribute: 'secondary-label' }) secondaryLabel = ''
   @property({ attribute: 'secondary-href' }) secondaryHref = ''
   @property({ type: Boolean, reflect: true, attribute: 'show-search' }) showSearch = false
+  /** Pages the search overlay matches against. Set as a property (`.searchItems`). */
+  @property({ attribute: false }) searchItems: SearchItem[] = []
+  /** Two-level nav for the mobile menu. Falls back to `navLinks` (flat) if unset. */
+  @property({ attribute: false }) navTree: NavTreeSection[] = []
+  /** Href of the current page — marks the matching menu item selected. */
+  @property({ attribute: 'active-href' }) activeHref = ''
+  /** Id of the active section — marks the matching L1 item selected. */
+  @property({ attribute: 'active-section' }) activeSection = ''
 
   @state() private _mobile = false
+  @state() private _searchOpen = false
+  @state() private _menuOpen = false
+  /** Which section's content is rendered in the L2 panel. Kept while sliding
+   *  back to L1 so the panel stays visible during the transition. */
+  @state() private _drawerSection: string | null = null
+  /** Whether the L2 panel is slid into view; drives the slide independently of
+   *  `_drawerSection` so the content can outlive the back animation. */
+  @state() private _showL2 = false
+  @state() private _query = ''
+  @state() private _activeIndex = -1
+  private _wasSearchOpen = false
 
   private _theme = new ThemeController(this)
   private _mq?: MediaQueryList
@@ -40,6 +78,98 @@ export class ScHeader extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback()
     this._mq?.removeEventListener('change', this._onMqChange)
+  }
+
+  // ---- Search ----
+
+  private get _results(): SearchItem[] {
+    const q = this._query.trim().toLowerCase()
+    if (!q) return []
+    return this.searchItems
+      .filter((item) => item.label.toLowerCase().includes(q))
+      .slice(0, MAX_RESULTS)
+  }
+
+  private _openSearch() {
+    this._searchOpen = true
+    this._menuOpen = false
+  }
+
+  private _toggleMenu() {
+    this._menuOpen = !this._menuOpen
+    this._drawerSection = null
+    this._showL2 = false
+    if (this._menuOpen) this._closeSearch()
+  }
+
+  // Mobile menu second level (sections with child pages).
+  private get _menuItems(): NavTreeSection[] {
+    return this.navTree.length ? this.navTree : this.navLinks
+  }
+
+  private _openL2(id: string) {
+    this._drawerSection = id
+    this._showL2 = true
+  }
+
+  // Slide back to L1 but keep the L2 content mounted so it stays visible as it
+  // animates off to the right; clear it once the slide finishes.
+  private _backToL1() {
+    this._showL2 = false
+    setTimeout(() => {
+      if (!this._showL2) this._drawerSection = null
+    }, 500)
+  }
+
+  private _closeSearch() {
+    this._searchOpen = false
+    this._query = ''
+    this._activeIndex = -1
+  }
+
+  private _toggleSearch() {
+    this._searchOpen ? this._closeSearch() : this._openSearch()
+  }
+
+  private _onSearchInput(e: Event) {
+    this._query = (e.target as HTMLInputElement).value
+    this._activeIndex = -1
+  }
+
+  private _onSearchKeydown(e: KeyboardEvent) {
+    const results = this._results
+    switch (e.key) {
+      case 'Escape':
+        e.preventDefault()
+        this._closeSearch()
+        break
+      case 'ArrowDown':
+        if (!results.length) return
+        e.preventDefault()
+        this._activeIndex = (this._activeIndex + 1) % results.length
+        break
+      case 'ArrowUp':
+        if (!results.length) return
+        e.preventDefault()
+        this._activeIndex = this._activeIndex <= 0 ? results.length - 1 : this._activeIndex - 1
+        break
+      case 'Enter': {
+        const target = results[this._activeIndex] ?? results[0]
+        if (target) {
+          e.preventDefault()
+          window.location.href = target.href
+        }
+        break
+      }
+    }
+  }
+
+  updated() {
+    // Focus the field as the overlay opens.
+    if (this._searchOpen && !this._wasSearchOpen) {
+      this.renderRoot.querySelector<HTMLInputElement>('.search-input')?.focus()
+    }
+    this._wasSearchOpen = this._searchOpen
   }
 
   static styles = css`
@@ -213,16 +343,136 @@ export class ScHeader extends LitElement {
       gap: var(--sc-space-s);
     }
 
+    /* ---- Search overlay ---- */
+
+    /* Crossfade: nav fades out, the centered search field fades in to replace it. */
+    .nav {
+      transition: opacity 200ms ease;
+    }
+    .header.searching .nav,
+    .header.searching .theme-toggle,
+    .header.searching .actions {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .search {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: clamp(280px, 50vw, 520px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 200ms ease;
+    }
+    .header.searching .search {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--sc-space-xs);
+      width: 100%;
+    }
+
+    /* The dedicated close button only appears in the mobile overlay; on desktop
+       the trailing search-toggle doubles as the close (X) control. */
+    .search-close {
+      display: none;
+    }
+
+    .search-field {
+      display: flex;
+      flex: 1;
+      min-width: 0;
+      align-items: center;
+      gap: var(--sc-space-s);
+      padding: var(--sc-space-m) var(--sc-space-l);
+      background: var(--sc-color-background-primary);
+      border: var(--sc-border-width-s) solid var(--sc-color-border-primary);
+      border-radius: var(--sc-border-radius-m);
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      background: transparent;
+      ${linkM}
+      color: var(--sc-color-text-primary);
+      font-weight: 400;
+    }
+    .search-input::placeholder {
+      color: var(--sc-color-text-tertiary);
+    }
+
+    .search-field-icon {
+      display: flex;
+      flex-shrink: 0;
+      color: var(--sc-color-icon-primary);
+    }
+    .search-field-icon svg {
+      display: block;
+      width: 24px;
+      height: 24px;
+    }
+
+    .search-dropdown {
+      position: absolute;
+      top: calc(100% + var(--sc-space-s));
+      left: 0;
+      width: 100%;
+      box-sizing: border-box;
+      padding: var(--sc-space-s);
+      background: var(--sc-color-surface-l2);
+      border-radius: var(--sc-border-radius-s);
+      box-shadow: var(--sc-shadow-l2);
+      animation: search-fade-in 150ms ease;
+    }
+
+    @keyframes search-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .search-result {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sc-space-s);
+      padding: var(--sc-space-m) var(--sc-space-l);
+      border-radius: var(--sc-border-radius-s);
+      ${linkM}
+      color: var(--sc-color-text-secondary);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .search-result:hover,
+    .search-result.active {
+      background: var(--sc-color-background-hover);
+      color: var(--sc-color-text-primary);
+    }
+    .search-result-group {
+      margin-left: auto;
+      ${textM}
+      color: var(--sc-color-text-tertiary);
+    }
+
     /* ---- Responsive ---- */
 
     @media (max-width: 810px) {
       .header {
         height: 64px;
-        padding: 0 20px;
+        /* Logo gets 16px breathing room; the trailing icon buttons carry their
+           own 12px padding so the container only needs 4px on the right. */
+        padding: 0 var(--sc-space-xs) 0 var(--sc-space-l);
       }
 
       sc-logo {
-        --sc-logo-mark-size: 32px;
+        --sc-logo-mark-size: 24px;
       }
 
       .nav {
@@ -234,12 +484,193 @@ export class ScHeader extends LitElement {
         transform: none;
       }
 
+      /* The search field has no inner icon on mobile, and section tags are
+         dropped to keep results compact. */
+      .search-field-icon,
+      .search-result-group {
+        display: none;
+      }
+
+      .search-close {
+        display: inline-flex;
+      }
+
+      /* The search is an overlay spanning the bar (logo padding on the left,
+         room for the close button on the right). It crossfades in over the bar
+         the same way the desktop overlay does — opacity, never display. */
+      .search {
+        position: absolute;
+        /* Right inset = header padding (xs) + the trailing gap (l) so the close
+           button lands on exactly the same spot as the menu/hamburger X, which
+           sits one gap in from the edge because of the trailing actions slot. */
+        inset: 0 calc(var(--sc-space-xs) + var(--sc-space-l)) 0 var(--sc-space-l);
+        transform: none;
+        display: flex;
+        align-items: center;
+        width: auto;
+        max-width: none;
+      }
+
+      /* Crossfade: the closed-bar controls fade out as the overlay fades in. */
+      .leading,
+      .theme-toggle,
+      .menu-toggle,
+      .search-toggle {
+        transition: opacity 200ms ease;
+      }
+      .header.searching .leading,
+      .header.searching .theme-toggle,
+      .header.searching .menu-toggle,
+      .header.searching .search-toggle {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* On mobile the header fill becomes a solid Surface L2 — matching the
+         results panel / menu below it rather than the translucent blurred
+         gradient. Confined to the header height. */
+      .header.searching .header-bg,
+      .header.menu-open .header-bg {
+        bottom: 0;
+        background: var(--sc-color-surface-l2);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        mask-image: none;
+        -webkit-mask-image: none;
+      }
+
+      /* Results fill a full-width panel below the header rather than a
+         floating card. */
+      .header.searching .search-dropdown {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: auto;
+        padding: var(--sc-space-l);
+        border-radius: 0;
+        box-shadow: none;
+        overflow-y: auto;
+        animation: none;
+      }
+
+      /* ---- Mobile menu (two-level drawer) ---- */
+
+      /* Open menu keeps the logo + the menu-toggle (now an X); the theme and
+         search controls fade out. */
+      .header.menu-open .theme-toggle,
+      .header.menu-open .search-toggle {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Full-bleed panel below the header. L1 fades in on open. */
+      .drawer {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--sc-color-surface-l2);
+        overflow: hidden;
+        animation: search-fade-in 200ms ease;
+      }
+      .drawer[hidden] {
+        display: none;
+      }
+
+      /* Two stacked panels; sliding the rail one panel left reveals L2. */
+      .drawer-views {
+        display: flex;
+        width: 200%;
+        height: 100%;
+        transform: translateX(0);
+        /* easeInOutQuart — gentler acceleration in and deceleration out than the
+           default ease-in-out, so the slide lingers at both ends. */
+        transition: transform 500ms cubic-bezier(0.76, 0, 0.24, 1);
+      }
+      .drawer-views.show-l2 {
+        transform: translateX(-50%);
+      }
+      .drawer-view {
+        flex: 0 0 50%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      /* The list is the scroll container, so the L2 heading/back action above it
+         stays pinned while the pages scroll. */
+      .drawer-list {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        padding: var(--sc-space-l);
+      }
+      /* L2 page list is indented under the heading. */
+      .drawer-sublist {
+        padding: 0 var(--sc-space-l) var(--sc-space-l) var(--sc-space-4xl);
+      }
+
+      .drawer-item {
+        display: flex;
+        align-items: center;
+        gap: var(--sc-space-s);
+        width: 100%;
+        box-sizing: border-box;
+        padding: var(--sc-space-m) var(--sc-space-l);
+        border: none;
+        border-radius: var(--sc-border-radius-s);
+        background: transparent;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        ${linkM}
+        color: var(--sc-color-text-secondary);
+        transition: background 150ms ease, color 150ms ease;
+      }
+      .drawer-item > span {
+        flex: 1;
+        min-width: 0;
+      }
+      .drawer-item svg {
+        flex-shrink: 0;
+        width: 24px;
+        height: 24px;
+      }
+      .drawer-item:hover {
+        background: var(--sc-color-background-hover);
+        color: var(--sc-color-text-primary);
+      }
+      .drawer-item.selected {
+        background: var(--sc-color-background-subtle);
+        color: var(--sc-color-text-primary);
+      }
+
+      .drawer-heading {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: var(--sc-space-s);
+        padding: var(--sc-space-l) var(--sc-space-l) var(--sc-space-s) var(--sc-space-s);
+      }
+      .drawer-heading h4 {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+        ${headingM}
+        color: var(--sc-color-text-primary);
+      }
     }
   `
 
   render() {
     return html`
-      <header class="header">
+      <header class="header ${this._searchOpen ? 'searching' : ''} ${this._menuOpen ? 'menu-open' : ''}">
         <div class="header-bg"></div>
 
         <div class="leading">
@@ -265,7 +696,26 @@ export class ScHeader extends LitElement {
           </button>
 
           ${this.showSearch ? html`
-            <sc-button-icon type="tertiary" size="l" icon="search" label="Search"></sc-button-icon>
+            <sc-button-icon
+              class="search-toggle"
+              type="tertiary-mono"
+              size="l"
+              icon=${this._searchOpen ? 'x' : 'search'}
+              label=${this._searchOpen ? 'Close search' : 'Search'}
+              @click=${this._toggleSearch}
+            ></sc-button-icon>
+          ` : null}
+
+          ${this._mobile && this.navLinks.length ? html`
+            <sc-button-icon
+              class="menu-toggle"
+              type="tertiary-mono"
+              size="l"
+              icon=${this._menuOpen ? 'x' : 'menu'}
+              label=${this._menuOpen ? 'Close menu' : 'Menu'}
+              aria-expanded=${this._menuOpen}
+              @click=${this._toggleMenu}
+            ></sc-button-icon>
           ` : null}
 
           <div class="actions">
@@ -293,7 +743,140 @@ export class ScHeader extends LitElement {
             <a class="nav-link" href=${link.href}>${link.label}</a>
           `)}
         </nav>
+
+        ${this.showSearch ? this._renderSearch() : null}
+        ${this._mobile && this._menuItems.length ? this._renderMenu() : null}
       </header>
+    `
+  }
+
+  private _renderMenu() {
+    const section = this._drawerSection
+      ? this._menuItems.find((s) => (s.id ?? s.href) === this._drawerSection)
+      : undefined
+
+    return html`
+      <div class="drawer" ?hidden=${!this._menuOpen}>
+        <div class="drawer-views ${this._showL2 ? 'show-l2' : ''}">
+          <!-- L1: top-level items, same as the desktop header nav -->
+          <div class="drawer-view" aria-hidden=${this._showL2 ? 'true' : 'false'}>
+            <div class="drawer-list">
+              ${this._menuItems.map((item) => {
+                const key = item.id ?? item.href
+                const hasChildren = !!item.entries?.length
+                const selected = item.id
+                  ? item.id === this.activeSection
+                  : item.href === this.activeHref
+                return hasChildren
+                  ? html`
+                      <button
+                        class="drawer-item ${selected ? 'selected' : ''}"
+                        type="button"
+                        aria-haspopup="true"
+                        @click=${() => this._openL2(key)}
+                      >
+                        <span>${item.label}</span>
+                        ${featherIcon('chevron-right')}
+                      </button>
+                    `
+                  : html`
+                      <a
+                        class="drawer-item ${selected ? 'selected' : ''}"
+                        href=${item.href}
+                        aria-current=${selected ? 'page' : nothing}
+                      >
+                        <span>${item.label}</span>
+                      </a>
+                    `
+              })}
+            </div>
+          </div>
+
+          <!-- L2: the active section's pages -->
+          <div class="drawer-view" aria-hidden=${this._showL2 ? 'false' : 'true'}>
+            ${section
+              ? html`
+                  <div class="drawer-heading">
+                    <sc-button-icon
+                      class="drawer-back"
+                      type="tertiary-mono"
+                      size="l"
+                      icon="chevron-left"
+                      label="Back"
+                      @click=${this._backToL1}
+                    ></sc-button-icon>
+                    <h4>${section.label}</h4>
+                  </div>
+                  <div class="drawer-list drawer-sublist">
+                    ${section.entries?.map((e) => {
+                      const selected = e.href === this.activeHref
+                      return html`
+                        <a
+                          class="drawer-item ${selected ? 'selected' : ''}"
+                          href=${e.href}
+                          aria-current=${selected ? 'page' : nothing}
+                        >
+                          <span>${e.label}</span>
+                        </a>
+                      `
+                    })}
+                  </div>
+                `
+              : null}
+          </div>
+        </div>
+      </div>
+    `
+  }
+
+  private _renderSearch() {
+    const results = this._results
+    return html`
+      <div class="search" role="search">
+        <div class="search-bar">
+          <div class="search-field">
+            <input
+              class="search-input"
+              type="text"
+              placeholder="Search"
+              autocomplete="off"
+              role="combobox"
+              aria-expanded=${results.length > 0}
+              aria-controls="header-search-results"
+              aria-label="Search"
+              .value=${this._query}
+              @input=${this._onSearchInput}
+              @keydown=${this._onSearchKeydown}
+            />
+            <span class="search-field-icon" aria-hidden="true">${featherIcon('search')}</span>
+          </div>
+          <sc-button-icon
+            class="search-close"
+            type="tertiary-mono"
+            size="l"
+            icon="x"
+            label="Close search"
+            @click=${this._closeSearch}
+          ></sc-button-icon>
+        </div>
+
+        ${results.length ? html`
+          <div class="search-dropdown" id="header-search-results" role="listbox">
+            ${results.map((item, i) => html`
+              <a
+                class="search-result ${i === this._activeIndex ? 'active' : ''}"
+                href=${item.href}
+                role="option"
+                aria-selected=${i === this._activeIndex}
+                @mouseenter=${() => (this._activeIndex = i)}
+              >
+                <span class="search-result-label">${item.label}</span>
+                ${item.group ? html`<span class="search-result-group">${item.group}</span>` : null}
+              </a>
+            `)}
+          </div>
+        ` : null}
+      </div>
     `
   }
 }
