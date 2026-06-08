@@ -225,6 +225,16 @@ export class ScHeader extends LitElement {
       text-decoration: none;
     }
 
+    /* Match the shared global focus ring (sc-focus-ring.ts) on the header's own
+       light chrome. The sc-button-icon toggles carry their own ring, and the
+       search input keeps its outline:none treatment. */
+    .logo-link:focus-visible,
+    .theme-toggle:focus-visible,
+    .nav-link:focus-visible {
+      outline: 2px dashed var(--sc-color-border-mono);
+      outline-offset: 2px;
+    }
+
     .nav {
       display: flex;
       align-items: center;
@@ -281,7 +291,7 @@ export class ScHeader extends LitElement {
     .trailing {
       display: flex;
       align-items: center;
-      gap: var(--sc-space-l);
+      gap: var(--sc-space-s);
       margin-left: auto;
     }
 
@@ -293,6 +303,9 @@ export class ScHeader extends LitElement {
       align-items: center;
       border-radius: 999px;
       padding: 3px;
+      /* 4px space after the toggle without widening the pill (padding would
+         shift the thumb track off-centre). */
+      margin-right: var(--sc-space-xs);
       border: none;
       cursor: pointer;
     }
@@ -467,8 +480,8 @@ export class ScHeader extends LitElement {
       .header {
         height: 64px;
         /* Logo gets 16px breathing room; the trailing icon buttons carry their
-           own 12px padding so the container only needs 4px on the right. */
-        padding: 0 var(--sc-space-xs) 0 var(--sc-space-l);
+           own 12px padding, sitting 8px in from the right edge. */
+        padding: 0 var(--sc-space-s) 0 var(--sc-space-l);
       }
 
       sc-logo {
@@ -500,10 +513,11 @@ export class ScHeader extends LitElement {
          the same way the desktop overlay does — opacity, never display. */
       .search {
         position: absolute;
-        /* Right inset = header padding (xs) + the trailing gap (l) so the close
-           button lands on exactly the same spot as the menu/hamburger X, which
-           sits one gap in from the edge because of the trailing actions slot. */
-        inset: 0 calc(var(--sc-space-xs) + var(--sc-space-l)) 0 var(--sc-space-l);
+        /* Right inset = header right padding (s) so the search close button's
+           right edge lands on exactly the same spot as the menu/hamburger X,
+           which is the rightmost trailing item sitting at the padding edge.
+           Both are the same size-l icon button, so the X glyphs coincide. */
+        inset: 0 var(--sc-space-s) 0 var(--sc-space-l);
         transform: none;
         display: flex;
         align-items: center;
@@ -679,6 +693,12 @@ export class ScHeader extends LitElement {
           </a>
         </div>
 
+        <nav class="nav" aria-label="Main">
+          ${this.navLinks.map(link => html`
+            <a class="nav-link" href=${link.href}>${link.label}</a>
+          `)}
+        </nav>
+
         <div class="trailing">
 
           <button
@@ -718,31 +738,27 @@ export class ScHeader extends LitElement {
             ></sc-button-icon>
           ` : null}
 
-          <div class="actions">
-            ${this.secondaryLabel ? html`
-              <sc-button
-                type="secondary"
-                size="m"
-                href=${this.secondaryHref || ''}
-              >${this.secondaryLabel}</sc-button>
-            ` : null}
-            ${this.primaryLabel ? html`
-              <sc-button
-                type="primary"
-                size="m"
-                href=${this.primaryHref || ''}
-                target="_blank"
-              >${this.primaryLabel}</sc-button>
-            ` : null}
-          </div>
+          ${this.secondaryLabel || this.primaryLabel ? html`
+            <div class="actions">
+              ${this.secondaryLabel ? html`
+                <sc-button
+                  type="secondary"
+                  size="m"
+                  href=${this.secondaryHref || ''}
+                >${this.secondaryLabel}</sc-button>
+              ` : null}
+              ${this.primaryLabel ? html`
+                <sc-button
+                  type="primary"
+                  size="m"
+                  href=${this.primaryHref || ''}
+                  target="_blank"
+                >${this.primaryLabel}</sc-button>
+              ` : null}
+            </div>
+          ` : null}
 
         </div>
-
-        <nav class="nav" aria-label="Main">
-          ${this.navLinks.map(link => html`
-            <a class="nav-link" href=${link.href}>${link.label}</a>
-          `)}
-        </nav>
 
         ${this.showSearch ? this._renderSearch() : null}
         ${this._mobile && this._menuItems.length ? this._renderMenu() : null}
