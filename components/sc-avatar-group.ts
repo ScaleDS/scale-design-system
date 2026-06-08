@@ -77,7 +77,9 @@ export class ScAvatarGroup extends LitElement {
       border: 2px solid var(--sc-color-background-primary);
       position: relative;
       z-index: 0;
-      margin: 0;
+      /* Match the avatars' overlap so the overflow tucks under the last one
+         (z-index: 0 keeps it beneath every avatar). */
+      margin-left: -4px;
       padding: 0;
       font-family: inherit;
       cursor: pointer;
@@ -88,7 +90,8 @@ export class ScAvatarGroup extends LitElement {
     }
 
     .overflow:focus-visible {
-      outline: 2px solid var(--sc-color-border-focus);
+      /* Match the shared focusRing (sc-focus-ring.ts). */
+      outline: 2px dashed var(--sc-color-border-mono);
       outline-offset: 2px;
     }
 
