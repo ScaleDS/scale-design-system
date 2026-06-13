@@ -223,7 +223,7 @@ npm run generate:context  # Regenerate components.json from source
 
 The package builds on install via the `prepare` script and ships compiled `dist/` (plus `scss/`, `context/`, `assets/`) through the `files` allowlist — so `github:` installs resolve `@scale/design-system/components/*` with no manual build step.
 
-A sibling repo at [scale-docs](https://github.com/ScaleDS/scale-docs) consumes this package and ships a live preview gallery at [scaledesignsystem.com/preview.html](https://scaledesignsystem.com/preview.html). For coordinated cross-repo development, the consumer repo includes `link-ds` / `unlink-ds` scripts that symlink this directory into its `node_modules`.
+A sibling repo at [scale-docs](https://github.com/ScaleDS/scale-docs) consumes this package — it ships the marketing site at [scaledesignsystem.com](https://scaledesignsystem.com) plus a guidelines site with live per-component examples (and the Playwright suite that tests them). For coordinated cross-repo development, the consumer repo includes `link-ds` / `unlink-ds` scripts that symlink this directory into its `node_modules`.
 
 ## Publishing
 
