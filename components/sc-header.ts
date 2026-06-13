@@ -37,6 +37,8 @@ const MAX_RESULTS = 8
 export class ScHeader extends LitElement {
   @property({ type: Array, attribute: 'nav-links' }) navLinks: NavLink[] = []
   @property({ reflect: true, attribute: 'nav-align' }) navAlign: NavAlign = 'center'
+  /** Href for the logo link. Defaults to the current directory. */
+  @property({ attribute: 'logo-href' }) logoHref = './'
   @property({ attribute: 'primary-label' }) primaryLabel = 'Buy now'
   @property({ attribute: 'primary-href' }) primaryHref = ''
   @property({ attribute: 'secondary-label' }) secondaryLabel = ''
@@ -688,7 +690,7 @@ export class ScHeader extends LitElement {
         <div class="header-bg"></div>
 
         <div class="leading">
-          <a class="logo-link" href="./">
+          <a class="logo-link" href=${this.logoHref}>
             <sc-logo size="m" ?hide-text=${this._mobile}></sc-logo>
           </a>
         </div>

@@ -12,6 +12,7 @@
   --sc-type-weight-regular: 400;
   --sc-type-weight-semi-bold: 600;
 
+  --sc-type-size-xs: var(--sc-unit-10);
   --sc-type-size-s: var(--sc-unit-12);
   --sc-type-size-m: var(--sc-unit-14);
   --sc-type-size-l: var(--sc-unit-16);
@@ -26,6 +27,7 @@
   --sc-type-size-9xl: var(--sc-unit-64);
   --sc-type-size-10xl: var(--sc-unit-72);
 
+  --sc-type-line-height-xs: var(--sc-unit-14);
   --sc-type-line-height-s: var(--sc-unit-16);
   --sc-type-line-height-m: var(--sc-unit-20);
   --sc-type-line-height-l: var(--sc-unit-24);
@@ -68,10 +70,28 @@
   }
 }
 
-/* Semantic Type - SCSS Maps */
+/* Semantic Type — SCSS Maps. One map per Figma text style
+   (Category/Size/Weight), mirroring the Scale 3.2.0 Figma source.
+   Auto-generated — edit the Figma source then regenerate. */
 
 /* Headings */
-$sc-typography-heading-5xl: (
+$sc-typography-heading-5xl-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-10xl),
+  line-height: var(--sc-type-line-height-10xl),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-5xl-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-10xl),
+  line-height: var(--sc-type-line-height-10xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-5xl-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-10xl),
   line-height: var(--sc-type-line-height-10xl),
@@ -79,7 +99,23 @@ $sc-typography-heading-5xl: (
   letter-spacing: var(--sc-type-letter-spacing-xs)
 );
 
-$sc-typography-heading-4xl: (
+$sc-typography-heading-4xl-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-9xl),
+  line-height: var(--sc-type-line-height-9xl),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-4xl-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-9xl),
+  line-height: var(--sc-type-line-height-9xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-4xl-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-9xl),
   line-height: var(--sc-type-line-height-9xl),
@@ -87,7 +123,23 @@ $sc-typography-heading-4xl: (
   letter-spacing: var(--sc-type-letter-spacing-xs)
 );
 
-$sc-typography-heading-3xl: (
+$sc-typography-heading-3xl-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-8xl),
+  line-height: var(--sc-type-line-height-8xl),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-3xl-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-8xl),
+  line-height: var(--sc-type-line-height-8xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-3xl-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-8xl),
   line-height: var(--sc-type-line-height-8xl),
@@ -95,7 +147,23 @@ $sc-typography-heading-3xl: (
   letter-spacing: var(--sc-type-letter-spacing-xs)
 );
 
-$sc-typography-heading-2xl: (
+$sc-typography-heading-2xl-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-7xl),
+  line-height: var(--sc-type-line-height-7xl),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-2xl-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-7xl),
+  line-height: var(--sc-type-line-height-7xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-2xl-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-7xl),
   line-height: var(--sc-type-line-height-7xl),
@@ -103,56 +171,63 @@ $sc-typography-heading-2xl: (
   letter-spacing: var(--sc-type-letter-spacing-xs)
 );
 
-$sc-typography-heading-xl: (
+$sc-typography-heading-xl-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-6xl),
+  line-height: var(--sc-type-line-height-6xl),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-xl-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-6xl),
+  line-height: var(--sc-type-line-height-6xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-xl-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-6xl),
   line-height: var(--sc-type-line-height-6xl),
   font-weight: var(--sc-type-weight-semi-bold),
-  letter-spacing: var(--sc-type-letter-spacing-s)
+  letter-spacing: var(--sc-type-letter-spacing-xs)
 );
 
-$sc-typography-heading-l: (
+$sc-typography-heading-l-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-5xl),
+  line-height: var(--sc-type-line-height-5xl),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-l-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-5xl),
+  line-height: var(--sc-type-line-height-5xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-xs)
+);
+
+$sc-typography-heading-l-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-5xl),
   line-height: var(--sc-type-line-height-5xl),
   font-weight: var(--sc-type-weight-semi-bold),
-  letter-spacing: var(--sc-type-letter-spacing-s)
+  letter-spacing: var(--sc-type-letter-spacing-xs)
 );
 
-$sc-typography-heading-m: (
+$sc-typography-heading-m-light: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-3xl),
   line-height: var(--sc-type-line-height-3xl),
-  font-weight: var(--sc-type-weight-semi-bold),
+  font-weight: var(--sc-type-weight-light),
   letter-spacing: var(--sc-type-letter-spacing-s)
 );
 
-$sc-typography-heading-s: (
-  font-family: var(--sc-type-family-inter),
-  font-size: var(--sc-type-size-2xl),
-  line-height: var(--sc-type-line-height-2xl),
-  font-weight: var(--sc-type-weight-semi-bold),
-  letter-spacing: var(--sc-type-letter-spacing-s)
-);
-
-$sc-typography-heading-xs: (
-  font-family: var(--sc-type-family-inter),
-  font-size: var(--sc-type-size-l),
-  line-height: var(--sc-type-line-height-l),
-  font-weight: var(--sc-type-weight-semi-bold),
-  letter-spacing: var(--sc-type-letter-spacing-none)
-);
-
-$sc-typography-heading-2xs: (
-  font-family: var(--sc-type-family-inter),
-  font-size: var(--sc-type-size-m),
-  line-height: var(--sc-type-line-height-m),
-  font-weight: var(--sc-type-weight-semi-bold),
-  letter-spacing: var(--sc-type-letter-spacing-none)
-);
-
-/* Text */
-$sc-typography-text-2xl: (
+$sc-typography-heading-m-regular: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-3xl),
   line-height: var(--sc-type-line-height-3xl),
@@ -160,7 +235,23 @@ $sc-typography-text-2xl: (
   letter-spacing: var(--sc-type-letter-spacing-s)
 );
 
-$sc-typography-text-xl: (
+$sc-typography-heading-m-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-3xl),
+  line-height: var(--sc-type-line-height-3xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-s-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-2xl),
+  line-height: var(--sc-type-line-height-2xl),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-s-regular: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-2xl),
   line-height: var(--sc-type-line-height-2xl),
@@ -168,15 +259,47 @@ $sc-typography-text-xl: (
   letter-spacing: var(--sc-type-letter-spacing-s)
 );
 
-$sc-typography-text-l: (
+$sc-typography-heading-s-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-2xl),
+  line-height: var(--sc-type-line-height-2xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-xs-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-light),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-xs-regular: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-l),
   line-height: var(--sc-type-line-height-l),
   font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-xs-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-s)
+);
+
+$sc-typography-heading-2xs-light: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-light),
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
 
-$sc-typography-text-m: (
+$sc-typography-heading-2xs-regular: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-m),
   line-height: var(--sc-type-line-height-m),
@@ -184,16 +307,115 @@ $sc-typography-text-m: (
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
 
-$sc-typography-text-s: (
+$sc-typography-heading-2xs-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+
+/* Texts */
+$sc-typography-text-2xl-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-3xl),
+  line-height: var(--sc-type-line-height-3xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-2xl-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-3xl),
+  line-height: var(--sc-type-line-height-3xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-xl-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-2xl),
+  line-height: var(--sc-type-line-height-2xl),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-xl-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-2xl),
+  line-height: var(--sc-type-line-height-2xl),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-l-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-l-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-l),
+  line-height: var(--sc-type-line-height-l),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-m-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-m-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-m),
+  line-height: var(--sc-type-line-height-m),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-s-regular: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-s),
   line-height: var(--sc-type-line-height-s),
   font-weight: var(--sc-type-weight-regular),
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
+
+$sc-typography-text-s-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-s),
+  line-height: var(--sc-type-line-height-s),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-xs-regular: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-xs),
+  line-height: var(--sc-type-line-height-xs),
+  font-weight: var(--sc-type-weight-regular),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
+$sc-typography-text-xs-semi-bold: (
+  font-family: var(--sc-type-family-inter),
+  font-size: var(--sc-type-size-xs),
+  line-height: var(--sc-type-line-height-xs),
+  font-weight: var(--sc-type-weight-semi-bold),
+  letter-spacing: var(--sc-type-letter-spacing-none)
+);
+
 
 /* Links */
-$sc-typography-link-l: (
+$sc-typography-link-l-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-l),
   line-height: var(--sc-type-line-height-l),
@@ -201,7 +423,7 @@ $sc-typography-link-l: (
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
 
-$sc-typography-link-m: (
+$sc-typography-link-m-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-m),
   line-height: var(--sc-type-line-height-m),
@@ -209,16 +431,17 @@ $sc-typography-link-m: (
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
 
-$sc-typography-link-s: (
+$sc-typography-link-s-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-s),
   line-height: var(--sc-type-line-height-s),
   font-weight: var(--sc-type-weight-semi-bold),
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
+
 
 /* Labels */
-$sc-typography-label-l: (
+$sc-typography-label-l-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-l),
   line-height: var(--sc-type-line-height-l),
@@ -226,7 +449,7 @@ $sc-typography-label-l: (
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
 
-$sc-typography-label-m: (
+$sc-typography-label-m-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-m),
   line-height: var(--sc-type-line-height-m),
@@ -234,20 +457,10 @@ $sc-typography-label-m: (
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
 
-$sc-typography-label-s: (
+$sc-typography-label-s-semi-bold: (
   font-family: var(--sc-type-family-inter),
   font-size: var(--sc-type-size-s),
   line-height: var(--sc-type-line-height-s),
   font-weight: var(--sc-type-weight-semi-bold),
   letter-spacing: var(--sc-type-letter-spacing-none)
 );
-
-// Note: The original CSS used a non-standard syntax for typography variables like --sc-typography-heading-5xl: { ... }.
-// These have been converted to SCSS maps (e.g., $sc-typography-heading-5xl: (...)).
-// You might need a mixin or function to apply these maps easily in your components, e.g.:
-// @mixin apply-typography($map) {
-//   @each $property, $value in $map {
-//     #{$property}: $value;
-//   }
-// }
-// .my-heading { @include apply-typography($sc-typography-heading-5xl); }

@@ -103,7 +103,9 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [],
+      "dependencies": [
+        "sc-avatar"
+      ],
       "example": "<sc-avatar-group></sc-avatar-group>"
     },
     {
@@ -959,6 +961,12 @@
           "attribute": "nav-align",
           "reflect": true
         },
+        "logoHref": {
+          "type": "string",
+          "default": "./",
+          "attribute": "logo-href",
+          "reflect": false
+        },
         "primaryLabel": {
           "type": "string",
           "default": "Buy now",
@@ -988,6 +996,30 @@
           "default": false,
           "attribute": "show-search",
           "reflect": true
+        },
+        "searchItems": {
+          "type": "SearchItem[]",
+          "default": "[]",
+          "attribute": "searchItems",
+          "reflect": false
+        },
+        "navTree": {
+          "type": "NavTreeSection[]",
+          "default": "[]",
+          "attribute": "navTree",
+          "reflect": false
+        },
+        "activeHref": {
+          "type": "string",
+          "default": "",
+          "attribute": "active-href",
+          "reflect": false
+        },
+        "activeSection": {
+          "type": "string",
+          "default": "",
+          "attribute": "active-section",
+          "reflect": false
         }
       },
       "slots": [],
@@ -1817,6 +1849,68 @@
       "cssParts": [],
       "dependencies": [],
       "example": "<sc-section-signup></sc-section-signup>"
+    },
+    {
+      "tag": "sc-segmented-control",
+      "class": "ScSegmentedControl",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {
+        "items": {
+          "type": "SegmentedItem[]",
+          "default": "[]",
+          "attribute": "items",
+          "reflect": false
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": true
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "disabled",
+          "reflect": true
+        },
+        "iconOnly": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "icon-only",
+          "reflect": true
+        },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
+        }
+      },
+      "slots": [],
+      "events": [
+        {
+          "name": "change",
+          "detail": "{}"
+        }
+      ],
+      "cssParts": [
+        {
+          "name": "control",
+          "description": ""
+        },
+        {
+          "name": "segment",
+          "description": ""
+        },
+        {
+          "name": "label",
+          "description": ""
+        }
+      ],
+      "dependencies": [],
+      "example": "<sc-segmented-control></sc-segmented-control>"
     },
     {
       "tag": "sc-signup",
