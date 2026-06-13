@@ -168,7 +168,7 @@ export class ScHero extends LitElement {
             <div class="actions">
               ${this.primaryLabel ? html`
                 <sc-button
-                  type="secondary"
+                  type="primary"
                   size="l"
                   leading-icon=${this.primaryLeadingIcon || ''}
                   href=${this.primaryHref || ''}
