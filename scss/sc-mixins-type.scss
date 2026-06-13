@@ -1,5 +1,7 @@
 /* Scale: Type Mixins */
-/* Auto-generated from sc-variables-type.scss */
+/* Auto-generated from sc-variables-type.scss — one mixin per Figma text style,
+   plus bare-name aliases (no weight) that resolve to each category's primary
+   weight for backwards compatibility. */
 
 @import './sc-variables-type.scss';
 
@@ -11,30 +13,81 @@
 }
 
 /* Headings */
-@mixin sc-typography-heading-5xl { @include _apply-typography($sc-typography-heading-5xl); }
-@mixin sc-typography-heading-4xl { @include _apply-typography($sc-typography-heading-4xl); }
-@mixin sc-typography-heading-3xl { @include _apply-typography($sc-typography-heading-3xl); }
-@mixin sc-typography-heading-2xl { @include _apply-typography($sc-typography-heading-2xl); }
-@mixin sc-typography-heading-xl { @include _apply-typography($sc-typography-heading-xl); }
-@mixin sc-typography-heading-l { @include _apply-typography($sc-typography-heading-l); }
-@mixin sc-typography-heading-m { @include _apply-typography($sc-typography-heading-m); }
-@mixin sc-typography-heading-s { @include _apply-typography($sc-typography-heading-s); }
-@mixin sc-typography-heading-xs { @include _apply-typography($sc-typography-heading-xs); }
-@mixin sc-typography-heading-2xs { @include _apply-typography($sc-typography-heading-2xs); }
+@mixin sc-typography-heading-5xl-light { @include _apply-typography($sc-typography-heading-5xl-light); }
+@mixin sc-typography-heading-5xl-regular { @include _apply-typography($sc-typography-heading-5xl-regular); }
+@mixin sc-typography-heading-5xl-semi-bold { @include _apply-typography($sc-typography-heading-5xl-semi-bold); }
+@mixin sc-typography-heading-4xl-light { @include _apply-typography($sc-typography-heading-4xl-light); }
+@mixin sc-typography-heading-4xl-regular { @include _apply-typography($sc-typography-heading-4xl-regular); }
+@mixin sc-typography-heading-4xl-semi-bold { @include _apply-typography($sc-typography-heading-4xl-semi-bold); }
+@mixin sc-typography-heading-3xl-light { @include _apply-typography($sc-typography-heading-3xl-light); }
+@mixin sc-typography-heading-3xl-regular { @include _apply-typography($sc-typography-heading-3xl-regular); }
+@mixin sc-typography-heading-3xl-semi-bold { @include _apply-typography($sc-typography-heading-3xl-semi-bold); }
+@mixin sc-typography-heading-2xl-light { @include _apply-typography($sc-typography-heading-2xl-light); }
+@mixin sc-typography-heading-2xl-regular { @include _apply-typography($sc-typography-heading-2xl-regular); }
+@mixin sc-typography-heading-2xl-semi-bold { @include _apply-typography($sc-typography-heading-2xl-semi-bold); }
+@mixin sc-typography-heading-xl-light { @include _apply-typography($sc-typography-heading-xl-light); }
+@mixin sc-typography-heading-xl-regular { @include _apply-typography($sc-typography-heading-xl-regular); }
+@mixin sc-typography-heading-xl-semi-bold { @include _apply-typography($sc-typography-heading-xl-semi-bold); }
+@mixin sc-typography-heading-l-light { @include _apply-typography($sc-typography-heading-l-light); }
+@mixin sc-typography-heading-l-regular { @include _apply-typography($sc-typography-heading-l-regular); }
+@mixin sc-typography-heading-l-semi-bold { @include _apply-typography($sc-typography-heading-l-semi-bold); }
+@mixin sc-typography-heading-m-light { @include _apply-typography($sc-typography-heading-m-light); }
+@mixin sc-typography-heading-m-regular { @include _apply-typography($sc-typography-heading-m-regular); }
+@mixin sc-typography-heading-m-semi-bold { @include _apply-typography($sc-typography-heading-m-semi-bold); }
+@mixin sc-typography-heading-s-light { @include _apply-typography($sc-typography-heading-s-light); }
+@mixin sc-typography-heading-s-regular { @include _apply-typography($sc-typography-heading-s-regular); }
+@mixin sc-typography-heading-s-semi-bold { @include _apply-typography($sc-typography-heading-s-semi-bold); }
+@mixin sc-typography-heading-xs-light { @include _apply-typography($sc-typography-heading-xs-light); }
+@mixin sc-typography-heading-xs-regular { @include _apply-typography($sc-typography-heading-xs-regular); }
+@mixin sc-typography-heading-xs-semi-bold { @include _apply-typography($sc-typography-heading-xs-semi-bold); }
+@mixin sc-typography-heading-2xs-light { @include _apply-typography($sc-typography-heading-2xs-light); }
+@mixin sc-typography-heading-2xs-regular { @include _apply-typography($sc-typography-heading-2xs-regular); }
+@mixin sc-typography-heading-2xs-semi-bold { @include _apply-typography($sc-typography-heading-2xs-semi-bold); }
 
-/* Text */
-@mixin sc-typography-text-2xl { @include _apply-typography($sc-typography-text-2xl); }
-@mixin sc-typography-text-xl { @include _apply-typography($sc-typography-text-xl); }
-@mixin sc-typography-text-l { @include _apply-typography($sc-typography-text-l); }
-@mixin sc-typography-text-m { @include _apply-typography($sc-typography-text-m); }
-@mixin sc-typography-text-s { @include _apply-typography($sc-typography-text-s); }
+/* Texts */
+@mixin sc-typography-text-2xl-regular { @include _apply-typography($sc-typography-text-2xl-regular); }
+@mixin sc-typography-text-2xl-semi-bold { @include _apply-typography($sc-typography-text-2xl-semi-bold); }
+@mixin sc-typography-text-xl-regular { @include _apply-typography($sc-typography-text-xl-regular); }
+@mixin sc-typography-text-xl-semi-bold { @include _apply-typography($sc-typography-text-xl-semi-bold); }
+@mixin sc-typography-text-l-regular { @include _apply-typography($sc-typography-text-l-regular); }
+@mixin sc-typography-text-l-semi-bold { @include _apply-typography($sc-typography-text-l-semi-bold); }
+@mixin sc-typography-text-m-regular { @include _apply-typography($sc-typography-text-m-regular); }
+@mixin sc-typography-text-m-semi-bold { @include _apply-typography($sc-typography-text-m-semi-bold); }
+@mixin sc-typography-text-s-regular { @include _apply-typography($sc-typography-text-s-regular); }
+@mixin sc-typography-text-s-semi-bold { @include _apply-typography($sc-typography-text-s-semi-bold); }
+@mixin sc-typography-text-xs-regular { @include _apply-typography($sc-typography-text-xs-regular); }
+@mixin sc-typography-text-xs-semi-bold { @include _apply-typography($sc-typography-text-xs-semi-bold); }
 
 /* Links */
-@mixin sc-typography-link-l { @include _apply-typography($sc-typography-link-l); }
-@mixin sc-typography-link-m { @include _apply-typography($sc-typography-link-m); }
-@mixin sc-typography-link-s { @include _apply-typography($sc-typography-link-s); }
+@mixin sc-typography-link-l-semi-bold { @include _apply-typography($sc-typography-link-l-semi-bold); }
+@mixin sc-typography-link-m-semi-bold { @include _apply-typography($sc-typography-link-m-semi-bold); }
+@mixin sc-typography-link-s-semi-bold { @include _apply-typography($sc-typography-link-s-semi-bold); }
 
 /* Labels */
-@mixin sc-typography-label-l { @include _apply-typography($sc-typography-label-l); }
-@mixin sc-typography-label-m { @include _apply-typography($sc-typography-label-m); }
-@mixin sc-typography-label-s { @include _apply-typography($sc-typography-label-s); }
+@mixin sc-typography-label-l-semi-bold { @include _apply-typography($sc-typography-label-l-semi-bold); }
+@mixin sc-typography-label-m-semi-bold { @include _apply-typography($sc-typography-label-m-semi-bold); }
+@mixin sc-typography-label-s-semi-bold { @include _apply-typography($sc-typography-label-s-semi-bold); }
+
+/* Bare-name aliases → each category's primary weight (backwards compatible) */
+@mixin sc-typography-heading-5xl { @include sc-typography-heading-5xl-semi-bold; }
+@mixin sc-typography-heading-4xl { @include sc-typography-heading-4xl-semi-bold; }
+@mixin sc-typography-heading-3xl { @include sc-typography-heading-3xl-semi-bold; }
+@mixin sc-typography-heading-2xl { @include sc-typography-heading-2xl-semi-bold; }
+@mixin sc-typography-heading-xl { @include sc-typography-heading-xl-semi-bold; }
+@mixin sc-typography-heading-l { @include sc-typography-heading-l-semi-bold; }
+@mixin sc-typography-heading-m { @include sc-typography-heading-m-semi-bold; }
+@mixin sc-typography-heading-s { @include sc-typography-heading-s-semi-bold; }
+@mixin sc-typography-heading-xs { @include sc-typography-heading-xs-semi-bold; }
+@mixin sc-typography-heading-2xs { @include sc-typography-heading-2xs-semi-bold; }
+@mixin sc-typography-text-2xl { @include sc-typography-text-2xl-regular; }
+@mixin sc-typography-text-xl { @include sc-typography-text-xl-regular; }
+@mixin sc-typography-text-l { @include sc-typography-text-l-regular; }
+@mixin sc-typography-text-m { @include sc-typography-text-m-regular; }
+@mixin sc-typography-text-s { @include sc-typography-text-s-regular; }
+@mixin sc-typography-text-xs { @include sc-typography-text-xs-regular; }
+@mixin sc-typography-link-l { @include sc-typography-link-l-semi-bold; }
+@mixin sc-typography-link-m { @include sc-typography-link-m-semi-bold; }
+@mixin sc-typography-link-s { @include sc-typography-link-s-semi-bold; }
+@mixin sc-typography-label-l { @include sc-typography-label-l-semi-bold; }
+@mixin sc-typography-label-m { @include sc-typography-label-m-semi-bold; }
+@mixin sc-typography-label-s { @include sc-typography-label-s-semi-bold; }

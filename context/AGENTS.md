@@ -24,7 +24,7 @@ Scale is a **Lit web component** design system. When generating code that uses `
 ## Component Discovery
 
 Read `context/components.json` for the full machine-readable component catalog with:
-- All 61 components with their tags, props, slots, events, and examples
+- All 62 components with their tags, props, slots, events, and examples
 - When-to-use guidance for each component
 - Dependency relationships between components
 
