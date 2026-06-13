@@ -2,7 +2,7 @@
 
 A Lit-based agentic design system with machine-readable context for AI and human developers.
 
-- 61 web components built with Lit + Shadow DOM
+- 62 web components built with Lit + Shadow DOM
 - W3C DTCG design tokens (colors, spacing, typography, borders, shadows)
 - Form-associated inputs that work in real `<form>` submissions
 - Theme controller + reset/typography helpers shared across components
@@ -34,11 +34,11 @@ npm install github:ScaleDS/scale-design-system
 
 ## Components
 
-61 components across UI, data, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
+62 components across UI, data, layout, and section categories. Each file under `components/` exports a custom element registered with `customElements.define()` on import.
 
 ### UI
 
-`sc-accordion`, `sc-alert`, `sc-avatar`, `sc-avatar-group`, `sc-badge`, `sc-banner`, `sc-breadcrumbs`, `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill`, `sc-card`, `sc-card-selector`, `sc-checkbox`, `sc-checkbox-item`, `sc-date-picker`, `sc-divider`, `sc-file-upload`, `sc-file-upload-item`, `sc-help-text`, `sc-input`, `sc-input-pin`, `sc-logo`, `sc-menu-dropdown`, `sc-menu-item`, `sc-modal`, `sc-page-controls`, `sc-progress-bar`, `sc-radio`, `sc-radio-item`, `sc-row`, `sc-signup`, `sc-slider`, `sc-spinner`, `sc-status-icon`, `sc-status-indicator`, `sc-tab`, `sc-tab-panel`, `sc-tabs`, `sc-tag`, `sc-text-area`, `sc-toast`, `sc-toggle`, `sc-tooltip`
+`sc-accordion`, `sc-alert`, `sc-avatar`, `sc-avatar-group`, `sc-badge`, `sc-banner`, `sc-breadcrumbs`, `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill`, `sc-card`, `sc-card-selector`, `sc-checkbox`, `sc-checkbox-item`, `sc-date-picker`, `sc-divider`, `sc-file-upload`, `sc-file-upload-item`, `sc-help-text`, `sc-input`, `sc-input-pin`, `sc-logo`, `sc-menu-dropdown`, `sc-menu-item`, `sc-modal`, `sc-page-controls`, `sc-progress-bar`, `sc-radio`, `sc-radio-item`, `sc-row`, `sc-segmented-control`, `sc-signup`, `sc-slider`, `sc-spinner`, `sc-status-icon`, `sc-status-indicator`, `sc-tab`, `sc-tab-panel`, `sc-tabs`, `sc-tag`, `sc-text-area`, `sc-toast`, `sc-toggle`, `sc-tooltip`
 
 ### Data table
 
@@ -112,7 +112,7 @@ class MyElement extends LitElement {
 
 ## Form association
 
-`sc-input`, `sc-input-pin`, `sc-checkbox`, `sc-radio`, `sc-toggle`, and `sc-file-upload` are form-associated custom elements. They participate in `FormData`, browser-native validation, `formdata` events, and form `reset`:
+`sc-input`, `sc-input-pin`, `sc-checkbox`, `sc-radio`, `sc-toggle`, `sc-segmented-control`, and `sc-file-upload` are form-associated custom elements. They participate in `FormData`, browser-native validation, `formdata` events, and form `reset`:
 
 ```html
 <form>
