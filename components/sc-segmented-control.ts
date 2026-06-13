@@ -125,12 +125,15 @@ export class ScSegmentedControl extends LitElement {
       color: currentColor;
     }
 
-    .segment:not(:disabled):hover {
+    /* Hover / pressed feedback only on unselected segments — otherwise these
+       (higher-specificity) rules paint over the selected segment's white thumb,
+       leaving it looking pressed rather than selected. */
+    .segment:not(:disabled):not([aria-current='true']):hover {
       background: var(--sc-color-background-neutral-hover);
       color: var(--sc-color-text-primary);
     }
 
-    .segment:not(:disabled):active {
+    .segment:not(:disabled):not([aria-current='true']):active {
       background: var(--sc-color-background-neutral-pressed);
     }
 
