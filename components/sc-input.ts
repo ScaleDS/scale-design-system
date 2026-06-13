@@ -254,9 +254,12 @@ export class ScInput extends LitElement {
       top: calc(100% + var(--sc-space-s));
       left: 0;
       z-index: 20;
-    }
-
-    .popover sc-date-picker {
+      /* Dropdown surface: the date picker itself is transparent, so the popover
+         wrapper provides the floating-layer background, border, and elevation. */
+      background: var(--sc-color-surface-l2);
+      border: var(--sc-border-width-s) solid var(--sc-color-border-subtle);
+      border-radius: var(--sc-border-radius-m);
+      padding: var(--sc-space-l);
       box-shadow: var(--sc-shadow-l2);
     }
 
