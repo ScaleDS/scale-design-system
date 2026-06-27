@@ -23,6 +23,18 @@ npm install github:ScaleDS/scale-design-system
 
 ## Quick Start
 
+**Fastest start — scaffold the example app:**
+
+```bash
+npx degit ScaleDS/scale-design-system/examples/starter my-app
+cd my-app && npm install && npm run dev
+```
+
+A Vite + TypeScript project pre-wired with theming, design tokens, and a sample
+page of components. See [`examples/starter`](examples/starter).
+
+**Or wire it up by hand:**
+
 ```html
 <!DOCTYPE html>
 <html data-theme="light">

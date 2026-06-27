@@ -1,0 +1,19 @@
+{
+  "name": "scale-starter",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:edit": "SCALE_EDIT=1 vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@scale-ds/scale-design-system": "^4.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0"
+  }
+}
