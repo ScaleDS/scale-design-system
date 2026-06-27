@@ -1,5 +1,5 @@
 {
-  "name": "@scale/design-system",
+  "name": "@scale-ds/scale-design-system",
   "version": "3.2.0-alpha.1",
   "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
   "type": "module",
@@ -53,7 +53,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-org/scale-design-system"
+    "url": "git+https://github.com/ScaleDS/scale-design-system.git"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",

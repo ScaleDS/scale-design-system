@@ -2,10 +2,10 @@
 //
 // Dev-only overlay that lets a developer pin comments and make token-valid
 // visual tweaks on a running Scale project, then hands those items to a coding
-// agent (via the `@scale/design-system/vite` bridge + `.scale/edits.json`).
+// agent (via the `@scale-ds/scale-design-system/vite` bridge + `.scale/edits.json`).
 //
 // Usage (normally injected automatically by the Vite plugin in dev):
-//   import { enableEdit } from '@scale/design-system/edit'
+//   import { enableEdit } from '@scale-ds/scale-design-system/edit'
 //   enableEdit()
 import './components/sc-edit-layer.js'
 
@@ -17,7 +17,7 @@ export interface EnableEditOptions {
 let layer: HTMLElement | null = null
 
 // Mounts the overlay. This is an explicit, dev-only call — the
-// `@scale/design-system/vite` plugin only injects it under `apply: 'serve'`,
+// `@scale-ds/scale-design-system/vite` plugin only injects it under `apply: 'serve'`,
 // so it never reaches a production bundle. Manual callers should likewise only
 // invoke it in development.
 export function enableEdit(opts: EnableEditOptions = {}): void {

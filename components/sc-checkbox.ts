@@ -1,8 +1,8 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { textL } from '@scale/design-system/scss/typography'
-import { type ScCheckboxItem } from '@scale/design-system/components/sc-checkbox-item'
-import '@scale/design-system/components/sc-checkbox-item'
+import { textL } from '@scale-ds/scale-design-system/scss/typography'
+import { type ScCheckboxItem } from '@scale-ds/scale-design-system/components/sc-checkbox-item'
+import '@scale-ds/scale-design-system/components/sc-checkbox-item'
 
 type CheckboxState = 'default' | 'negative' | 'positive'
 

@@ -206,7 +206,7 @@ function parseComponent(filePath) {
 const components = componentFiles.map(f => parseComponent(join(componentsDir, f)))
 
 const output = {
-  name: '@scale/design-system',
+  name: '@scale-ds/scale-design-system',
   version: '1.0.0',
   framework: 'lit',
   description: 'Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers',
