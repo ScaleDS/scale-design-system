@@ -19,9 +19,6 @@ Find out more and grab a licence for the Figma and Framer versions here: [www.sc
 - Shared theme controller with light/dark and brand-token retheming
 - MCP server + `components.json` / `tokens.json` / `patterns.json` for AI agents
 
-Full component reference, examples, and guidelines live at
-**[scaledesignsystem.com](https://scaledesignsystem.com)**.
-
 ## Installation
 
 ```bash
