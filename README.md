@@ -11,6 +11,13 @@ A Lit-based agentic design system with machine-readable context for AI and human
 ## Installation
 
 ```bash
+# From npm (recommended)
+npm install @scale-ds/scale-design-system
+
+# Prereleases are published under the `next` tag
+npm install @scale-ds/scale-design-system@next
+
+# Or straight from GitHub
 npm install github:ScaleDS/scale-design-system
 ```
 
