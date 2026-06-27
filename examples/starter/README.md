@@ -13,22 +13,21 @@ npm install
 npm run dev          # → http://localhost:5173
 ```
 
-You'll get a styled, themed page built from `<sc-*>` web components, with a
-working light/dark toggle.
+You'll get a themed welcome screen built with Scale components (`<sc-logo>`,
+`<sc-button>`) and styled entirely by Scale tokens — your starting point for
+building. Clear `index.html` and start dropping in components.
 
 ## What's wired up (the three things you'd otherwise have to discover)
 
 1. **Theme attribute** — `index.html` sets `<html data-theme="light">`. Scale's
    tokens are defined per theme on `<html>`; without this, components render
-   unstyled. `src/main.ts` toggles it and persists to `localStorage`.
-2. **Design tokens** — `src/styles.scss` does
-   `@use '@scale-ds/scale-design-system/scss/main'` to define every `--sc-*`
-   custom property *and* the base `body`/heading typography. (That's why `sass`
-   is a dev dependency.)
-3. **The Inter typeface** — Scale's type tokens reference **Inter**, but the
-   package doesn't bundle it. `index.html` loads it from Google Fonts; without
-   that, text falls back to the browser default. (Self-hosting Inter works too.)
-4. **Component registration** — components are side-effect imports in
+   unstyled. `src/main.ts` restores any saved choice from `localStorage`.
+2. **Design tokens + the Inter typeface** — `src/styles.scss` does
+   `@use '@scale-ds/scale-design-system/scss/main'`, which defines every `--sc-*`
+   custom property, the base `body`/heading typography, **and** the bundled
+   Inter `@font-face` (self-hosted in the package — no Google Fonts, no setup).
+   (That's why `sass` is a dev dependency.)
+3. **Component registration** — components are side-effect imports in
    `src/main.ts` (`import '@scale-ds/scale-design-system/components/sc-button'`).
    Import only what you use; the bundle stays small.
 
@@ -46,9 +45,9 @@ npm run dev:edit     # = SCALE_EDIT=1 vite
 ## Project layout
 
 ```
-index.html        <html data-theme> + the sample page markup
-src/main.ts       token import, component registration, theme toggle
-src/styles.scss   @use Scale tokens + page layout
+index.html        <html data-theme> + the welcome screen markup
+src/main.ts       token import, component registration, theme restore, copy action
+src/styles.scss   @use Scale tokens + welcome screen layout
 vite.config.ts    Scale Edit plugin (opt-in)
 ```
 
