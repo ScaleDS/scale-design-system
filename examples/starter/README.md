@@ -23,8 +23,12 @@ working light/dark toggle.
    unstyled. `src/main.ts` toggles it and persists to `localStorage`.
 2. **Design tokens** — `src/styles.scss` does
    `@use '@scale-ds/scale-design-system/scss/main'` to define every `--sc-*`
-   custom property. (That's why `sass` is a dev dependency.)
-3. **Component registration** — components are side-effect imports in
+   custom property *and* the base `body`/heading typography. (That's why `sass`
+   is a dev dependency.)
+3. **The Inter typeface** — Scale's type tokens reference **Inter**, but the
+   package doesn't bundle it. `index.html` loads it from Google Fonts; without
+   that, text falls back to the browser default. (Self-hosting Inter works too.)
+4. **Component registration** — components are side-effect imports in
    `src/main.ts` (`import '@scale-ds/scale-design-system/components/sc-button'`).
    Import only what you use; the bundle stays small.
 
