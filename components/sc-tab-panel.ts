@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { textL } from '@scale/design-system/scss/typography'
+import { textL } from '@scale-ds/scale-design-system/scss/typography'
 
 /**
  * The content panel paired with an `sc-tab`. Goes in the default slot of

@@ -21,8 +21,8 @@ npm install github:ScaleDS/scale-design-system
 <html data-theme="light">
 <head>
   <script type="module">
-    import '@scale/design-system/components/sc-button.js'
-    import '@scale/design-system/components/sc-input.js'
+    import '@scale-ds/scale-design-system/components/sc-button.js'
+    import '@scale-ds/scale-design-system/components/sc-input.js'
   </script>
 </head>
 <body>
@@ -56,7 +56,7 @@ npm install github:ScaleDS/scale-design-system
 `sc-table-dynamic` columns are `{ key, label?, sortable?, selectable?, align?, width?, href?(row), secondaryText?(row), leadingIcon?(row), trailingIcon?(row) }`; rows are plain objects keyed by column `key` (values may be strings, numbers, or Lit templates for rich cells). Column tracks default to `minmax(0, 1fr)` — stable widths that don't reflow on sort — so set `width` per column (e.g. `auto`, `120px`) only when you need to override.
 
 ```ts
-import '@scale/design-system/components/sc-table-dynamic'
+import '@scale-ds/scale-design-system/components/sc-table-dynamic'
 
 const columns = [
   { key: 'name', label: 'Name', sortable: true },
@@ -100,7 +100,7 @@ These live in `components/` but don't define custom elements — they're utiliti
 `ThemeController` is exported from the package root for consumer reuse:
 
 ```ts
-import { ThemeController } from '@scale/design-system'
+import { ThemeController } from '@scale-ds/scale-design-system'
 
 class MyElement extends LitElement {
   private _theme = new ThemeController(this, { storageKey: 'my-app-theme' })
@@ -153,14 +153,14 @@ All visual properties come from CSS custom properties. Tokens are defined in `sc
 Import the full SCSS bundle:
 
 ```scss
-@use '@scale/design-system/scss/main.scss';
+@use '@scale-ds/scale-design-system/scss/main.scss';
 ```
 
 Or pick individual modules:
 
 ```scss
-@use '@scale/design-system/scss/sc-variables-color';
-@use '@scale/design-system/scss/sc-mixins-type' as type;
+@use '@scale-ds/scale-design-system/scss/sc-variables-color';
+@use '@scale-ds/scale-design-system/scss/sc-mixins-type' as type;
 
 .my-heading { @include type.sc-typography-heading-m; }
 ```
@@ -168,7 +168,7 @@ Or pick individual modules:
 Typography is also available as Lit `css` template tags for use inside Shadow DOM:
 
 ```ts
-import { textL, labelM, headingS } from '@scale/design-system/scss/typography'
+import { textL, labelM, headingS } from '@scale-ds/scale-design-system/scss/typography'
 ```
 
 ## Theming
@@ -205,7 +205,7 @@ An MCP server is bundled in the package for IDE integration (Cursor, Claude Code
   "mcpServers": {
     "scale": {
       "command": "npx",
-      "args": ["@scale/design-system"]
+      "args": ["@scale-ds/scale-design-system"]
     }
   }
 }
@@ -223,15 +223,15 @@ Two exports ship with the package:
 
 | Export | What it is |
 |---|---|
-| `@scale/design-system/vite` | `scaleEdit()` — Vite plugin (recommended). Injects the overlay in dev, serves the edit-queue bridge, and stamps `data-sc-loc="file:line"` onto HTML so the agent can locate source. |
-| `@scale/design-system/edit` | `enableEdit()` / `disableEdit()` — manual overlay mount for non-Vite dev setups. |
+| `@scale-ds/scale-design-system/vite` | `scaleEdit()` — Vite plugin (recommended). Injects the overlay in dev, serves the edit-queue bridge, and stamps `data-sc-loc="file:line"` onto HTML so the agent can locate source. |
+| `@scale-ds/scale-design-system/edit` | `enableEdit()` / `disableEdit()` — manual overlay mount for non-Vite dev setups. |
 
 **Wire it up (Vite):**
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
-import { scaleEdit } from '@scale/design-system/vite'
+import { scaleEdit } from '@scale-ds/scale-design-system/vite'
 
 export default defineConfig({
   plugins: [scaleEdit()], // dev-only — a no-op in `vite build`
@@ -249,7 +249,7 @@ export default defineConfig({
 **Manual mount (no Vite):**
 
 ```ts
-import { enableEdit } from '@scale/design-system/edit'
+import { enableEdit } from '@scale-ds/scale-design-system/edit'
 enableEdit() // dev only — never call in production
 ```
 
@@ -274,7 +274,7 @@ npm run build:watch     # Watch mode
 npm run generate:context  # Regenerate components.json from source
 ```
 
-The package builds on install via the `prepare` script and ships compiled `dist/` (plus `scss/`, `context/`, `assets/`) through the `files` allowlist — so `github:` installs resolve `@scale/design-system/components/*` with no manual build step.
+The package builds on install via the `prepare` script and ships compiled `dist/` (plus `scss/`, `context/`, `assets/`) through the `files` allowlist — so `github:` installs resolve `@scale-ds/scale-design-system/components/*` with no manual build step.
 
 ## Publishing
 
@@ -289,7 +289,7 @@ Or, from the consumer repo:
 npm run release-ds -- "<commit message>"
 ```
 
-This commits + pushes this repo, bumps `@scale/design-system` to the new HEAD in the consumer's lockfile, and commits + pushes the consumer.
+This commits + pushes this repo, bumps `@scale-ds/scale-design-system` to the new HEAD in the consumer's lockfile, and commits + pushes the consumer.
 
 ## License
 

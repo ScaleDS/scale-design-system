@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { textL, textM, textS } from '@scale/design-system/scss/typography'
-import '@scale/design-system/components/sc-status-icon'
+import { textL, textM, textS } from '@scale-ds/scale-design-system/scss/typography'
+import '@scale-ds/scale-design-system/components/sc-status-icon'
 
 type HelpTextStatus = 'default' | 'info' | 'warning' | 'negative' | 'positive' | 'disabled'
 type HelpTextSize = 'l' | 'm' | 's'

@@ -1,9 +1,9 @@
 import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { linkM, textM, headingM } from '@scale/design-system/scss/typography'
-import '@scale/design-system/components/sc-logo'
-import '@scale/design-system/components/sc-button'
-import '@scale/design-system/components/sc-button-icon'
+import { linkM, textM, headingM } from '@scale-ds/scale-design-system/scss/typography'
+import '@scale-ds/scale-design-system/components/sc-logo'
+import '@scale-ds/scale-design-system/components/sc-button'
+import '@scale-ds/scale-design-system/components/sc-button-icon'
 import { featherIcon } from './feather'
 import { ThemeController } from './theme-controller'
 

@@ -1,6 +1,6 @@
 import { LitElement, html, css, isServer } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { textM } from '@scale/design-system/scss/typography'
+import { textM } from '@scale-ds/scale-design-system/scss/typography'
 
 type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right'
 

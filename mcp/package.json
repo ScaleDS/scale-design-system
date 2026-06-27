@@ -1,5 +1,5 @@
 {
-  "name": "@scale/design-system-mcp",
+  "name": "@scale-ds/scale-design-system-mcp",
   "version": "1.0.0",
   "description": "MCP server for Scale Design System — exposes components, tokens, and patterns to AI agents",
   "type": "module",
