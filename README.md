@@ -213,6 +213,59 @@ An MCP server is bundled in the package for IDE integration (Cursor, Claude Code
 
 Once connected, AI agents can query Scale directly for component APIs, design tokens, and composition patterns — no guessing, no web search.
 
+## Scale Edit (dev overlay)
+
+Scale Edit is a **dev-only, in-page editing overlay**. It lets you pin comments and make
+**token-aware** visual tweaks directly on a running Scale page, captures them to a small queue,
+and hands them to a coding agent that applies the changes to your real source.
+
+Two exports ship with the package:
+
+| Export | What it is |
+|---|---|
+| `@scale/design-system/vite` | `scaleEdit()` — Vite plugin (recommended). Injects the overlay in dev, serves the edit-queue bridge, and stamps `data-sc-loc="file:line"` onto HTML so the agent can locate source. |
+| `@scale/design-system/edit` | `enableEdit()` / `disableEdit()` — manual overlay mount for non-Vite dev setups. |
+
+**Wire it up (Vite):**
+
+```ts
+// vite.config.ts
+import { defineConfig } from 'vite'
+import { scaleEdit } from '@scale/design-system/vite'
+
+export default defineConfig({
+  plugins: [scaleEdit()], // dev-only — a no-op in `vite build`
+})
+```
+
+`scaleEdit(options?)`:
+
+| Option | Default | Purpose |
+|---|---|---|
+| `endpoint` | `/__scale/edits` | REST route for the edit queue (GET / POST / DELETE). |
+| `store` | `<root>/.scale/edits.json` | Where the queue is persisted. **Gitignore it.** |
+| `stampSource` | `true` | Stamp `data-sc-loc` onto static HTML for source location. |
+
+**Manual mount (no Vite):**
+
+```ts
+import { enableEdit } from '@scale/design-system/edit'
+enableEdit() // dev only — never call in production
+```
+
+**How it works:**
+
+1. Select any element on the page to pin a **comment**, or make a **token-constrained edit** —
+   colour roles (`--sc-color-*`), spacing, radius, and named `sc-typography-*` styles. The
+   controls only offer valid tokens, so edits stay on-system.
+2. Each item is written to the queue (`.scale/edits.json`) as a structured `EditItem` with an
+   anchor (`data-sc-loc`, CSS selector, tag, text).
+3. A coding agent reads the queue, applies each item to the real source, and `DELETE`s it. In
+   scale-docs this is the `/scale-edit` skill (also triggered by saying "apply edits").
+
+The plugin runs under Vite's `apply: 'serve'`, so the overlay and bridge **never reach a
+production build**.
+
 ## Development
 
 ```bash

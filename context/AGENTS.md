@@ -46,6 +46,20 @@ Read `context/patterns.json` for common component compositions:
 - Form Card, Hero Section, FAQ Section, Pricing Section, Feature Section, etc.
 - Each pattern lists required components and a template structure
 
+## Scale Edit
+
+Dev-only in-page editing overlay shipped from this package. A user pins comments and makes
+**token-constrained** visual edits on a running Scale page; the items are queued for a coding
+agent to apply to source.
+
+- `@scale/design-system/vite` → `scaleEdit()` Vite plugin (recommended): injects the overlay in
+  dev, serves the queue bridge at `/__scale/edits`, stamps `data-sc-loc="file:line"`.
+- `@scale/design-system/edit` → `enableEdit()` / `disableEdit()` for manual (non-Vite) mounts.
+- Queue: `<root>/.scale/edits.json` (gitignore it). Every edit is a `--sc-*` token, never a raw
+  value (colour roles, spacing, radius, `sc-typography-*` styles).
+- Apply loop: an agent reads the queue, applies each item to source, then `DELETE`s it — the
+  `/scale-edit` skill in scale-docs. Dev-only (`apply: 'serve'`), never in production builds.
+
 ## Quick Reference
 
 ### Import a single component
