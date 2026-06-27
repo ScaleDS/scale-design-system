@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { labelS } from '@scale/design-system/scss/typography'
+import { labelS } from '@scale-ds/scale-design-system/scss/typography'
 
 /**
  * A single tab in an `sc-tabs` nav. Goes in the `nav` slot of `sc-tabs` and is

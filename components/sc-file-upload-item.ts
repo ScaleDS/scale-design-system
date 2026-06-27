@@ -1,10 +1,10 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { textL, textM } from '@scale/design-system/scss/typography'
+import { textL, textM } from '@scale-ds/scale-design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
-import '@scale/design-system/components/sc-progress-bar'
-import '@scale/design-system/components/sc-status-icon'
+import '@scale-ds/scale-design-system/components/sc-progress-bar'
+import '@scale-ds/scale-design-system/components/sc-status-icon'
 
 type FileUploadItemState = 'uploaded' | 'uploading' | 'positive' | 'negative'
 

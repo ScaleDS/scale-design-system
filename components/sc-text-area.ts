@@ -1,7 +1,7 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { labelL, textL } from '@scale/design-system/scss/typography'
-import '@scale/design-system/components/sc-help-text'
+import { labelL, textL } from '@scale-ds/scale-design-system/scss/typography'
+import '@scale-ds/scale-design-system/components/sc-help-text'
 import { focusRing } from './sc-focus-ring'
 
 type TextAreaState = 'default' | 'negative' | 'positive' | 'disabled'

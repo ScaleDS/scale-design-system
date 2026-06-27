@@ -4,7 +4,7 @@
 
 ## Overview
 
-Scale is a **Lit web component** design system. When generating code that uses `@scale/design-system`:
+Scale is a **Lit web component** design system. When generating code that uses `@scale-ds/scale-design-system`:
 
 - Components are custom elements prefixed with `sc-` (e.g., `<sc-button>`, `<sc-input>`)
 - Components auto-register when imported — no manual `customElements.define` needed
@@ -15,7 +15,7 @@ Scale is a **Lit web component** design system. When generating code that uses `
 
 1. **Always use `sc-*` custom elements** for UI components, never raw HTML buttons/inputs/cards
 2. **Use CSS custom properties** (`--sc-*`) for theming — never hardcode hex colors or pixel values
-3. **Import SCSS** from `@scale/design-system/scss/main.scss` for global resets and typography classes
+3. **Import SCSS** from `@scale-ds/scale-design-system/scss/main.scss` for global resets and typography classes
 4. **Components auto-register** — importing a component file registers its custom element
 5. **Use Feather Icons** for icon names (e.g., `icon="search"`, `leading-icon="arrow-right"`)
 6. **Theme is managed by `sc-header`** — it dispatches `theme-change` events other components listen to
@@ -52,9 +52,9 @@ Dev-only in-page editing overlay shipped from this package. A user pins comments
 **token-constrained** visual edits on a running Scale page; the items are queued for a coding
 agent to apply to source.
 
-- `@scale/design-system/vite` → `scaleEdit()` Vite plugin (recommended): injects the overlay in
+- `@scale-ds/scale-design-system/vite` → `scaleEdit()` Vite plugin (recommended): injects the overlay in
   dev, serves the queue bridge at `/__scale/edits`, stamps `data-sc-loc="file:line"`.
-- `@scale/design-system/edit` → `enableEdit()` / `disableEdit()` for manual (non-Vite) mounts.
+- `@scale-ds/scale-design-system/edit` → `enableEdit()` / `disableEdit()` for manual (non-Vite) mounts.
 - Queue: `<root>/.scale/edits.json` (gitignore it). Every edit is a `--sc-*` token, never a raw
   value (colour roles, spacing, radius, `sc-typography-*` styles).
 - Apply loop: an agent reads the queue, applies each item to source, then `DELETE`s it — the
@@ -64,17 +64,17 @@ agent to apply to source.
 
 ### Import a single component
 ```typescript
-import '@scale/design-system/components/sc-button.js'
+import '@scale-ds/scale-design-system/components/sc-button.js'
 ```
 
 ### Import all components
 ```typescript
-import '@scale/design-system'
+import '@scale-ds/scale-design-system'
 ```
 
 ### Import SCSS tokens
 ```scss
-@use '@scale/design-system/scss/main.scss';
+@use '@scale-ds/scale-design-system/scss/main.scss';
 ```
 
 ### Use a component

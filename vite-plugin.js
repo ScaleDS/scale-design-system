@@ -1,10 +1,10 @@
-// @scale/design-system/vite — dev-only bridge for the Scale Edit overlay.
+// @scale-ds/scale-design-system/vite — dev-only bridge for the Scale Edit overlay.
 //
-//   import { scaleEdit } from '@scale/design-system/vite'
+//   import { scaleEdit } from '@scale-ds/scale-design-system/vite'
 //   export default defineConfig({ plugins: [scaleEdit()] })
 //
 // Responsibilities:
-//  1. Inject the overlay (`@scale/design-system/edit`) in dev.
+//  1. Inject the overlay (`@scale-ds/scale-design-system/edit`) in dev.
 //  2. Serve a tiny REST bridge backed by `<root>/.scale/edits.json` — the
 //     single storage boundary, so JSON can later become SQLite/NDJSON without
 //     touching the overlay or the agent skill.
@@ -43,7 +43,7 @@ export function scaleEdit(options = {}) {
   }
 
   // Bootstrap is served as a virtual module (not inline) so Vite puts it in the
-  // module graph and rewrites the bare `@scale/design-system/edit` import. Inline
+  // module graph and rewrites the bare `@scale-ds/scale-design-system/edit` import. Inline
   // injected scripts are NOT import-analysed, so a bare specifier would 404.
   const VIRTUAL_ID = 'virtual:scale-edit'
   const RESOLVED_ID = '\0' + VIRTUAL_ID
@@ -58,7 +58,7 @@ export function scaleEdit(options = {}) {
 
     load(id) {
       if (id === RESOLVED_ID) {
-        return `import { enableEdit } from '@scale/design-system/edit'\nenableEdit({ endpoint: ${JSON.stringify(
+        return `import { enableEdit } from '@scale-ds/scale-design-system/edit'\nenableEdit({ endpoint: ${JSON.stringify(
           endpoint,
         )} })`
       }
