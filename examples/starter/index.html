@@ -1,82 +1,35 @@
 <!doctype html>
-<!-- data-theme is REQUIRED — Scale's tokens are defined per theme on <html>.
-     The toggle in src/main.ts flips this between "light" and "dark". -->
+<!-- data-theme is REQUIRED — Scale's tokens are defined per theme on <html>. -->
 <html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Scale starter</title>
-    <!-- Scale's type tokens reference the Inter typeface but the package does
-         NOT bundle it — load it yourself (here via Google Fonts; self-hosting
-         works too). Without this, text falls back to the browser default. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
+    <!-- No font setup needed — Scale bundles the Inter typeface and loads it
+         via @font-face when you import its tokens (see src/styles.scss). -->
   </head>
   <body>
-    <main class="page">
-      <header class="page__bar">
-        <div class="page__brand">
-          <sc-badge status="info">Scale</sc-badge>
-          <span>Starter</span>
-        </div>
-        <!-- A plain button drives the theme toggle (see main.ts). -->
-        <sc-button id="theme-toggle" type="outline" size="s">Toggle theme</sc-button>
-      </header>
+    <main class="home">
+      <sc-logo size="l"></sc-logo>
 
-      <section class="page__intro">
-        <h1>You're running Scale 🎉</h1>
+      <div class="home__text">
+        <h1>Welcome to Scale</h1>
         <p>
-          This page is styled entirely by Scale design tokens and built from
-          <code>&lt;sc-*&gt;</code> web components. Edit <code>index.html</code> and
-          <code>src/main.ts</code> to make it yours.
+          Start building by clearing the contents of this page and adding
+          components like this:
         </p>
-      </section>
+      </div>
 
-      <section class="page__grid">
-        <sc-card surface="l1" radius="m" padding="l">
-          <h2>Sign in</h2>
-          <form id="demo-form" class="stack">
-            <sc-input label="Email" placeholder="you@example.com" required></sc-input>
-            <sc-input
-              label="Password"
-              type="password"
-              placeholder="••••••••"
-              help-text="At least 8 characters."
-              required
-            ></sc-input>
-            <label class="row">
-              <sc-toggle id="remember"></sc-toggle>
-              <span>Remember me</span>
-            </label>
-            <sc-button type="primary">Sign in</sc-button>
-            <sc-help-text id="form-status" status="positive" hidden>Signed in!</sc-help-text>
-          </form>
-        </sc-card>
+      <div class="scd-demo-code">
+        <code id="cmd">import '@scale-ds/scale-design-system/components/sc-button'</code>
+        <sc-button id="copy" type="tertiary" size="s" leading-icon="copy">Copy</sc-button>
+      </div>
 
-        <sc-card surface="subtle" radius="m" padding="l">
-          <h2>Buttons</h2>
-          <div class="cluster">
-            <sc-button type="primary">Primary</sc-button>
-            <sc-button type="secondary">Secondary</sc-button>
-            <sc-button type="tertiary">Tertiary</sc-button>
-            <sc-button type="outline">Outline</sc-button>
-            <sc-button type="primary" loading>Loading</sc-button>
-            <sc-button type="primary" disabled>Disabled</sc-button>
-          </div>
-
-          <h2>Status</h2>
-          <div class="cluster">
-            <sc-badge status="info">Info</sc-badge>
-            <sc-badge status="positive">Positive</sc-badge>
-            <sc-badge status="warning">Warning</sc-badge>
-            <sc-badge status="negative">Negative</sc-badge>
-          </div>
-        </sc-card>
-      </section>
+      <nav class="home__links" aria-label="Resources">
+        <a href="https://scaledesignsystem.com" target="_blank" rel="noreferrer">Docs</a>
+        <span class="home__sep" aria-hidden="true"></span>
+        <a href="https://scaledesignsystem.com/components/accordion/" target="_blank" rel="noreferrer">Components</a>
+      </nav>
     </main>
 
     <script type="module" src="/src/main.ts"></script>
