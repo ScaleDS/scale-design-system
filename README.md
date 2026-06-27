@@ -245,10 +245,28 @@ export default defineConfig({
 })
 ```
 
+**Opt-in — the overlay is OFF by default.** Even with the plugin in your config, Scale Edit
+stays inert until you explicitly ask for it. Turn it on per-run with the `SCALE_EDIT`
+environment variable — a command you (or an agent) can run in the terminal:
+
+```bash
+SCALE_EDIT=1 npm run dev     # overlay shows for this run
+npm run dev                  # no overlay (default)
+```
+
+A handy package.json script:
+
+```json
+{ "scripts": { "dev:edit": "SCALE_EDIT=1 vite" } }
+```
+
+Or force it on regardless of the env var with `scaleEdit({ enabled: true })`.
+
 `scaleEdit(options?)`:
 
 | Option | Default | Purpose |
 |---|---|---|
+| `enabled` | `process.env.SCALE_EDIT` truthy | Master switch. When omitted, the overlay activates only if `SCALE_EDIT` is set — so it never appears unless requested. |
 | `endpoint` | `/__scale/edits` | REST route for the edit queue (GET / POST / DELETE). |
 | `store` | `<root>/.scale/edits.json` | Where the queue is persisted. **Gitignore it.** |
 | `stampSource` | `true` | Stamp `data-sc-loc` onto static HTML for source location. |
