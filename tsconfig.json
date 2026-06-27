@@ -21,6 +21,7 @@
   },
   "include": [
     "index.ts",
+    "edit.ts",
     "components/**/*.ts",
     "scss/typography.ts",
     "declarations.d.ts"

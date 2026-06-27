@@ -11,13 +11,19 @@
     "scss",
     "context",
     "assets",
-    "mcp/dist"
+    "mcp/dist",
+    "vite-plugin.js"
   ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./edit": {
+      "types": "./dist/edit.d.ts",
+      "import": "./dist/edit.js"
+    },
+    "./vite": "./vite-plugin.js",
     "./scss/*": "./scss/*",
     "./scss/typography": "./dist/scss/typography.js",
     "./components/*.js": "./dist/components/*.js",
