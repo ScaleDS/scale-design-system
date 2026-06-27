@@ -3,7 +3,11 @@
 //   import { scaleEdit } from '@scale-ds/scale-design-system/vite'
 //   export default defineConfig({ plugins: [scaleEdit()] })
 //
-// Responsibilities:
+// Opt-in: with the plugin in your config, the overlay still stays OFF until you
+// ask for it. Turn it on per-run with the SCALE_EDIT env var (e.g.
+// `SCALE_EDIT=1 vite`) or always-on with `scaleEdit({ enabled: true })`.
+//
+// Responsibilities (only when enabled):
 //  1. Inject the overlay (`@scale-ds/scale-design-system/edit`) in dev.
 //  2. Serve a tiny REST bridge backed by `<root>/.scale/edits.json` — the
 //     single storage boundary, so JSON can later become SQLite/NDJSON without
@@ -20,12 +24,27 @@ const TYPOGRAPHY_ROUTE = '/__scale/typography'
 const PKG_DIR = dirname(fileURLToPath(import.meta.url))
 
 /**
- * @param {{ endpoint?: string, store?: string, stampSource?: boolean }} [options]
+ * @param {{ enabled?: boolean, endpoint?: string, store?: string, stampSource?: boolean }} [options]
+ *   `enabled` — force the overlay on/off. When omitted, the overlay is enabled
+ *   only if the `SCALE_EDIT` env var is truthy (so it's off by default).
  * @returns {import('vite').Plugin}
  */
 export function scaleEdit(options = {}) {
   const endpoint = options.endpoint ?? DEFAULT_ENDPOINT
   const stampSource = options.stampSource ?? true
+
+  // Opt-in gate. The overlay must never appear just because the plugin sits in
+  // a consumer's config — it activates only when explicitly requested, either
+  // per-run via the `SCALE_EDIT` env var (a command anyone or an agent can run,
+  // e.g. `SCALE_EDIT=1 vite`) or statically via `scaleEdit({ enabled: true })`.
+  // When disabled, return an inert plugin: no overlay injection, no bridge,
+  // no source stamping.
+  const isEnvTruthy = (v) => v != null && v !== '' && v !== '0' && v.toLowerCase() !== 'false'
+  const enabled = options.enabled ?? isEnvTruthy(process.env.SCALE_EDIT ?? '')
+  if (!enabled) {
+    return { name: 'scale-edit', apply: 'serve' }
+  }
+
   let root = process.cwd()
   let storePath = ''
 
