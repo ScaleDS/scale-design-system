@@ -1,6 +1,6 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import { labelM, textM } from '@scale/design-system/scss/typography'
+import { labelM, textM } from '@scale-ds/scale-design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
 import './sc-button-icon'
 import './sc-button'

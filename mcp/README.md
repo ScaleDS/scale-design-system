@@ -15,7 +15,7 @@ Instead of guessing or searching the web, AI agents (Claude, Cursor, Codex, etc.
 ### 1. Install
 
 ```bash
-npm install @scale/design-system
+npm install @scale-ds/scale-design-system
 ```
 
 ### 2. Configure your AI client
@@ -26,7 +26,7 @@ npm install @scale/design-system
   "mcpServers": {
     "scale": {
       "command": "npx",
-      "args": ["@scale/design-system"]
+      "args": ["@scale-ds/scale-design-system"]
     }
   }
 }
@@ -38,7 +38,7 @@ npm install @scale/design-system
   "mcpServers": {
     "scale": {
       "command": "npx",
-      "args": ["@scale/design-system"]
+      "args": ["@scale-ds/scale-design-system"]
     }
   }
 }
@@ -50,7 +50,7 @@ npm install @scale/design-system
   "mcpServers": {
     "scale": {
       "command": "npx",
-      "args": ["@scale/design-system"]
+      "args": ["@scale-ds/scale-design-system"]
     }
   }
 }
@@ -99,7 +99,7 @@ Once connected, ask your AI agent questions like:
 The MCP server reads from `context/` files that ship with the package:
 
 ```
-@scale/design-system/
+@scale-ds/scale-design-system/
 ├── context/
 │   ├── components.json    ← Component catalog (props, slots, events, examples)
 │   ├── tokens.json        ← W3C DTCG design tokens

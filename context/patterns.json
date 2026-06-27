@@ -19,7 +19,7 @@
       "description": "Two-column layout with heading on left and accordion items on right",
       "components": ["sc-section-faq", "sc-accordion"],
       "usage": "FAQ pages, help sections, common questions",
-      "template": "<sc-section-faq>\n  <h2 slot=\"heading\">Frequently Asked Questions</h2>\n  <p slot=\"subtext\">Everything you need to know</p>\n  <sc-accordion heading=\"What is Scale?\">Scale is a design system...</sc-accordion>\n  <sc-accordion heading=\"How do I install it?\">npm install @scale/design-system</sc-accordion>\n  <sc-accordion heading=\"Is it free?\">Yes, Scale is open source</sc-accordion>\n</sc-section-faq>"
+      "template": "<sc-section-faq>\n  <h2 slot=\"heading\">Frequently Asked Questions</h2>\n  <p slot=\"subtext\">Everything you need to know</p>\n  <sc-accordion heading=\"What is Scale?\">Scale is a design system...</sc-accordion>\n  <sc-accordion heading=\"How do I install it?\">npm install @scale-ds/scale-design-system</sc-accordion>\n  <sc-accordion heading=\"Is it free?\">Yes, Scale is open source</sc-accordion>\n</sc-section-faq>"
     },
     {
       "name": "Pricing Section",

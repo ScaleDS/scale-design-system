@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { textS, linkS } from '@scale/design-system/scss/typography'
-import '@scale/design-system/components/sc-logo'
+import { textS, linkS } from '@scale-ds/scale-design-system/scss/typography'
+import '@scale-ds/scale-design-system/components/sc-logo'
 import { reset } from './reset'
 
 @customElement('sc-footer')

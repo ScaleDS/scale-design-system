@@ -14,7 +14,7 @@ const tokens = JSON.parse(readFileSync(join(contextDir, 'tokens.json'), 'utf-8')
 const patterns = JSON.parse(readFileSync(join(contextDir, 'patterns.json'), 'utf-8'))
 
 const server = new McpServer({
-  name: '@scale/design-system',
+  name: '@scale-ds/scale-design-system',
   version: '1.0.0',
 })
 

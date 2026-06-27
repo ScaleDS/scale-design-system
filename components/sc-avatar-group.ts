@@ -1,6 +1,6 @@
 import { LitElement, html, css, unsafeCSS } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
-import '@scale/design-system/components/sc-avatar'
+import '@scale-ds/scale-design-system/components/sc-avatar'
 
 type AvatarGroupSize = 'l' | 'm' | 's'
 

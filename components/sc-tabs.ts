@@ -1,9 +1,9 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { type ScTab } from '@scale/design-system/components/sc-tab'
-import { type ScTabPanel } from '@scale/design-system/components/sc-tab-panel'
-import '@scale/design-system/components/sc-tab'
-import '@scale/design-system/components/sc-tab-panel'
+import { type ScTab } from '@scale-ds/scale-design-system/components/sc-tab'
+import { type ScTabPanel } from '@scale-ds/scale-design-system/components/sc-tab-panel'
+import '@scale-ds/scale-design-system/components/sc-tab'
+import '@scale-ds/scale-design-system/components/sc-tab-panel'
 
 type TabActivation = 'auto' | 'manual'
 type TabPlacement = 'top' | 'bottom'

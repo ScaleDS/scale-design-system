@@ -1,6 +1,6 @@
 import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { textL, textM, linkL } from '@scale/design-system/scss/typography'
+import { textL, textM, linkL } from '@scale-ds/scale-design-system/scss/typography'
 import { focusRing } from './sc-focus-ring'
 import { featherIcon } from './feather'
 import './sc-checkbox'

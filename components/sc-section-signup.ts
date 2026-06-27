@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { headingL, textL } from '@scale/design-system/scss/typography'
+import { headingL, textL } from '@scale-ds/scale-design-system/scss/typography'
 import { reset } from './reset'
 
 @customElement('sc-section-signup')

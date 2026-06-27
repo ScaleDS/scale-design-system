@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import '@scale/design-system/components/sc-badge'
-import '@scale/design-system/components/sc-button'
-import '@scale/design-system/components/sc-input'
+import '@scale-ds/scale-design-system/components/sc-badge'
+import '@scale-ds/scale-design-system/components/sc-button'
+import '@scale-ds/scale-design-system/components/sc-input'
 import { ThemeController } from './theme-controller'
 import { reset } from './reset'
 

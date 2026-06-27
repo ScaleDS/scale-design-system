@@ -1,5 +1,5 @@
 {
-  "name": "@scale/design-system",
+  "name": "@scale-ds/scale-design-system",
   "version": "1.0.0",
   "framework": "lit",
   "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
@@ -28,9 +28,7 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [
-        "sc-divider"
-      ],
+      "dependencies": [],
       "example": "<sc-accordion></sc-accordion>"
     },
     {
@@ -73,9 +71,7 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-status-icon"
-      ],
+      "dependencies": [],
       "example": "<sc-alert></sc-alert>"
     },
     {
@@ -103,9 +99,7 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-avatar"
-      ],
+      "dependencies": [],
       "example": "<sc-avatar-group></sc-avatar-group>"
     },
     {
@@ -196,9 +190,7 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [
-        "sc-status-icon"
-      ],
+      "dependencies": [],
       "example": "<sc-banner></sc-banner>"
     },
     {
@@ -486,9 +478,7 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-divider"
-      ],
+      "dependencies": [],
       "example": "<sc-card-pricing></sc-card-pricing>"
     },
     {
@@ -674,10 +664,7 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [
-        "sc-checkbox-item",
-        "sc-checkbox-item"
-      ],
+      "dependencies": [],
       "example": "<sc-checkbox></sc-checkbox>"
     },
     {
@@ -752,6 +739,19 @@
       "example": "<sc-divider></sc-divider>"
     },
     {
+      "tag": "sc-edit-layer",
+      "class": "ScEditLayer",
+      "category": "unknown",
+      "description": "",
+      "whenToUse": "",
+      "props": {},
+      "slots": [],
+      "events": [],
+      "cssParts": [],
+      "dependencies": [],
+      "example": "<sc-edit-layer></sc-edit-layer>"
+    },
+    {
       "tag": "sc-file-upload-item",
       "class": "ScFileUploadItem",
       "category": "unknown",
@@ -818,10 +818,7 @@
           "description": ""
         }
       ],
-      "dependencies": [
-        "sc-progress-bar",
-        "sc-status-icon"
-      ],
+      "dependencies": [],
       "example": "<sc-file-upload-item></sc-file-upload-item>"
     },
     {
@@ -903,9 +900,7 @@
           "description": ""
         }
       ],
-      "dependencies": [
-        "sc-file-upload-item"
-      ],
+      "dependencies": [],
       "example": "<sc-file-upload></sc-file-upload>"
     },
     {
@@ -937,9 +932,7 @@
       "slots": [],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-logo"
-      ],
+      "dependencies": [],
       "example": "<sc-footer></sc-footer>"
     },
     {
@@ -1030,11 +1023,7 @@
           "description": ""
         }
       ],
-      "dependencies": [
-        "sc-logo",
-        "sc-button",
-        "sc-button-icon"
-      ],
+      "dependencies": [],
       "example": "<sc-header></sc-header>"
     },
     {
@@ -1060,9 +1049,7 @@
       "slots": [],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-status-icon"
-      ],
+      "dependencies": [],
       "example": "<sc-help-text></sc-help-text>"
     },
     {
@@ -1152,11 +1139,7 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-badge",
-        "sc-button",
-        "sc-input"
-      ],
+      "dependencies": [],
       "example": "<sc-hero></sc-hero>"
     },
     {
@@ -1244,9 +1227,7 @@
           "description": ""
         }
       ],
-      "dependencies": [
-        "sc-help-text"
-      ],
+      "dependencies": [],
       "example": "<sc-input-pin></sc-input-pin>"
     },
     {
@@ -1323,9 +1304,7 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [
-        "sc-help-text"
-      ],
+      "dependencies": [],
       "example": "<sc-input></sc-input>"
     },
     {
@@ -1377,9 +1356,7 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [
-        "sc-menu-item"
-      ],
+      "dependencies": [],
       "example": "<sc-menu-dropdown></sc-menu-dropdown>"
     },
     {
@@ -1667,10 +1644,7 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [
-        "sc-radio-item",
-        "sc-radio-item"
-      ],
+      "dependencies": [],
       "example": "<sc-radio></sc-radio>"
     },
     {
@@ -1704,9 +1678,7 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-divider"
-      ],
+      "dependencies": [],
       "example": "<sc-row></sc-row>"
     },
     {
@@ -1766,9 +1738,7 @@
       ],
       "events": [],
       "cssParts": [],
-      "dependencies": [
-        "sc-accordion"
-      ],
+      "dependencies": [],
       "example": "<sc-section-faq></sc-section-faq>"
     },
     {
@@ -2566,12 +2536,7 @@
         }
       ],
       "cssParts": [],
-      "dependencies": [
-        "sc-tab",
-        "sc-tab-panel",
-        "sc-tab",
-        "sc-tab-panel"
-      ],
+      "dependencies": [],
       "example": "<sc-tabs></sc-tabs>"
     },
     {
@@ -2725,9 +2690,7 @@
           "description": ""
         }
       ],
-      "dependencies": [
-        "sc-help-text"
-      ],
+      "dependencies": [],
       "example": "<sc-text-area></sc-text-area>"
     },
     {
@@ -2803,9 +2766,7 @@
           "description": ""
         }
       ],
-      "dependencies": [
-        "sc-status-icon"
-      ],
+      "dependencies": [],
       "example": "<sc-toast></sc-toast>"
     },
     {
