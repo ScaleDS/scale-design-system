@@ -1,0 +1,7 @@
+node_modules
+dist
+# Scale Edit dev-only queue (created when you run `npm run dev:edit`)
+.scale
+
+# lockfile regenerated on consumer install
+package-lock.json
