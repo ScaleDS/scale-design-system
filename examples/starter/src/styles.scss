@@ -1,14 +1,7 @@
-// Scale design tokens (defines all --sc-* custom properties for both themes).
+// Scale design tokens + base element styles. This already styles `body`
+// (Inter font, background, text colour) and `h1`–`h6`/`p` typography, so we
+// DON'T re-declare fonts here — only layout helpers below.
 @use '@scale-ds/scale-design-system/scss/main';
-
-// Page layout only — everything visual below leans on Scale tokens so the
-// starter automatically responds to the light/dark theme toggle.
-body {
-  margin: 0;
-  background: var(--sc-color-background-default, #fff);
-  color: var(--sc-color-text-default, #111);
-  font-family: system-ui, sans-serif;
-}
 
 .page {
   max-width: 880px;
@@ -29,11 +22,15 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 600;
 }
 
+// Scale resets heading margins to 0; add back just spacing (no font overrides).
 .page__intro h1 {
-  margin: 0 0 8px;
+  margin-bottom: 8px;
+}
+
+h2 {
+  margin-bottom: 12px;
 }
 
 .page__grid {
@@ -60,9 +57,4 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-}
-
-h2 {
-  margin: 0 0 12px;
-  font-size: 1rem;
 }
