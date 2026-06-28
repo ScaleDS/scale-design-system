@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { focusRing } from './sc-focus-ring.js'
 
@@ -9,6 +9,8 @@ export class ScRadioItem extends LitElement {
   @property({ type: Boolean, reflect: true }) checked = false
   @property({ type: Boolean, reflect: true }) disabled = false
   @property({ reflect: true }) state: RadioItemState = 'default'
+  /** Mirrors the parent control's required state, exposed to assistive tech. */
+  @property({ type: Boolean, reflect: true }) required = false
 
   static styles = [
     focusRing,
@@ -135,6 +137,8 @@ export class ScRadioItem extends LitElement {
         type="button"
         role="radio"
         aria-checked=${this.checked ? 'true' : 'false'}
+        aria-invalid=${this.state === 'negative' ? 'true' : nothing}
+        aria-required=${this.required ? 'true' : nothing}
         ?disabled=${this.disabled}
         @click=${this._onClick}
         @keydown=${this._onKeyDown}

@@ -604,6 +604,12 @@
           "default": "default",
           "attribute": "state",
           "reflect": true
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
+          "reflect": true
         }
       },
       "slots": [],
@@ -1627,6 +1633,12 @@
           "type": "RadioItemState",
           "default": "default",
           "attribute": "state",
+          "reflect": true
+        },
+        "required": {
+          "type": "boolean",
+          "default": false,
+          "attribute": "required",
           "reflect": true
         }
       },
