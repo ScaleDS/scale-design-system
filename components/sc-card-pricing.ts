@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import { headingXl, textM } from '@scale-ds/scale-design-system/scss/typography'
 import '@scale-ds/scale-design-system/components/sc-divider'
-import { reset } from './reset'
+import { reset } from './reset.js'
 
 @customElement('sc-card-pricing')
 export class ScCardPricing extends LitElement {

@@ -1,6 +1,6 @@
 import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { focusRing } from './sc-focus-ring'
+import { focusRing } from './sc-focus-ring.js'
 
 // Page controls — the pagination dots used to indicate and switch between
 // pages/slides in a carousel or stepper. Built as the WAI-ARIA APG "grouped

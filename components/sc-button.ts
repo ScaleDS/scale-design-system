@@ -1,10 +1,10 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { labelL, labelM, labelS } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import { buttonVariants, spinnerTypeForButton } from './button-variants'
-import { featherIcon } from './feather'
-import './sc-spinner'
+import { focusRing } from './sc-focus-ring.js'
+import { buttonVariants, spinnerTypeForButton } from './button-variants.js'
+import { featherIcon } from './feather.js'
+import './sc-spinner.js'
 
 type ButtonSize = 'l' | 'm' | 's'
 type ButtonType =

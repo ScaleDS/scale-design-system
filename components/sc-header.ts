@@ -4,8 +4,8 @@ import { linkM, textM, headingM } from '@scale-ds/scale-design-system/scss/typog
 import '@scale-ds/scale-design-system/components/sc-logo'
 import '@scale-ds/scale-design-system/components/sc-button'
 import '@scale-ds/scale-design-system/components/sc-button-icon'
-import { featherIcon } from './feather'
-import { ThemeController } from './theme-controller'
+import { featherIcon } from './feather.js'
+import { ThemeController } from './theme-controller.js'
 
 export interface NavLink {
   label: string

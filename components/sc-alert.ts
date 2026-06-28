@@ -2,7 +2,7 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { headingXs, textL } from '@scale-ds/scale-design-system/scss/typography'
 import '@scale-ds/scale-design-system/components/sc-status-icon'
-import { focusRing } from './sc-focus-ring'
+import { focusRing } from './sc-focus-ring.js'
 
 type AlertStatus = 'info' | 'warning' | 'negative' | 'positive'
 

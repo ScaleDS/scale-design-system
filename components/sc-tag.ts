@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { textS } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import { featherIcon } from './feather'
+import { focusRing } from './sc-focus-ring.js'
+import { featherIcon } from './feather.js'
 
 /**
  * Tag / chip — a small element for categorising or filtering content, often
