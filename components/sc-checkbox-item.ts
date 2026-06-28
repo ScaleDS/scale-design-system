@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit'
+import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { focusRing } from './sc-focus-ring.js'
 import { featherIcon } from './feather.js'
@@ -11,6 +11,8 @@ export class ScCheckboxItem extends LitElement {
   @property({ type: Boolean, reflect: true }) disabled = false
   @property({ type: Boolean, reflect: true }) indeterminate = false
   @property({ reflect: true }) state: CheckboxItemState = 'default'
+  /** Mirrors the parent control's required state, exposed to assistive tech. */
+  @property({ type: Boolean, reflect: true }) required = false
 
   static styles = [
     focusRing,
@@ -145,6 +147,8 @@ export class ScCheckboxItem extends LitElement {
         type="button"
         role="checkbox"
         aria-checked=${this.indeterminate ? 'mixed' : this.checked ? 'true' : 'false'}
+        aria-invalid=${this.state === 'negative' ? 'true' : nothing}
+        aria-required=${this.required ? 'true' : nothing}
         ?disabled=${this.disabled}
         @click=${this._onClick}
         @keydown=${this._onKeyDown}

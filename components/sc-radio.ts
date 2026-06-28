@@ -120,6 +120,7 @@ export class ScRadio extends LitElement {
       <sc-radio-item
         ?checked=${this.checked}
         ?disabled=${this.disabled}
+        ?required=${this.required}
         state=${itemState}
         @change=${this._onItemChange}
       ></sc-radio-item>

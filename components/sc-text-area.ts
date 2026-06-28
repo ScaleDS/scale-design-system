@@ -1,4 +1,4 @@
-import { LitElement, html, css, type PropertyValues } from 'lit'
+import { LitElement, html, css, nothing, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { labelL, textL } from '@scale-ds/scale-design-system/scss/typography'
 import '@scale-ds/scale-design-system/components/sc-help-text'
@@ -245,6 +245,7 @@ export class ScTextArea extends LitElement {
           maxlength=${this.maxlength ?? ''}
           minlength=${this.minlength ?? ''}
           aria-labelledby=${this.showLabel ? 'textarea-label' : ''}
+          aria-invalid=${this.state === 'negative' ? 'true' : nothing}
           @input=${this._onInput}
           @change=${this._onChange}
           @focus=${this._onFocus}

@@ -105,6 +105,7 @@ export class ScCheckbox extends LitElement {
         ?checked=${this.checked}
         ?disabled=${this.disabled}
         ?indeterminate=${this.indeterminate}
+        ?required=${this.required}
         state=${itemState}
         @change=${this._onItemChange}
       ></sc-checkbox-item>
