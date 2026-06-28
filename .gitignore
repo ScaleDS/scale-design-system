@@ -6,5 +6,9 @@ node_modules/
 ## IDE
 .idea/
 
+## macOS
+.DS_Store
+**/.DS_Store
+
 ## Scratch / planning notes
 tmp/
