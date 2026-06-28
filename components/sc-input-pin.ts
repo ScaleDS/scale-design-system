@@ -1,4 +1,4 @@
-import { LitElement, html, css, type PropertyValues } from 'lit'
+import { LitElement, html, css, nothing, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { labelL, textL, text2xl } from '@scale-ds/scale-design-system/scss/typography'
 import { focusRing } from './sc-focus-ring.js'
@@ -255,6 +255,7 @@ export class ScInputPin extends LitElement {
           role="group"
           aria-labelledby=${this.showLabel && this.label ? labelId : ''}
           aria-describedby=${showHelp ? helpId : ''}
+          aria-invalid=${this.state === 'negative' ? 'true' : nothing}
         >
           ${cells.map((digit, i) => html`
             <input

@@ -1,4 +1,4 @@
-import { LitElement, html, css, type PropertyValues } from 'lit'
+import { LitElement, html, css, nothing, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { ifDefined } from 'lit/directives/if-defined.js'
 import { labelL, textL } from '@scale-ds/scale-design-system/scss/typography'
@@ -361,6 +361,7 @@ export class ScInput extends LitElement {
           placeholder=${this.placeholder}
           ?disabled=${disabled}
           ?required=${this.required}
+          aria-invalid=${this.state === 'negative' ? 'true' : nothing}
           type=${this.type}
           name=${this.name}
           autocomplete=${this.autocomplete}
@@ -401,6 +402,7 @@ export class ScInput extends LitElement {
           aria-haspopup="dialog"
           aria-expanded=${this._dateKind?.open ? 'true' : 'false'}
           aria-labelledby=${this.showLabel ? 'input-label' : ''}
+          aria-invalid=${this.state === 'negative' ? 'true' : nothing}
           ?disabled=${disabled}
           @click=${this._onDateOpen}
           @keydown=${(e: KeyboardEvent) => this._dateKind?.onKeyDown(e)}
