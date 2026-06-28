@@ -129,6 +129,12 @@ The package builds on install via `prepare` and ships compiled `dist/` (plus
 `scss/`, `context/`, `assets/`), so `github:` installs resolve
 `@scale-ds/scale-design-system/components/*` with no manual build step.
 
+## Contributors
+
+Thanks to everyone who has contributed to Scale:
+
+- Daniel ([@JoPixelPoet](https://github.com/JoPixelPoet)) — npm/ESM packaging and dev tooling, form-control accessibility, component catalog backfill, package export surface, and the Sass `@use` migration.
+
 ## License
 
 MIT
