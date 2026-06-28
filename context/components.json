@@ -229,9 +229,9 @@
     {
       "tag": "sc-button-group",
       "class": "ScButtonGroup",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "actions",
+      "description": "Container for grouped buttons with configurable orientation, gap, alignment, and optional single-select value",
+      "whenToUse": "Grouping related buttons, action toolbars, single-select button sets",
       "props": {
         "gap": {
           "type": "ButtonGroupGap",
@@ -498,9 +498,9 @@
     {
       "tag": "sc-card-selector",
       "class": "ScCardSelector",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Selectable card with a checkbox or radio indicator that participates in form selection",
+      "whenToUse": "Card-based selection, plan or option pickers, form choices with rich visuals",
       "props": {
         "type": {
           "type": "CardSelectorType",
@@ -543,9 +543,9 @@
     {
       "tag": "sc-card",
       "class": "ScCard",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "content",
+      "description": "Lightweight surface container with configurable elevation, border radius, and padding tokens",
+      "whenToUse": "Content containers, card layouts, grouping related content on a surface",
       "props": {
         "surface": {
           "type": "CardSurface",
@@ -692,9 +692,9 @@
     {
       "tag": "sc-date-picker",
       "class": "ScDatePicker",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Calendar date picker supporting a single date or a range, with keyboard navigation and optional confirm actions",
+      "whenToUse": "Date selection, date ranges, booking calendars, event scheduling",
       "props": {
         "mode": {
           "type": "DatePickerMode",
@@ -764,28 +764,11 @@
       "example": "<sc-divider></sc-divider>"
     },
     {
-      "tag": "sc-edit-layer",
-      "class": "ScEditLayer",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
-      "props": {},
-      "slots": [],
-      "events": [],
-      "cssParts": [],
-      "dependencies": [
-        "sc-button",
-        "sc-button-icon",
-        "sc-badge"
-      ],
-      "example": "<sc-edit-layer></sc-edit-layer>"
-    },
-    {
       "tag": "sc-file-upload-item",
       "class": "ScFileUploadItem",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "A single file row showing name, size, progress bar, and status with a remove control",
+      "whenToUse": "Showing uploaded or in-progress file rows inside a file upload",
       "props": {
         "state": {
           "type": "FileUploadItemState",
@@ -856,9 +839,9 @@
     {
       "tag": "sc-file-upload",
       "class": "ScFileUpload",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Drag-and-drop upload zone with per-file progress, error states, and single or multiple file support",
+      "whenToUse": "File uploads, document collection, asset management, media uploads",
       "props": {
         "layout": {
           "type": "FileUploadLayout",
@@ -1191,9 +1174,9 @@
     {
       "tag": "sc-input-pin",
       "class": "ScInputPin",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Multi-digit code input with individual cells, keyboard navigation, paste support, and validation states",
+      "whenToUse": "One-time codes, PIN verification, multi-digit code entry, 2FA inputs",
       "props": {
         "length": {
           "type": "number",
@@ -1465,9 +1448,9 @@
     {
       "tag": "sc-modal",
       "class": "ScModal",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "feedback",
+      "description": "Modal dialog built on the native dialog element with heading, body, and an optional actions footer",
+      "whenToUse": "Confirmations, critical decisions, focused interruptions, blocking actions",
       "props": {
         "open": {
           "type": "boolean",
@@ -1541,9 +1524,9 @@
     {
       "tag": "sc-page-controls",
       "class": "ScPageControls",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "navigation",
+      "description": "Pagination dots with previous/next controls for moving between pages or slides",
+      "whenToUse": "Carousel pagination, slide navigation, step indicators, page dots",
       "props": {
         "total": {
           "type": "number",
@@ -1578,9 +1561,9 @@
     {
       "tag": "sc-progress-bar",
       "class": "ScProgressBar",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "feedback",
+      "description": "Horizontal progress bar with a 0–100% value and status colours (uploading, positive, negative)",
+      "whenToUse": "File uploads, loading states, operation progress, completion tracking",
       "props": {
         "value": {
           "type": "number",
@@ -1889,9 +1872,9 @@
     {
       "tag": "sc-segmented-control",
       "class": "ScSegmentedControl",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Pill of 2–4 mutually-exclusive segments, optionally icon-only, with full keyboard support",
+      "whenToUse": "Filter toggles, view-mode switches, binary or ternary choices",
       "props": {
         "items": {
           "type": "SegmentedItem[]",
@@ -1951,9 +1934,9 @@
     {
       "tag": "sc-signup",
       "class": "ScSignup",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Inline email-capture form pairing a text input with a primary button, wrapping on narrow screens",
+      "whenToUse": "Newsletter signup, lead capture, email list collection, simple mailing forms",
       "props": {
         "buttonLabel": {
           "type": "string",
@@ -2016,9 +1999,9 @@
     {
       "tag": "sc-slider",
       "class": "ScSlider",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Continuous range input with a draggable thumb, keyboard support, and native form participation",
+      "whenToUse": "Continuous value selection, volume and range controls, numeric adjustment",
       "props": {
         "value": {
           "type": "number",
@@ -2074,9 +2057,9 @@
     {
       "tag": "sc-spinner",
       "class": "ScSpinner",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "feedback",
+      "description": "Animated indeterminate loading indicator with 2 sizes and 4 colour variants",
+      "whenToUse": "Loading states, in-progress indicators, async feedback, busy states",
       "props": {
         "size": {
           "type": "SpinnerSize",
@@ -2137,9 +2120,9 @@
     {
       "tag": "sc-status-indicator",
       "class": "ScStatusIndicator",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "feedback",
+      "description": "Small coloured status dot, decorative beside text or semantic with an accessible label",
+      "whenToUse": "Status dots, connection or presence indicators, state visualization",
       "props": {
         "status": {
           "type": "StatusIndicatorStatus",
@@ -2162,9 +2145,9 @@
     {
       "tag": "sc-tab-panel",
       "class": "ScTabPanel",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "navigation",
+      "description": "Content panel paired with a tab, shown or hidden by the parent sc-tabs",
+      "whenToUse": "Tab content panels inside an sc-tabs tabbed interface",
       "props": {
         "name": {
           "type": "string",
@@ -2190,9 +2173,9 @@
     {
       "tag": "sc-tab",
       "class": "ScTab",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "navigation",
+      "description": "A single tab within sc-tabs, with selection and focus managed by the parent",
+      "whenToUse": "Individual tabs inside an sc-tabs tabbed interface",
       "props": {
         "panel": {
           "type": "string",
@@ -2232,9 +2215,9 @@
     {
       "tag": "sc-table-basic",
       "class": "ScTableBasic",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "data-display",
+      "description": "Accessible table using CSS subgrid columns with sortable headers, row selection, and optional pagination",
+      "whenToUse": "Structured data, records, sortable columns, paginated datasets",
       "props": {
         "pageSize": {
           "type": "number",
@@ -2267,9 +2250,9 @@
     {
       "tag": "sc-table-cell",
       "class": "ScTableCell",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "data-display",
+      "description": "Table body cell with optional leading/trailing icons, secondary text, link rendering, and a selection checkbox",
+      "whenToUse": "Rendering cell content within table rows",
       "props": {
         "align": {
           "type": "TableCellAlign",
@@ -2357,9 +2340,9 @@
     {
       "tag": "sc-table-dynamic",
       "class": "ScTableDynamic",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "data-display",
+      "description": "Data-driven table that builds rows and columns from column definitions and row-data arrays",
+      "whenToUse": "Tabular data from arrays or objects, avoiding hand-written table markup",
       "props": {
         "columns": {
           "type": "ScTableColumn[]",
@@ -2395,9 +2378,9 @@
     {
       "tag": "sc-table-footer",
       "class": "ScTableFooter",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "data-display",
+      "description": "Table footer with previous/next pagination buttons and page indicator dots",
+      "whenToUse": "Paginated table navigation, page selection in data tables",
       "props": {
         "total": {
           "type": "number",
@@ -2458,9 +2441,9 @@
     {
       "tag": "sc-table-head",
       "class": "ScTableHead",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "data-display",
+      "description": "Table header cell with an optional sort control and select-all checkbox",
+      "whenToUse": "Sortable column headers, header cells for data tables",
       "props": {
         "align": {
           "type": "TableHeadAlign",
@@ -2548,9 +2531,9 @@
     {
       "tag": "sc-table-row",
       "class": "ScTableRow",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "data-display",
+      "description": "Table row container using CSS subgrid for column alignment, in body or header variants",
+      "whenToUse": "Individual table rows and header rows in data tables",
       "props": {
         "selected": {
           "type": "boolean",
@@ -2576,9 +2559,9 @@
     {
       "tag": "sc-tabs",
       "class": "ScTabs",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "navigation",
+      "description": "Tabbed interface (WAI-ARIA APG pattern) managing tab selection, focus, and panel visibility",
+      "whenToUse": "Tabbed content, multi-view interfaces, organized content sections",
       "props": {
         "active": {
           "type": "string",
@@ -2627,9 +2610,9 @@
     {
       "tag": "sc-tag",
       "class": "ScTag",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "content",
+      "description": "Small chip for categories or filters, optionally selectable or removable, with an optional icon or avatar",
+      "whenToUse": "Tags, filter chips, category labels, dismissible tokens",
       "props": {
         "selected": {
           "type": "boolean",
@@ -2711,9 +2694,9 @@
     {
       "tag": "sc-text-area",
       "class": "ScTextArea",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "forms",
+      "description": "Multi-line text field with label, help text, validation states, and configurable resize behaviour",
+      "whenToUse": "Long-form text entry, comments, descriptions, message and feedback fields",
       "props": {
         "state": {
           "type": "TextAreaState",
@@ -2783,9 +2766,9 @@
     {
       "tag": "sc-toast",
       "class": "ScToast",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "feedback",
+      "description": "Fixed-position notification with an optional status icon, link, and auto-dismiss timer",
+      "whenToUse": "Temporary notifications, success or error messages, action confirmations",
       "props": {
         "status": {
           "type": "ToastStatus",
@@ -2892,9 +2875,9 @@
     {
       "tag": "sc-tooltip",
       "class": "ScTooltip",
-      "category": "unknown",
-      "description": "",
-      "whenToUse": "",
+      "category": "feedback",
+      "description": "Popover shown on hover or focus that auto-flips when it would collide with the viewport edge",
+      "whenToUse": "Help text, icon descriptions, supplementary hints, form field guidance",
       "props": {
         "placement": {
           "type": "TooltipPlacement",

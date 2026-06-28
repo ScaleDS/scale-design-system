@@ -92,7 +92,7 @@ import '@scale-ds/scale-design-system'
 | Category | Components |
 |----------|-----------|
 | **Actions** | `sc-button`, `sc-button-group`, `sc-button-icon`, `sc-button-pill` |
-| **Forms** | `sc-input`, `sc-input-pin`, `sc-text-area`, `sc-toggle`, `sc-checkbox`, `sc-checkbox-item`, `sc-radio`, `sc-radio-item`, `sc-card-selector`, `sc-slider`, `sc-date-picker`, `sc-file-upload`, `sc-file-upload-item`, `sc-signup` |
+| **Forms** | `sc-input`, `sc-input-pin`, `sc-text-area`, `sc-toggle`, `sc-checkbox`, `sc-checkbox-item`, `sc-radio`, `sc-radio-item`, `sc-card-selector`, `sc-segmented-control`, `sc-slider`, `sc-date-picker`, `sc-file-upload`, `sc-file-upload-item`, `sc-signup` |
 | **Feedback** | `sc-alert`, `sc-badge`, `sc-banner`, `sc-help-text`, `sc-status-icon`, `sc-status-indicator`, `sc-spinner`, `sc-progress-bar`, `sc-modal`, `sc-toast`, `sc-tooltip` |
 | **Content** | `sc-avatar`, `sc-avatar-group`, `sc-card`, `sc-card-image`, `sc-card-pricing`, `sc-tag` |
 | **Data display** | `sc-table-dynamic` (data-driven), `sc-table-basic`, `sc-table-row`, `sc-table-head`, `sc-table-cell`, `sc-table-footer` |
