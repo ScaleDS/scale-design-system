@@ -3,7 +3,7 @@
    plus bare-name aliases (no weight) that resolve to each category's primary
    weight for backwards compatibility. */
 
-@import './sc-variables-type.scss';
+@use './sc-variables-type' as *;
 
 // Helper mixin to apply typography styles from a map
 @mixin _apply-typography($map) {
