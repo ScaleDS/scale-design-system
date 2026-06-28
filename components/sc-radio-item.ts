@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { focusRing } from './sc-focus-ring'
+import { focusRing } from './sc-focus-ring.js'
 
 type RadioItemState = 'default' | 'negative'
 

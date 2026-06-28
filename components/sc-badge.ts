@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { textS } from '@scale-ds/scale-design-system/scss/typography'
-import { featherIcon } from './feather'
+import { featherIcon } from './feather.js'
 
 type BadgeStatus = 'default' | 'info' | 'warning' | 'negative' | 'positive' | 'mono' | 'disabled'
 

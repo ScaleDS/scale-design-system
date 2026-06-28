@@ -1,3 +1,10 @@
+## Generated
 dist/
 node_modules/
 *.tsbuildinfo
+
+## IDE
+.idea/
+
+## Scratch / planning notes
+tmp/

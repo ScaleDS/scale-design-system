@@ -1,8 +1,8 @@
 import { LitElement, html, css, nothing, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { labelM } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import { featherIcon } from './feather'
+import { focusRing } from './sc-focus-ring.js'
+import { featherIcon } from './feather.js'
 
 /** One selectable segment. `value` is required; `label` shows the text (and
  *  doubles as the accessible name when icon-only), `icon` is a Feather name. */

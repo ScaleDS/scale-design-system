@@ -121,7 +121,6 @@ export class ScAvatar extends LitElement {
 
   render() {
     const hasSrc = !!this.src
-    const hasAlt = !!this.alt
     const initial = this._getInitial()
 
     let content

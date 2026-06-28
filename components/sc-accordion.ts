@@ -2,8 +2,8 @@ import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { headingS, textL } from '@scale-ds/scale-design-system/scss/typography'
 import '@scale-ds/scale-design-system/components/sc-divider'
-import { focusRing } from './sc-focus-ring'
-import { featherIcon } from './feather'
+import { focusRing } from './sc-focus-ring.js'
+import { featherIcon } from './feather.js'
 
 @customElement('sc-accordion')
 export class ScAccordion extends LitElement {

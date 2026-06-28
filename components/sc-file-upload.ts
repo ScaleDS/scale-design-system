@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { linkL, textL, textM } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import { featherIcon } from './feather'
+import { focusRing } from './sc-focus-ring.js'
+import { featherIcon } from './feather.js'
 import '@scale-ds/scale-design-system/components/sc-file-upload-item'
 
 type FileUploadLayout = 'vertical' | 'horizontal'

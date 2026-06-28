@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement } from 'lit/decorators.js'
 import '@scale-ds/scale-design-system/components/sc-accordion'
-import { reset } from './reset'
+import { reset } from './reset.js'
 
 @customElement('sc-section-faq')
 export class ScSectionFaq extends LitElement {

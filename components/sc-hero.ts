@@ -3,8 +3,8 @@ import { customElement, property } from 'lit/decorators.js'
 import '@scale-ds/scale-design-system/components/sc-badge'
 import '@scale-ds/scale-design-system/components/sc-button'
 import '@scale-ds/scale-design-system/components/sc-input'
-import { ThemeController } from './theme-controller'
-import { reset } from './reset'
+import { ThemeController } from './theme-controller.js'
+import { reset } from './reset.js'
 
 @customElement('sc-hero')
 export class ScHero extends LitElement {

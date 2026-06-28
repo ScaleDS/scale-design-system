@@ -1,6 +1,6 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { focusRing } from './sc-focus-ring'
+import { focusRing } from './sc-focus-ring.js'
 
 @customElement('sc-toggle')
 export class ScToggle extends LitElement {

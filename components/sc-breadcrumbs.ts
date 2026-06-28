@@ -1,8 +1,8 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { linkM, textM } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import { reset } from './reset'
+import { focusRing } from './sc-focus-ring.js'
+import { reset } from './reset.js'
 
 export interface Crumb {
   label: string

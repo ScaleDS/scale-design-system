@@ -1,7 +1,7 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { labelL, textL, text2xl } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
+import { focusRing } from './sc-focus-ring.js'
 import '@scale-ds/scale-design-system/components/sc-help-text'
 
 type PinSize = 'l' | 'xl'

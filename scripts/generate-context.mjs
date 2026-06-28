@@ -5,6 +5,10 @@ import { join } from 'path'
 const componentsDir = join(process.cwd(), 'components')
 const outputFile = join(process.cwd(), 'context', 'components.json')
 
+const pkg = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf-8'))
+
+const STRICT = process.argv.includes('--strict') || process.env.CI === 'true'
+
 const componentFiles = readdirSync(componentsDir)
   .filter(f => f.endsWith('.ts'))
   .filter(f => {
@@ -127,7 +131,6 @@ const whenToUse = {
 function parseComponent(filePath) {
   const content = readFileSync(filePath, 'utf-8')
   const fileName = filePath.split('/').pop().replace('.ts', '')
-  const tag = fileName.replace('sc-', 'sc-')
 
   const tagMatch = content.match(/@customElement\('([^']+)'\)/)
   const classMatch = content.match(/export class (\w+) extends LitElement/)
@@ -175,10 +178,15 @@ function parseComponent(filePath) {
   }
 
   const deps = []
-  const importRegex = /import.*'@scale\/design-system\/components\/(sc-[^']+)'/g
+  const escapedName = pkg.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  const importRegex = new RegExp(
+    `import[^'"]*['"](?:${escapedName}/components/|\\./)(sc-[^'"]+)['"]`,
+    'g',
+  )
   let importMatch
   while ((importMatch = importRegex.exec(content)) !== null) {
-    deps.push(importMatch[1].replace('.js', ''))
+    const dep = importMatch[1].replace(/\.js$/, '')
+    if (dep !== tagName && !deps.includes(dep)) deps.push(dep)
   }
 
   const cssParts = []
@@ -204,14 +212,43 @@ function parseComponent(filePath) {
 }
 
 const components = componentFiles.map(f => parseComponent(join(componentsDir, f)))
+const componentTags = new Set(components.map(c => c.tag))
+for (const c of components) c.dependencies = c.dependencies.filter(d => componentTags.has(d))
 
 const output = {
-  name: '@scale-ds/scale-design-system',
-  version: '1.0.0',
+  name: pkg.name,
+  version: pkg.version,
   framework: 'lit',
-  description: 'Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers',
+  description: pkg.description,
   components,
 }
 
 writeFileSync(outputFile, JSON.stringify(output, null, 2), 'utf-8')
 console.log(`Generated ${components.length} components → ${outputFile}`)
+
+// Surface components missing hand-authored metadata.
+const uncovered = components
+  .map(c => {
+    const missing = []
+    if (!categoryMap[c.tag]) missing.push('category')
+    if (!descriptions[c.tag]) missing.push('description')
+    if (!whenToUse[c.tag]) missing.push('whenToUse')
+    return missing.length ? { tag: c.tag, missing } : null
+  })
+  .filter(Boolean)
+
+if (uncovered.length) {
+  const lines = uncovered.map(u => `  - ${u.tag} (missing: ${u.missing.join(', ')})`)
+  const msg =
+    `\n${uncovered.length} of ${components.length} components are missing hand-authored metadata ` +
+    `in scripts/generate-context.mjs (categoryMap / descriptions / whenToUse):\n${lines.join('\n')}\n` +
+    `These ship as category:"unknown" with empty description/whenToUse, degrading the ` +
+    `machine-readable context. Add them to the maps above.`
+  if (STRICT) {
+    console.error(`\n✖ generate-context (strict):${msg}`)
+    process.exit(1)
+  }
+  console.warn(`\n⚠ generate-context:${msg}`)
+} else {
+  console.log('✓ All components have category, description, and whenToUse metadata.')
+}

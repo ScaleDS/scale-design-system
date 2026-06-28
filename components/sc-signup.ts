@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import './sc-input'
-import './sc-button'
+import './sc-input.js'
+import './sc-button.js'
 
 type SignupState = 'default' | 'negative' | 'positive'
 

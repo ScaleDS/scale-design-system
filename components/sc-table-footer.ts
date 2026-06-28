@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import './sc-button'
-import './sc-page-controls'
+import './sc-button.js'
+import './sc-page-controls.js'
 
 // Table Footer — pagination row: Prev button, page-control dots, Next button.
 // Composes the shared <sc-button> and <sc-page-controls>. Emits `page-change`

@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { ThemeController } from './theme-controller'
+import { ThemeController } from './theme-controller.js'
 
 type CardImageVariant = 'default' | 'fill'
 

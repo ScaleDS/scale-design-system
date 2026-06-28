@@ -1,9 +1,9 @@
 import { LitElement, html, css, nothing } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
 import { textL, textM, linkL } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import { featherIcon } from './feather'
-import './sc-checkbox'
+import { focusRing } from './sc-focus-ring.js'
+import { featherIcon } from './feather.js'
+import './sc-checkbox.js'
 
 type TableCellAlign = 'leading' | 'trailing'
 

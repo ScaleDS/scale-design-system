@@ -2,7 +2,7 @@ import { html, type TemplateResult, type ReactiveController, type ReactiveContro
 // Importing this module registers the calendar. Because sc-input only reaches
 // this file through a dynamic import() (when kind="date" activates), the
 // calendar and its button dependencies stay out of the base sc-input bundle.
-import '../sc-date-picker'
+import '../sc-date-picker.js'
 
 /** The subset of `sc-input` that the date dropdown controller reads and writes. */
 export interface DateKindHost extends ReactiveControllerHost {

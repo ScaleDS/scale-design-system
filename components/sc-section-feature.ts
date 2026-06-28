@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { ThemeController } from './theme-controller'
-import { reset } from './reset'
+import { ThemeController } from './theme-controller.js'
+import { reset } from './reset.js'
 
 @customElement('sc-section-feature')
 export class ScSectionFeature extends LitElement {

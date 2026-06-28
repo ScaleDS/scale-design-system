@@ -1,9 +1,9 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { labelM, textM } from '@scale-ds/scale-design-system/scss/typography'
-import { focusRing } from './sc-focus-ring'
-import './sc-button-icon'
-import './sc-button'
+import { focusRing } from './sc-focus-ring.js'
+import './sc-button-icon.js'
+import './sc-button.js'
 
 type FirstDayOfWeek = 'monday' | 'sunday'
 type DatePickerMode = 'single' | 'range'
@@ -331,7 +331,7 @@ export class ScDatePicker extends LitElement {
   }
 
   private _onGridKeydown(e: KeyboardEvent) {
-    let next: Date | null = null
+    let next: Date
     switch (e.key) {
       case 'ArrowLeft': next = addDays(this._focusDate, -1); break
       case 'ArrowRight': next = addDays(this._focusDate, 1); break
@@ -380,7 +380,7 @@ export class ScDatePicker extends LitElement {
   // for the user picking the end before the start. Returns null when nothing
   // is selected yet.
   private _effectiveRange(): { start: Date; end: Date } | null {
-    let start = this._rangeStart
+    const start = this._rangeStart
     let end = this._rangeEnd
     if (start && !end && this._hoverDate) end = this._hoverDate
     if (!start || !end) return null
