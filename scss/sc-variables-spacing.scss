@@ -1,6 +1,6 @@
 /* Scale: Spacing Variables */
 
-@import './sc-variables-unit.scss';
+@use './sc-variables-unit';
 
 :root {
     --sc-space-none: 0px;
