@@ -42,7 +42,7 @@
     "build:watch": "tsc --watch",
     "prepare": "npm run build",
     "generate:context": "node scripts/generate-context.mjs",
-    "prepublishOnly": "npm run build && npm run generate:context",
+    "prepublishOnly": "npm run build && node scripts/generate-context.mjs --strict",
     "dev": "tsc --watch"
   },
   "keywords": [

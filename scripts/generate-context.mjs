@@ -9,8 +9,12 @@ const pkg = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf-8'
 
 const STRICT = process.argv.includes('--strict') || process.env.CI === 'true'
 
+// Dev-only / internal custom elements that aren't part of the public catalog.
+const EXCLUDE = new Set(['sc-edit-layer'])
+
 const componentFiles = readdirSync(componentsDir)
   .filter(f => f.endsWith('.ts'))
+  .filter(f => !EXCLUDE.has(f.replace(/\.ts$/, '')))
   .filter(f => {
     // Only files that actually register a custom element are components.
     const content = readFileSync(join(componentsDir, f), 'utf-8')
@@ -52,6 +56,34 @@ const categoryMap = {
   'sc-section-signup': 'sections',
   'sc-status-icon': 'feedback',
   'sc-toggle': 'forms',
+  'sc-button-group': 'actions',
+  'sc-card': 'content',
+  'sc-card-selector': 'forms',
+  'sc-date-picker': 'forms',
+  'sc-file-upload': 'forms',
+  'sc-file-upload-item': 'forms',
+  'sc-input-pin': 'forms',
+  'sc-modal': 'feedback',
+  'sc-page-controls': 'navigation',
+  'sc-progress-bar': 'feedback',
+  'sc-segmented-control': 'forms',
+  'sc-signup': 'forms',
+  'sc-slider': 'forms',
+  'sc-spinner': 'feedback',
+  'sc-status-indicator': 'feedback',
+  'sc-tab': 'navigation',
+  'sc-tab-panel': 'navigation',
+  'sc-table-basic': 'data-display',
+  'sc-table-cell': 'data-display',
+  'sc-table-dynamic': 'data-display',
+  'sc-table-footer': 'data-display',
+  'sc-table-head': 'data-display',
+  'sc-table-row': 'data-display',
+  'sc-tabs': 'navigation',
+  'sc-tag': 'content',
+  'sc-text-area': 'forms',
+  'sc-toast': 'feedback',
+  'sc-tooltip': 'feedback',
 }
 
 const descriptions = {
@@ -89,6 +121,34 @@ const descriptions = {
   'sc-section-signup': 'Card-based signup section with heading, subtext, input, and action button',
   'sc-status-icon': 'Status indicator icon with info, warning, error, and success variants in 3 sizes',
   'sc-toggle': 'On/off switch toggle for settings and preferences',
+  'sc-button-group': 'Container for grouped buttons with configurable orientation, gap, alignment, and optional single-select value',
+  'sc-card': 'Lightweight surface container with configurable elevation, border radius, and padding tokens',
+  'sc-card-selector': 'Selectable card with a checkbox or radio indicator that participates in form selection',
+  'sc-date-picker': 'Calendar date picker supporting a single date or a range, with keyboard navigation and optional confirm actions',
+  'sc-file-upload': 'Drag-and-drop upload zone with per-file progress, error states, and single or multiple file support',
+  'sc-file-upload-item': 'A single file row showing name, size, progress bar, and status with a remove control',
+  'sc-input-pin': 'Multi-digit code input with individual cells, keyboard navigation, paste support, and validation states',
+  'sc-modal': 'Modal dialog built on the native dialog element with heading, body, and an optional actions footer',
+  'sc-page-controls': 'Pagination dots with previous/next controls for moving between pages or slides',
+  'sc-progress-bar': 'Horizontal progress bar with a 0–100% value and status colours (uploading, positive, negative)',
+  'sc-segmented-control': 'Pill of 2–4 mutually-exclusive segments, optionally icon-only, with full keyboard support',
+  'sc-signup': 'Inline email-capture form pairing a text input with a primary button, wrapping on narrow screens',
+  'sc-slider': 'Continuous range input with a draggable thumb, keyboard support, and native form participation',
+  'sc-spinner': 'Animated indeterminate loading indicator with 2 sizes and 4 colour variants',
+  'sc-status-indicator': 'Small coloured status dot, decorative beside text or semantic with an accessible label',
+  'sc-tab': 'A single tab within sc-tabs, with selection and focus managed by the parent',
+  'sc-tab-panel': 'Content panel paired with a tab, shown or hidden by the parent sc-tabs',
+  'sc-table-basic': 'Accessible table using CSS subgrid columns with sortable headers, row selection, and optional pagination',
+  'sc-table-cell': 'Table body cell with optional leading/trailing icons, secondary text, link rendering, and a selection checkbox',
+  'sc-table-dynamic': 'Data-driven table that builds rows and columns from column definitions and row-data arrays',
+  'sc-table-footer': 'Table footer with previous/next pagination buttons and page indicator dots',
+  'sc-table-head': 'Table header cell with an optional sort control and select-all checkbox',
+  'sc-table-row': 'Table row container using CSS subgrid for column alignment, in body or header variants',
+  'sc-tabs': 'Tabbed interface (WAI-ARIA APG pattern) managing tab selection, focus, and panel visibility',
+  'sc-tag': 'Small chip for categories or filters, optionally selectable or removable, with an optional icon or avatar',
+  'sc-text-area': 'Multi-line text field with label, help text, validation states, and configurable resize behaviour',
+  'sc-toast': 'Fixed-position notification with an optional status icon, link, and auto-dismiss timer',
+  'sc-tooltip': 'Popover shown on hover or focus that auto-flips when it would collide with the viewport edge',
 }
 
 const whenToUse = {
@@ -126,6 +186,34 @@ const whenToUse = {
   'sc-section-signup': 'Email capture sections, newsletter signup, call-to-action blocks',
   'sc-status-icon': 'Validation feedback, status indicators, alert icons, help text icons',
   'sc-toggle': 'Settings toggles, feature flags, preference switches, enable/disable controls',
+  'sc-button-group': 'Grouping related buttons, action toolbars, single-select button sets',
+  'sc-card': 'Content containers, card layouts, grouping related content on a surface',
+  'sc-card-selector': 'Card-based selection, plan or option pickers, form choices with rich visuals',
+  'sc-date-picker': 'Date selection, date ranges, booking calendars, event scheduling',
+  'sc-file-upload': 'File uploads, document collection, asset management, media uploads',
+  'sc-file-upload-item': 'Showing uploaded or in-progress file rows inside a file upload',
+  'sc-input-pin': 'One-time codes, PIN verification, multi-digit code entry, 2FA inputs',
+  'sc-modal': 'Confirmations, critical decisions, focused interruptions, blocking actions',
+  'sc-page-controls': 'Carousel pagination, slide navigation, step indicators, page dots',
+  'sc-progress-bar': 'File uploads, loading states, operation progress, completion tracking',
+  'sc-segmented-control': 'Filter toggles, view-mode switches, binary or ternary choices',
+  'sc-signup': 'Newsletter signup, lead capture, email list collection, simple mailing forms',
+  'sc-slider': 'Continuous value selection, volume and range controls, numeric adjustment',
+  'sc-spinner': 'Loading states, in-progress indicators, async feedback, busy states',
+  'sc-status-indicator': 'Status dots, connection or presence indicators, state visualization',
+  'sc-tab': 'Individual tabs inside an sc-tabs tabbed interface',
+  'sc-tab-panel': 'Tab content panels inside an sc-tabs tabbed interface',
+  'sc-table-basic': 'Structured data, records, sortable columns, paginated datasets',
+  'sc-table-cell': 'Rendering cell content within table rows',
+  'sc-table-dynamic': 'Tabular data from arrays or objects, avoiding hand-written table markup',
+  'sc-table-footer': 'Paginated table navigation, page selection in data tables',
+  'sc-table-head': 'Sortable column headers, header cells for data tables',
+  'sc-table-row': 'Individual table rows and header rows in data tables',
+  'sc-tabs': 'Tabbed content, multi-view interfaces, organized content sections',
+  'sc-tag': 'Tags, filter chips, category labels, dismissible tokens',
+  'sc-text-area': 'Long-form text entry, comments, descriptions, message and feedback fields',
+  'sc-toast': 'Temporary notifications, success or error messages, action confirmations',
+  'sc-tooltip': 'Help text, icon descriptions, supplementary hints, form field guidance',
 }
 
 function parseComponent(filePath) {
