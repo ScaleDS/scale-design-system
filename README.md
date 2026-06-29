@@ -73,13 +73,16 @@ An MCP server is bundled for IDE integration (Cursor, Claude Code, Claude Deskto
 ## Theming
 
 Visual properties come from CSS custom properties. Retheme by overriding the
-brand scale (`sc-logo` and components follow it automatically):
+semantic brand variables — `sc-logo` and every component follow them
+automatically. Light and dark are built in and honour `prefers-color-scheme`.
 
 ```css
 :root {
-  --sc-color-brand-500: #ff3355;
-  --sc-color-brand-400: #ff5a76;
-  --sc-color-brand-600: #ce2945;
+  --sc-color-background-brand: #ff3355;
+  --sc-color-background-brand-hover: #e62e4c;
+  --sc-color-background-brand-pressed: #cc2943;
+  --sc-color-text-brand: #ff3355;
+  --sc-color-border-brand: #ff3355;
 }
 ```
 
