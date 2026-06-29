@@ -3,14 +3,17 @@ import { customElement, property } from 'lit/decorators.js'
 import { labelM } from '@scale-ds/scale-design-system/scss/typography'
 import { focusRing } from './sc-focus-ring.js'
 import { featherIcon } from './feather.js'
+import './sc-tooltip.js'
 
 /** One selectable segment. `value` is required; `label` shows the text (and
- *  doubles as the accessible name when icon-only), `icon` is a Feather name. */
+ *  doubles as the accessible name when icon-only), `icon` is a Feather name.
+ *  `tooltip`, when set, shows a tooltip on hover/focus (handy for icon-only). */
 export interface SegmentedItem {
   label?: string
   value: string
   icon?: string
   disabled?: boolean
+  tooltip?: string
 }
 
 /**
@@ -38,6 +41,8 @@ export class ScSegmentedControl extends LitElement {
   @property({ type: Boolean, reflect: true, attribute: 'icon-only' }) iconOnly = false
   /** Accessible label for the group. */
   @property({ attribute: 'label' }) label = ''
+  /** Show delay (ms) for per-segment tooltips (see `SegmentedItem.tooltip`). */
+  @property({ type: Number, attribute: 'tooltip-delay' }) tooltipDelay = 150
 
   private _internals = this.attachInternals()
   private _initialValue = ''
@@ -165,7 +170,7 @@ export class ScSegmentedControl extends LitElement {
           const showText = !this.iconOnly && !!item.label
           // Icon-only segments take their accessible name from the label.
           const ariaLabel = this.iconOnly && item.label ? item.label : nothing
-          return html`
+          const segment = html`
             <button
               class="segment"
               part="segment"
@@ -180,6 +185,9 @@ export class ScSegmentedControl extends LitElement {
               ${showText ? html`<span part="label">${item.label}</span>` : nothing}
             </button>
           `
+          return item.tooltip
+            ? html`<sc-tooltip class="segment-tip" content=${item.tooltip} placement="top" show-delay=${this.tooltipDelay}>${segment}</sc-tooltip>`
+            : segment
         })}
       </div>
     `

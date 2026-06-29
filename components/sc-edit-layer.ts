@@ -4,7 +4,9 @@ import { ThemeController } from './theme-controller.js'
 // Scale Edit's own chrome is built from real design-system components.
 import './sc-button.js'
 import './sc-button-icon.js'
-import './sc-badge.js'
+import './sc-segmented-control.js'
+import './sc-status-indicator.js'
+import './sc-tooltip.js'
 
 /** One captured annotation or edit, mirrored to `.scale/edits.json` by the bridge. */
 export interface EditItem {
@@ -117,7 +119,7 @@ export class ScEditLayer extends LitElement {
   @state() private selectedRect: DOMRect | null = null
   @state() private items: EditItem[] = []
   @state() private draft = ''
-  @state() private showInbox = false
+  @state() private showQueue = false
   @state() private openPin: string | null = null
   /** Re-render tick when the selected element's live attributes change. */
   @state() private inspectVersion = 0
@@ -425,7 +427,7 @@ export class ScEditLayer extends LitElement {
     const el = this.selectedEl as HTMLElement | null
     if (!el) return
     // `from` follows the attribute convention (undefined = was absent) so revert works;
-    // `to` stays human-readable for the inbox/skill.
+    // `to` stays human-readable for the queue/skill.
     const from = el.hasAttribute(attr) ? (el.getAttribute(attr) ?? '') : undefined
     if (present) el.setAttribute(attr, '')
     else el.removeAttribute(attr)
@@ -451,7 +453,7 @@ export class ScEditLayer extends LitElement {
       ${this.active ? this.renderToolbar() : nothing}
       ${this.active && this.mode === 'annotate' && this.selectedRect ? this.renderPopover() : nothing}
       ${this.active && this.mode === 'edit' ? this.renderPanel() : nothing}
-      ${this.active && this.showInbox ? this.renderInbox() : nothing}
+      ${this.active && this.showQueue ? this.renderQueue() : nothing}
     `
   }
 
@@ -515,16 +517,14 @@ export class ScEditLayer extends LitElement {
   }
 
   private renderLauncher() {
-    const count = this.items.length
     return html`
       <div class="launcher-wrap">
         <sc-button-icon
           icon=${this.active ? 'x' : 'edit-2'}
           label="Scale Edit (⌘⇧E)"
-          type="mono"
+          type="primary"
           @click=${() => this.toggle()}
         ></sc-button-icon>
-        ${count ? html`<sc-badge class="count" status="negative">${count}</sc-badge>` : nothing}
       </div>
     `
   }
@@ -532,17 +532,42 @@ export class ScEditLayer extends LitElement {
   private renderToolbar() {
     return html`
       <div class="toolbar">
-        <span class="brand">Scale Edit</span>
-        <sc-button size="s" type=${this.mode === 'annotate' ? 'primary' : 'tertiary'} @click=${() => (this.mode = 'annotate')}>
-          Comment
-        </sc-button>
-        <sc-button size="s" type=${this.mode === 'edit' ? 'primary' : 'tertiary'} @click=${() => (this.mode = 'edit')}>
-          Edit
-        </sc-button>
-        <sc-button size="s" type="tertiary" @click=${() => (this.showInbox = !this.showInbox)}>
-          Inbox (${this.items.length})
-        </sc-button>
-        <sc-button-icon size="s" type="tertiary-mono" icon="x" label="Close Scale Edit" @click=${() => this.toggle()}></sc-button-icon>
+        <sc-segmented-control
+          icon-only
+          label="Edit mode"
+          tooltip-delay="1000"
+          .value=${this.mode}
+          .items=${[
+            { value: 'annotate', icon: 'message-square', label: 'Comment', tooltip: 'Comment' },
+            { value: 'edit', icon: 'edit-2', label: 'Edit', tooltip: 'Edit' },
+          ]}
+          @change=${(e: CustomEvent<{ value: string }>) => (this.mode = e.detail.value as 'annotate' | 'edit')}
+        ></sc-segmented-control>
+        <sc-tooltip content="Queue" placement="top" show-delay="1000">
+          <span class="queue-btn">
+            <sc-button-icon
+              size="s"
+              style="width: 36px; height: 36px; --sc-button-icon-padding: 0; --sc-button-icon-glyph-size: 24px; --sc-button-icon-radius: var(--sc-border-radius-circle, 50%); --sc-button-icon-color: var(--sc-color-icon-primary)"
+              type=${this.showQueue ? 'primary' : 'tertiary'}
+              icon="list"
+              label="Queue (${this.items.length})"
+              @click=${() => (this.showQueue = !this.showQueue)}
+            ></sc-button-icon>
+            ${this.items.length > 0
+              ? html`<sc-status-indicator class="queue-dot" status="negative" label="${this.items.length} pending"></sc-status-indicator>`
+              : nothing}
+          </span>
+        </sc-tooltip>
+        <sc-tooltip content="Close" placement="top" show-delay="1000">
+          <sc-button-icon
+            size="s"
+            style="width: 36px; height: 36px; --sc-button-icon-padding: 0; --sc-button-icon-glyph-size: 24px; --sc-button-icon-radius: var(--sc-border-radius-circle, 50%)"
+            type="tertiary-mono"
+            icon="x"
+            label="Close Scale Edit"
+            @click=${() => this.toggle()}
+          ></sc-button-icon>
+        </sc-tooltip>
       </div>
     `
   }
@@ -710,9 +735,9 @@ export class ScEditLayer extends LitElement {
     )
   }
 
-  private renderInbox() {
+  private renderQueue() {
     return html`
-      <div class="inbox">
+      <div class="queue">
         <div class="pop-head"><strong>Pending (${this.items.length})</strong></div>
         ${this.items.length === 0 ? html`<p class="empty">No items yet.</p>` : nothing}
         ${this.items.map(
@@ -774,33 +799,41 @@ export class ScEditLayer extends LitElement {
       border-radius: var(--sc-border-radius-circle, 50%);
       box-shadow: var(--sc-shadow-m, 0 4px 16px rgba(0, 0, 0, 0.2));
     }
-    .count {
-      position: absolute;
-      top: calc(-1 * var(--sc-space-2xs));
-      right: calc(-1 * var(--sc-space-2xs));
-      pointer-events: none;
-    }
     .toolbar {
       position: fixed;
-      left: 50%;
+      /* Centre horizontally with auto margins instead of a transform: a CSS
+         transform would make the toolbar a containing block for its
+         position:fixed tooltip descendants, breaking their viewport-relative
+         placement (tips would render off-screen). */
+      left: 0;
+      right: 0;
+      width: fit-content;
+      margin-inline: auto;
       bottom: var(--sc-space-l);
-      transform: translateX(-50%);
       pointer-events: auto;
       display: flex;
       align-items: center;
-      gap: var(--sc-space-xs);
-      padding: var(--sc-space-xs) var(--sc-space-s);
-      border-radius: var(--sc-border-radius-m, 12px);
-      background: var(--sc-color-background-primary, #fff);
-      border: 1px solid var(--sc-color-border-primary, #e3e3e3);
-      box-shadow: var(--sc-shadow-l, 0 8px 28px rgba(0, 0, 0, 0.18));
+      gap: 12px;
+      padding: 8px;
+      border-radius: var(--sc-border-radius-pill, 999px);
+      background: var(--sc-color-surface-l3, #fff);
+      box-shadow: var(--sc-shadow-l3, 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0px 6px rgba(0, 0, 0, 0.08));
     }
-    .brand {
-      font-weight: 600;
-      margin-right: var(--sc-space-2xs);
+    .queue-btn {
+      position: relative;
+      display: inline-flex;
+    }
+    .queue-dot {
+      position: absolute;
+      top: 0;
+      right: 0;
+      pointer-events: none;
+      /* Ring matching the toolbar surface so the dot reads as a badge. */
+      border: 2px solid var(--sc-color-surface-l3, #fff);
+      border-radius: var(--sc-border-radius-circle, 50%);
     }
     .popover,
-    .inbox {
+    .queue {
       position: fixed;
       pointer-events: auto;
       width: 300px;
@@ -810,7 +843,7 @@ export class ScEditLayer extends LitElement {
       border: 1px solid var(--sc-color-border-primary, #e3e3e3);
       box-shadow: var(--sc-shadow-l, 0 8px 28px rgba(0, 0, 0, 0.18));
     }
-    .inbox {
+    .queue {
       right: var(--sc-space-l);
       bottom: 72px;
       max-height: 60vh;
@@ -1009,7 +1042,7 @@ function rectStyle(r: DOMRect): string {
   return `top:${r.top}px;left:${r.left}px;width:${r.width}px;height:${r.height}px`
 }
 
-/** One-line human description of a queue item for pins/inbox. */
+/** One-line human description of a queue item for pins/queue. */
 function describeItem(it: EditItem): string {
   if (it.kind === 'comment') return it.comment ?? ''
   const e = it.edit

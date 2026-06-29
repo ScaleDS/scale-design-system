@@ -38,26 +38,31 @@ export class ScButtonIcon extends LitElement {
       transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
       outline: none;
       position: relative;
+      /* Fill the host so an explicit size on :host (e.g. width/height) forces
+         the button box; defaults to content-size when the host is auto. */
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
     }
 
     /* ---- Sizes ---- */
 
     :host([size='l']) button {
-      padding: var(--sc-space-m);
-      border-radius: var(--sc-border-radius-xl);
+      padding: var(--sc-button-icon-padding, var(--sc-space-m));
+      border-radius: var(--sc-button-icon-radius, var(--sc-border-radius-xl));
     }
     :host([size='l']) svg {
-      width: 24px;
-      height: 24px;
+      width: var(--sc-button-icon-glyph-size, 24px);
+      height: var(--sc-button-icon-glyph-size, 24px);
     }
 
     :host([size='s']) button {
-      padding: var(--sc-space-s);
-      border-radius: var(--sc-border-radius-l);
+      padding: var(--sc-button-icon-padding, var(--sc-space-s));
+      border-radius: var(--sc-button-icon-radius, var(--sc-border-radius-l));
     }
     :host([size='s']) svg {
-      width: 16px;
-      height: 16px;
+      width: var(--sc-button-icon-glyph-size, 16px);
+      height: var(--sc-button-icon-glyph-size, 16px);
     }
 
     /* ---- Types ---- */
@@ -89,7 +94,7 @@ export class ScButtonIcon extends LitElement {
     /* Tertiary */
     :host([type='tertiary']) button {
       background: transparent;
-      color: var(--sc-color-icon-brand);
+      color: var(--sc-button-icon-color, var(--sc-color-icon-brand));
     }
     :host([type='tertiary']) button:hover {
       background: var(--sc-color-background-neutral-hover);
