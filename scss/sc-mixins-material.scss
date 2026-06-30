@@ -1,0 +1,67 @@
+/* Scale: Material Mixins */
+/* Apple-style material surfaces — a backdrop blur with two stacked, blended fill
+   layers (a "Fill - FX" layer beneath a "Fill" layer). The fill colours are
+   theme-aware semantic tokens (see sc-variables-color.scss); the blur radius and
+   the per-layer blend modes are constant across light and dark.
+
+   Usage:
+     .panel { @include material.sc-material-regular; }
+   The mixin paints the material via ::before (Fill - FX) and ::after (Fill) and
+   keeps the element's own children above those layers, so put real content
+   directly inside the element. */
+
+:root {
+  --sc-blur-material: 50px;
+}
+
+@mixin _sc-material-base {
+  position: relative;
+  backdrop-filter: blur(var(--sc-blur-material));
+  -webkit-backdrop-filter: blur(var(--sc-blur-material));
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  // Keep real content above the two fill layers.
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+@mixin sc-material-ultrathin {
+  @include _sc-material-base;
+  &::before { background: var(--sc-color-material-ultrathin-fill-fx); mix-blend-mode: color-dodge; }
+  &::after  { background: var(--sc-color-material-ultrathin-fill); }
+}
+
+@mixin sc-material-thin {
+  @include _sc-material-base;
+  &::before { background: var(--sc-color-material-thin-fill-fx); mix-blend-mode: color-dodge; }
+  &::after  { background: var(--sc-color-material-thin-fill); }
+}
+
+@mixin sc-material-regular {
+  @include _sc-material-base;
+  &::before { background: var(--sc-color-material-regular-fill-fx); mix-blend-mode: plus-lighter; }
+  &::after  { background: var(--sc-color-material-regular-fill); }
+}
+
+@mixin sc-material-thick {
+  @include _sc-material-base;
+  &::before { background: var(--sc-color-material-thick-fill-fx); mix-blend-mode: plus-lighter; }
+  &::after  { background: var(--sc-color-material-thick-fill); }
+}
+
+@mixin sc-material-chrome {
+  @include _sc-material-base;
+  &::before { background: var(--sc-color-material-chrome-fill-fx); }
+  &::after  { background: var(--sc-color-material-chrome-fill); mix-blend-mode: hard-light; }
+}
