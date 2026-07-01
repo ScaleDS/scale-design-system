@@ -164,9 +164,8 @@ pre {
 /* ---- Glass ---- */
 
 .sc-glass {
-  background: color-mix(in srgb, var(--sc-color-background-neutral) 64%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  @include material.sc-material-thin;
+  background: color-mix(in srgb, var(--sc-color-background-inverse) 12%, transparent);
 }
 
 /* ---- Selection ---- */
