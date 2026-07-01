@@ -310,6 +310,34 @@ export class ScHeader extends LitElement {
       margin-right: var(--sc-space-xs);
       border: none;
       cursor: pointer;
+      /* Glass: the .sc-glass recipe (Thin material tinted with background-inverse
+         at 12%) inlined here, since a light-DOM class can't reach the toggle
+         inside this shadow root. The inverse tint gives the two material fill
+         layers something to read against on light backdrops. */
+      background: color-mix(in srgb, var(--sc-color-background-inverse) 12%, transparent);
+      backdrop-filter: blur(var(--sc-blur-material, 50px));
+      -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
+    }
+
+    /* Two stacked fill layers beneath the thumb/icons (z-index 1), matching the
+       Thin material mixin: a color-dodge highlight (fill-fx) under the tint (fill). */
+    .theme-toggle::before,
+    .theme-toggle::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+
+    .theme-toggle::before {
+      background: var(--sc-color-material-thin-fill-fx);
+      mix-blend-mode: color-dodge;
+    }
+
+    .theme-toggle::after {
+      background: var(--sc-color-material-thin-fill);
     }
 
     .theme-toggle-thumb {
@@ -318,6 +346,8 @@ export class ScHeader extends LitElement {
       width: 28px;
       height: 28px;
       border-radius: 50%;
+      /* Above the material fill layers (z-index 0); the icons sit above this. */
+      z-index: 1;
       background: var(--sc-color-surface-l4);
       box-shadow: var(--sc-shadow-l1);
       transition: transform 250ms ease;
