@@ -72,23 +72,28 @@ An MCP server is bundled for IDE integration (Cursor, Claude Code, Claude Deskto
 
 ## Theming
 
-Visual properties come from CSS custom properties. Retheme by overriding the
-semantic brand variables — `sc-logo` and every component follow them
-automatically. Light and dark are built in and honour `prefers-color-scheme`.
+Visual properties come from CSS custom properties. The semantic brand
+variables resolve to a primitive brand scale (`--sc-color-brand-100`–`900`) —
+in the light theme:
 
 ```css
 :root {
-  --sc-color-background-brand: #ff3355;
-  --sc-color-background-brand-hover: #e62e4c;
-  --sc-color-background-brand-pressed: #cc2943;
-  --sc-color-text-brand: #ff3355;
-  --sc-color-border-brand: #ff3355;
+  --sc-color-background-brand: var(--sc-color-brand-500);
+  --sc-color-background-brand-hover: var(--sc-color-brand-600);
+  --sc-color-background-brand-pressed: var(--sc-color-brand-700);
+  --sc-color-text-brand: var(--sc-color-brand-500);
+  --sc-color-border-brand: var(--sc-color-brand-500);
 }
 ```
 
+Retheme by overriding the `--sc-color-brand-*` primitives — `sc-logo` and every
+component follow automatically. The dark theme picks different steps from the
+same scale (e.g. `--sc-color-background-brand: var(--sc-color-brand-400)`), so
+both themes retheme at once and honour `prefers-color-scheme`.
+
 Light/dark is driven by `data-theme` on `<html>` and a shared `ThemeController`.
-See the [theming docs](https://scaledesignsystem.com) for the FOUC-prevention
-script and the full token reference.
+See the [Color foundation](https://scaledesignsystem.com/foundations/color/) for
+the full token reference.
 
 ## Scale Edit
 
@@ -117,26 +122,26 @@ npm run dev                # no overlay
 
 Non-Vite setups can mount it manually via `enableEdit()` from
 `@scale-ds/scale-design-system/edit`. See the
-[Scale Edit docs](https://scaledesignsystem.com) for queue options and the
-agent workflow.
+[Scale Edit docs](https://scaledesignsystem.com/get-started/scale-edit/) for
+queue options and the agent workflow.
 
 ## Development
 
 ```bash
-npm run build             # Compile TypeScript
+npm run build             # Compile TypeScript (components + bundled MCP server)
 npm run build:watch       # Watch mode
 npm run generate:context  # Regenerate components.json from source
 ```
 
 The package builds on install via `prepare` and ships compiled `dist/` (plus
-`scss/`, `context/`, `assets/`), so `github:` installs resolve
+`scss/`, `context/`, `assets/`, `mcp/dist/`), so `github:` installs resolve
 `@scale-ds/scale-design-system/components/*` with no manual build step.
 
 ## Contributors
 
 Thanks to everyone who has contributed to Scale:
 
-- Daniel ([@JoPixelPoet](https://github.com/JoPixelPoet)) — npm/ESM packaging and dev tooling, form-control accessibility, component catalog backfill, package export surface, and the Sass `@use` migration.
+- [@JoPixelPoet](https://github.com/JoPixelPoet) — npm/ESM packaging and dev tooling, form-control accessibility, component catalog backfill, package export surface, and the Sass `@use` migration.
 
 ## License
 

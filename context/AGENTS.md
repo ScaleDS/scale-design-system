@@ -1,6 +1,6 @@
 # Scale Design System — Agent Context
 
-> Scale Design System 1.0.0 — Lit-based agentic design system with machine-readable context.
+> Scale Design System — Lit-based agentic design system with machine-readable context.
 
 ## Overview
 
