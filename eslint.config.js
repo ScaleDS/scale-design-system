@@ -5,7 +5,7 @@ import lit from 'eslint-plugin-lit'
 import wc from 'eslint-plugin-wc'
 
 export default tseslint.config(
-  { ignores: ['dist/**', 'mcp/dist/**', 'context/**', 'assets/**', 'node_modules/**'] },
+  { ignores: ['dist/**', 'mcp/dist/**', 'context/**', 'assets/**', 'node_modules/**', 'examples/**/dist/**'] },
   js.configs.recommended,
   ...tseslint.configs.recommended,
   lit.configs['flat/recommended'],
@@ -27,7 +27,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['scripts/**/*.mjs', 'mcp/**/*.ts'],
+    files: ['scripts/**/*.mjs', 'mcp/**/*.ts', 'vite-plugin.js'],
     languageOptions: { globals: { ...globals.node } },
   },
 )

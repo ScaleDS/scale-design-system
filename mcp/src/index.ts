@@ -1,13 +1,18 @@
 #!/usr/bin/env node
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
-import { readFileSync } from 'fs'
+import { readFileSync, existsSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import { z } from 'zod'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const contextDir = join(process.cwd(), 'context')
+// Prefer a context/ dir in the launch directory (e.g. a checkout with freshly
+// regenerated context); otherwise use the copy shipped inside the package.
+const cwdContext = join(process.cwd(), 'context')
+const contextDir = existsSync(join(cwdContext, 'components.json'))
+  ? cwdContext
+  : join(__dirname, '..', '..', 'context')
 
 const components = JSON.parse(readFileSync(join(contextDir, 'components.json'), 'utf-8'))
 const tokens = JSON.parse(readFileSync(join(contextDir, 'tokens.json'), 'utf-8'))
