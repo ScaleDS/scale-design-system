@@ -310,7 +310,7 @@ export class ScHeader extends LitElement {
       margin-right: var(--sc-space-xs);
       border: none;
       cursor: pointer;
-      /* Glass: the .sc-glass recipe (Thin material tinted with background-inverse
+      /* Glass: the .sc-material-thin + .sc-material-tint-12 recipe (Thin material tinted with background-inverse
          at 12%) inlined here, since a light-DOM class can't reach the toggle
          inside this shadow root. The inverse tint gives the two material fill
          layers something to read against on light backdrops. */

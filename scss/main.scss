@@ -161,11 +161,22 @@ pre {
   }
 }
 
-/* ---- Glass ---- */
+/* ---- Materials ---- */
 
-.sc-glass {
-  @include material.sc-material-thin;
-  background: color-mix(in srgb, var(--sc-color-background-inverse) 12%, transparent);
+/* One class per material thickness (see sc-mixins-material.scss). */
+.sc-material-ultrathin { @include material.sc-material-ultrathin; }
+.sc-material-thin { @include material.sc-material-thin; }
+.sc-material-regular { @include material.sc-material-regular; }
+.sc-material-thick { @include material.sc-material-thick; }
+.sc-material-chrome { @include material.sc-material-chrome; }
+
+/* Tint modifiers: compose with any material class to add a background-inverse
+   tint beneath the material fill layers, e.g. class="sc-material-thin sc-material-tint-12".
+   Higher = more opaque. */
+@each $tint in 12, 16, 24, 32, 40 {
+  .sc-material-tint-#{$tint} {
+    background: color-mix(in srgb, var(--sc-color-background-inverse) #{$tint + '%'}, transparent);
+  }
 }
 
 /* ---- Selection ---- */
