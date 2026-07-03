@@ -1,9 +1,12 @@
-import { LitElement, html, css, nothing, type TemplateResult } from 'lit'
+import { LitElement, html, css, nothing, type PropertyValues, type TemplateResult } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { ThemeController } from './theme-controller.js'
+import { heading2xs, textLSemiBold, textMRegular, textMSemiBold, textSSemiBold } from '@scale-ds/scale-design-system/scss/typography'
 // Scale Edit's own chrome is built from real design-system components.
+import './sc-badge.js'
 import './sc-button.js'
 import './sc-button-icon.js'
+import './sc-divider.js'
 import './sc-segmented-control.js'
 import './sc-status-indicator.js'
 import './sc-tooltip.js'
@@ -111,6 +114,11 @@ export class ScEditLayer extends LitElement {
   /** Bridge endpoint to read/write items. */
   @property() endpoint = '/__scale/edits'
 
+  /** Mount already engaged (toolbar/picking active) instead of the collapsed
+   *  launcher button. Opt-in for testing — the Vite bridge sets it from
+   *  `SCALE_EDIT=open`; the launcher toggle still collapses/re-opens as usual. */
+  @property({ type: Boolean }) open = false
+
   private theme = new ThemeController(this)
 
   @state() private active = false
@@ -145,6 +153,9 @@ export class ScEditLayer extends LitElement {
     window.addEventListener('scroll', this.onReposition, true)
     window.addEventListener('resize', this.onReposition, true)
     void this.loadItems()
+    // Open by default when requested (testing), landing in the same engaged
+    // state the launcher toggle produces.
+    if (this.open && !this.active) this.toggle()
   }
 
   disconnectedCallback() {
@@ -153,6 +164,91 @@ export class ScEditLayer extends LitElement {
     window.removeEventListener('scroll', this.onReposition, true)
     window.removeEventListener('resize', this.onReposition, true)
     this.teardownPicking()
+    this.panelRO?.disconnect()
+    for (const st of this.fadeStates.values()) if (st.timer) clearTimeout(st.timer)
+    this.fadeStates.clear()
+  }
+
+  // ---- panel height animation ----------------------------------------------
+
+  private panelEl: HTMLElement | null = null
+  private panelRO?: ResizeObserver
+  private panelH = 0
+  private panelAnimating = false
+  /** Pre-update clone of the panel body, overlaid as the outgoing half of the cross-fade. */
+  private bodySnapshot: HTMLElement | null = null
+
+  protected willUpdate(changed: PropertyValues) {
+    // Only selection/mode/attribute changes swap the body's sections.
+    if (!(changed.has('selectedRect') || changed.has('inspectVersion') || changed.has('mode'))) return
+    const body = this.renderRoot?.querySelector('.panel-body') as HTMLElement | null
+    this.bodySnapshot = body ? (body.cloneNode(true) as HTMLElement) : null
+  }
+
+  protected updated() {
+    this.capQueueHeight()
+    // (Re)attach the observer whenever the panel mounts or unmounts.
+    const panel = this.renderRoot.querySelector('.panel') as HTMLElement | null
+    if (panel === this.panelEl) return
+    this.panelRO?.disconnect()
+    this.panelEl = panel
+    this.panelH = 0
+    if (panel) {
+      this.panelRO ??= new ResizeObserver(() => this.animatePanelHeight())
+      this.panelRO.observe(panel)
+    }
+  }
+
+  /** The queue shows at most six items; beyond that it scrolls. Measured from
+   *  the real rows (descriptions wrap, so row heights vary). */
+  private capQueueHeight() {
+    const queue = this.renderRoot.querySelector('.queue') as HTMLElement | null
+    if (!queue) return
+    const rows = queue.querySelectorAll('.row')
+    if (rows.length > 6) {
+      const sixth = rows[5] as HTMLElement
+      queue.style.maxHeight = `${Math.min(sixth.offsetTop + sixth.offsetHeight, window.innerHeight * 0.6)}px`
+    } else {
+      queue.style.maxHeight = ''
+    }
+  }
+
+  /** The panel hugs its content (height: auto), which CSS can't transition —
+   *  so FLIP between the old and new natural heights when content changes. */
+  private animatePanelHeight() {
+    const el = this.panelEl
+    if (!el || this.panelAnimating) return
+    const h = el.getBoundingClientRect().height
+    if (this.panelH && Math.abs(h - this.panelH) > 1) {
+      this.panelAnimating = true
+      const anim = el.animate([{ height: `${this.panelH}px` }, { height: `${h}px` }], {
+        duration: 250,
+        easing: 'ease-in-out',
+      })
+      // Cross-fade: the pre-update body snapshot fades out on top while the
+      // new content fades in beneath it, both over 100ms.
+      const body = el.querySelector('.panel-body') as HTMLElement | null
+      if (body) {
+        body.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 100, easing: 'ease' })
+        const ghost = this.bodySnapshot
+        if (ghost) {
+          this.bodySnapshot = null
+          ghost.classList.add('body-ghost')
+          ghost.style.top = `${body.offsetTop}px`
+          ghost.style.height = `${Math.max(0, this.panelH - body.offsetTop)}px`
+          el.appendChild(ghost)
+          const out = ghost.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 100, easing: 'ease' })
+          out.onfinish = () => ghost.remove()
+          out.oncancel = () => ghost.remove()
+        }
+      }
+      anim.onfinish = () => {
+        this.panelAnimating = false
+        this.panelH = el.getBoundingClientRect().height
+      }
+    } else {
+      this.panelH = h
+    }
   }
 
   // ---- activation ---------------------------------------------------------
@@ -445,15 +541,46 @@ export class ScEditLayer extends LitElement {
 
   // ---- render -------------------------------------------------------------
 
+  /** Bumped when a fade-out completes, to re-render without the faded element. */
+  @state() private fadeTick = 0
+  /** Per-element fade state. `tpl` holds the last visible template so a
+   *  conditionally-rendered element can keep painting while it fades out. */
+  private fadeStates = new Map<string, { visible: boolean; closing: boolean; timer: number; tpl?: unknown }>()
+
+  /** Conditional render with a 250ms fade in/out (Lit removes hidden templates
+   *  from the DOM immediately, so hide is deferred while the fade plays). */
+  private fade(key: string, show: boolean, tpl: () => unknown): unknown {
+    const st = this.fadeStates.get(key) ?? { visible: false, closing: false, timer: 0 }
+    if (show) {
+      if (st.timer) {
+        clearTimeout(st.timer)
+        st.timer = 0
+      }
+      st.closing = false
+      st.visible = true
+      st.tpl = tpl()
+    } else if (st.visible && !st.closing) {
+      st.closing = true
+      st.timer = window.setTimeout(() => {
+        this.fadeStates.delete(key)
+        this.fadeTick++
+      }, 250)
+    }
+    this.fadeStates.set(key, st)
+    if (!st.visible) return nothing
+    return html`<div class="fade ${st.closing ? 'fade-out' : ''}">${st.tpl}</div>`
+  }
+
   render() {
+    void this.fadeTick // re-render when a fade-out completes
     return html`
       ${this.active ? this.renderOverlays() : nothing}
       ${this.renderPins()}
       ${this.renderLauncher()}
-      ${this.active ? this.renderToolbar() : nothing}
-      ${this.active && this.mode === 'annotate' && this.selectedRect ? this.renderPopover() : nothing}
-      ${this.active && this.mode === 'edit' ? this.renderPanel() : nothing}
-      ${this.active && this.showQueue ? this.renderQueue() : nothing}
+      ${this.fade('toolbar', this.active, () => this.renderToolbar())}
+      ${this.fade('popover', this.active && this.mode === 'annotate' && !!this.selectedRect, () => this.renderPopover())}
+      ${this.fade('panel', this.active && this.mode === 'edit', () => this.renderPanel())}
+      ${this.fade('queue', this.active && this.showQueue, () => this.renderQueue())}
     `
   }
 
@@ -461,12 +588,12 @@ export class ScEditLayer extends LitElement {
   private renderPins() {
     const here = location.pathname + location.search
     const onPage = this.items.filter((it) => it.pageUrl === here) // pin only on the page it was made
-    return onPage.map((it, i) => {
+    const pins = onPage.map((it, i) => {
       const r = this.rectForItem(it)
       if (!r) return nothing
       const open = this.openPin === it.id
       const desc = describeItem(it)
-      return html`
+      return this.fade(`pin-${it.id}`, true, () => html`
         <div class="pin" style="top:${r.top}px;left:${r.left}px">
           <button
             class="pin-dot ${it.kind}"
@@ -475,25 +602,31 @@ export class ScEditLayer extends LitElement {
           >
             ${i + 1}
           </button>
-          ${open
-            ? html`
+          ${this.fade(`bubble-${it.id}`, open, () => html`
                 <div class="pin-bubble">
-                  <code>${it.anchor.tagName}</code>
-                  <div class="pin-desc">${desc}</div>
+                  <div class="row-main">
+                    <span class="item-title">${it.anchor.tagName}</span>
+                    <div class="pin-desc">${desc}</div>
+                  </div>
                   <sc-button-icon
                     class="del"
                     size="s"
-                    type="tertiary"
+                    type="tertiary-mono"
                     icon="trash-2"
                     label="Delete annotation"
                     @click=${() => this.resolvePin(it.id)}
                   ></sc-button-icon>
                 </div>
-              `
-            : nothing}
+              `)}
         </div>
-      `
+      `)
     })
+    // Deleted pins fade out: keep rendering their last template until done.
+    const live = new Set(onPage.map((it) => `pin-${it.id}`))
+    const fading = [...this.fadeStates.keys()]
+      .filter((k) => k.startsWith('pin-') && !live.has(k))
+      .map((k) => this.fade(k, false, () => nothing))
+    return [...pins, ...fading]
   }
 
   private resolvePin(id: string) {
@@ -587,8 +720,8 @@ export class ScEditLayer extends LitElement {
     return html`
       <div class="popover" style="top:${top}px;left:${left}px">
         <div class="pop-head">
-          <code>${tag}</code>
-          <sc-button-icon size="s" type="tertiary" icon="x" label="Close" @click=${() => this.clearSelection()}></sc-button-icon>
+          <h4 class="pop-title">${tag}</h4>
+          <sc-button-icon size="s" type="tertiary-mono" icon="x" label="Close" @click=${() => this.clearSelection()}></sc-button-icon>
         </div>
         ${this.renderCommentForm()}
       </div>
@@ -598,7 +731,7 @@ export class ScEditLayer extends LitElement {
   private renderCommentForm() {
     return html`
       <textarea
-        class="ta"
+        class="field ta"
         placeholder="Describe the change…"
         .value=${this.draft}
         @input=${(e: Event) => (this.draft = (e.target as HTMLTextAreaElement).value)}
@@ -616,9 +749,10 @@ export class ScEditLayer extends LitElement {
     return html`
       <aside class="panel">
         <div class="panel-head">
-          <strong>Inspect</strong>
+          <strong>Edit</strong>
           <sc-button-icon size="s" type="tertiary-mono" icon="x" label="Close" @click=${() => this.toggle()}></sc-button-icon>
         </div>
+        <sc-divider variant="subtle"></sc-divider>
         ${el ? this.renderInspector(el) : html`<p class="empty pad">Click an element on the page to edit it.</p>`}
       </aside>
     `
@@ -630,8 +764,9 @@ export class ScEditLayer extends LitElement {
     const hasText = hasDirectText(el)
     return html`
       <div class="panel-sub">
-        <code>${tag}</code>${def ? html`<span class="chip">component</span>` : nothing}
+        <code>${tag}</code>${def ? html`<sc-badge status="info">component</sc-badge>` : nothing}
       </div>
+      <sc-divider variant="subtle"></sc-divider>
       <div class="panel-body">
         ${hasText ? this.renderTextSection(el) : nothing}
         ${def?.props ? this.renderPropsSection(el, def) : nothing}
@@ -641,14 +776,14 @@ export class ScEditLayer extends LitElement {
   }
 
   private section(title: string, body: TemplateResult): TemplateResult {
-    return html`<section class="sec"><div class="sec-title">${title}</div>${body}</section>`
+    return html`<section class="sec"><div class="sec-title">${title}</div>${body}</section><sc-divider variant="subtle"></sc-divider>`
   }
 
   private renderTextSection(el: HTMLElement): TemplateResult {
     return this.section(
       'Content',
       html`<textarea
-        class="field"
+        class="field ta"
         .value=${el.textContent ?? ''}
         @change=${(e: Event) => this.applyText((e.target as HTMLTextAreaElement).value)}
       ></textarea>`,
@@ -668,6 +803,7 @@ export class ScEditLayer extends LitElement {
             <span>${name}</span>
             <input
               type="checkbox"
+              class="check"
               .checked=${el.hasAttribute(attr) || p.default === true}
               @change=${(e: Event) => this.applyBoolean(attr, (e.target as HTMLInputElement).checked)}
             />
@@ -742,16 +878,16 @@ export class ScEditLayer extends LitElement {
         ${this.items.length === 0 ? html`<p class="empty">No items yet.</p>` : nothing}
         ${this.items.map(
           (i) => html`
+            <sc-divider variant="subtle"></sc-divider>
             <div class="row">
               <div class="row-main">
-                <code>${i.anchor.tagName}</code>
+                <span class="item-title">${i.anchor.tagName}</span>
                 <span class="row-desc">${describeItem(i)}</span>
-                ${i.anchor.sourceLoc ? html`<span class="loc">${i.anchor.sourceLoc}</span>` : nothing}
               </div>
               <sc-button-icon
                 class="del"
                 size="s"
-                type="tertiary"
+                type="tertiary-mono"
                 icon="trash-2"
                 label="Delete annotation"
                 @click=${() => this.resolve(i.id)}
@@ -775,6 +911,78 @@ export class ScEditLayer extends LitElement {
     button {
       font: inherit;
       cursor: pointer;
+    }
+    /* Show/hide of overlay chrome fades over 250ms. */
+    @keyframes sc-fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes sc-fade-out {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    /* No fill mode on the fade-in: a retained opacity fill would keep the
+       wrapper as a stacking/backdrop-isolation context forever, cutting the
+       children's backdrop-filter materials off from the page. */
+    .fade {
+      animation: sc-fade-in 250ms ease;
+    }
+    .fade.fade-out {
+      animation: sc-fade-out 250ms ease forwards;
+      pointer-events: none;
+    }
+    /* Material elements (toolbar, panel) can't fade via wrapper opacity — an
+       animated-opacity ancestor isolates the backdrop, killing the blur until
+       the fade ends (a visible flicker). Instead the wrapper stays static and
+       the material ramps its own blur/tint/shadow while fills + content fade. */
+    .fade:has(> .toolbar),
+    .fade:has(> .panel) {
+      animation: none;
+    }
+    @keyframes sc-material-in {
+      from {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+    /* Blur radius reads non-linearly (15px still looks fully frosted), so it
+       hits 0 by the halfway mark while tint and shadow fade the full 250ms. */
+    @keyframes sc-material-out {
+      50%,
+      to {
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+      }
+      to {
+        background-color: transparent;
+        box-shadow: none;
+      }
+    }
+    .fade > .toolbar,
+    .fade > .panel {
+      animation: sc-material-in 250ms ease;
+    }
+    .fade > .toolbar::before,
+    .fade > .toolbar::after,
+    .fade > .panel::before,
+    .fade > .panel::after,
+    .fade > .toolbar > *,
+    .fade > .panel > * {
+      animation: sc-fade-in 250ms ease;
+    }
+    .fade.fade-out > .toolbar,
+    .fade.fade-out > .panel {
+      animation: sc-material-out 250ms ease forwards;
+    }
+    .fade.fade-out > .toolbar::before,
+    .fade.fade-out > .toolbar::after,
+    .fade.fade-out > .panel::before,
+    .fade.fade-out > .panel::after,
+    .fade.fade-out > .toolbar > *,
+    .fade.fade-out > .panel > * {
+      animation: sc-fade-out 250ms ease forwards;
     }
     .hl {
       position: fixed;
@@ -816,8 +1024,63 @@ export class ScEditLayer extends LitElement {
       gap: 12px;
       padding: 8px;
       border-radius: var(--sc-border-radius-pill, 999px);
-      background: var(--sc-color-surface-l3, #fff);
+      /* Glass: the .sc-material-thick + .sc-material-tint-24 recipe (same as the
+         panel) inlined, since the global class can't cross this shadow boundary.
+         Keeps the l3 elevation shadow for lift off the page. */
+      background: color-mix(in srgb, var(--sc-color-background-inverse) 24%, transparent);
+      backdrop-filter: blur(var(--sc-blur-material, 50px));
+      -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
       box-shadow: var(--sc-shadow-l3, 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0px 6px rgba(0, 0, 0, 0.08));
+    }
+    /* Two stacked material fill layers, beneath the controls (z-index 1). */
+    .toolbar::before,
+    .toolbar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .toolbar::before {
+      background: var(--sc-color-material-thick-fill-fx);
+      mix-blend-mode: plus-lighter;
+    }
+    .toolbar::after {
+      background: var(--sc-color-material-thick-fill);
+    }
+    .toolbar > * {
+      position: relative;
+      z-index: 1;
+    }
+    /* The segmented control's track gets the same glass, scoped to this toolbar
+       instance via ::part (the shared component is untouched). Segments are
+       lifted above the two material fill layers. */
+    .toolbar sc-segmented-control::part(control) {
+      position: relative;
+      background: color-mix(in srgb, var(--sc-color-background-inverse) 12%, transparent);
+      backdrop-filter: blur(var(--sc-blur-material, 50px));
+      -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
+    }
+    .toolbar sc-segmented-control::part(control)::before,
+    .toolbar sc-segmented-control::part(control)::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .toolbar sc-segmented-control::part(control)::before {
+      background: var(--sc-color-material-thin-fill-fx);
+      mix-blend-mode: color-dodge;
+    }
+    .toolbar sc-segmented-control::part(control)::after {
+      background: var(--sc-color-material-thin-fill);
+    }
+    .toolbar sc-segmented-control::part(segment) {
+      position: relative;
+      z-index: 1;
     }
     .queue-btn {
       position: relative;
@@ -839,13 +1102,20 @@ export class ScEditLayer extends LitElement {
       width: 300px;
       padding: var(--sc-space-m);
       border-radius: var(--sc-border-radius-m, 12px);
-      background: var(--sc-color-background-primary, #fff);
-      border: 1px solid var(--sc-color-border-primary, #e3e3e3);
-      box-shadow: var(--sc-shadow-l, 0 8px 28px rgba(0, 0, 0, 0.18));
+    }
+    /* Elevation level 3: l3 surface + l3 shadow, no border. */
+    .popover {
+      background: var(--sc-color-surface-l3, #fff);
+      box-shadow: var(--sc-shadow-l3, 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0px 6px rgba(0, 0, 0, 0.08));
+    }
+    /* Elevation level 4: l4 surface + l4 shadow, no border. */
+    .queue {
+      background: var(--sc-color-surface-l4, #fff);
+      box-shadow: var(--sc-shadow-l4, 0px 10px 20px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.08));
     }
     .queue {
       right: var(--sc-space-l);
-      bottom: 72px;
+      bottom: 80px;
       max-height: 60vh;
       overflow: auto;
     }
@@ -860,15 +1130,24 @@ export class ScEditLayer extends LitElement {
       font-size: 12px;
       color: var(--sc-color-text-secondary, #555);
     }
+    .pop-title {
+      ${textMSemiBold}
+      margin: 0;
+    }
+    /* Queue rows + pin bubbles: 16px semi-bold title over 14px regular text. */
+    .item-title {
+      ${textLSemiBold}
+      margin: 0;
+    }
+    .pin-desc,
+    .row-desc {
+      ${textMRegular}
+    }
     .ta {
+      display: block;
       width: 100%;
       min-height: 72px;
       resize: vertical;
-      box-sizing: border-box;
-      padding: var(--sc-space-s);
-      border: 1px solid var(--sc-color-border-primary, #e3e3e3);
-      border-radius: var(--sc-border-radius-s, 8px);
-      font: inherit;
     }
     .primary {
       display: block;
@@ -883,17 +1162,12 @@ export class ScEditLayer extends LitElement {
       justify-content: space-between;
       gap: var(--sc-space-s);
       padding: var(--sc-space-s) 0;
-      border-top: 1px solid var(--sc-color-border-primary, #eee);
     }
     .row-main {
       display: flex;
       flex-direction: column;
       gap: var(--sc-space-2xs);
       min-width: 0;
-    }
-    .loc {
-      font-family: ui-monospace, monospace;
-      color: var(--sc-color-text-link, #3366ff);
     }
     .empty {
       color: var(--sc-color-text-secondary, #777);
@@ -929,14 +1203,19 @@ export class ScEditLayer extends LitElement {
       top: 14px;
       left: 6px;
       width: 220px;
-      padding: var(--sc-space-s);
+      padding: var(--sc-space-m);
       border-radius: var(--sc-border-radius-s, 8px);
-      background: var(--sc-color-background-primary, #fff);
-      border: 1px solid var(--sc-color-border-primary, #e3e3e3);
-      box-shadow: var(--sc-shadow-l, 0 8px 28px rgba(0, 0, 0, 0.18));
+      /* Same row layout as the queue: text left, delete button right. */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sc-space-s);
+      /* Elevation level 4: l4 surface + l4 shadow, no border (matches the queue). */
+      background: var(--sc-color-surface-l4, #fff);
+      box-shadow: var(--sc-shadow-l4, 0px 10px 20px rgba(0, 0, 0, 0.1), 0px 0px 8px rgba(0, 0, 0, 0.08));
     }
     .pin-desc {
-      margin: var(--sc-space-xs) 0 var(--sc-space-s);
+      margin: 0;
     }
     /* All panel text uses the Text S type style. */
     .panel {
@@ -944,56 +1223,102 @@ export class ScEditLayer extends LitElement {
       line-height: var(--sc-type-line-height-s);
       font-weight: var(--sc-type-weight-regular);
       position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
+      /* Floating 16px off the top/right; hugs its content vertically, capped
+         so it never gets closer than 16px to the viewport bottom (the body
+         scrolls beyond that). */
+      top: var(--sc-space-l, 16px);
+      right: var(--sc-space-l, 16px);
+      max-height: calc(100dvh - 2 * var(--sc-space-l, 16px));
       width: 280px;
       pointer-events: auto;
       display: flex;
       flex-direction: column;
-      background: var(--sc-color-background-primary, #fff);
-      border-left: 1px solid var(--sc-color-border-primary, #e3e3e3);
-      box-shadow: -8px 0 28px rgba(0, 0, 0, 0.12);
+      overflow: hidden; /* clip content while the height FLIP animates */
+      border-radius: var(--sc-border-radius-l, 16px);
+      /* Glass: the .sc-material-thick + .sc-material-tint-24 recipe inlined, no border. */
+      background: color-mix(in srgb, var(--sc-color-background-inverse) 24%, transparent);
+      backdrop-filter: blur(var(--sc-blur-material, 50px));
+      -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
+      box-shadow: var(--sc-shadow-l3, 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0px 6px rgba(0, 0, 0, 0.08));
+    }
+    /* Two stacked material fill layers, beneath the panel content. */
+    .panel::before,
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .panel::before {
+      background: var(--sc-color-material-thick-fill-fx);
+      mix-blend-mode: plus-lighter;
+    }
+    .panel::after {
+      background: var(--sc-color-material-thick-fill);
+    }
+    .panel > * {
+      position: relative;
+      z-index: 1;
     }
     .panel-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--sc-space-m);
-      border-bottom: 1px solid var(--sc-color-border-primary, #eee);
+      padding: var(--sc-space-m, 12px) var(--sc-space-l, 16px);
+    }
+    .panel-head strong {
+      ${heading2xs}
     }
     .panel-sub {
       display: flex;
       align-items: center;
       gap: var(--sc-space-s);
-      padding: var(--sc-space-s) var(--sc-space-m);
-      border-bottom: 1px solid var(--sc-color-border-primary, #eee);
+      box-sizing: border-box;
+      height: 58px;
+      flex-shrink: 0;
+      padding: 0 var(--sc-space-l, 16px);
+      ${textMRegular}
     }
     .panel-body {
       overflow: auto;
-      padding: var(--sc-space-xs) var(--sc-space-m) var(--sc-space-xl);
+      min-height: 0;
+      padding: 0 var(--sc-space-l, 16px);
     }
     /* Inherit Text S everywhere inside the panel (incl. code + inputs). */
     .panel code,
-    .panel .field,
-    .panel .chip,
-    .panel .sec-title {
+    .panel .field {
       font-size: inherit;
       line-height: inherit;
     }
-    .chip {
-      padding: var(--sc-space-2xs) var(--sc-space-xs);
-      border-radius: var(--sc-border-radius-xs, 4px);
-      background: var(--sc-color-background-info-subtle, #eef);
-      color: var(--sc-color-text-secondary, #556);
+    /* The selected element's tag preview reads as Text M. */
+    .panel-sub code {
+      ${textMRegular}
     }
     .sec {
       padding: var(--sc-space-m) 0;
-      border-bottom: 1px solid var(--sc-color-border-primary, #f0f0f0);
+    }
+    /* No trailing divider after the last section. */
+    .panel-body > sc-divider:last-child {
+      display: none;
+    }
+    /* Outgoing half of the body cross-fade — overlays the incoming content. */
+    .body-ghost {
+      position: absolute;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    /* Form-control backgrounds sit at 24% strength on the glass panel. */
+    .panel .field,
+    .panel .check:not(:checked) {
+      background-color: color-mix(in srgb, var(--sc-color-background-primary, #fff) 24%, transparent);
     }
     .sec-title {
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      ${textSSemiBold}
       color: var(--sc-color-text-secondary, #888);
       margin-bottom: var(--sc-space-s);
     }
@@ -1002,7 +1327,7 @@ export class ScEditLayer extends LitElement {
       align-items: center;
       justify-content: space-between;
       gap: var(--sc-space-s);
-      margin-bottom: var(--sc-space-xs);
+      margin-bottom: var(--sc-space-s, 8px);
     }
     .row-field > span {
       flex: 0 0 40%;
@@ -1014,24 +1339,73 @@ export class ScEditLayer extends LitElement {
       font-family: ui-monospace, monospace;
       font-size: 12px;
     }
+    /* Native form controls styled with the Scale field recipe (sc-input's
+       tokens: background/border/radius, selected focus ring, secondary
+       placeholder) — compact spacing to fit the panel. */
     .field {
       box-sizing: border-box;
       width: 100%;
       padding: var(--sc-space-xs) var(--sc-space-s);
+      background: var(--sc-color-background-primary, #fff);
+      color: var(--sc-color-text-primary, #111);
       border: 1px solid var(--sc-color-border-primary, #e3e3e3);
-      border-radius: var(--sc-border-radius-xs, 4px);
+      border-radius: var(--sc-border-radius-s, 8px);
       font: inherit;
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+    }
+    .field::placeholder {
+      color: var(--sc-color-text-secondary, #777);
+    }
+    .field:focus,
+    .field:focus-visible {
+      outline: none;
+      border-color: var(--sc-color-border-selected, #36f);
+      box-shadow: 0 0 0 1px var(--sc-color-border-selected, #36f);
     }
     .field.sm {
       flex: 1 1 auto;
       min-width: 0;
     }
-    textarea.field {
-      min-height: 56px;
-      resize: vertical;
+    /* Custom chevron (the native one is glued to the edge): inset 4px from the
+       right, with padding so the value never runs beneath it. */
+    select.field {
+      appearance: none;
+      -webkit-appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right var(--sc-space-xs, 4px) center;
+      background-size: 16px;
+      padding-right: calc(var(--sc-space-xs, 4px) + 16px + var(--sc-space-2xs, 2px));
+    }
+    /* Native checkbox drawn like sc-checkbox: brand fill + white check. */
+    .check {
+      appearance: none;
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin: 0;
+      cursor: pointer;
+      background: var(--sc-color-background-primary, #fff);
+      border: 1px solid var(--sc-color-border-primary, #e3e3e3);
+      border-radius: var(--sc-border-radius-xs, 4px);
+      transition: border-color 150ms ease, background 150ms ease;
+    }
+    .check:checked {
+      border-color: var(--sc-color-background-brand, #36f);
+      background-color: var(--sc-color-background-brand, #36f);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 14px;
+    }
+    .check:focus-visible {
+      outline: none;
+      border-color: var(--sc-color-border-selected, #36f);
+      box-shadow: 0 0 0 1px var(--sc-color-border-selected, #36f);
     }
     .pad {
-      padding: var(--sc-space-l) var(--sc-space-m);
+      padding: var(--sc-space-l, 16px);
+      margin-block: 0;
     }
   `
 }

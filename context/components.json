@@ -1905,6 +1905,12 @@
           "default": "",
           "attribute": "label",
           "reflect": false
+        },
+        "tooltipDelay": {
+          "type": "number",
+          "default": "150",
+          "attribute": "tooltip-delay",
+          "reflect": false
         }
       },
       "slots": [],
@@ -1928,7 +1934,9 @@
           "description": ""
         }
       ],
-      "dependencies": [],
+      "dependencies": [
+        "sc-tooltip"
+      ],
       "example": "<sc-segmented-control></sc-segmented-control>"
     },
     {

@@ -12,6 +12,8 @@ import './components/sc-edit-layer.js'
 export interface EnableEditOptions {
   /** Bridge endpoint the overlay reads/writes. Default `/__scale/edits`. */
   endpoint?: string
+  /** Mount the overlay already open (engaged) instead of collapsed. */
+  open?: boolean
 }
 
 let layer: HTMLElement | null = null
@@ -25,6 +27,7 @@ export function enableEdit(opts: EnableEditOptions = {}): void {
   if (layer) return
   layer = document.createElement('sc-edit-layer')
   if (opts.endpoint) layer.setAttribute('endpoint', opts.endpoint)
+  if (opts.open) layer.setAttribute('open', '')
   const mount = () => document.body.appendChild(layer as HTMLElement)
   if (document.body) mount()
   else document.addEventListener('DOMContentLoaded', mount, { once: true })

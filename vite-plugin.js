@@ -24,9 +24,11 @@ const TYPOGRAPHY_ROUTE = '/__scale/typography'
 const PKG_DIR = dirname(fileURLToPath(import.meta.url))
 
 /**
- * @param {{ enabled?: boolean, endpoint?: string, store?: string, stampSource?: boolean }} [options]
+ * @param {{ enabled?: boolean, open?: boolean, endpoint?: string, store?: string, stampSource?: boolean }} [options]
  *   `enabled` — force the overlay on/off. When omitted, the overlay is enabled
  *   only if the `SCALE_EDIT` env var is truthy (so it's off by default).
+ *   `open` — mount the overlay already engaged instead of collapsed. When
+ *   omitted, it defaults on if `SCALE_EDIT=open` (handy for testing).
  * @returns {import('vite').Plugin}
  */
 export function scaleEdit(options = {}) {
@@ -40,10 +42,14 @@ export function scaleEdit(options = {}) {
   // When disabled, return an inert plugin: no overlay injection, no bridge,
   // no source stamping.
   const isEnvTruthy = (v) => v != null && v !== '' && v !== '0' && v.toLowerCase() !== 'false'
-  const enabled = options.enabled ?? isEnvTruthy(process.env.SCALE_EDIT ?? '')
+  const envValue = process.env.SCALE_EDIT ?? ''
+  const enabled = options.enabled ?? isEnvTruthy(envValue)
   if (!enabled) {
     return { name: 'scale-edit', apply: 'serve' }
   }
+
+  // Open-by-default when `scaleEdit({ open: true })` or `SCALE_EDIT=open`.
+  const open = options.open ?? (envValue.toLowerCase() === 'open')
 
   let root = process.cwd()
   let storePath = ''
@@ -79,7 +85,7 @@ export function scaleEdit(options = {}) {
       if (id === RESOLVED_ID) {
         return `import { enableEdit } from '@scale-ds/scale-design-system/edit'\nenableEdit({ endpoint: ${JSON.stringify(
           endpoint,
-        )} })`
+        )}, open: ${JSON.stringify(open)} })`
       }
     },
 
