@@ -105,7 +105,7 @@ The MCP server reads from `context/` files that ship with the package:
 │   ├── tokens.json        ← W3C DTCG design tokens
 │   └── patterns.json      ← Composition patterns with templates
 └── mcp/
-    └── src/index.ts       ← MCP server implementation
+    └── dist/index.js      ← MCP server (compiled from mcp/src/index.ts)
 ```
 
 No network calls, no API keys — everything runs locally from the installed package.
