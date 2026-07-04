@@ -1028,6 +1028,9 @@ export class ScEditLayer extends LitElement {
          panel) inlined, since the global class can't cross this shadow boundary.
          Keeps the l3 elevation shadow for lift off the page. */
       background: color-mix(in srgb, var(--sc-color-background-inverse) 24%, transparent);
+      /* isolation contains the blended fill layers on iOS Safari, which
+         otherwise composites them against the page root. */
+      isolation: isolate;
       backdrop-filter: blur(var(--sc-blur-material, 50px));
       -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
       box-shadow: var(--sc-shadow-l3, 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0px 6px rgba(0, 0, 0, 0.08));
@@ -1059,6 +1062,7 @@ export class ScEditLayer extends LitElement {
     .toolbar sc-segmented-control::part(control) {
       position: relative;
       background: color-mix(in srgb, var(--sc-color-background-inverse) 12%, transparent);
+      isolation: isolate;
       backdrop-filter: blur(var(--sc-blur-material, 50px));
       -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
     }
@@ -1081,6 +1085,17 @@ export class ScEditLayer extends LitElement {
     .toolbar sc-segmented-control::part(segment) {
       position: relative;
       z-index: 1;
+    }
+    /* WebKit can't isolate blended layers under backdrop-filter — the blend
+       composites against the page root (page dims, glass blows out white).
+       Paint the fills unblended in Safari (the query matches Safari only). */
+    @supports (background: -webkit-named-image(i)) {
+      .toolbar::before,
+      .toolbar::after,
+      .toolbar sc-segmented-control::part(control)::before,
+      .toolbar sc-segmented-control::part(control)::after {
+        mix-blend-mode: normal;
+      }
     }
     .queue-btn {
       position: relative;
@@ -1237,6 +1252,7 @@ export class ScEditLayer extends LitElement {
       border-radius: var(--sc-border-radius-l, 16px);
       /* Glass: the .sc-material-thick + .sc-material-tint-24 recipe inlined, no border. */
       background: color-mix(in srgb, var(--sc-color-background-inverse) 24%, transparent);
+      isolation: isolate;
       backdrop-filter: blur(var(--sc-blur-material, 50px));
       -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
       box-shadow: var(--sc-shadow-l3, 0px 8px 16px rgba(0, 0, 0, 0.1), 0px 0px 6px rgba(0, 0, 0, 0.08));
@@ -1257,6 +1273,13 @@ export class ScEditLayer extends LitElement {
     }
     .panel::after {
       background: var(--sc-color-material-thick-fill);
+    }
+    /* Safari blend leak workaround — see the .toolbar override above. */
+    @supports (background: -webkit-named-image(i)) {
+      .panel::before,
+      .panel::after {
+        mix-blend-mode: normal;
+      }
     }
     .panel > * {
       position: relative;

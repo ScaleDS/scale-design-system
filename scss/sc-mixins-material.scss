@@ -16,6 +16,10 @@
 
 @mixin _sc-material-base {
   position: relative;
+  // iOS Safari fails to contain the blended fill layers inside the
+  // backdrop-filter stacking context, compositing them against the page root
+  // (page dims, material blows out to white in light mode).
+  isolation: isolate;
   backdrop-filter: blur(var(--sc-blur-material));
   -webkit-backdrop-filter: blur(var(--sc-blur-material));
 
@@ -36,32 +40,51 @@
   }
 }
 
+/* WebKit can't isolate blended layers under backdrop-filter — even with
+   isolation: isolate the blend composites against the page root (the page
+   dims and the fills blow out to white, worst in light mode). Paint the
+   fills unblended in Safari; the translucent fills over the blur still read
+   as the material. The @supports query matches Safari only. */
+@mixin _sc-material-safari-deblend {
+  @supports (background: -webkit-named-image(i)) {
+    &::before,
+    &::after {
+      mix-blend-mode: normal;
+    }
+  }
+}
+
 @mixin sc-material-ultrathin {
   @include _sc-material-base;
   &::before { background: var(--sc-color-material-ultrathin-fill-fx); mix-blend-mode: color-dodge; }
   &::after  { background: var(--sc-color-material-ultrathin-fill); }
+  @include _sc-material-safari-deblend;
 }
 
 @mixin sc-material-thin {
   @include _sc-material-base;
   &::before { background: var(--sc-color-material-thin-fill-fx); mix-blend-mode: color-dodge; }
   &::after  { background: var(--sc-color-material-thin-fill); }
+  @include _sc-material-safari-deblend;
 }
 
 @mixin sc-material-regular {
   @include _sc-material-base;
   &::before { background: var(--sc-color-material-regular-fill-fx); mix-blend-mode: plus-lighter; }
   &::after  { background: var(--sc-color-material-regular-fill); }
+  @include _sc-material-safari-deblend;
 }
 
 @mixin sc-material-thick {
   @include _sc-material-base;
   &::before { background: var(--sc-color-material-thick-fill-fx); mix-blend-mode: plus-lighter; }
   &::after  { background: var(--sc-color-material-thick-fill); }
+  @include _sc-material-safari-deblend;
 }
 
 @mixin sc-material-chrome {
   @include _sc-material-base;
   &::before { background: var(--sc-color-material-chrome-fill-fx); }
   &::after  { background: var(--sc-color-material-chrome-fill); mix-blend-mode: hard-light; }
+  @include _sc-material-safari-deblend;
 }

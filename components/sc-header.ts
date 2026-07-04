@@ -315,6 +315,10 @@ export class ScHeader extends LitElement {
          inside this shadow root. The inverse tint gives the two material fill
          layers something to read against on light backdrops. */
       background: color-mix(in srgb, var(--sc-color-background-inverse) 12%, transparent);
+      /* iOS Safari fails to contain the blended fill layers inside the
+         backdrop-filter stacking context, compositing them against the page
+         root (page dims, toggle blows out to white in light mode). */
+      isolation: isolate;
       backdrop-filter: blur(var(--sc-blur-material, 50px));
       -webkit-backdrop-filter: blur(var(--sc-blur-material, 50px));
     }
@@ -338,6 +342,16 @@ export class ScHeader extends LitElement {
 
     .theme-toggle::after {
       background: var(--sc-color-material-thin-fill);
+    }
+
+    /* WebKit can't isolate blended layers under backdrop-filter — the blend
+       composites against the page root (page dims, toggle blows out white).
+       Paint the fills unblended in Safari (the query matches Safari only). */
+    @supports (background: -webkit-named-image(i)) {
+      .theme-toggle::before,
+      .theme-toggle::after {
+        mix-blend-mode: normal;
+      }
     }
 
     .theme-toggle-thumb {
