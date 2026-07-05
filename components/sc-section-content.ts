@@ -16,7 +16,7 @@ export class ScSectionContent extends LitElement {
     .container {
       width: 100%;
       max-width: 1440px;
-      padding: var(--sc-space-8xl) var(--sc-space-l) var(--sc-space-2xl);
+      padding: var(--sc-section-content-padding-top, var(--sc-space-8xl)) var(--sc-space-l) var(--sc-section-content-padding-bottom, var(--sc-space-2xl));
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -31,7 +31,7 @@ export class ScSectionContent extends LitElement {
 
     @media (max-width: 402px) {
       .container {
-        padding-top: var(--sc-space-2xl);
+        padding-top: var(--sc-space-l);
         text-align: left;
         align-items: flex-start;
       }

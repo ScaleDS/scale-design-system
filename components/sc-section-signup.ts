@@ -81,6 +81,10 @@ export class ScSectionSignup extends LitElement {
     }
 
     @media (max-width: 402px) {
+      .container {
+        padding: var(--sc-space-xl) var(--sc-space-l);
+      }
+
       .card {
         padding: var(--sc-space-xl);
       }

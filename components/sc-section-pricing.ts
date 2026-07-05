@@ -44,6 +44,10 @@ export class ScSectionPricing extends LitElement {
     }
 
     @media (max-width: 402px) {
+      .container {
+        padding: var(--sc-space-xl) var(--sc-space-l);
+      }
+
       .header {
         align-items: flex-start;
         text-align: left;

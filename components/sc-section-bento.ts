@@ -15,7 +15,7 @@ export class ScSectionBento extends LitElement {
     .container {
       width: 100%;
       max-width: 1440px;
-      padding: var(--sc-space-2xl) var(--sc-space-l);
+      padding: var(--sc-section-bento-padding-top, var(--sc-space-2xl)) var(--sc-space-l) var(--sc-space-2xl);
       display: flex;
       flex-direction: column;
       gap: var(--sc-space-2xl);
@@ -30,6 +30,12 @@ export class ScSectionBento extends LitElement {
       gap: var(--sc-space-l);
       align-self: center;
       text-align: center;
+    }
+
+    /* No heading/subtext slotted → drop the header so the container gap
+       doesn't open a hole above the grid */
+    .header.empty {
+      display: none;
     }
 
     /* ---- Bento grid ---- */
@@ -91,12 +97,21 @@ export class ScSectionBento extends LitElement {
     }
   `]
 
+  private _onHeaderSlotChange(e: Event) {
+    const slot = e.target as HTMLSlotElement
+    const header = slot.parentElement
+    if (!header) return
+    const empty = [...header.querySelectorAll('slot')]
+      .every(s => s.assignedNodes({ flatten: true }).length === 0)
+    header.classList.toggle('empty', empty)
+  }
+
   render() {
     return html`
       <div class="container">
-        <div class="header">
-          <slot name="heading"></slot>
-          <slot name="subtext"></slot>
+        <div class="header empty">
+          <slot name="heading" @slotchange=${this._onHeaderSlotChange}></slot>
+          <slot name="subtext" @slotchange=${this._onHeaderSlotChange}></slot>
         </div>
         <div class="grid">
           <div class="cell cell-1"><slot name="card-1"></slot></div>

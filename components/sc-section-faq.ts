@@ -37,6 +37,12 @@ export class ScSectionFaq extends LitElement {
       display: flex;
       flex-direction: column;
     }
+
+    @media (max-width: 402px) {
+      .container {
+        padding: var(--sc-space-xl) var(--sc-space-l);
+      }
+    }
   `]
 
   render() {
