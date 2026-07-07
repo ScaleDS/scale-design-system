@@ -137,6 +137,15 @@ The package builds on install via `prepare` and ships compiled `dist/` (plus
 `scss/`, `context/`, `assets/`, `mcp/dist/`), so `github:` installs resolve
 `@scale-ds/scale-design-system/components/*` with no manual build step.
 
+## Contributing
+
+Contributions to the open-source Lit components are welcome — bug fixes,
+accessibility, performance, and tooling improvements can go straight to a PR.
+The system's fundamentals (design tokens, component APIs, visual design) are
+maintainer-led and start as issues, so the Figma and Framer versions stay in
+lockstep with the code. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full
+guide, including the ground rules for forks.
+
 ## Contributors
 
 Thanks to everyone who has contributed to Scale:
