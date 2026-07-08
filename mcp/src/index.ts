@@ -18,9 +18,11 @@ const components = JSON.parse(readFileSync(join(contextDir, 'components.json'), 
 const tokens = JSON.parse(readFileSync(join(contextDir, 'tokens.json'), 'utf-8'))
 const patterns = JSON.parse(readFileSync(join(contextDir, 'patterns.json'), 'utf-8'))
 
+const pkg = JSON.parse(readFileSync(join(__dirname, '..', '..', 'package.json'), 'utf-8'))
+
 const server = new McpServer({
   name: '@scale-ds/scale-design-system',
-  version: '1.0.0',
+  version: pkg.version,
 })
 
 server.tool('list-components', 'List all available Scale Design System components', async () => {
