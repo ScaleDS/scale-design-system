@@ -18,7 +18,8 @@
     "context",
     "assets",
     "mcp/dist",
-    "vite-plugin.js"
+    "vite-plugin.js",
+    "CHANGELOG.md"
   ],
   "exports": {
     ".": {
