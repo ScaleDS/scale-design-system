@@ -1,0 +1,45 @@
+# Release automation: release-please maintains a standing release PR from the
+# conventional commits on main (fix→patch, feat→minor, feat!/BREAKING CHANGE→major),
+# bumping package.json + CHANGELOG.md. Merging that PR tags the release; the
+# publish job then ships it to npm via trusted publishing (OIDC — no token or
+# passkey in CI) with provenance.
+#
+# One-time setup on npmjs.com (package → Settings → Trusted publisher):
+#   GitHub Actions / ScaleDS/scale-design-system / release-please.yml
+
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # OIDC for npm trusted publishing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+      # npm ≥ 11.5.1 is required for trusted publishing.
+      - run: npm install -g npm@latest
+      - run: npm ci # prepare runs the build (tsc + mcp)
+      - run: npm publish
