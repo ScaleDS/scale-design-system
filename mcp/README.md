@@ -7,7 +7,7 @@ An MCP (Model Context Protocol) server that gives AI coding agents direct access
 Instead of guessing or searching the web, AI agents (Claude, Cursor, Codex, etc.) can query Scale directly for:
 
 - **Component APIs** — props, slots, events, and usage examples
-- **Design tokens** — colors, spacing, typography, borders, shadows
+- **Design tokens** — colors, spacing, typography, borders, shadows, motion
 - **Composition patterns** — proven layouts with ready-to-use templates
 
 ## Quick start
@@ -67,6 +67,7 @@ Once connected, ask your AI agent questions like:
 | "Build me a pricing section" | Calls `get-patterns("pricing")` → returns full template with `sc-section-pricing`, `sc-card-pricing`, `sc-row` |
 | "Make this button destructive" | Calls `get-component("sc-button")` → finds `type="negative-primary"` |
 | "What spacing between cards?" | Calls `get-tokens("spacing")` → returns `--sc-space-l` (16px), `--sc-space-xl` (24px) |
+| "How long should this panel take to open?" | Calls `get-tokens("motion")` → returns `--sc-motion-transition-enter-l`, and the duration/easing it pairs |
 
 ## Available tools
 
@@ -75,7 +76,7 @@ Once connected, ask your AI agent questions like:
 | `list-components` | Lists all 62 components with category and description | _(none)_ |
 | `get-component` | Full API for a specific component: props, slots, events, example, whenToUse | `tag` (e.g. `"sc-button"`) |
 | `search-components` | Find components by keyword in description, category, or whenToUse | `query` (e.g. `"form"`) |
-| `get-tokens` | Design tokens in W3C DTCG format | `category` (optional: `color`, `spacing`, `typography`, `borderRadius`, `borderWidth`, `shadow`, `unit`, `breakpoint`) |
+| `get-tokens` | Design tokens in W3C DTCG format | `category` (optional: `color`, `spacing`, `typography`, `borderRadius`, `borderWidth`, `shadow`, `unit`, `breakpoint`, `motion`) |
 | `get-patterns` | Common composition patterns with templates | `name` (optional, e.g. `"Hero Section"`) |
 | `get-component-example` | Ready-to-use HTML for a component | `tag` (e.g. `"sc-button"`) |
 | `get-dependencies` | Internal component dependencies | `tag` (e.g. `"sc-card-pricing"`) |

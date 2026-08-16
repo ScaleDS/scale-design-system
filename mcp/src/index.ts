@@ -72,8 +72,8 @@ server.tool('search-components', 'Find components by keyword in their descriptio
   }
 )
 
-server.tool('get-tokens', 'Get design tokens (colors, spacing, typography, borders, shadows) in W3C DTCG format',
-  { category: z.string().describe('Token category: color, spacing, typography, borderRadius, borderWidth, shadow, unit, breakpoint').optional() },
+server.tool('get-tokens', 'Get design tokens (colors, spacing, typography, borders, shadows, motion) in W3C DTCG format',
+  { category: z.string().describe('Token category: color, spacing, typography, borderRadius, borderWidth, shadow, unit, breakpoint, motion. The motion group nests further: duration, easing, transition, loop, distance, scale — prefer a composite transition over a raw duration + easing pair').optional() },
   async ({ category }) => {
     if (category && tokens[category]) {
       return {
