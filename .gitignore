@@ -12,3 +12,7 @@ node_modules/
 
 ## Scratch / planning notes
 tmp/
+
+## Test output
+test-results/
+playwright-report/

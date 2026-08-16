@@ -39,6 +39,36 @@ Read `context/tokens.json` for all design tokens in W3C DTCG format:
 - **Border**: Radius scale (none to pill) and width scale (none to 2xl)
 - **Shadows**: 4 elevation levels (l1-l4)
 - **Breakpoints**: mobile (402px), tablet (810px), desktop (1440px)
+- **Motion**: Durations, easings, composite transitions, loops, distances and scales (see Motion below)
+
+
+## Motion
+
+Read the `motion` group in `context/tokens.json` (88 tokens):
+- **Duration**: 13 steps named by value, `--sc-motion-duration-0` to `--sc-motion-duration-5000`
+- **Easing**: 42 curves, `--sc-motion-ease-*` — standard, emphasized, springs, elastic, bounce
+- **Transition**: 22 composites pairing a duration with an easing (`micro`, `control`, `fade-in-m`, `enter-l`, `exit-l`, `scale-in`, `expand`, `spring`, …)
+- **Loop**: 3 ambient loops — `spin`, `pulse`, `shimmer`
+- **Distance**: `--sc-motion-distance-{nudge,travel,full,slide}`
+- **Scale**: `--sc-motion-scale-{s,m,grow,fade-through}`
+
+**Reach for a composite transition first.** Drop to a raw duration + easing pair only when no recipe fits:
+
+```css
+.panel { transition: opacity var(--sc-motion-transition-fade-in-m); }
+```
+
+Keyframes are global and named `sc-motion-*` (e.g. `sc-motion-slide-in-from-bottom`). The slide keyframes read `--sc-motion-slide-distance` off the element, so one keyframe serves an 8px nudge and a full off-screen park alike.
+
+Every duration is zeroed under `prefers-reduced-motion` **except** the three loop tokens — a spinner that stops spinning reads as a hang, not as calm.
+
+Choreography (motion across more than one element) is a set of Sass mixins deliberately **not** in `main.scss`, so import it where needed:
+
+```scss
+@use '@scale-ds/scale-design-system/scss/sc-motion-choreography' as choreography;
+```
+
+Available: `stagger`, `fade-through`, `shared-axis`, `push`, `container-transform`.
 
 ## Composition Patterns
 

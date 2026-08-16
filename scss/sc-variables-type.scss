@@ -1,5 +1,4 @@
 /* Scale: Type Variables */
-
 @use './sc-variables-unit';
 
 /* Primitive: Type */
@@ -73,7 +72,6 @@
 /* Semantic Type — SCSS Maps. One map per Figma text style
    (Category/Size/Weight), mirroring the Scale 3.2.0 Figma source.
    Auto-generated — edit the Figma source then regenerate. */
-
 /* Headings */
 $sc-typography-heading-5xl-light: (
   font-family: var(--sc-type-family-inter),

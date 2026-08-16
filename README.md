@@ -13,7 +13,9 @@ Find out more and grab a licence for the Figma and Framer versions here: [www.sc
 ## Features
 
 - 62 web components built with Lit + Shadow DOM
-- W3C DTCG design tokens — colors, spacing, typography, borders, shadows
+- W3C DTCG design tokens — colors, spacing, typography, borders, shadows, motion
+- A motion system of durations, easings, composite transitions and keyframes, wired
+  into every component that moves and zeroed under `prefers-reduced-motion`
 - Form-associated inputs that work in real `<form>` submissions
 - Polymorphic `sc-button` that renders a real `<a>` when given an `href`
 - Shared theme controller with light/dark and brand-token retheming
@@ -95,6 +97,41 @@ Light/dark is driven by `data-theme` on `<html>` and a shared `ThemeController`.
 See the [Color foundation](https://scaledesignsystem.com/foundations/color/) for
 the full token reference.
 
+## Motion
+
+Motion ships as four tiers, each built from the one below. Durations and easings are
+the primitives; composite transitions pair them into named recipes like
+`--sc-motion-transition-enter-l`; keyframes supply the movement itself; and a set of
+Sass mixins handles motion across more than one element.
+
+```css
+.panel {
+  transition: opacity var(--sc-motion-transition-fade-in-m);
+}
+
+.sheet {
+  animation: sc-motion-slide-in-from-bottom var(--sc-motion-transition-enter-l);
+}
+```
+
+Every duration is zeroed under `prefers-reduced-motion`, except the two ambient loop
+tokens — a spinner that stops spinning reads as a hang, not as calm.
+
+The first three tiers are in the main stylesheet. The choreography mixins are not, so
+import them where you need them:
+
+```scss
+@use '@scale-ds/scale-design-system/scss/sc-motion-choreography' as choreography;
+
+.view--leaving { @include choreography.push(outgoing); }
+.view--arriving { @include choreography.push(incoming); }
+```
+
+`@keyframes` don't cross a shadow boundary, so `sc-motion.ts` mirrors them for the
+`sc-*` elements. `npm run check:motion` fails the build if the two copies drift. See
+the [Motion foundation](https://scaledesignsystem.com/foundations/motion/) for the
+full token reference.
+
 ## Scale Edit
 
 A dev-only, in-page editing overlay. Pin comments and make **token-aware** visual
@@ -131,6 +168,7 @@ queue options and the agent workflow.
 npm run build             # Compile TypeScript (components + bundled MCP server)
 npm run build:watch       # Watch mode
 npm run generate:context  # Regenerate components.json from source
+npm run check:motion      # Guard the SCSS/TS keyframe mirror and the motion tokens
 ```
 
 The package builds on install via `prepare` and ships compiled `dist/` (plus
