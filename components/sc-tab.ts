@@ -1,6 +1,6 @@
 import { LitElement, html, css } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { labelS } from '@scale-ds/scale-design-system/scss/typography'
+import { labelM } from '@scale-ds/scale-design-system/scss/typography'
 
 /**
  * A single tab in an `sc-tabs` nav. Goes in the `nav` slot of `sc-tabs` and is
@@ -36,13 +36,13 @@ export class ScTab extends LitElement {
          shift between states. Pulled down 1px to overlap the nav's bottom line. */
       border-bottom: var(--sc-border-width-l) solid transparent;
       margin-bottom: calc(-1 * var(--sc-border-width-s));
-      ${labelS}
+      ${labelM}
       color: var(--sc-color-text-tertiary);
       white-space: nowrap;
       cursor: pointer;
       user-select: none;
       outline: none;
-      transition: background 200ms ease, color 200ms ease, border-color 150ms ease;
+      transition: background var(--sc-motion-transition-control), color var(--sc-motion-transition-control), border-color var(--sc-motion-transition-control);
     }
 
     :host(:hover:not([disabled])) {

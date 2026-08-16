@@ -69,7 +69,7 @@ export class ScToast extends LitElement {
   @property() link = ''
   @property() text = ''
 
-  @state() private _visible = false
+  @state() private _exiting = false
   private _timer?: ReturnType<typeof setTimeout>
   private _closing = false
 
@@ -118,19 +118,48 @@ export class ScToast extends LitElement {
       border-radius: var(--sc-border-radius-s);
       box-shadow: var(--sc-shadow-l3);
       box-sizing: border-box;
-      /* Enter/exit animation — hidden by default, .is-visible reveals. */
-      opacity: 0;
-      transform: translateY(-8px);
-      transition: opacity 200ms ease, transform 200ms ease;
-    }
+      /* Enter/exit — fade plus an 8px nudge from the nearest edge.
 
-    :host([placement^='bottom']) .toast {
-      transform: translateY(8px);
-    }
+         translate rather than transform: the stack that positions this toast
+         centres itself with transform: translateX(-50%), and keeping the two on
+         separate properties means neither can ever clobber the other if the
+         centring is later moved onto the toast.
 
-    .toast.is-visible {
+         Both properties share ONE composite. Fade and nudge are a single
+         gesture, and giving them different durations makes the movement stop
+         dead while the fade carries on — visibly unfinished.
+
+         The enter comes from @starting-style. The previous approach — flip a
+         class in a rAF after firstUpdated — silently did nothing: the rAF can
+         land in the same frame as Lit's first render, so the hidden state is
+         never painted and there is nothing to transition from. */
       opacity: 1;
-      transform: none;
+      translate: none;
+      transition:
+        opacity var(--sc-motion-transition-fade-in-l),
+        translate var(--sc-motion-transition-fade-in-l);
+    }
+
+    @starting-style {
+      .toast {
+        opacity: 0;
+        translate: 0 calc(-1 * var(--sc-motion-distance-nudge));
+      }
+      :host([placement^='bottom']) .toast {
+        translate: 0 var(--sc-motion-distance-nudge);
+      }
+    }
+
+    .toast.is-exiting {
+      opacity: 0;
+      translate: 0 calc(-1 * var(--sc-motion-distance-nudge));
+      transition:
+        opacity var(--sc-motion-transition-fade-out-l),
+        translate var(--sc-motion-transition-fade-out-l);
+    }
+
+    :host([placement^='bottom']) .toast.is-exiting {
+      translate: 0 var(--sc-motion-distance-nudge);
     }
 
     /* ---- Status backgrounds ---- */
@@ -216,19 +245,10 @@ export class ScToast extends LitElement {
     svg {
       display: block;
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      .toast,
-      .link,
-      .close {
-        transition: none;
-      }
-    }
   `]
 
   firstUpdated() {
-    // Trigger the enter transition on the next frame (after the hidden first paint).
-    requestAnimationFrame(() => { this._visible = true })
+    // The enter runs itself, from @starting-style — see the .toast rule.
     if (this.duration > 0) {
       this._timer = setTimeout(() => this.dismiss(), this.duration)
     }
@@ -251,9 +271,40 @@ export class ScToast extends LitElement {
       // Drop the shared stack once its last toast is gone.
       if (stack?.classList.contains('sc-toast-stack') && stack.childElementCount === 0) stack.remove()
     }
+    this._exiting = true
+
+    // Detach when the exit has actually finished, not on a timer matched to the
+    // token duration: that timer starts when the class is set, but the
+    // transition only begins on the next frame, so the node gets pulled out
+    // while still visible — a flicker. Reduced motion zeroes the tokens, and a
+    // zero-duration transition fires no transitionend, so it short-circuits.
     const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches
-    this._visible = false
-    setTimeout(remove, reduce ? 0 : 200)
+    if (reduce) {
+      remove()
+      return
+    }
+
+    void this.updateComplete.then(() => {
+      const box = this.renderRoot.querySelector('.toast')
+      if (!box) {
+        remove()
+        return
+      }
+
+      let fallback = 0
+      const done = () => {
+        clearTimeout(fallback)
+        box.removeEventListener('transitionend', onEnd)
+        remove()
+      }
+      const onEnd = (e: Event) => {
+        if ((e as TransitionEvent).propertyName === 'opacity') done()
+      }
+
+      box.addEventListener('transitionend', onEnd)
+      // Safety net: an element that never painted never transitions.
+      fallback = window.setTimeout(done, 1000)
+    })
   }
 
   private _onKeyDown(e: KeyboardEvent) {
@@ -270,7 +321,7 @@ export class ScToast extends LitElement {
     const role = this.status === 'negative' ? 'alert' : 'status'
 
     return html`
-      <div class="toast ${this._visible ? 'is-visible' : ''}" role=${role} aria-label="Notification" @keydown=${this._onKeyDown}>
+      <div class="toast ${this._exiting ? 'is-exiting' : ''}" role=${role} aria-label="Notification" @keydown=${this._onKeyDown}>
         ${iconStatus ? html`
           <span class="icon" part="icon">
             <sc-status-icon status=${iconStatus} size="24" inverse></sc-status-icon>

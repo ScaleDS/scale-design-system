@@ -1,0 +1,222 @@
+/* Scale: Motion Transitions */
+/* Composite recipes pairing a duration with an easing, plus the distances and
+   keyframes they animate. Requires sc-motion-variables.scss first. */
+:root {
+  /* Distances */
+  /* How far a surface travels. `full` is a percentage so it resolves against the
+     element's own box, whatever its size. */
+  --sc-motion-distance-nudge: 8px;
+  --sc-motion-distance-travel: 32px;
+  --sc-motion-distance-full: 100%;
+
+  /* Slide distance */
+  /* The slide keyframes have no distance baked in; set this on the element to pick
+     a magnitude, so eight keyframes cover both a nudge and a full off-screen park. */
+  --sc-motion-slide-distance: var(--sc-motion-distance-nudge);
+  --sc-motion-scale-s: 0.95;
+  --sc-motion-scale-m: 0.8;
+  --sc-motion-scale-grow: 1.1;
+  --sc-motion-scale-fade-through: 0.92;
+
+  /* Writing mode */
+  /* CSS has no logical `translate`, so inline-axis movement multiplies by this to
+     come from the correct edge in RTL. */
+  --sc-motion-inline-sign: 1;
+
+  /* Transitions */
+  /* Reach for these first. Each pairs a timing with a curve for a specific job, so
+     picking the job gets you the timing for free. Exits run shorter than entrances. */
+  /* State change — confirming a tap, a hover, a selection */
+  --sc-motion-transition-micro: var(--sc-motion-duration-50) var(--sc-motion-ease-out);
+  --sc-motion-transition-control: var(--sc-motion-duration-150) var(--sc-motion-ease-out);
+
+  /* Fade — something appears that was not there before */
+  --sc-motion-transition-fade-in-s: var(--sc-motion-duration-150) var(--sc-motion-ease-out);
+  --sc-motion-transition-fade-out-s: var(--sc-motion-duration-100) var(--sc-motion-ease-in);
+  --sc-motion-transition-fade-in-m: var(--sc-motion-duration-200) var(--sc-motion-ease-out);
+  --sc-motion-transition-fade-out-m: var(--sc-motion-duration-150) var(--sc-motion-ease-in);
+  --sc-motion-transition-fade-in-l: var(--sc-motion-duration-250) var(--sc-motion-ease-out);
+  --sc-motion-transition-fade-out-l: var(--sc-motion-duration-200) var(--sc-motion-ease-in);
+
+  /* Enter and exit — a surface with a home off-screen */
+  --sc-motion-transition-enter-s: var(--sc-motion-duration-150) var(--sc-motion-ease-out);
+  --sc-motion-transition-exit-s: var(--sc-motion-duration-100) var(--sc-motion-ease-in);
+  --sc-motion-transition-enter-l: var(--sc-motion-duration-300) var(--sc-motion-ease-out-quint);
+  --sc-motion-transition-exit-l: var(--sc-motion-duration-250) var(--sc-motion-ease-in-out);
+  --sc-motion-transition-enter-xl: var(--sc-motion-duration-500) var(--sc-motion-ease-in-out-quart);
+  --sc-motion-transition-exit-xl: var(--sc-motion-duration-400) var(--sc-motion-ease-in-out-quart);
+
+  /* Scale — a surface that belongs to the whole screen, growing into the middle */
+  --sc-motion-transition-scale-in: var(--sc-motion-duration-250) var(--sc-motion-ease-out-quint);
+  --sc-motion-transition-scale-out: var(--sc-motion-duration-200) var(--sc-motion-ease-in);
+
+  /* In place — content that was already there becoming more or less of itself */
+  --sc-motion-transition-expand: var(--sc-motion-duration-250) var(--sc-motion-ease-in-out);
+  --sc-motion-transition-collapse: var(--sc-motion-duration-250) var(--sc-motion-ease-in-out);
+  --sc-motion-transition-reposition: var(--sc-motion-duration-250) var(--sc-motion-ease-in-out);
+
+  /* Springs — durations are the settle time, so the motion arrives before it ends */
+  --sc-motion-transition-spring-subtle: var(--sc-motion-duration-250) var(--sc-motion-ease-spring-subtle);
+  --sc-motion-transition-spring: var(--sc-motion-duration-300) var(--sc-motion-ease-spring);
+  --sc-motion-transition-spring-bouncy: var(--sc-motion-duration-500) var(--sc-motion-ease-spring-bouncy);
+
+  /* Loops */
+  /* `animation` shorthands, not transitions. Travelling loops use linear so the seam
+     doesn't stutter; pulse oscillates, so its slow ends land on the reversal. */
+  --sc-motion-animation-spin: var(--sc-motion-duration-1000) var(--sc-motion-ease-linear) infinite;
+  --sc-motion-animation-pulse: var(--sc-motion-duration-1000) var(--sc-motion-ease-in-out) infinite;
+  --sc-motion-animation-shimmer: var(--sc-motion-duration-1000) var(--sc-motion-ease-linear) infinite;
+}
+
+:root:dir(rtl) {
+  --sc-motion-inline-sign: -1;
+}
+
+/* Keyframes */
+/* Transitions supply the how long and what curve; these supply the what moves.
+   Everything animates `translate` rather than `transform` so movements compose, and
+   nothing animates a layout property. */
+@keyframes sc-motion-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes sc-motion-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes sc-motion-scale-in-s {
+  from {
+    scale: var(--sc-motion-scale-s);
+  }
+}
+
+@keyframes sc-motion-scale-out-s {
+  to {
+    scale: var(--sc-motion-scale-s);
+  }
+}
+
+@keyframes sc-motion-scale-in-m {
+  from {
+    scale: var(--sc-motion-scale-m);
+  }
+}
+
+@keyframes sc-motion-scale-out-m {
+  to {
+    scale: var(--sc-motion-scale-m);
+  }
+}
+
+@keyframes sc-motion-scale-out-grow {
+  to {
+    scale: var(--sc-motion-scale-grow);
+  }
+}
+
+/* Choreography keyframes */
+@keyframes sc-motion-scale-in-fade-through {
+  from {
+    scale: var(--sc-motion-scale-fade-through);
+  }
+}
+
+@keyframes sc-motion-shared-axis-in {
+  from {
+    translate: var(--sc-motion-shared-axis-from);
+  }
+}
+
+@keyframes sc-motion-shared-axis-out {
+  to {
+    translate: var(--sc-motion-shared-axis-to);
+  }
+}
+
+/* Slides */
+/* Direction names the edge the element comes from, or goes to. Magnitude is not in
+   the name: each reads --sc-motion-slide-distance off the element. */
+@keyframes sc-motion-slide-in-from-top {
+  from {
+    translate: 0 calc(-1 * var(--sc-motion-slide-distance));
+  }
+}
+
+@keyframes sc-motion-slide-in-from-bottom {
+  from {
+    translate: 0 var(--sc-motion-slide-distance);
+  }
+}
+
+@keyframes sc-motion-slide-in-from-inline-start {
+  from {
+    translate: calc(-1 * var(--sc-motion-slide-distance) * var(--sc-motion-inline-sign)) 0;
+  }
+}
+
+@keyframes sc-motion-slide-in-from-inline-end {
+  from {
+    translate: calc(var(--sc-motion-slide-distance) * var(--sc-motion-inline-sign)) 0;
+  }
+}
+
+@keyframes sc-motion-slide-out-to-top {
+  to {
+    translate: 0 calc(-1 * var(--sc-motion-slide-distance));
+  }
+}
+
+@keyframes sc-motion-slide-out-to-bottom {
+  to {
+    translate: 0 var(--sc-motion-slide-distance);
+  }
+}
+
+@keyframes sc-motion-slide-out-to-inline-start {
+  to {
+    translate: calc(-1 * var(--sc-motion-slide-distance) * var(--sc-motion-inline-sign)) 0;
+  }
+}
+
+@keyframes sc-motion-slide-out-to-inline-end {
+  to {
+    translate: calc(var(--sc-motion-slide-distance) * var(--sc-motion-inline-sign)) 0;
+  }
+}
+
+/* Loop keyframes */
+/* Shimmer degrades to a still gradient under reduced motion; the spinner keeps
+   turning, because its motion is the loading affordance. */
+@keyframes sc-motion-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sc-motion-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes sc-motion-shimmer {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 200% 200%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes sc-motion-shimmer {
+    from,
+    to {
+      background-position: 50% 50%;
+    }
+  }
+}

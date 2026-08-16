@@ -1,5 +1,6 @@
 import { LitElement, html, css, isServer } from 'lit'
 import { customElement, property, query } from 'lit/decorators.js'
+import { motionSurface } from './sc-motion.js'
 import './sc-button-icon.js'
 
 /**
@@ -33,55 +34,57 @@ export class ScModal extends LitElement {
 
   private _prevBodyOverflow = ''
 
-  static styles = css`
-    :host {
-      display: contents;
-    }
-
-    dialog {
-      box-sizing: border-box;
-      margin: auto;
-      padding: 0;
-      border: none;
-      background: transparent;
-      color: inherit;
-      max-width: none;
-      max-height: none;
-      overflow: visible;
-      /* Fade in/out. display + overlay are animated with allow-discrete so the
-         exit fade plays before display:none and the dialog stays in the top
-         layer for the duration. */
-      opacity: 0;
-      transition: opacity 250ms ease, display 250ms allow-discrete, overlay 250ms allow-discrete;
-    }
-
-    dialog[open] {
-      opacity: 1;
-    }
-
-    /* Entry start state — must be declared after the dialog[open] rule. */
-    @starting-style {
-      dialog[open] {
-        opacity: 0;
+  static styles = [
+    css`
+      :host {
+        display: contents;
       }
-    }
 
-    dialog::backdrop {
-      background: var(--sc-color-overlay-70-inverse-static);
-      opacity: 0;
-      transition: opacity 250ms ease, display 250ms allow-discrete, overlay 250ms allow-discrete;
-    }
-
-    dialog[open]::backdrop {
-      opacity: 1;
-    }
-
-    @starting-style {
-      dialog[open]::backdrop {
-        opacity: 0;
+      dialog {
+        box-sizing: border-box;
+        margin: auto;
+        padding: 0;
+        border: none;
+        background: transparent;
+        color: inherit;
+        max-width: none;
+        max-height: none;
+        overflow: visible;
       }
-    }
 
+      dialog::backdrop {
+        background: var(--sc-color-overlay-70-inverse-static);
+      }
+    `,
+
+    /* Enter/exit for the dialog and its backdrop. motionSurface emits the
+       resting state, the open state and the @starting-style twin, plus the
+       display + overlay allow-discrete transitions that keep the dialog in the
+       top layer for the whole of its exit.
+
+       fade-in-l / fade-out-l are the overlay-sized fades: 250ms ease-out in,
+       200ms ease-in out. The 250ms enter matches what this component already
+       used; the exit is the ~0.8x shortening the composites apply throughout. */
+    motionSurface({
+      selector: 'dialog',
+      open: 'dialog[open]',
+      enter: 'fade-in-l',
+      exit: 'fade-out-l',
+      hidden: css`
+        opacity: 0;
+      `,
+    }),
+    motionSurface({
+      selector: 'dialog::backdrop',
+      open: 'dialog[open]::backdrop',
+      enter: 'fade-in-l',
+      exit: 'fade-out-l',
+      hidden: css`
+        opacity: 0;
+      `,
+    }),
+
+    css`
     .modal {
       box-sizing: border-box;
       display: flex;
@@ -156,7 +159,8 @@ export class ScModal extends LitElement {
         width: 100%;
       }
     }
-  `
+  `,
+  ]
 
   /** Open the modal. */
   show() {

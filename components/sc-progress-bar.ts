@@ -58,7 +58,9 @@ export class ScProgressBar extends LitElement {
       height: 100%;
       border-radius: var(--sc-border-radius-xs);
       background: var(--sc-color-border-brand);
-      transition: width 200ms ease, background 200ms ease;
+      transition:
+        width var(--sc-motion-transition-control),
+        background var(--sc-motion-transition-control);
     }
 
     :host([status='positive']) .fill {

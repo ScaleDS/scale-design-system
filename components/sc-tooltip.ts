@@ -84,12 +84,16 @@ export class ScTooltip extends LitElement {
       pointer-events: none;
       opacity: 0;
       visibility: hidden;
-      transition: opacity 150ms ease;
+      /* Resting rule carries the EXIT, open rule the enter — the direction in
+         force is whichever rule currently applies. s-sized: a tooltip is an
+         anchored surface. */
+      transition: opacity var(--sc-motion-transition-fade-out-s);
     }
 
     .tooltip.is-open {
       opacity: 1;
       visibility: visible;
+      transition: opacity var(--sc-motion-transition-fade-in-s);
     }
 
     .arrow {
@@ -123,12 +127,6 @@ export class ScTooltip extends LitElement {
       border-top: 4px solid transparent;
       border-bottom: 4px solid transparent;
       border-right: 4px solid var(--sc-color-background-inverse);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .tooltip {
-        transition: none;
-      }
     }
   `
 

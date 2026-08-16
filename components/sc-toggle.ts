@@ -56,7 +56,7 @@ export class ScToggle extends LitElement {
       padding: 0;
       cursor: pointer;
       background: var(--sc-color-background-neutral);
-      transition: background 200ms ease;
+      transition: background var(--sc-motion-transition-control);
       flex-shrink: 0;
     }
 
@@ -80,12 +80,14 @@ export class ScToggle extends LitElement {
       box-shadow:
         0px 0px 2px 0px rgba(0, 0, 0, 0.08),
         0px 6px 4px -4px rgba(0, 0, 0, 0.08);
-      transition: transform 200ms ease;
+      /* translate, not transform: it composes, so a future hover scale or a
+         focus effect on the knob won't clobber the travel. */
+      transition: translate var(--sc-motion-transition-control);
     }
 
     :host([checked]) .knob {
       /* track(66) - knob(40) - right-margin(2) - left-start(2) = 22px */
-      transform: translateX(22px);
+      translate: 22px;
     }
   `]
 

@@ -214,7 +214,7 @@ export class ScDatePicker extends LitElement {
       background: transparent;
       color: var(--sc-color-text-secondary);
       cursor: pointer;
-      transition: background-color 200ms ease, color 200ms ease;
+      transition: background-color var(--sc-motion-transition-control), color var(--sc-motion-transition-control);
     }
 
     /* Days belonging to the previous/next month. */

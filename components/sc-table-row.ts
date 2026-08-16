@@ -24,7 +24,7 @@ export class ScTableRow extends LitElement {
       grid-template-columns: subgrid;
       align-items: stretch;
       background: var(--sc-table-row-background, transparent);
-      transition: background-color 200ms ease;
+      transition: background-color var(--sc-motion-transition-control);
     }
 
     /* Pagination hides off-page rows; :host wins over the UA [hidden] rule. */

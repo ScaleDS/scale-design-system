@@ -1,25 +1,24 @@
+/* Scale: Main */
 @use './inter';
 @use './sc-variables-color';
 @use './sc-variables-border';
 @use './sc-variables-spacing';
 @use './sc-variables-type';
 @use './sc-variables-shadows';
+@use './sc-motion-variables';
+@use './sc-motion-transitions';
 @use './sc-mixins-type' as type;
 @use './sc-mixins-material' as material;
 
-/* ---- Reset ---- */
-
-// box-sizing stays universal — harmless on custom elements and expected by
-// every width/padding calc in the system.
+/* Reset */
+// Universal, because every width and padding calc in the system assumes it.
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-// Margin/padding reset is targeted at native flow elements only. Applying it
-// via `*` also targets custom-element hosts, which silently overrides any
-// `:host` margin/padding rule from inside a component's shadow DOM (the
-// document-tree selector wins despite lower specificity). Keeping this list
-// explicit lets sc-* components style their host without surprise.
+// Listed explicitly rather than via `*`: a universal reset also hits custom-element
+// hosts and silently overrides their own `:host` margin, since the document-tree
+// selector wins regardless of specificity.
 html, body,
 h1, h2, h3, h4, h5, h6,
 p, blockquote, pre,
@@ -30,8 +29,7 @@ form, fieldset, legend {
   padding: 0;
 }
 
-/* ---- Body ---- */
-
+/* Body */
 html, body {
   width: 100%;
   min-height: 100%;
@@ -45,15 +43,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---- Layout ---- */
-
+/* Layout */
 .container {
   max-width: 1440px;
   margin: 0 auto;
 }
 
-/* ---- Headings ---- */
-
+/* Headings */
 h1 { @include type.sc-typography-heading-3xl; }
 h2 { @include type.sc-typography-heading-2xl; }
 h3 { @include type.sc-typography-heading-xl; }
@@ -65,8 +61,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--sc-color-text-primary);
 }
 
-/* ---- Body text ---- */
-
+/* Body text */
 p {
   @include type.sc-typography-text-l;
   color: var(--sc-color-text-secondary);
@@ -80,8 +75,7 @@ p {
   }
 }
 
-/* ---- Labels ---- */
-
+/* Labels */
 .label-l { @include type.sc-typography-label-l; }
 .label-m { @include type.sc-typography-label-m; }
 .label-s { @include type.sc-typography-label-s; }
@@ -94,8 +88,7 @@ p {
   margin: var(--sc-space-xl) 0 var(--sc-space-m);
 }
 
-/* ---- Links ---- */
-
+/* Links */
 a {
   @include type.sc-typography-link-l;
   color: var(--sc-color-text-link);
@@ -111,8 +104,7 @@ a {
   }
 }
 
-/* ---- Lists ---- */
-
+/* Lists */
 ul, ol {
   @include type.sc-typography-text-l;
   color: var(--sc-color-text-secondary);
@@ -123,23 +115,20 @@ li + li {
   margin-top: var(--sc-space-xs);
 }
 
-/* ---- Horizontal rule ---- */
-
+/* Horizontal rule */
 hr {
   border: none;
   border-top: var(--sc-border-width-s) solid var(--sc-color-border-secondary);
   margin: var(--sc-space-xl) 0;
 }
 
-/* ---- Images ---- */
-
+/* Images */
 img {
   max-width: 100%;
   display: block;
 }
 
-/* ---- Code ---- */
-
+/* Code */
 code {
   font-family: monospace;
   font-size: var(--sc-type-size-m);
@@ -161,8 +150,7 @@ pre {
   }
 }
 
-/* ---- Materials ---- */
-
+/* Materials */
 /* One class per material thickness (see sc-mixins-material.scss). */
 .sc-material-ultrathin { @include material.sc-material-ultrathin; }
 .sc-material-thin { @include material.sc-material-thin; }
@@ -170,52 +158,44 @@ pre {
 .sc-material-thick { @include material.sc-material-thick; }
 .sc-material-chrome { @include material.sc-material-chrome; }
 
-/* Tint modifiers: compose with any material class to add a background-inverse
-   tint beneath the material fill layers, e.g. class="sc-material-thin sc-material-tint-12".
-   Higher = more opaque. */
+/* Tint modifiers — compose with any material class; higher is more opaque. */
 @each $tint in 12, 16, 24, 32, 40 {
   .sc-material-tint-#{$tint} {
     background: color-mix(in srgb, var(--sc-color-background-inverse) #{$tint + '%'}, transparent);
   }
 }
 
-/* ---- Selection ---- */
-
+/* Selection */
 ::selection {
   background: var(--sc-color-background-brand);
   color: var(--sc-color-text-primary-inverse);
 }
 
-/* ---- Content layout ---- */
-
+/* Content layout */
 .content {
   display: flex;
   flex-direction: column;
   gap: var(--sc-space-xl);
 }
 
-/* ---- Header ---- */
-
+/* Header */
 sc-header {
   --sc-header-bg-bottom: 0px;
 }
 
-/* ---- Hero h1 mobile size ---- */
-
+/* Hero h1 mobile size */
 @media (max-width: 402px) {
   sc-hero h1 { font-size: var(--sc-unit-32); line-height: var(--sc-unit-40); }
 }
 
-/* ---- FAQ section ---- */
-
+/* FAQ section */
 @media (min-width: 811px) {
   sc-section-faq {
     --sc-section-faq-padding-y: var(--sc-space-4xl);
   }
 }
 
-/* ---- Licence page ---- */
-
+/* Licence page */
 [data-page='licence'] section {
   padding-top: 160px;
   padding-bottom: 32px;

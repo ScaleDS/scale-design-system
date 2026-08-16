@@ -19,7 +19,7 @@ export class ScCard extends LitElement {
       overflow: hidden;
       position: relative;
       box-sizing: border-box;
-      transition: background-color 200ms ease, box-shadow 200ms ease;
+      transition: background-color var(--sc-motion-transition-control), box-shadow var(--sc-motion-transition-control);
     }
 
     /* Surface */

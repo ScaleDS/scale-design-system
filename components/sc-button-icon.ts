@@ -35,7 +35,7 @@ export class ScButtonIcon extends LitElement {
       justify-content: center;
       border: none;
       cursor: pointer;
-      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+      transition: background-color var(--sc-motion-transition-control), color var(--sc-motion-transition-control), border-color var(--sc-motion-transition-control);
       outline: none;
       position: relative;
       /* Fill the host so an explicit size on :host (e.g. width/height) forces

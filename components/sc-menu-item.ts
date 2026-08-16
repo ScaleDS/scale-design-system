@@ -40,7 +40,7 @@ export class ScMenuItem extends LitElement {
       color: inherit;
       box-sizing: border-box;
       min-width: 0;
-      transition: background 200ms ease;
+      transition: background var(--sc-motion-transition-control);
     }
 
     :host([type='row']) .item {
@@ -171,10 +171,6 @@ export class ScMenuItem extends LitElement {
 
     :host([destructive]) .item:not(:disabled):hover .icon {
       color: var(--sc-color-icon-negative);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .item { transition: none; }
     }
   `]
 

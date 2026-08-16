@@ -42,7 +42,7 @@ export class ScCardSelector extends LitElement {
       font: inherit;
       text-align: left;
       box-sizing: border-box;
-      transition: box-shadow 150ms ease;
+      transition: box-shadow var(--sc-motion-transition-control);
     }
 
     /*
@@ -81,7 +81,10 @@ export class ScCardSelector extends LitElement {
       justify-content: center;
       color: var(--sc-color-icon-inverse);
       box-sizing: border-box;
-      transition: background 150ms ease, border-color 150ms ease, border-width 150ms ease;
+      transition:
+        background var(--sc-motion-transition-control),
+        border-color var(--sc-motion-transition-control),
+        border-width var(--sc-motion-transition-control);
     }
 
     :host([type='checkbox']) .indicator { border-radius: var(--sc-border-radius-s); }

@@ -173,7 +173,7 @@ export class ScInput extends LitElement {
       border-radius: var(--sc-border-radius-m);
       border: 1px solid var(--sc-color-border-primary);
       background: var(--sc-color-background-primary);
-      transition: border-color 150ms ease, box-shadow 150ms ease;
+      transition: border-color var(--sc-motion-transition-control), box-shadow var(--sc-motion-transition-control);
       width: 100%;
       box-sizing: border-box;
     }

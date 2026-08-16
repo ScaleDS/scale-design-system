@@ -1,0 +1,130 @@
+@use 'sass:math';
+
+/* Scale: Motion Choreography */
+/* Motion across more than one element. Not in main.scss — import where needed:
+     @use '@scale-ds/scale-design-system/scss/sc-motion-choreography' as choreography; */
+
+/* Stagger — a group arriving together, but not all at once */
+@mixin stagger($count, $animation: sc-motion-fade-in, $transition: fade-in-m) {
+  $interval: 20ms;
+  @if $count > 25 {
+    $interval: math.div(500ms, $count);
+  }
+
+  animation: $animation var(--sc-motion-transition-#{$transition}) backwards;
+
+  @for $i from 1 through $count {
+    &:nth-child(#{$i}) {
+      animation-delay: $interval * ($i - 1);
+    }
+  }
+}
+
+/* Fade through — switching between two places with no relationship to each other */
+@mixin fade-through($role, $duration: 450ms) {
+  $threshold: 0.35;
+
+  @if $role == outgoing {
+    animation:
+      sc-motion-fade-out ($duration * $threshold) var(--sc-motion-ease-emphasized-accelerate) forwards;
+  } @else if $role == incoming {
+    animation:
+      sc-motion-fade-in ($duration * (1 - $threshold)) var(--sc-motion-ease-emphasized-decelerate)
+        ($duration * $threshold) backwards,
+      sc-motion-scale-in-fade-through ($duration * (1 - $threshold))
+        var(--sc-motion-ease-emphasized-decelerate) ($duration * $threshold) backwards;
+  } @else {
+    @error 'fade-through() takes `outgoing` or `incoming`, got `#{$role}`.';
+  }
+}
+
+/* Shared axis — moving between two places that are related */
+@mixin shared-axis($role, $direction: forward, $axis: x, $duration: 450ms) {
+  $threshold: 0.35;
+  $sign: 1;
+  @if $direction != forward {
+    $sign: -1;
+  }
+  $travel: var(--sc-motion-distance-travel);
+  $fade-in: $duration * (1 - $threshold);
+  $fade-out: $duration * $threshold;
+
+  @if $role != outgoing and $role != incoming {
+    @error 'shared-axis() takes `outgoing` or `incoming`, got `#{$role}`.';
+  }
+
+  @if $axis == z {
+    @if $role == outgoing {
+      animation:
+        sc-motion-fade-out $fade-out var(--sc-motion-ease-emphasized-accelerate) forwards,
+        sc-motion-scale-out-grow $duration var(--sc-motion-ease-emphasized) forwards;
+    } @else {
+      animation:
+        sc-motion-fade-in $fade-in var(--sc-motion-ease-emphasized-decelerate) $fade-out backwards,
+        sc-motion-scale-in-m $duration var(--sc-motion-ease-emphasized) backwards;
+    }
+  } @else {
+    @if $axis == x {
+      --sc-motion-shared-axis-from: calc(#{$sign} * #{$travel} * var(--sc-motion-inline-sign)) 0;
+      --sc-motion-shared-axis-to: calc(#{-$sign} * #{$travel} * var(--sc-motion-inline-sign)) 0;
+    } @else if $axis == y {
+      --sc-motion-shared-axis-from: 0 calc(#{$sign} * #{$travel});
+      --sc-motion-shared-axis-to: 0 calc(#{-$sign} * #{$travel});
+    } @else {
+      @error 'shared-axis() takes axis `x`, `y` or `z`, got `#{$axis}`.';
+    }
+
+    @if $role == outgoing {
+      animation:
+        sc-motion-fade-out $fade-out var(--sc-motion-ease-emphasized-accelerate) forwards,
+        sc-motion-shared-axis-out $duration var(--sc-motion-ease-emphasized) forwards;
+    } @else {
+      animation:
+        sc-motion-fade-in $fade-in var(--sc-motion-ease-emphasized-decelerate) $fade-out backwards,
+        sc-motion-shared-axis-in $duration var(--sc-motion-ease-emphasized) backwards;
+    }
+  }
+}
+
+/* Push — one whole view replacing another, sliding edge to edge */
+@mixin push($role, $direction: forward, $axis: x, $duration: 450ms) {
+  $sign: 1;
+  @if $direction != forward {
+    $sign: -1;
+  }
+  $travel: var(--sc-motion-distance-full);
+
+  @if $role != outgoing and $role != incoming {
+    @error 'push() takes `outgoing` or `incoming`, got `#{$role}`.';
+  }
+
+  @if $axis == x {
+    --sc-motion-shared-axis-from: calc(#{$sign} * #{$travel} * var(--sc-motion-inline-sign)) 0;
+    --sc-motion-shared-axis-to: calc(#{-$sign} * #{$travel} * var(--sc-motion-inline-sign)) 0;
+  } @else if $axis == y {
+    --sc-motion-shared-axis-from: 0 calc(#{$sign} * #{$travel});
+    --sc-motion-shared-axis-to: 0 calc(#{-$sign} * #{$travel});
+  } @else {
+    @error 'push() takes axis `x` or `y`, got `#{$axis}`.';
+  }
+
+  @if $role == outgoing {
+    animation: sc-motion-shared-axis-out $duration var(--sc-motion-ease-emphasized) forwards;
+  } @else {
+    animation: sc-motion-shared-axis-in $duration var(--sc-motion-ease-emphasized) backwards;
+  }
+}
+
+/* Container transform — a card growing into the thing it opens */
+@mixin container-transform($name) {
+  view-transition-name: $name;
+}
+
+@mixin view-transition-defaults {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: var(--sc-motion-duration-500);
+    animation-timing-function: var(--sc-motion-ease-emphasized);
+  }
+}

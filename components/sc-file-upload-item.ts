@@ -128,7 +128,7 @@ export class ScFileUploadItem extends LitElement {
       border-radius: var(--sc-border-radius-xs);
       cursor: pointer;
       line-height: 0;
-      transition: color 150ms ease;
+      transition: color var(--sc-motion-transition-control);
     }
 
     /* Zero-specificity reset so the shared focusRing :focus-visible ring wins

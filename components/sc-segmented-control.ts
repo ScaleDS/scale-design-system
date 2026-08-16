@@ -117,7 +117,7 @@ export class ScSegmentedControl extends LitElement {
       cursor: pointer;
       white-space: nowrap;
       ${labelM}
-      transition: background 200ms ease, color 200ms ease;
+      transition: background var(--sc-motion-transition-control), color var(--sc-motion-transition-control);
     }
 
     /* Reset the native outline at zero specificity so the focusRing wins. */

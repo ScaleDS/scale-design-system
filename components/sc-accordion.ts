@@ -49,11 +49,16 @@ export class ScAccordion extends LitElement {
     .body {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 200ms ease;
+      /* The 0fr->1fr grid technique, kept — it animates to the content's real
+         height with no measurement. Only the timing comes from the tokens, and
+         it's the in-place pair: the panel is visible before and after, so there's
+         no arrival or departure to imply. */
+      transition: grid-template-rows var(--sc-motion-transition-collapse);
     }
 
     :host([open]) .body {
       grid-template-rows: 1fr;
+      transition: grid-template-rows var(--sc-motion-transition-expand);
     }
 
     .body-inner {
@@ -75,27 +80,20 @@ export class ScAccordion extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: transform 200ms ease;
+      /* rotate, not transform, so the flip composes with anything else the
+         chevron might animate later. */
+      transition: rotate var(--sc-motion-transition-control);
       color: var(--sc-color-icon-primary);
     }
 
     :host([open]) .chevron {
-      transform: rotate(180deg);
+      rotate: 180deg;
     }
 
     .chevron svg {
       display: block;
       width: 24px;
       height: 24px;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .body {
-        transition: none;
-      }
-      .chevron {
-        transition: none;
-      }
     }
   `]
 

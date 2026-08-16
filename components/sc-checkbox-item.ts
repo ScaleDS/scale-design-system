@@ -35,7 +35,7 @@ export class ScCheckboxItem extends LitElement {
       border: 1px solid var(--sc-color-border-primary);
       background: var(--sc-color-background-primary);
       cursor: pointer;
-      transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+      transition: border-color var(--sc-motion-transition-control), background var(--sc-motion-transition-control), box-shadow var(--sc-motion-transition-control);
       box-sizing: border-box;
       outline: none;
     }

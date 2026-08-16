@@ -1,5 +1,6 @@
 import { LitElement, html, css, type PropertyValues } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
+import { loopKeyframes } from './sc-motion.js'
 
 type SpinnerSize = 'l' | 's'
 type SpinnerType = 'primary' | 'negative' | 'mono' | 'inverse'
@@ -30,7 +31,9 @@ export class ScSpinner extends LitElement {
     if (changed.has('label')) this.setAttribute('aria-label', this.label)
   }
 
-  static styles = css`
+  static styles = [
+    loopKeyframes,
+    css`
     :host {
       display: inline-flex;
     }
@@ -42,7 +45,7 @@ export class ScSpinner extends LitElement {
       width: 100%;
       height: 100%;
       transform-origin: center;
-      animation: sc-spinner-rotate 800ms linear infinite;
+      animation: sc-motion-spin var(--sc-motion-animation-spin);
     }
 
     circle {
@@ -58,16 +61,15 @@ export class ScSpinner extends LitElement {
     :host([type='mono']) circle { stroke: var(--sc-color-border-mono); }
     :host([type='inverse']) circle { stroke: var(--sc-color-border-inverse); }
 
-    @keyframes sc-spinner-rotate {
-      to { transform: rotate(360deg); }
-    }
-
-    /* Honour reduced-motion by slowing (not stopping — the motion is the
-       indicator's meaning, so it must still convey "in progress"). */
+    /* One of the two deliberate bespoke reduced-motion fallbacks in the system:
+       slow down, don't stop. The ambient duration stops are never zeroed because
+       a 0ms loop simply doesn't run, and a stopped spinner stops meaning
+       "in progress" — that removes the affordance rather than calming it. */
     @media (prefers-reduced-motion: reduce) {
       svg { animation-duration: 2000ms; }
     }
-  `
+  `,
+  ]
 
   render() {
     // 1:1 viewBox with the host px size; stroke sits fully inside the box.

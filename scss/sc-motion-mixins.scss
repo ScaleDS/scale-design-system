@@ -1,0 +1,104 @@
+@use 'sass:list';
+
+/* Scale: Motion Mixins */
+/* Wrappers around the composite motion tokens, so a kind of motion keeps its
+   duration and easing pairing in one place.
+
+     .sc-tooltip  { @include motion.transition(fade-in-s, opacity); }
+     .sc-skeleton { @include motion.animate(shimmer); } */
+$transitions: (
+  /* state changes — nothing moves */ micro,
+  control,
+  /* fades, sized by surface */ fade-in-s,
+  fade-out-s,
+  fade-in-m,
+  fade-out-m,
+  fade-in-l,
+  fade-out-l,
+  /* enter/exit */ enter-s,
+  exit-s,
+  enter-l,
+  exit-l,
+  enter-xl,
+  exit-xl,
+  /* scales */ scale-in,
+  scale-out,
+  /* in-place */ expand,
+  collapse,
+  reposition,
+  /* springs — spatial only */ spring-subtle,
+  spring,
+  spring-bouncy
+);
+
+$animations: (spin, pulse, shimmer);
+
+$spatial-only: (spring-subtle, spring, spring-bouncy);
+
+@mixin transition($name, $properties...) {
+  @if not list.index($transitions, $name) {
+    @error 'Unknown motion transition `#{$name}`. Expected one of: #{$transitions}.';
+  }
+  @if list.index($spatial-only, $name) {
+    @each $property in $properties {
+      @if $property == opacity or $property == color or $property == background-color {
+        @warn 'Spring `#{$name}` applied to `#{$property}`. Springs overshoot past '
+          + 'their target, which is meaningless for opacity and colour — use them on '
+          + 'transform and other geometric properties only.';
+      }
+    }
+  }
+
+  $list: ();
+  @each $property in $properties {
+    $list: list.append($list, #{$property} var(--sc-motion-transition-#{$name}), comma);
+  }
+  transition: $list;
+}
+
+@mixin animate($name) {
+  @if not list.index($animations, $name) {
+    @error 'Unknown motion animation `#{$name}`. Expected one of: #{$animations}.';
+  }
+  animation: sc-motion-#{$name} var(--sc-motion-animation-#{$name});
+}
+
+/* Surfaces */
+/* Enter and exit without JavaScript. Pass the open-state selector, the enter and
+   exit tokens, and the hidden state as a content block; the block is emitted twice,
+   as the closed state and again inside @starting-style.
+
+     .sc-drawer {
+       @include motion.surface('[open]', enter-xl, exit-xl) {
+         translate: calc(-1 * var(--sc-motion-distance-full) * var(--sc-motion-inline-sign)) 0;
+       }
+     } */
+@mixin surface($open, $enter, $exit) {
+  @if not list.index($transitions, $enter) or not list.index($transitions, $exit) {
+    @error 'Unknown motion transition in surface(#{$open}, #{$enter}, #{$exit}).';
+  }
+
+  transition:
+    opacity var(--sc-motion-transition-#{$exit}),
+    translate var(--sc-motion-transition-#{$exit}),
+    scale var(--sc-motion-transition-#{$exit}),
+    overlay var(--sc-motion-transition-#{$exit}) allow-discrete,
+    display var(--sc-motion-transition-#{$exit}) allow-discrete;
+  @content;
+
+  &#{$open} {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    transition:
+      opacity var(--sc-motion-transition-#{$enter}),
+      translate var(--sc-motion-transition-#{$enter}),
+      scale var(--sc-motion-transition-#{$enter});
+  }
+
+  @starting-style {
+    &#{$open} {
+      @content;
+    }
+  }
+}

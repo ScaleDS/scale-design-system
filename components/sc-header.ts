@@ -5,6 +5,7 @@ import '@scale-ds/scale-design-system/components/sc-logo'
 import '@scale-ds/scale-design-system/components/sc-button'
 import '@scale-ds/scale-design-system/components/sc-button-icon'
 import { featherIcon } from './feather.js'
+import { fadeKeyframes } from './sc-motion.js'
 import { ThemeController } from './theme-controller.js'
 
 export interface NavLink {
@@ -174,7 +175,9 @@ export class ScHeader extends LitElement {
     this._wasSearchOpen = this._searchOpen
   }
 
-  static styles = css`
+  static styles = [
+    fadeKeyframes,
+    css`
     :host {
       display: block;
       position: fixed;
@@ -199,7 +202,10 @@ export class ScHeader extends LitElement {
       right: 0;
       bottom: var(--sc-header-bg-bottom, -96px);
       z-index: -1;
-      transition: bottom 300ms ease;
+      /* In-place resize of a large backdrop area — visible before and after, so
+         ease-in-out. Kept at 300ms rather than the 250ms in-place composites:
+         this is the biggest surface in the header and it reads as hurried faster. */
+      transition: bottom var(--sc-motion-duration-300) var(--sc-motion-ease-in-out);
       background: linear-gradient(
         to bottom,
         color-mix(in srgb, var(--sc-color-surface-l3) 20%, transparent) 0%,
@@ -271,7 +277,7 @@ export class ScHeader extends LitElement {
       border-radius: var(--sc-border-radius-s);
       color: var(--sc-color-text-secondary);
       text-decoration: none;
-      transition: background 150ms ease, color 150ms ease;
+      transition: background var(--sc-motion-transition-control), color var(--sc-motion-transition-control);
     }
 
     .nav-link:hover {
@@ -364,12 +370,14 @@ export class ScHeader extends LitElement {
       z-index: 1;
       background: var(--sc-color-surface-l4);
       box-shadow: var(--sc-shadow-l1);
-      transition: transform 250ms ease;
+      /* translate (not transform) so the travel composes with the shadow/background state
+         changes; control matches sc-toggle's knob so both thumbs feel alike. */
+      transition: translate var(--sc-motion-transition-control);
       pointer-events: none;
     }
 
     .theme-toggle-thumb.dark {
-      transform: translateX(28px);
+      translate: 28px;
     }
 
     .theme-toggle-icon {
@@ -381,7 +389,7 @@ export class ScHeader extends LitElement {
       width: 28px;
       height: 28px;
       color: var(--sc-color-icon-subtle);
-      transition: color 150ms ease;
+      transition: color var(--sc-motion-transition-control);
     }
 
     .theme-toggle-icon svg {
@@ -404,9 +412,14 @@ export class ScHeader extends LitElement {
 
     /* ---- Search overlay ---- */
 
-    /* Crossfade: nav fades out, the centered search field fades in to replace it. */
+    /* Crossfade: nav fades out, the centered search field fades in to replace it.
+       Deliberately NOT the directional fade composites: the two halves have to
+       stay in step, and pairing a 250ms enter with a 200ms exit would leave the
+       swap lopsided. A symmetric duration + ease-in-out is the honest choice
+       until the fade-through choreography mixin ships. Same below for .search
+       and the mobile bar controls. */
     .nav {
-      transition: opacity 200ms ease;
+      transition: opacity var(--sc-motion-duration-200) var(--sc-motion-ease-in-out);
     }
     .header.searching .nav,
     .header.searching .theme-toggle,
@@ -423,7 +436,7 @@ export class ScHeader extends LitElement {
       width: clamp(280px, 50vw, 520px);
       opacity: 0;
       pointer-events: none;
-      transition: opacity 200ms ease;
+      transition: opacity var(--sc-motion-duration-200) var(--sc-motion-ease-in-out);
     }
     .header.searching .search {
       opacity: 1;
@@ -490,12 +503,8 @@ export class ScHeader extends LitElement {
       background: var(--sc-color-surface-l2);
       border-radius: var(--sc-border-radius-s);
       box-shadow: var(--sc-shadow-l2);
-      animation: search-fade-in 150ms ease;
-    }
-
-    @keyframes search-fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      /* Anchored surface off the search field, so s-sized. */
+      animation: sc-motion-fade-in var(--sc-motion-transition-fade-in-s);
     }
 
     .search-result {
@@ -576,7 +585,7 @@ export class ScHeader extends LitElement {
       .theme-toggle,
       .menu-toggle,
       .search-toggle {
-        transition: opacity 200ms ease;
+        transition: opacity var(--sc-motion-duration-200) var(--sc-motion-ease-in-out);
       }
       .header.searching .leading,
       .header.searching .theme-toggle,
@@ -634,7 +643,7 @@ export class ScHeader extends LitElement {
         bottom: 0;
         background: var(--sc-color-surface-l2);
         overflow: hidden;
-        animation: search-fade-in 200ms ease;
+        animation: sc-motion-fade-in var(--sc-motion-transition-fade-in-m);
       }
       .drawer[hidden] {
         display: none;
@@ -645,13 +654,17 @@ export class ScHeader extends LitElement {
         display: flex;
         width: 200%;
         height: 100%;
-        transform: translateX(0);
-        /* easeInOutQuart — gentler acceleration in and deceleration out than the
-           default ease-in-out, so the slide lingers at both ends. */
-        transition: transform 500ms cubic-bezier(0.76, 0, 0.24, 1);
+        translate: 0;
+        /* Scale's signature motion, now on a token: enter-xl is 500ms on
+           ease-in-out-quart, the exact curve this rail has always used. Quart
+           lingers at both ends and covers the middle fast, which is what keeps
+           half a second from feeling slack. One token for both directions —
+           the rail is visible throughout, so neither way is an arrival. */
+        transition: translate var(--sc-motion-transition-enter-xl);
       }
       .drawer-views.show-l2 {
-        transform: translateX(-50%);
+        /* -50% of the rail's own 200% width = exactly one panel. */
+        translate: -50%;
       }
       .drawer-view {
         flex: 0 0 50%;
@@ -691,7 +704,7 @@ export class ScHeader extends LitElement {
         cursor: pointer;
         ${linkM}
         color: var(--sc-color-text-secondary);
-        transition: background 150ms ease, color 150ms ease;
+        transition: background var(--sc-motion-transition-control), color var(--sc-motion-transition-control);
       }
       .drawer-item > span {
         flex: 1;
@@ -726,7 +739,8 @@ export class ScHeader extends LitElement {
         color: var(--sc-color-text-primary);
       }
     }
-  `
+  `,
+  ]
 
   render() {
     return html`

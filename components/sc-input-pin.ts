@@ -113,7 +113,7 @@ export class ScInputPin extends LitElement {
       color: var(--sc-color-text-secondary);
       caret-color: var(--sc-color-border-focus);
       font-family: var(--sc-type-family-inter), system-ui, sans-serif;
-      transition: border-color 150ms ease, box-shadow 150ms ease;
+      transition: border-color var(--sc-motion-transition-control), box-shadow var(--sc-motion-transition-control);
     }
 
     :host([size='l']) .cell {

@@ -61,3 +61,24 @@ export { ScToast } from './components/sc-toast.js'
 export { ScToggle } from './components/sc-toggle.js'
 export { ScTooltip } from './components/sc-tooltip.js'
 export { ThemeController, type Theme, type ThemeControllerOptions } from './components/theme-controller.js'
+
+/* Motion. Keyframes can't cross a shadow boundary, so anyone building their own
+   Lit components on Scale needs these the same way the sc-* elements do. */
+export {
+  fadeKeyframes,
+  scaleKeyframes,
+  slideKeyframes,
+  loopKeyframes,
+  choreographyKeyframes,
+  motionKeyframes,
+  motionRtl,
+  motionTransition,
+  motionAnimate,
+  motionSurface,
+  type MotionTransition,
+  type MotionAnimation,
+  type SpringTransition,
+  type SpatialProperty,
+  type MotionProperty,
+  type MotionSurfaceOptions,
+} from './components/sc-motion.js'

@@ -49,7 +49,7 @@ export class ScPageControls extends LitElement {
       border-radius: var(--sc-border-radius-xs);
       background: var(--sc-color-background-subtle);
       cursor: pointer;
-      transition: background-color 200ms ease;
+      transition: background-color var(--sc-motion-transition-control);
     }
 
     /* Expand the tap/hit target to ~24px without affecting the 8px layout box. */

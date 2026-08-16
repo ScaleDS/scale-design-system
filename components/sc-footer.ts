@@ -44,7 +44,7 @@ export class ScFooter extends LitElement {
       ${linkS}
       color: var(--sc-color-text-link);
       text-decoration: none;
-      transition: color 150ms ease;
+      transition: color var(--sc-motion-transition-control);
     }
 
     .licence:hover {

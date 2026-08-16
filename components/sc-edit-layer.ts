@@ -1,6 +1,7 @@
 import { LitElement, html, css, nothing, type PropertyValues, type TemplateResult } from 'lit'
 import { customElement, property, state } from 'lit/decorators.js'
 import { ThemeController } from './theme-controller.js'
+import { fadeKeyframes } from './sc-motion.js'
 import { heading2xs, textLSemiBold, textMRegular, textMSemiBold, textSSemiBold } from '@scale-ds/scale-design-system/scss/typography'
 // Scale Edit's own chrome is built from real design-system components.
 import './sc-badge.js'
@@ -899,7 +900,9 @@ export class ScEditLayer extends LitElement {
     `
   }
 
-  static styles = css`
+  static styles = [
+    fadeKeyframes,
+    css`
     :host {
       position: fixed;
       inset: 0;
@@ -912,23 +915,17 @@ export class ScEditLayer extends LitElement {
       font: inherit;
       cursor: pointer;
     }
-    /* Show/hide of overlay chrome fades over 250ms. */
-    @keyframes sc-fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes sc-fade-out {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
+    /* Show/hide of overlay chrome, on the shared fade keyframes (l-sized — this
+       chrome is an overlay). The exit is 200ms; the 250ms teardown timer in
+       _fadeState is the upper bound, so it still covers the fade. */
     /* No fill mode on the fade-in: a retained opacity fill would keep the
        wrapper as a stacking/backdrop-isolation context forever, cutting the
        children's backdrop-filter materials off from the page. */
     .fade {
-      animation: sc-fade-in 250ms ease;
+      animation: sc-motion-fade-in var(--sc-motion-transition-fade-in-l);
     }
     .fade.fade-out {
-      animation: sc-fade-out 250ms ease forwards;
+      animation: sc-motion-fade-out var(--sc-motion-transition-fade-out-l) forwards;
       pointer-events: none;
     }
     /* Material elements (toolbar, panel) can't fade via wrapper opacity — an
@@ -962,7 +959,7 @@ export class ScEditLayer extends LitElement {
     }
     .fade > .toolbar,
     .fade > .panel {
-      animation: sc-material-in 250ms ease;
+      animation: sc-material-in var(--sc-motion-transition-fade-in-l);
     }
     .fade > .toolbar::before,
     .fade > .toolbar::after,
@@ -970,11 +967,11 @@ export class ScEditLayer extends LitElement {
     .fade > .panel::after,
     .fade > .toolbar > *,
     .fade > .panel > * {
-      animation: sc-fade-in 250ms ease;
+      animation: sc-motion-fade-in var(--sc-motion-transition-fade-in-l);
     }
     .fade.fade-out > .toolbar,
     .fade.fade-out > .panel {
-      animation: sc-material-out 250ms ease forwards;
+      animation: sc-material-out var(--sc-motion-transition-fade-out-l) forwards;
     }
     .fade.fade-out > .toolbar::before,
     .fade.fade-out > .toolbar::after,
@@ -982,7 +979,7 @@ export class ScEditLayer extends LitElement {
     .fade.fade-out > .panel::after,
     .fade.fade-out > .toolbar > *,
     .fade.fade-out > .panel > * {
-      animation: sc-fade-out 250ms ease forwards;
+      animation: sc-motion-fade-out var(--sc-motion-transition-fade-out-l) forwards;
     }
     .hl {
       position: fixed;
@@ -1374,7 +1371,7 @@ export class ScEditLayer extends LitElement {
       border: 1px solid var(--sc-color-border-primary, #e3e3e3);
       border-radius: var(--sc-border-radius-s, 8px);
       font: inherit;
-      transition: border-color 150ms ease, box-shadow 150ms ease;
+      transition: border-color var(--sc-motion-transition-control), box-shadow var(--sc-motion-transition-control);
     }
     .field::placeholder {
       color: var(--sc-color-text-secondary, #777);
@@ -1411,7 +1408,7 @@ export class ScEditLayer extends LitElement {
       background: var(--sc-color-background-primary, #fff);
       border: 1px solid var(--sc-color-border-primary, #e3e3e3);
       border-radius: var(--sc-border-radius-xs, 4px);
-      transition: border-color 150ms ease, background 150ms ease;
+      transition: border-color var(--sc-motion-transition-control), background var(--sc-motion-transition-control);
     }
     .check:checked {
       border-color: var(--sc-color-background-brand, #36f);
@@ -1430,7 +1427,8 @@ export class ScEditLayer extends LitElement {
       padding: var(--sc-space-l, 16px);
       margin-block: 0;
     }
-  `
+  `,
+  ]
 }
 
 // ---- helpers --------------------------------------------------------------

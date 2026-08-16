@@ -126,7 +126,7 @@ export class ScTextArea extends LitElement {
          inset box-shadow so the content box never shifts. */
       border: var(--sc-border-width-s) solid var(--sc-color-border-primary);
       background: var(--sc-color-background-primary);
-      transition: border-color 150ms ease, box-shadow 150ms ease;
+      transition: border-color var(--sc-motion-transition-control), box-shadow var(--sc-motion-transition-control);
       width: 100%;
       box-sizing: border-box;
     }
@@ -198,10 +198,6 @@ export class ScTextArea extends LitElement {
 
     textarea:disabled::placeholder {
       color: var(--sc-color-text-disabled);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .field { transition: none; }
     }
   `]
 

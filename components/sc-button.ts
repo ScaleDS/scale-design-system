@@ -52,7 +52,7 @@ export class ScButton extends LitElement {
       cursor: pointer;
       white-space: nowrap;
       text-decoration: none;
-      transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+      transition: background-color var(--sc-motion-transition-control), color var(--sc-motion-transition-control), border-color var(--sc-motion-transition-control);
       outline: none;
       position: relative;
       box-sizing: border-box;

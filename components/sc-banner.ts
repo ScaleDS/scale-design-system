@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit'
-import { customElement, property } from 'lit/decorators.js'
+import { customElement, property, state } from 'lit/decorators.js'
 import { textL, linkL } from '@scale-ds/scale-design-system/scss/typography'
 import '@scale-ds/scale-design-system/components/sc-status-icon'
 import { focusRing } from './sc-focus-ring.js'
@@ -23,6 +23,8 @@ export class ScBanner extends LitElement {
   @property() link = ''
   @property() text = ''
 
+  @state() private _exiting = false
+
   static styles = [
     focusRing,
     css`
@@ -39,6 +41,40 @@ export class ScBanner extends LitElement {
       padding: var(--sc-space-m) var(--sc-space-l);
       min-height: 56px;
       box-sizing: border-box;
+      /* Enter/exit — the same gesture as sc-toast, which this deliberately
+         mirrors: fade plus an 8px nudge from above. Overlay-class surface, so
+         the fade is l-sized; the travel is only a nudge, so it takes the
+         s-sized slide.
+
+         The enter comes from @starting-style rather than a class flipped on the
+         next frame. A rAF can land in the same frame as Lit's first render, so
+         the hidden state is never painted and the transition has nothing to run
+         from — the element just appears. @starting-style is the platform's
+         answer to exactly that, and sc-modal already depends on it.
+
+         Both properties share ONE composite. Fade and nudge are a single
+         gesture, and giving them different durations makes the movement stop
+         dead while the fade carries on — visibly unfinished. */
+      opacity: 1;
+      translate: none;
+      transition:
+        opacity var(--sc-motion-transition-fade-in-l),
+        translate var(--sc-motion-transition-fade-in-l);
+    }
+
+    @starting-style {
+      .banner {
+        opacity: 0;
+        translate: 0 calc(-1 * var(--sc-motion-distance-nudge));
+      }
+    }
+
+    .banner.is-exiting {
+      opacity: 0;
+      translate: 0 calc(-1 * var(--sc-motion-distance-nudge));
+      transition:
+        opacity var(--sc-motion-transition-fade-out-l),
+        translate var(--sc-motion-transition-fade-out-l);
     }
 
     /* ---- Status backgrounds ---- */
@@ -147,21 +183,58 @@ export class ScBanner extends LitElement {
     svg {
       display: block;
     }
-
-    @media (prefers-reduced-motion: reduce) {
-      .link,
-      .close {
-        transition: none;
-      }
-    }
   `]
 
   private _onClose() {
+    if (this._exiting) return
     this.dispatchEvent(new CustomEvent('close', {
       bubbles: true,
       composed: true,
     }))
-    this.remove()
+    this._exiting = true
+    this._detachAfterExit()
+  }
+
+  /**
+   * Detach once the exit has actually finished.
+   *
+   * A setTimeout matched to the token duration looks right and isn't: the timer
+   * starts when the class is set, but the transition doesn't begin until the
+   * next frame, so the node is pulled out of the DOM while still ~15% visible —
+   * a visible flicker. Listening for the real transitionend removes the race and
+   * stops the duration being hardcoded in two places.
+   */
+  private _detachAfterExit() {
+    // Reduced motion zeroes the tokens, and a zero-duration transition fires no
+    // transitionend at all, so there is nothing to wait for.
+    const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) {
+      this.remove()
+      return
+    }
+
+    void this.updateComplete.then(() => {
+      const box = this.renderRoot.querySelector('.banner')
+      if (!box) {
+        this.remove()
+        return
+      }
+
+      let fallback = 0
+      const done = () => {
+        clearTimeout(fallback)
+        box.removeEventListener('transitionend', onEnd)
+        this.remove()
+      }
+      const onEnd = (e: Event) => {
+        if ((e as TransitionEvent).propertyName === 'opacity') done()
+      }
+
+      box.addEventListener('transitionend', onEnd)
+      // Safety net: an element that never painted (hidden tab, detached tree)
+      // never transitions, and must not leak.
+      fallback = window.setTimeout(done, 1000)
+    })
   }
 
   private _onKeyDown(e: KeyboardEvent) {
@@ -177,7 +250,12 @@ export class ScBanner extends LitElement {
     const hasTrailing = showLink || showClose
 
     return html`
-      <div class="banner" role="status" aria-label="Notification" @keydown=${this._onKeyDown}>
+      <div
+        class="banner ${this._exiting ? 'is-exiting' : ''}"
+        role="status"
+        aria-label="Notification"
+        @keydown=${this._onKeyDown}
+      >
         ${this.status !== 'mono' && iconStatus ? html`
           <span class="icon">
             <sc-status-icon status=${iconStatus} size="24" inverse></sc-status-icon>

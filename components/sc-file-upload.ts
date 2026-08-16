@@ -96,7 +96,7 @@ export class ScFileUpload extends LitElement {
       box-sizing: border-box;
       cursor: pointer;
       position: relative;
-      transition: border-color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+      transition: border-color var(--sc-motion-transition-control), background var(--sc-motion-transition-control), box-shadow var(--sc-motion-transition-control);
     }
 
     :host([layout='vertical']) .dropzone {
