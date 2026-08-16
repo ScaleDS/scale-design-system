@@ -21,6 +21,25 @@ the [site changelog](https://scaledesignsystem.com/get-started/changelog/).
 * **mcp:** advertise motion in get-tokens ([1e7c3e1](https://github.com/ScaleDS/scale-design-system/commit/1e7c3e1627318156ff062b17e85ac59bc9e4d554))
 * **mcp:** report real package version; chore(starter): depend on ^4.0.0 ([739628e](https://github.com/ScaleDS/scale-design-system/commit/739628e06f47fe81d63f498aefff161d8211524e))
 
+### Figma counterpart (4.1)
+
+New:
+
+- Motion variables, split across two collections: `Motion: Duration`, with
+  `Standard` and `Reduced` modes, and `Motion: Easing`
+- Code syntax on all 13 durations, mapping each to its `--sc-motion-duration-*`
+  token, so a duration picked in Figma names the CSS variable to use in code
+- Motion — Choreography page, documenting the choreography patterns as live
+  animated demos
+
+Updated:
+
+- The demo labelled "Shared axis" was in fact a push transition. It is now named
+  Push, with a faithful shared-axis demo alongside it
+- Reduced motion collapses every product duration to 0, except the looping 1000
+  and 5000, which keep their timing: a 0ms loop removes the loading affordance
+  rather than calming it
+
 ## 4.0.0 — 2026-07-08
 
 Scale goes multi-platform. Until now Scale was a Figma + Framer design system;
