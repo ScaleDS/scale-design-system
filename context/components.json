@@ -1,6 +1,6 @@
 {
   "name": "@scale-ds/scale-design-system",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "framework": "lit",
   "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
   "components": [
@@ -16,6 +16,12 @@
           "default": false,
           "attribute": "open",
           "reflect": true
+        },
+        "heading": {
+          "type": "string",
+          "default": "Heading",
+          "attribute": "heading",
+          "reflect": false
         }
       },
       "slots": [
@@ -28,6 +34,17 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "region"
+        ],
+        "ariaAttributes": [
+          "aria-controls",
+          "aria-expanded",
+          "aria-labelledby"
+        ]
+      },
       "dependencies": [
         "sc-divider"
       ],
@@ -44,7 +61,13 @@
           "type": "AlertStatus",
           "default": "info",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "info",
+            "warning",
+            "negative",
+            "positive"
+          ]
         },
         "showHeading": {
           "type": "boolean",
@@ -73,6 +96,12 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "alert"
+        ]
+      },
       "dependencies": [
         "sc-status-icon"
       ],
@@ -89,7 +118,12 @@
           "type": "AvatarGroupSize",
           "default": "m",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "m",
+            "s"
+          ]
         },
         "max": {
           "type": "number",
@@ -103,6 +137,19 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "group",
+          "menu",
+          "menuitem"
+        ],
+        "ariaAttributes": [
+          "aria-expanded",
+          "aria-haspopup",
+          "aria-label"
+        ]
+      },
       "dependencies": [
         "sc-avatar"
       ],
@@ -119,7 +166,26 @@
           "type": "AvatarSize",
           "default": "m",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "xl",
+            "l",
+            "m",
+            "s",
+            "xs"
+          ]
+        },
+        "src": {
+          "type": "string",
+          "default": "",
+          "attribute": "src",
+          "reflect": false
+        },
+        "alt": {
+          "type": "string",
+          "default": "",
+          "attribute": "alt",
+          "reflect": false
         },
         "disabled": {
           "type": "boolean",
@@ -131,6 +197,16 @@
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "img"
+        ],
+        "ariaAttributes": [
+          "aria-hidden",
+          "aria-label"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-avatar></sc-avatar>"
     },
@@ -145,7 +221,22 @@
           "type": "BadgeStatus",
           "default": "default",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "info",
+            "warning",
+            "negative",
+            "positive",
+            "mono",
+            "disabled"
+          ]
+        },
+        "icon": {
+          "type": "string",
+          "default": "",
+          "attribute": "icon",
+          "reflect": false
         }
       },
       "slots": [
@@ -153,6 +244,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-badge></sc-badge>"
     },
@@ -167,7 +260,14 @@
           "type": "BannerStatus",
           "default": "info",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "info",
+            "warning",
+            "negative",
+            "positive",
+            "mono"
+          ]
         },
         "hideClose": {
           "type": "boolean",
@@ -186,6 +286,18 @@
           "default": "",
           "attribute": "link-href",
           "reflect": false
+        },
+        "link": {
+          "type": "string",
+          "default": "",
+          "attribute": "link",
+          "reflect": false
+        },
+        "text": {
+          "type": "string",
+          "default": "",
+          "attribute": "text",
+          "reflect": false
         }
       },
       "slots": [],
@@ -196,6 +308,15 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "status"
+        ],
+        "ariaAttributes": [
+          "aria-label"
+        ]
+      },
       "dependencies": [
         "sc-status-icon"
       ],
@@ -213,6 +334,12 @@
           "default": "[]",
           "attribute": "crumbs",
           "reflect": false
+        },
+        "current": {
+          "type": "string",
+          "default": "",
+          "attribute": "current",
+          "reflect": false
         }
       },
       "slots": [],
@@ -223,6 +350,14 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-current",
+          "aria-hidden",
+          "aria-label"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-breadcrumbs></sc-breadcrumbs>"
     },
@@ -237,19 +372,35 @@
           "type": "ButtonGroupGap",
           "default": "m",
           "attribute": "gap",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "xs",
+            "s",
+            "m",
+            "l"
+          ]
         },
         "orientation": {
           "type": "ButtonGroupOrientation",
           "default": "horizontal",
           "attribute": "orientation",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "horizontal",
+            "vertical"
+          ]
         },
         "align": {
           "type": "ButtonGroupAlign",
           "default": "start",
           "attribute": "align",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "start",
+            "center",
+            "end",
+            "stretch"
+          ]
         },
         "nowrap": {
           "type": "boolean",
@@ -268,6 +419,12 @@
           "default": "",
           "attribute": "value",
           "reflect": true
+        },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
         }
       },
       "slots": [
@@ -280,6 +437,13 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-label",
+          "aria-orientation"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-button-group></sc-button-group>"
     },
@@ -294,24 +458,73 @@
           "type": "ButtonIconSize",
           "default": "l",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "s"
+          ]
         },
         "type": {
           "type": "ButtonIconType",
           "default": "primary",
           "attribute": "type",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "primary",
+            "secondary",
+            "tertiary",
+            "tertiary-mono",
+            "inverse",
+            "mono",
+            "outline",
+            "outline-mono"
+          ]
         },
         "disabled": {
           "type": "boolean",
           "default": false,
           "attribute": "disabled",
           "reflect": true
+        },
+        "icon": {
+          "type": "string",
+          "default": "circle",
+          "attribute": "icon",
+          "reflect": false
+        },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
         }
       },
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-button-icon-padding",
+          "default": "var(--sc-space-m)"
+        },
+        {
+          "name": "--sc-button-icon-radius",
+          "default": "var(--sc-border-radius-xl)"
+        },
+        {
+          "name": "--sc-button-icon-glyph-size",
+          "default": "24px"
+        },
+        {
+          "name": "--sc-button-icon-color",
+          "default": "var(--sc-color-icon-brand)"
+        }
+      ],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-label"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-button-icon></sc-button-icon>"
     },
@@ -326,13 +539,30 @@
           "type": "ButtonPillSize",
           "default": "l",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "m",
+            "s"
+          ]
         },
         "type": {
           "type": "ButtonPillType",
           "default": "primary",
           "attribute": "type",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "primary",
+            "secondary",
+            "tertiary",
+            "tertiary-mono",
+            "inverse",
+            "mono",
+            "outline",
+            "outline-mono",
+            "negative-primary",
+            "negative-outline"
+          ]
         },
         "loading": {
           "type": "boolean",
@@ -364,6 +594,12 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-busy"
+        ]
+      },
       "dependencies": [
         "sc-spinner"
       ],
@@ -380,13 +616,33 @@
           "type": "ButtonSize",
           "default": "l",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "m",
+            "s"
+          ]
         },
         "type": {
           "type": "ButtonType",
           "default": "primary",
           "attribute": "type",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "primary",
+            "secondary",
+            "tertiary",
+            "tertiary-mono",
+            "inverse",
+            "mono",
+            "outline",
+            "outline-mono",
+            "text",
+            "text-mono",
+            "negative-primary",
+            "negative-outline",
+            "negative-text"
+          ]
         },
         "loading": {
           "type": "boolean",
@@ -411,6 +667,31 @@
           "default": "",
           "attribute": "trailing-icon",
           "reflect": false
+        },
+        "href": {
+          "type": "string",
+          "default": "",
+          "attribute": "href",
+          "reflect": false
+        },
+        "target": {
+          "type": "string",
+          "default": "",
+          "attribute": "target",
+          "reflect": false,
+          "values": [
+            "_self",
+            "_blank",
+            "_parent",
+            "_top",
+            ""
+          ]
+        },
+        "rel": {
+          "type": "string",
+          "default": "",
+          "attribute": "rel",
+          "reflect": false
         }
       },
       "slots": [
@@ -421,12 +702,19 @@
         {
           "name": "button",
           "description": ""
-        },
-        {
-          "name": "button",
-          "description": ""
         }
       ],
+      "cssProperties": [
+        {
+          "name": "--sc-button-width",
+          "default": "auto"
+        }
+      ],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-busy"
+        ]
+      },
       "dependencies": [
         "sc-spinner"
       ],
@@ -443,7 +731,11 @@
           "type": "CardImageVariant",
           "default": "default",
           "attribute": "variant",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "fill"
+          ]
         },
         "imageSrc": {
           "type": "string",
@@ -471,6 +763,17 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-card-object-fit",
+          "default": "cover"
+        },
+        {
+          "name": "--sc-card-object-position",
+          "default": "left top"
+        }
+      ],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-card-image></sc-card-image>"
     },
@@ -490,6 +793,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [
         "sc-divider"
       ],
@@ -506,7 +811,11 @@
           "type": "CardSelectorType",
           "default": "checkbox",
           "attribute": "type",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "checkbox",
+            "radio"
+          ]
         },
         "checked": {
           "type": "boolean",
@@ -519,6 +828,18 @@
           "default": false,
           "attribute": "disabled",
           "reflect": true
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": false
         },
         "hideIndicator": {
           "type": "boolean",
@@ -537,6 +858,13 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-checked",
+          "aria-hidden"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-card-selector></sc-card-selector>"
     },
@@ -551,19 +879,43 @@
           "type": "CardSurface",
           "default": "l1",
           "attribute": "surface",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "none",
+            "subtle",
+            "l1",
+            "l2",
+            "l3",
+            "l4"
+          ]
         },
         "radius": {
           "type": "CardRadius",
           "default": "m",
           "attribute": "radius",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "none",
+            "xs",
+            "s",
+            "m",
+            "l",
+            "xl",
+            "2xl"
+          ]
         },
         "padding": {
           "type": "CardPadding",
           "default": "none",
           "attribute": "padding",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "none",
+            "s",
+            "m",
+            "l",
+            "xl"
+          ]
         }
       },
       "slots": [
@@ -571,6 +923,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-card></sc-card>"
     },
@@ -603,7 +957,11 @@
           "type": "CheckboxItemState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative"
+          ]
         },
         "required": {
           "type": "boolean",
@@ -633,6 +991,17 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "checkbox"
+        ],
+        "ariaAttributes": [
+          "aria-checked",
+          "aria-invalid",
+          "aria-required"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-checkbox-item></sc-checkbox-item>"
     },
@@ -671,7 +1040,24 @@
           "type": "CheckboxState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative",
+            "positive"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "default": "on",
+          "attribute": "value",
+          "reflect": false
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
         }
       },
       "slots": [
@@ -684,6 +1070,10 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-checkbox-item"
       ],
@@ -700,13 +1090,57 @@
           "type": "DatePickerMode",
           "default": "single",
           "attribute": "mode",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "single",
+            "range"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": false
+        },
+        "end": {
+          "type": "string",
+          "default": "",
+          "attribute": "end",
+          "reflect": false
+        },
+        "min": {
+          "type": "string",
+          "default": "",
+          "attribute": "min",
+          "reflect": false
+        },
+        "max": {
+          "type": "string",
+          "default": "",
+          "attribute": "max",
+          "reflect": false
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
+        },
+        "locale": {
+          "type": "string",
+          "default": "en-US",
+          "attribute": "locale",
+          "reflect": false
         },
         "firstDayOfWeek": {
           "type": "FirstDayOfWeek",
           "default": "monday",
           "attribute": "first-day-of-week",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "monday",
+            "sunday"
+          ]
         },
         "showActions": {
           "type": "boolean",
@@ -737,6 +1171,20 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "grid",
+          "gridcell"
+        ],
+        "ariaAttributes": [
+          "aria-current",
+          "aria-labelledby",
+          "aria-live",
+          "aria-selected"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-button-icon",
         "sc-button"
@@ -754,12 +1202,19 @@
           "type": "DividerVariant",
           "default": "default",
           "attribute": "variant",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "subtle",
+            "selected"
+          ]
         }
       },
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-divider></sc-divider>"
     },
@@ -770,11 +1225,29 @@
       "description": "A single file row showing name, size, progress bar, and status with a remove control",
       "whenToUse": "Showing uploaded or in-progress file rows inside a file upload",
       "props": {
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
+        },
+        "text": {
+          "type": "string",
+          "default": "",
+          "attribute": "text",
+          "reflect": false
+        },
         "state": {
           "type": "FileUploadItemState",
           "default": "uploaded",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "uploaded",
+            "uploading",
+            "positive",
+            "negative"
+          ]
         },
         "value": {
           "type": "number",
@@ -820,16 +1293,14 @@
         {
           "name": "icon",
           "description": ""
-        },
-        {
-          "name": "row",
-          "description": ""
-        },
-        {
-          "name": "icon",
-          "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-label"
+        ]
+      },
       "dependencies": [
         "sc-progress-bar",
         "sc-status-icon"
@@ -847,7 +1318,17 @@
           "type": "FileUploadLayout",
           "default": "vertical",
           "attribute": "layout",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        "accept": {
+          "type": "string",
+          "default": "",
+          "attribute": "accept",
+          "reflect": false
         },
         "multiple": {
           "type": "boolean",
@@ -866,6 +1347,12 @@
           "default": false,
           "attribute": "required",
           "reflect": true
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
         },
         "maxSize": {
           "type": "number",
@@ -915,6 +1402,17 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "status"
+        ],
+        "ariaAttributes": [
+          "aria-hidden",
+          "aria-live"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-file-upload-item"
       ],
@@ -949,6 +1447,8 @@
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [
         "sc-logo"
       ],
@@ -971,7 +1471,12 @@
           "type": "NavAlign",
           "default": "center",
           "attribute": "nav-align",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "leading",
+            "center",
+            "trailing"
+          ]
         },
         "logoHref": {
           "type": "string",
@@ -1042,6 +1547,31 @@
           "description": ""
         }
       ],
+      "cssProperties": [
+        {
+          "name": "--sc-header-bg-bottom",
+          "default": "-96px"
+        }
+      ],
+      "a11y": {
+        "roles": [
+          "combobox",
+          "listbox",
+          "option",
+          "search",
+          "switch"
+        ],
+        "ariaAttributes": [
+          "aria-checked",
+          "aria-controls",
+          "aria-current",
+          "aria-expanded",
+          "aria-haspopup",
+          "aria-hidden",
+          "aria-label",
+          "aria-selected"
+        ]
+      },
       "dependencies": [
         "sc-logo",
         "sc-button",
@@ -1060,18 +1590,39 @@
           "type": "HelpTextStatus",
           "default": "default",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "info",
+            "warning",
+            "negative",
+            "positive",
+            "disabled"
+          ]
         },
         "size": {
           "type": "HelpTextSize",
           "default": "l",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "m",
+            "s"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "default": "Help text",
+          "attribute": "text",
+          "reflect": false
         }
       },
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [
         "sc-status-icon"
       ],
@@ -1084,6 +1635,12 @@
       "description": "Full-width hero section with background image, heading, subtitle, CTAs, and optional email form",
       "whenToUse": "Landing page top section, product introductions, conversion-focused entry points",
       "props": {
+        "badge": {
+          "type": "string",
+          "default": "",
+          "attribute": "badge",
+          "reflect": false
+        },
         "primaryLabel": {
           "type": "string",
           "default": "",
@@ -1164,6 +1721,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [
         "sc-badge",
         "sc-button",
@@ -1188,13 +1747,28 @@
           "type": "PinSize",
           "default": "l",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "xl"
+          ]
         },
         "state": {
           "type": "PinState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative",
+            "positive"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "default": "Label",
+          "attribute": "label",
+          "reflect": false
         },
         "showLabel": {
           "type": "boolean",
@@ -1213,6 +1787,12 @@
           "default": true,
           "attribute": "show-help-text",
           "reflect": true
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
         },
         "required": {
           "type": "boolean",
@@ -1256,6 +1836,20 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "group"
+        ],
+        "ariaAttributes": [
+          "aria-describedby",
+          "aria-invalid",
+          "aria-label",
+          "aria-labelledby",
+          "aria-live"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-help-text"
       ],
@@ -1272,7 +1866,31 @@
           "type": "InputState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative",
+            "positive",
+            "disabled"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "default": "Label",
+          "attribute": "label",
+          "reflect": false
+        },
+        "placeholder": {
+          "type": "string",
+          "default": "Text",
+          "attribute": "placeholder",
+          "reflect": false
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": false
         },
         "helpText": {
           "type": "string",
@@ -1304,6 +1922,34 @@
           "attribute": "trailing-icon",
           "reflect": false
         },
+        "type": {
+          "type": "string",
+          "default": "text",
+          "attribute": "type",
+          "reflect": false
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
+        },
+        "autocomplete": {
+          "type": "string",
+          "default": "",
+          "attribute": "autocomplete",
+          "reflect": false
+        },
+        "inputmode": {
+          "type": "string | undefined",
+          "attribute": "inputmode",
+          "reflect": false
+        },
+        "pattern": {
+          "type": "string | undefined",
+          "attribute": "pattern",
+          "reflect": false
+        },
         "required": {
           "type": "boolean",
           "default": false,
@@ -1314,13 +1960,55 @@
           "type": "InputKind",
           "default": "default",
           "attribute": "kind",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "date"
+          ]
+        },
+        "mode": {
+          "type": "DateMode",
+          "default": "single",
+          "attribute": "mode",
+          "reflect": false,
+          "values": [
+            "single",
+            "range"
+          ]
+        },
+        "end": {
+          "type": "string",
+          "default": "",
+          "attribute": "end",
+          "reflect": false
+        },
+        "min": {
+          "type": "string",
+          "default": "",
+          "attribute": "min",
+          "reflect": false
+        },
+        "max": {
+          "type": "string",
+          "default": "",
+          "attribute": "max",
+          "reflect": false
+        },
+        "locale": {
+          "type": "string",
+          "default": "en-US",
+          "attribute": "locale",
+          "reflect": false
         },
         "firstDayOfWeek": {
-          "type": "'monday' | 'sunday'",
+          "type": "string",
           "default": "monday",
           "attribute": "first-day-of-week",
-          "reflect": false
+          "reflect": false,
+          "values": [
+            "monday",
+            "sunday"
+          ]
         }
       },
       "slots": [],
@@ -1335,6 +2023,16 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-expanded",
+          "aria-haspopup",
+          "aria-invalid",
+          "aria-labelledby"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-help-text"
       ],
@@ -1351,13 +2049,22 @@
           "type": "LogoSize",
           "default": "l",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "m",
+            "s"
+          ]
         },
         "logoStyle": {
           "type": "LogoStyle",
           "default": "default",
           "attribute": "logo-style",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "inverse"
+          ]
         },
         "hideText": {
           "type": "boolean",
@@ -1369,6 +2076,13 @@
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-logo-mark-size",
+          "default": "48px"
+        }
+      ],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-logo></sc-logo>"
     },
@@ -1389,6 +2103,12 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "menu"
+        ]
+      },
       "dependencies": [
         "sc-menu-item"
       ],
@@ -1405,19 +2125,42 @@
           "type": "MenuItemType",
           "default": "row",
           "attribute": "type",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "row",
+            "button",
+            "link"
+          ]
         },
         "state": {
           "type": "MenuItemState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "selected",
+            "selected-open",
+            "disabled"
+          ]
         },
         "destructive": {
           "type": "boolean",
           "default": false,
           "attribute": "destructive",
           "reflect": true
+        },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
+        },
+        "href": {
+          "type": "string",
+          "default": "",
+          "attribute": "href",
+          "reflect": false
         },
         "leadingIcon": {
           "type": "string",
@@ -1442,6 +2185,16 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "menuitem"
+        ],
+        "ariaAttributes": [
+          "aria-disabled",
+          "aria-label"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-menu-item></sc-menu-item>"
     },
@@ -1457,6 +2210,12 @@
           "default": false,
           "attribute": "open",
           "reflect": true
+        },
+        "heading": {
+          "type": "string",
+          "default": "",
+          "attribute": "heading",
+          "reflect": false
         },
         "closeLabel": {
           "type": "string",
@@ -1516,6 +2275,12 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "document"
+        ]
+      },
       "dependencies": [
         "sc-button-icon"
       ],
@@ -1540,6 +2305,12 @@
           "attribute": "current",
           "reflect": true
         },
+        "label": {
+          "type": "string",
+          "default": "Page controls",
+          "attribute": "label",
+          "reflect": false
+        },
         "disabled": {
           "type": "boolean",
           "default": false,
@@ -1555,6 +2326,16 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "group"
+        ],
+        "ariaAttributes": [
+          "aria-current",
+          "aria-label"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-page-controls></sc-page-controls>"
     },
@@ -1575,7 +2356,18 @@
           "type": "ProgressStatus",
           "default": "uploading",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "uploading",
+            "positive",
+            "negative"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
         }
       },
       "slots": [],
@@ -1590,6 +2382,8 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-progress-bar></sc-progress-bar>"
     },
@@ -1616,7 +2410,11 @@
           "type": "RadioItemState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative"
+          ]
         },
         "required": {
           "type": "boolean",
@@ -1642,6 +2440,17 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "radio"
+        ],
+        "ariaAttributes": [
+          "aria-checked",
+          "aria-invalid",
+          "aria-required"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-radio-item></sc-radio-item>"
     },
@@ -1674,7 +2483,23 @@
           "type": "RadioState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative"
+          ]
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": false
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
         }
       },
       "slots": [
@@ -1687,6 +2512,10 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-radio-item"
       ],
@@ -1723,6 +2552,13 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-row-divider-display",
+          "default": "block"
+        }
+      ],
+      "a11y": {},
       "dependencies": [
         "sc-divider"
       ],
@@ -1745,6 +2581,13 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-section-bento-padding-top",
+          "default": "var(--sc-space-2xl)"
+        }
+      ],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-section-bento></sc-section-bento>"
     },
@@ -1756,10 +2599,14 @@
       "whenToUse": "Text-only sections, section headers, standalone content blocks",
       "props": {
         "align": {
-          "type": "'center' | 'left'",
+          "type": "string",
           "default": "center",
           "attribute": "align",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "center",
+            "left"
+          ]
         }
       },
       "slots": [
@@ -1768,6 +2615,17 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-section-content-padding-top",
+          "default": "var(--sc-space-8xl)"
+        },
+        {
+          "name": "--sc-section-content-padding-bottom",
+          "default": "var(--sc-space-2xl)"
+        }
+      ],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-section-content></sc-section-content>"
     },
@@ -1785,6 +2643,13 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-section-faq-padding-y",
+          "default": "var(--sc-space-2xl)"
+        }
+      ],
+      "a11y": {},
       "dependencies": [
         "sc-accordion"
       ],
@@ -1829,6 +2694,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-section-feature></sc-section-feature>"
     },
@@ -1848,6 +2715,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-section-pricing></sc-section-pricing>"
     },
@@ -1866,6 +2735,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-section-signup></sc-section-signup>"
     },
@@ -1887,6 +2758,12 @@
           "default": "",
           "attribute": "value",
           "reflect": true
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
         },
         "disabled": {
           "type": "boolean",
@@ -1934,6 +2811,18 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "button",
+          "group"
+        ],
+        "ariaAttributes": [
+          "aria-current",
+          "aria-label"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-tooltip"
       ],
@@ -1946,17 +2835,46 @@
       "description": "Inline email-capture form pairing a text input with a primary button, wrapping on narrow screens",
       "whenToUse": "Newsletter signup, lead capture, email list collection, simple mailing forms",
       "props": {
+        "placeholder": {
+          "type": "string",
+          "default": "Email address",
+          "attribute": "placeholder",
+          "reflect": false
+        },
         "buttonLabel": {
           "type": "string",
           "default": "Sign up",
           "attribute": "button-label",
           "reflect": false
         },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": false
+        },
+        "name": {
+          "type": "string",
+          "default": "email",
+          "attribute": "name",
+          "reflect": false
+        },
+        "type": {
+          "type": "string",
+          "default": "email",
+          "attribute": "type",
+          "reflect": false
+        },
         "state": {
           "type": "SignupState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative",
+            "positive"
+          ]
         },
         "helpText": {
           "type": "string",
@@ -1998,6 +2916,8 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [
         "sc-input",
         "sc-button"
@@ -2035,6 +2955,18 @@
           "attribute": "step",
           "reflect": true
         },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
+        },
         "disabled": {
           "type": "boolean",
           "default": false,
@@ -2059,6 +2991,16 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "slider"
+        ],
+        "ariaAttributes": [
+          "aria-label"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [],
       "example": "<sc-slider></sc-slider>"
     },
@@ -2073,13 +3015,29 @@
           "type": "SpinnerSize",
           "default": "l",
           "attribute": "size",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "l",
+            "s"
+          ]
         },
         "type": {
           "type": "SpinnerType",
           "default": "primary",
           "attribute": "type",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "primary",
+            "negative",
+            "mono",
+            "inverse"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "default": "Loading",
+          "attribute": "label",
+          "reflect": false
         }
       },
       "slots": [],
@@ -2090,6 +3048,12 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-hidden"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-spinner></sc-spinner>"
     },
@@ -2104,7 +3068,13 @@
           "type": "Status",
           "default": "info",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "info",
+            "warning",
+            "error",
+            "success"
+          ]
         },
         "size": {
           "type": "number",
@@ -2122,6 +3092,8 @@
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-status-icon></sc-status-icon>"
     },
@@ -2136,7 +3108,23 @@
           "type": "StatusIndicatorStatus",
           "default": "default",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "brand",
+            "info",
+            "warning",
+            "negative",
+            "positive",
+            "inverse",
+            "disabled"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
         }
       },
       "slots": [],
@@ -2147,6 +3135,12 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "img"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-status-indicator></sc-status-indicator>"
     },
@@ -2175,6 +3169,8 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [],
       "example": "<sc-tab-panel></sc-tab-panel>"
     },
@@ -2217,6 +3213,12 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "tab"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-tab></sc-tab>"
     },
@@ -2227,6 +3229,12 @@
       "description": "Accessible table using CSS subgrid columns with sortable headers, row selection, and optional pagination",
       "whenToUse": "Structured data, records, sortable columns, paginated datasets",
       "props": {
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
+        },
         "pageSize": {
           "type": "number",
           "default": "0",
@@ -2252,6 +3260,12 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "table"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-table-basic></sc-table-basic>"
     },
@@ -2266,7 +3280,11 @@
           "type": "TableCellAlign",
           "default": "leading",
           "attribute": "align",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "leading",
+            "trailing"
+          ]
         },
         "selectable": {
           "type": "boolean",
@@ -2296,6 +3314,31 @@
           "type": "string",
           "default": "",
           "attribute": "secondary-text",
+          "reflect": false
+        },
+        "href": {
+          "type": "string",
+          "default": "",
+          "attribute": "href",
+          "reflect": false
+        },
+        "target": {
+          "type": "string",
+          "default": "",
+          "attribute": "target",
+          "reflect": false,
+          "values": [
+            "_self",
+            "_blank",
+            "_parent",
+            "_top",
+            ""
+          ]
+        },
+        "rel": {
+          "type": "string",
+          "default": "",
+          "attribute": "rel",
           "reflect": false
         },
         "hideDivider": {
@@ -2340,6 +3383,13 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "cell",
+          "table"
+        ]
+      },
       "dependencies": [
         "sc-checkbox"
       ],
@@ -2364,6 +3414,12 @@
           "attribute": "rows",
           "reflect": false
         },
+        "label": {
+          "type": "string",
+          "default": "",
+          "attribute": "label",
+          "reflect": false
+        },
         "pageSize": {
           "type": "number",
           "default": "0",
@@ -2374,6 +3430,8 @@
       "slots": [],
       "events": [],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [
         "sc-table-basic",
         "sc-table-row",
@@ -2413,6 +3471,12 @@
           "default": "Next",
           "attribute": "next-label",
           "reflect": false
+        },
+        "label": {
+          "type": "string",
+          "default": "Pagination",
+          "attribute": "label",
+          "reflect": false
         }
       },
       "slots": [],
@@ -2440,6 +3504,8 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {},
       "dependencies": [
         "sc-button",
         "sc-page-controls"
@@ -2457,7 +3523,11 @@
           "type": "TableHeadAlign",
           "default": "leading",
           "attribute": "align",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "leading",
+            "trailing"
+          ]
         },
         "selectable": {
           "type": "boolean",
@@ -2487,7 +3557,12 @@
           "type": "TableHeadSort",
           "default": "none",
           "attribute": "sort",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "none",
+            "ascending",
+            "descending"
+          ]
         },
         "hideDivider": {
           "type": "boolean",
@@ -2531,6 +3606,13 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "columnheader",
+          "table"
+        ]
+      },
       "dependencies": [
         "sc-checkbox"
       ],
@@ -2561,6 +3643,17 @@
       ],
       "events": [],
       "cssParts": [],
+      "cssProperties": [
+        {
+          "name": "--sc-table-row-background",
+          "default": "transparent"
+        }
+      ],
+      "a11y": {
+        "roles": [
+          "row"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-table-row></sc-table-row>"
     },
@@ -2581,13 +3674,21 @@
           "type": "TabActivation",
           "default": "auto",
           "attribute": "activation",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "auto",
+            "manual"
+          ]
         },
         "placement": {
           "type": "TabPlacement",
           "default": "top",
           "attribute": "placement",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "top",
+            "bottom"
+          ]
         }
       },
       "slots": [
@@ -2609,6 +3710,15 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "tablist"
+        ],
+        "ariaAttributes": [
+          "aria-orientation"
+        ]
+      },
       "dependencies": [
         "sc-tab",
         "sc-tab-panel"
@@ -2652,10 +3762,22 @@
           "attribute": "leading-icon",
           "reflect": false
         },
+        "avatar": {
+          "type": "string",
+          "default": "",
+          "attribute": "avatar",
+          "reflect": false
+        },
         "avatarAlt": {
           "type": "string",
           "default": "",
           "attribute": "avatar-alt",
+          "reflect": false
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
           "reflect": false
         },
         "removeLabel": {
@@ -2696,6 +3818,15 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "button"
+        ],
+        "ariaAttributes": [
+          "aria-label"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-tag></sc-tag>"
     },
@@ -2710,7 +3841,31 @@
           "type": "TextAreaState",
           "default": "default",
           "attribute": "state",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "negative",
+            "positive",
+            "disabled"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "default": "Label",
+          "attribute": "label",
+          "reflect": false
+        },
+        "placeholder": {
+          "type": "string",
+          "default": "Text",
+          "attribute": "placeholder",
+          "reflect": false
+        },
+        "value": {
+          "type": "string",
+          "default": "",
+          "attribute": "value",
+          "reflect": false
         },
         "helpText": {
           "type": "string",
@@ -2740,7 +3895,35 @@
           "type": "TextAreaResize",
           "default": "vertical",
           "attribute": "resize",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "vertical",
+            "none",
+            "both",
+            "horizontal"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
+        },
+        "autocomplete": {
+          "type": "string",
+          "default": "",
+          "attribute": "autocomplete",
+          "reflect": false
+        },
+        "maxlength": {
+          "type": "number",
+          "attribute": "maxlength",
+          "reflect": false
+        },
+        "minlength": {
+          "type": "number",
+          "attribute": "minlength",
+          "reflect": false
         },
         "required": {
           "type": "boolean",
@@ -2766,6 +3949,14 @@
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "ariaAttributes": [
+          "aria-invalid",
+          "aria-labelledby"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [
         "sc-help-text"
       ],
@@ -2782,13 +3973,27 @@
           "type": "ToastStatus",
           "default": "default",
           "attribute": "status",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "default",
+            "info",
+            "negative",
+            "positive"
+          ]
         },
         "placement": {
           "type": "ToastPlacement",
           "default": "top-end",
           "attribute": "placement",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "top-start",
+            "top-center",
+            "top-end",
+            "bottom-start",
+            "bottom-center",
+            "bottom-end"
+          ]
         },
         "duration": {
           "type": "number",
@@ -2813,6 +4018,18 @@
           "default": "",
           "attribute": "link-href",
           "reflect": false
+        },
+        "link": {
+          "type": "string",
+          "default": "",
+          "attribute": "link",
+          "reflect": false
+        },
+        "text": {
+          "type": "string",
+          "default": "",
+          "attribute": "text",
+          "reflect": false
         }
       },
       "slots": [],
@@ -2836,14 +4053,19 @@
           "description": ""
         },
         {
-          "name": "link",
-          "description": ""
-        },
-        {
           "name": "close",
           "description": ""
         }
       ],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "link"
+        ],
+        "ariaAttributes": [
+          "aria-label"
+        ]
+      },
       "dependencies": [
         "sc-status-icon"
       ],
@@ -2867,6 +4089,18 @@
           "default": false,
           "attribute": "disabled",
           "reflect": true
+        },
+        "name": {
+          "type": "string",
+          "default": "",
+          "attribute": "name",
+          "reflect": false
+        },
+        "value": {
+          "type": "string",
+          "default": "on",
+          "attribute": "value",
+          "reflect": false
         }
       },
       "slots": [],
@@ -2877,6 +4111,16 @@
         }
       ],
       "cssParts": [],
+      "cssProperties": [],
+      "a11y": {
+        "roles": [
+          "switch"
+        ],
+        "ariaAttributes": [
+          "aria-checked"
+        ],
+        "formAssociated": true
+      },
       "dependencies": [],
       "example": "<sc-toggle></sc-toggle>"
     },
@@ -2887,11 +4131,23 @@
       "description": "Popover shown on hover or focus that auto-flips when it would collide with the viewport edge",
       "whenToUse": "Help text, icon descriptions, supplementary hints, form field guidance",
       "props": {
+        "content": {
+          "type": "string",
+          "default": "",
+          "attribute": "content",
+          "reflect": false
+        },
         "placement": {
           "type": "TooltipPlacement",
           "default": "top",
           "attribute": "placement",
-          "reflect": true
+          "reflect": true,
+          "values": [
+            "top",
+            "bottom",
+            "left",
+            "right"
+          ]
         },
         "disabled": {
           "type": "boolean",
@@ -2928,6 +4184,12 @@
           "default": "0",
           "attribute": "hide-delay",
           "reflect": false
+        },
+        "trigger": {
+          "type": "string",
+          "default": "hover focus",
+          "attribute": "trigger",
+          "reflect": false
         }
       },
       "slots": [
@@ -2958,6 +4220,20 @@
           "description": ""
         }
       ],
+      "cssProperties": [
+        {
+          "name": "--sc-tooltip-max-width",
+          "default": "240px"
+        }
+      ],
+      "a11y": {
+        "roles": [
+          "tooltip"
+        ],
+        "ariaAttributes": [
+          "aria-hidden"
+        ]
+      },
       "dependencies": [],
       "example": "<sc-tooltip></sc-tooltip>"
     }

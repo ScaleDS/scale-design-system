@@ -9,6 +9,26 @@ const pkg = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf-8'
 
 const STRICT = process.argv.includes('--strict') || process.env.CI === 'true'
 
+/**
+ * Every `--sc-*` the foundations actually declare. Used to tell a component's
+ * own CSS API apart from the system tokens it merely consumes: a foundation
+ * token has a definition among these files, a component hook does not.
+ *
+ * `main.scss` is excluded because it composes rather than defines. The only
+ * two custom properties it declares — `--sc-header-bg-bottom` and
+ * `--sc-section-faq-padding-y` — are component hooks that happen to take their
+ * default globally, and counting them as foundation tokens would hide two
+ * genuine override points.
+ */
+const foundationTokens = new Set(
+  readdirSync(join(process.cwd(), 'scss'))
+    .filter(f => f.endsWith('.scss') && f !== 'main.scss')
+    .flatMap(f =>
+      [...readFileSync(join(process.cwd(), 'scss', f), 'utf-8')
+        .matchAll(/^\s*(--sc-[a-z0-9-]+)\s*:/gm)].map(m => m[1]),
+    ),
+)
+
 // Dev-only / internal custom elements that aren't part of the public catalog.
 const EXCLUDE = new Set(['sc-edit-layer'])
 
@@ -216,6 +236,121 @@ const whenToUse = {
   'sc-tooltip': 'Help text, icon descriptions, supplementary hints, form field guidance',
 }
 
+/**
+ * A `'a' | 'b'` union as its values, or null if the body is anything else.
+ *
+ * Returning null rather than guessing is the point: `Record<string, number>`
+ * and an interface both have to come back empty so the prop keeps its bare
+ * type name, which is at least honest about what we don't know.
+ */
+function literalUnion(body) {
+  const parts = body.replace(/[;,]\s*$/, '').split('|').map(p => p.trim()).filter(Boolean)
+  if (!parts.length) return null
+  const values = []
+  for (const part of parts) {
+    const literal = part.match(/^'([^']*)'$/)
+    if (!literal) return null
+    values.push(literal[1])
+  }
+  return values
+}
+
+/**
+ * The literal values behind each local type alias, so the catalog can publish
+ * `info | warning | negative | positive` instead of the bare name
+ * `AlertStatus` — which tells a reader, human or agent, nothing at all.
+ *
+ * Aliases are declared in the component file itself (41 of the 62 files carry
+ * at least one) in two shapes: all on one line, or an `=` followed by
+ * `|`-prefixed continuation lines. Both are handled here; anything imported
+ * from another module is not, and falls through to the bare name.
+ */
+function parseTypeAliases(lines) {
+  const aliases = new Map()
+  for (let i = 0; i < lines.length; i++) {
+    const declaration = lines[i].match(/^\s*(?:export\s+)?type\s+(\w+)\s*=\s*(.*)$/)
+    if (!declaration) continue
+
+    let body = declaration[2]
+    while (i + 1 < lines.length && /^\s*\|/.test(lines[i + 1])) {
+      body += ' ' + lines[++i].trim()
+    }
+
+    const values = literalUnion(body)
+    if (values) aliases.set(declaration[1], values)
+  }
+  return aliases
+}
+
+/**
+ * The component's CSS custom-property hooks — the ones a consumer is meant to
+ * set — with the default each falls back to.
+ *
+ * Two signals together identify one. It must be read *with* a fallback — a
+ * property read bare is a foundation token the component consumes, not
+ * something a consumer is invited to set. And it must not be declared anywhere
+ * in `scss/`: every foundation token has a definition there, and a hook by
+ * definition has none, which is why it needs the fallback in the first place.
+ *
+ * The naming prefix is deliberately not the test. `sc-card-image` exposes
+ * `--sc-card-object-fit`, so keying off `--sc-<tag>-` drops real API.
+ *
+ * Deliberately not a dump of every `--sc-*` the file touches: the catalog is
+ * already 100KB, and a list of consumed foundation tokens would grow it a long
+ * way without answering a question anyone asks of a single component.
+ */
+function parseCssProperties(content) {
+  const hooks = new Map()
+  const openings = /var\(\s*(--sc-[a-z0-9-]+)\s*,/g
+
+  let opening
+  while ((opening = openings.exec(content)) !== null) {
+    // Walk to the matching close paren rather than the next one, so a nested
+    // fallback like `var(--sc-button-icon-padding, var(--sc-space-m))` comes
+    // back whole instead of truncated at the inner bracket.
+    let depth = 1
+    let i = openings.lastIndex
+    for (; i < content.length && depth > 0; i++) {
+      if (content[i] === '(') depth++
+      else if (content[i] === ')') depth--
+    }
+
+    const name = opening[1]
+    if (foundationTokens.has(name) || hooks.has(name)) continue
+    hooks.set(name, content.slice(openings.lastIndex, i - 1).trim().replace(/\s+/g, ' '))
+  }
+
+  return [...hooks].map(([name, fallback]) => ({ name, default: fallback }))
+}
+
+/**
+ * The accessibility contract that is actually derivable from the source: the
+ * roles the component assigns, the ARIA attributes it manages, and whether it
+ * participates in a form.
+ *
+ * Prose guidance ("label the button when the icon carries the meaning") is not
+ * here on purpose. It lives in the guidelines fragments, and hand-copying it
+ * into a second map would be exactly the duplication this whole effort exists
+ * to remove.
+ */
+function parseA11y(content) {
+  // Interpolated values (`role="${this.kind}"`) name no single role, so they
+  // would publish a template string as though it were one.
+  const roles = [...new Set(
+    [...content.matchAll(/role="([^"]+)"/g)].map(m => m[1]).filter(r => !r.includes('$')),
+  )].sort()
+
+  const ariaAttributes = [...new Set(
+    [...content.matchAll(/\b(aria-[a-z]+)=/g)].map(m => m[1]),
+  )].sort()
+
+  const a11y = {}
+  if (roles.length) a11y.roles = roles
+  if (ariaAttributes.length) a11y.ariaAttributes = ariaAttributes
+  if (/static\s+formAssociated\s*=\s*true/.test(content)) a11y.formAssociated = true
+  return a11y
+}
+
 function parseComponent(filePath) {
   const content = readFileSync(filePath, 'utf-8')
   const fileName = filePath.split('/').pop().replace('.ts', '')
@@ -225,29 +360,51 @@ function parseComponent(filePath) {
   const tagName = tagMatch ? tagMatch[1] : `sc-${fileName.replace('sc-', '')}`
   const className = classMatch ? classMatch[1] : ''
 
-  const props = {}
-  const propRegex = /@property\(\{([^}]*)\}\)\s*(?:private\s+)?(\w+)(?::\s*([^=\n]+))?\s*=\s*([^;\n]+)/g
-  let match
-  while ((match = propRegex.exec(content)) !== null) {
-    const attrs = match[1]
-    const name = match[2]
-    const typeStr = match[3] || ''
-    const defaultVal = match[4].trim()
+  const lines = content.split('\n')
+  const aliases = parseTypeAliases(lines)
 
-    let type = typeStr.replace(/\n/g, '').trim() || 'string'
+  // Line-based rather than one regex over the whole file, because the config
+  // object is optional: `@property() href = ''` has no braces at all, and a
+  // pattern that required them silently dropped every prop declared that way
+  // (href/target/rel on sc-button among them, which the docs then documented
+  // as behaviour of a prop the Properties table said did not exist).
+  const props = {}
+  for (let i = 0; i < lines.length; i++) {
+    const decorator = lines[i].match(/@property\(\s*(\{[^}]*\})?\s*\)\s*(.*)$/)
+    if (!decorator) continue
+
+    const attrs = decorator[1] || ''
+    // The declaration usually trails the decorator on the same line; when it
+    // doesn't, it is the next one.
+    const declaration = decorator[2].trim() || (lines[i + 1] || '').trim()
+    const parsed = declaration.match(/^(?:declare\s+|private\s+|protected\s+|public\s+)?(\w+)\s*[!?]?\s*(?::\s*([^=;]+?))?\s*(?:=\s*(.+?))?\s*;?\s*$/)
+    if (!parsed) continue
+
+    const [, name, typeStr = '', defaultVal] = parsed
+
+    let type = typeStr.trim() || 'string'
     if (attrs.includes('type: Boolean')) type = 'boolean'
     if (attrs.includes('type: Number')) type = 'number'
     if (attrs.includes('type: Array')) type = 'array'
 
-    const isReflect = attrs.includes('reflect: true')
-    const attributeName = attrs.match(/attribute:\s*'([^']+)'/)?.[1] || name
+    // A union declared inline on the prop resolves the same way a named alias
+    // does; only the name we publish differs, since there is no name to keep.
+    const inline = literalUnion(type)
+    const values = inline || aliases.get(type)
 
-    props[name] = {
-      type,
-      default: defaultVal === 'false' ? false : defaultVal === 'true' ? true : defaultVal.replace(/^['"]|['"]$/g, ''),
-      attribute: attributeName,
-      reflect: isReflect,
+    const prop = {
+      type: inline ? 'string' : type,
+      default: defaultVal === undefined
+        ? undefined
+        : defaultVal === 'false' ? false
+        : defaultVal === 'true' ? true
+        : defaultVal.trim().replace(/^['"]|['"]$/g, ''),
+      attribute: attrs.match(/attribute:\s*'([^']+)'/)?.[1] || name,
+      reflect: attrs.includes('reflect: true'),
     }
+    if (values) prop.values = values
+
+    props[name] = prop
   }
 
   const slots = []
@@ -277,12 +434,10 @@ function parseComponent(filePath) {
     if (dep !== tagName && !deps.includes(dep)) deps.push(dep)
   }
 
-  const cssParts = []
-  const partRegex = /part="([^"]+)"/g
-  let partMatch
-  while ((partMatch = partRegex.exec(content)) !== null) {
-    cssParts.push(partMatch[1])
-  }
+  // A part named on more than one branch of a template is still one part.
+  const cssParts = [...new Set(
+    [...content.matchAll(/part="([^"]+)"/g)].map(m => m[1]),
+  )]
 
   return {
     tag: tagName,
@@ -294,6 +449,8 @@ function parseComponent(filePath) {
     slots: slots.map(s => s === 'default' ? 'default - Content' : `${s} - Named slot`),
     events: events.map(e => ({ name: e, detail: '{}' })),
     cssParts: cssParts.map(p => ({ name: p, description: '' })),
+    cssProperties: parseCssProperties(content),
+    a11y: parseA11y(content),
     dependencies: deps,
     example: `<${tagName}></${tagName}>`,
   }
