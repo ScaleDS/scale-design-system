@@ -1,0 +1,99 @@
+    <div class="scd-page-header">
+      <h1>Radio</h1>
+      <div class="scd-page-header-text">
+        <p>A labelled, form-associated radio for single-select choices. For the bare circle
+          without a label, use the <code class="scd-inline-code">sc-radio-item</code> primitive.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-radio.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=9709-78973"
+        framer="https://scaleframer.framer.website/components/form"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-radio'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>States</h3>
+      <p>Resting, <code class="scd-inline-code">checked</code>,
+        <code class="scd-inline-code">negative</code>, and
+        <code class="scd-inline-code">disabled</code>.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-s)">
+          <sc-radio>Unchecked</sc-radio>
+          <sc-radio checked>Checked</sc-radio>
+          <sc-radio state="negative">Invalid</sc-radio>
+          <sc-radio disabled>Disabled</sc-radio>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Group</h3>
+      <p>Radios with a shared <code class="scd-inline-code">name</code> are mutually exclusive —
+        selecting one clears the others.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-s)">
+          <sc-radio name="plan" value="free" checked>Free</sc-radio>
+          <sc-radio name="plan" value="pro">Pro</sc-radio>
+          <sc-radio name="plan" value="enterprise">Enterprise</sc-radio>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Radio item primitive (<code class="scd-inline-code">sc-radio-item</code>)</h3>
+      <p>The standalone circle and dot only — no label or form association. Use it in custom
+        layouts where you own the surrounding markup.</p>
+      <scd-demo>
+        <sc-radio-item></sc-radio-item>
+        <sc-radio-item checked></sc-radio-item>
+        <sc-radio-item state="negative"></sc-radio-item>
+        <sc-radio-item checked disabled></sc-radio-item>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>mutually-exclusive options that need a label and form
+        binding. Share a <code class="scd-inline-code">name</code> across radios to group them.
+        For multi-select, use <a href="/components/checkbox/">Checkbox</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use a radio group when exactly one option must be chosen.</li>
+            <li>Give every radio in a set the same <code class="scd-inline-code">name</code>.</li>
+            <li>Default to the safest or most common option when one makes sense.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use radios for multi-select — use <a href="/components/checkbox/">Checkbox</a>.</li>
+            <li>Don&rsquo;t use a single radio on its own; a checkbox or toggle fits better.</li>
+            <li>Don&rsquo;t ship the bare <code class="scd-inline-code">sc-radio-item</code> without your own label and grouping.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> renders <code class="scd-inline-code">role="radio"</code> with <code class="scd-inline-code">aria-checked</code>; wrap a set in a <code class="scd-inline-code">role="radiogroup"</code> with a label.</li>
+        <li><strong>Keyboard:</strong> Tab moves to each radio; <kbd>Space</kbd> selects it; the label is also clickable.</li>
+        <li><strong>Form:</strong> <code class="scd-inline-code">sc-radio</code> is form-associated — <code class="scd-inline-code">required</code> sets <code class="scd-inline-code">valueMissing</code> until one in the group is chosen.</li>
+        <li><strong>Label:</strong> the slotted text is the accessible name; <code class="scd-inline-code">sc-radio-item</code> alone has none, so pair it with your own label.</li>
+        <li><strong>State colour:</strong> <code class="scd-inline-code">negative</code> isn&rsquo;t conveyed by colour alone — add <a href="/components/help-text/">Help Text</a> describing the error.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-radio,sc-radio-item"></scd-api>
+    </div>

@@ -1,0 +1,122 @@
+    <div class="scd-page-header">
+      <h1>Card Selector</h1>
+      <div class="scd-page-header-text">
+        <p>Cards that double as selection controls — a richer, more visual alternative to
+          <a href="/components/radio/">Radio</a> and <a href="/components/checkbox/">Checkbox</a>.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-card-selector.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=32278-53004"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-card-selector'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>States</h3>
+      <p>Resting, <code class="scd-inline-code">checked</code>, and
+        <code class="scd-inline-code">disabled</code>. Slot any content — a bold title plus a
+        muted description reads best.</p>
+      <scd-demo>
+        <sc-card-selector style="width:360px">
+          <strong>Standard plan</strong>
+          <span style="color:var(--sc-color-text-secondary)">Perfect for individuals getting started.</span>
+        </sc-card-selector>
+        <sc-card-selector checked style="width:360px">
+          <strong>Pro plan</strong>
+          <span style="color:var(--sc-color-text-secondary)">For growing teams that need more.</span>
+        </sc-card-selector>
+        <sc-card-selector disabled style="width:360px">
+          <strong>Enterprise plan</strong>
+          <span style="color:var(--sc-color-text-secondary)">Currently unavailable in your region.</span>
+        </sc-card-selector>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Indicator type</h3>
+      <p>Default <code class="scd-inline-code">type="checkbox"</code> toggles independently;
+        <code class="scd-inline-code">type="radio"</code> with a shared
+        <code class="scd-inline-code">name</code> single-selects. Add
+        <code class="scd-inline-code">hide-indicator</code> for border-only selection.</p>
+      <scd-demo>
+        <sc-card-selector style="width:360px">
+          <strong>Email notifications</strong>
+          <span style="color:var(--sc-color-text-secondary)">Get a digest each morning.</span>
+        </sc-card-selector>
+        <sc-card-selector checked hide-indicator style="width:360px">
+          <strong>Border-only selected state</strong>
+          <span style="color:var(--sc-color-text-secondary)">The blue ring conveys selection; no checkbox icon.</span>
+        </sc-card-selector>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Radio group</h3>
+      <p>Share a <code class="scd-inline-code">name</code> across
+        <code class="scd-inline-code">type="radio"</code> selectors to make them mutually
+        exclusive, and wrap them in a <code class="scd-inline-code">role="radiogroup"</code>
+        container. Try clicking.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-m);width:360px" role="radiogroup" aria-label="Plan">
+          <sc-card-selector type="radio" name="plan-demo" value="starter">
+            <strong>Starter</strong>
+            <span style="color:var(--sc-color-text-secondary)">For trying things out — free.</span>
+          </sc-card-selector>
+          <sc-card-selector type="radio" name="plan-demo" value="growth" checked>
+            <strong>Growth</strong>
+            <span style="color:var(--sc-color-text-secondary)">For small teams — $29/mo.</span>
+          </sc-card-selector>
+          <sc-card-selector type="radio" name="plan-demo" value="scale">
+            <strong>Scale</strong>
+            <span style="color:var(--sc-color-text-secondary)">For organisations — $99/mo.</span>
+          </sc-card-selector>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>plan pickers, onboarding choices, or settings where
+        each option benefits from a title, description, and a selected state. For a compact
+        list, use a plain Radio or Checkbox instead.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use <code class="scd-inline-code">type="radio"</code> with a shared name when only one option may be chosen.</li>
+            <li>Give each card a clear title and a short supporting line.</li>
+            <li>Keep cards in a group the same width and structure.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t reach for Card Selector when a plain <a href="/components/radio/">Radio</a> or <a href="/components/checkbox/">Checkbox</a> list would do.</li>
+            <li>Don&rsquo;t mix radio and checkbox selectors in the same group.</li>
+            <li>Don&rsquo;t rely on the border ring alone if colour is the only selection cue — keep the indicator unless space is tight.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> each card renders a <code class="scd-inline-code">&lt;button&gt;</code> with <code class="scd-inline-code">role="checkbox"</code> or <code class="scd-inline-code">role="radio"</code> and reflects <code class="scd-inline-code">aria-checked</code>.</li>
+        <li><strong>Grouping:</strong> wrap radio selectors in a <code class="scd-inline-code">role="radiogroup"</code> with an <code class="scd-inline-code">aria-label</code> so the set is announced as one control.</li>
+        <li><strong>Keyboard:</strong> each card is tab-focusable; <kbd>Enter</kbd> / <kbd>Space</kbd> toggles it and fires a <code class="scd-inline-code">change</code> event.</li>
+        <li><strong>Disabled:</strong> <code class="scd-inline-code">disabled</code> sets <code class="scd-inline-code">aria-disabled</code> and blocks activation.</li>
+        <li><strong>Label:</strong> the slotted title and description form the accessible name — don&rsquo;t rely on the indicator alone to convey the option.</li>
+        <li><strong>Focus:</strong> shows the global keyboard focus ring on the card.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-card-selector"></scd-api>
+    </div>

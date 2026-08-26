@@ -1,0 +1,99 @@
+    <div class="scd-page-header">
+      <h1>Logo</h1>
+      <div class="scd-page-header-text">
+        <p>The Scale brand logo — mark plus wordmark — across three sizes, with a mark-only
+          option and an inverse style for dark or coloured surfaces.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-logo.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=445-677"
+        framer="available"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-logo'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Sizes</h3>
+      <p>Three sizes — <code class="scd-inline-code">l</code> (default),
+        <code class="scd-inline-code">m</code>, and <code class="scd-inline-code">s</code>.</p>
+      <scd-demo>
+        <div style="display:flex;align-items:center;gap:var(--sc-space-xl);flex-wrap:wrap">
+          <sc-logo size="l"></sc-logo>
+          <sc-logo size="m"></sc-logo>
+          <sc-logo size="s"></sc-logo>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Mark only</h3>
+      <p><code class="scd-inline-code">hide-text</code> drops the wordmark for tight spaces like
+        a collapsed header.</p>
+      <scd-demo>
+        <sc-logo size="m" hide-text></sc-logo>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Inverse</h3>
+      <p><code class="scd-inline-code">logo-style="inverse"</code> flips the wordmark for use on a
+        coloured or dark surface.</p>
+      <scd-demo>
+        <div style="background:var(--sc-color-brand-500);padding:var(--sc-space-xl);border-radius:var(--sc-border-radius-s)">
+          <sc-logo size="m" logo-style="inverse"></sc-logo>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Custom mark size</h3>
+      <p>Override <code class="scd-inline-code">--sc-logo-mark-size</code> to tune the mark
+        independently of the named sizes.</p>
+      <scd-demo>
+        <sc-logo size="m" hide-text style="--sc-logo-mark-size:64px"></sc-logo>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>headers, footers, and brand references. Built into
+        <a href="/components/header/">Header</a> and <a href="/components/footer/">Footer</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use the inverse style on dark or brand-coloured backgrounds for contrast.</li>
+            <li>Drop to <code class="scd-inline-code">hide-text</code> only when space genuinely can&rsquo;t fit the wordmark.</li>
+            <li>Give the logo clear space — don&rsquo;t crowd it with other elements.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t recolour or restyle the mark beyond the provided variants.</li>
+            <li>Don&rsquo;t stretch or distort it — scale with <code class="scd-inline-code">size</code> or the mark-size var.</li>
+            <li>Don&rsquo;t place the default style on a low-contrast background.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Accessible name:</strong> the SVG has no built-in label — when the logo links home, give the link an accessible name (e.g. <code class="scd-inline-code">aria-label="Scale home"</code>).</li>
+        <li><strong>Decorative use:</strong> if the brand is already named in adjacent text, the logo is decorative and needs no extra label.</li>
+        <li><strong>Contrast:</strong> pick the variant that meets WCAG AA against its background — inverse for dark, default for light.</li>
+        <li><strong>Scaling:</strong> the mark and wordmark are vector SVG, so they stay crisp at any size.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-logo"></scd-api>
+    </div>

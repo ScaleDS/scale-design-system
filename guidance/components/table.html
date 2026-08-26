@@ -1,0 +1,333 @@
+    <div class="scd-page-header">
+      <h1>Table</h1>
+      <div class="scd-page-header-text">
+        <p>Structured grids of rows and columns for displaying, organising, and comparing large sets of data.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-table-basic.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=6410-10724"
+        framer="https://scaleframer.framer.website/components/table"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-table-dynamic'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Dynamic (data-driven)</h3>
+      <p>The compact path: pass <code>.columns</code> + <code>.rows</code> and
+        <code>sc-table-dynamic</code> generates the markup, delegating sorting, selection, and
+        pagination to <code>sc-table-basic</code>. The table holds no data of its own — you own the
+        rows. Click a header to sort.</p>
+      <scd-demo code="const columns = [
+  { key: 'name',    label: 'Name',    sortable: true, width: 'minmax(0,1.4fr)' },
+  { key: 'role',    label: 'Role',    sortable: true },
+  { key: 'status',  label: 'Status',  sortable: true },
+  { key: 'score',   label: 'Score',   sortable: true, align: 'trailing' },
+  { key: 'updated', label: 'Updated', sortable: true, align: 'trailing' },
+]
+const rows = people.map((name, i) => ({
+  name, role: roles[i % roles.length], status: statuses[i % statuses.length],
+  score: (i * 13 % 90) + 10, updated: days[i],
+}))
+
+const table = document.querySelector('sc-table-dynamic')
+table.columns = columns
+table.rows = rows">
+        <sc-table-dynamic id="scd-table-default" label="Team" page-size="8"></sc-table-dynamic>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Fetched from an API</h3>
+      <p>The end-to-end dynamic pattern — fetch JSON, map it into rows, and assign
+        <code>.rows</code>. This table is populated live from a public REST endpoint on load.</p>
+      <scd-demo code="table.columns = [
+  { key: 'name',    label: 'Name',    sortable: true },
+  { key: 'email',   label: 'Email',   sortable: true },
+  { key: 'company', label: 'Company', sortable: true },
+  { key: 'city',    label: 'City',    sortable: true, align: 'trailing' },
+]
+
+const res   = await fetch('https://jsonplaceholder.typicode.com/users')
+const users = await res.json()
+table.rows = users.map((u) => ({
+  name: u.name, email: u.email, company: u.company.name, city: u.address.city,
+}))">
+        <sc-table-dynamic id="scd-table-fetch" label="Users" page-size="5"></sc-table-dynamic>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Bank account transactions</h3>
+      <p>Cell values can be Lit templates, not just text. Here a select column drives row
+        selection, <code>desc</code> renders an avatar + reference line, and
+        <code>debit</code>/<code>credit</code> are colour-coded amounts.</p>
+      <scd-demo code="const columns = [
+  { key: 'sel',     selectable: true },                              // select-all + row checkboxes
+  { key: 'date',    label: 'Date',        sortable: true },
+  { key: 'desc',    label: 'Description', sortable: true, width: 'minmax(0,1fr)' },
+  { key: 'debit',   label: 'Debit',   align: 'trailing' },
+  { key: 'credit',  label: 'Credit',  align: 'trailing' },
+  { key: 'balance', label: 'Balance', align: 'trailing' },
+]
+// rows: values may be strings, numbers, or Lit templates
+const rows = txns.map((t, i) => ({
+  selected: i === 0,
+  date: t.date,
+  desc: html`<sc-avatar size=s alt=${t.name}></sc-avatar> ${t.name}`,
+  debit:  t.debit  ? html`<span class=neg>${t.debit}</span>`  : '',
+  credit: t.credit ? html`<span class=pos>${t.credit}</span>` : '',
+  balance: t.balance,
+}))">
+        <sc-table-dynamic id="scd-table-bank" label="Bank account transactions" page-size="8"></sc-table-dynamic>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Email</h3>
+      <p>Icon columns via <code>leadingIcon(row)</code> (star, attachment) and a two-line cell via
+        <code>secondaryText(row)</code> for the message preview.</p>
+      <scd-demo code="const columns = [
+  { key: 'sel',     selectable: true, sortable: true },
+  { key: 'star',    label: 'Starred', sortable: true, leadingIcon: (r) => r.starred ? 'star' : '' },
+  { key: 'sender',  label: 'Sender',  sortable: true },
+  { key: 'subject', label: 'Subject', sortable: true, width: 'minmax(0,1fr)',
+                    secondaryText: (r) => r.preview },
+  { key: 'attach',  leadingIcon: (r) => r.attachment ? 'paperclip' : '' },
+  { key: 'date',    label: 'Date', align: 'trailing' },
+]">
+        <sc-table-dynamic id="scd-table-email" label="Email" page-size="8"></sc-table-dynamic>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Repo</h3>
+      <p>Link columns via <code>href(row)</code> render real anchors, and the author cell is an
+        avatar + name template.</p>
+      <scd-demo code="const columns = [
+  { key: 'author',  label: 'Author',  sortable: true },
+  { key: 'commit',  label: 'Commit',  sortable: true, href: (r) => `/commit/${r.commit}` },
+  { key: 'message', label: 'Message', sortable: true, width: 'minmax(0,1fr)' },
+  { key: 'date',    label: 'Date',    sortable: true, align: 'trailing' },
+  { key: 'issues',  label: 'Issues',  sortable: true, align: 'trailing', href: (r) => `/issues/${r.issues}` },
+]">
+        <sc-table-dynamic id="scd-table-repo" label="Repository commits" page-size="8"></sc-table-dynamic>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Basic (hand-composed)</h3>
+      <p>Compose rows and cells yourself for full control. A <code>header</code> row holds
+        <code>sc-table-head</code> cells; <code>sortable</code> turns a head into a sort control;
+        <code>selected</code> paints the active row.</p>
+      <scd-demo>
+        <sc-table-basic label="Team">
+          <sc-table-row header slot="header">
+            <sc-table-head sortable width="minmax(0,1fr)">Name</sc-table-head>
+            <sc-table-head sortable width="minmax(0,1fr)">Role</sc-table-head>
+            <sc-table-head sortable align="trailing" width="auto">Score</sc-table-head>
+          </sc-table-row>
+          <sc-table-row selected>
+            <sc-table-cell>Ada Lovelace</sc-table-cell>
+            <sc-table-cell>Engineer</sc-table-cell>
+            <sc-table-cell align="trailing">88</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell>Alan Turing</sc-table-cell>
+            <sc-table-cell>Researcher</sc-table-cell>
+            <sc-table-cell align="trailing">74</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell>Grace Hopper</sc-table-cell>
+            <sc-table-cell>Designer</sc-table-cell>
+            <sc-table-cell align="trailing">61</sc-table-cell>
+          </sc-table-row>
+        </sc-table-basic>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Building blocks</h3>
+      <p>The four primitives the layers above are built from — <code>sc-table-head</code>,
+        <code>sc-table-cell</code>, <code>sc-table-footer</code>, and <code>sc-table-row</code>.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l)">
+          <div style="width:260px;border:1px solid var(--sc-color-border-subtle)">
+            <sc-table-head sortable sort="ascending">Name</sc-table-head>
+          </div>
+          <div style="width:260px;border:1px solid var(--sc-color-border-subtle)">
+            <sc-table-cell secondary-text="ada@example.com" leading-icon="user">Ada Lovelace</sc-table-cell>
+          </div>
+          <div style="width:320px;border:1px solid var(--sc-color-border-subtle)">
+            <sc-table-footer total="6" current="2"></sc-table-footer>
+          </div>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>tabular data with sorting, selection, and
+        pagination. Reach for <code class="scd-inline-code">sc-table-dynamic</code> first; drop to the building blocks only when
+        you need bespoke layout.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Reach for <code class="scd-inline-code">sc-table-dynamic</code> first; drop to the building blocks only for bespoke layouts.</li>
+            <li>Right-align numeric columns and keep headers concise and sortable where it helps.</li>
+            <li>Paginate large data sets rather than rendering thousands of rows at once.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a table for layout — it&rsquo;s for tabular data with real rows and columns.</li>
+            <li>Don&rsquo;t make every column sortable if sorting most of them is meaningless.</li>
+            <li>Don&rsquo;t hide critical actions behind horizontal scroll on narrow screens.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Roles:</strong> the grid exposes <code class="scd-inline-code">role="table"</code> with <code class="scd-inline-code">role="row"</code>, <code class="scd-inline-code">role="columnheader"</code>, and <code class="scd-inline-code">role="cell"</code> on its parts.</li>
+        <li><strong>Name:</strong> the <code class="scd-inline-code">label</code> sets the table&rsquo;s <code class="scd-inline-code">aria-label</code>; always provide one.</li>
+        <li><strong>Sort:</strong> a sortable header reflects the current direction with <code class="scd-inline-code">aria-sort</code> (<code class="scd-inline-code">ascending</code> / <code class="scd-inline-code">descending</code>).</li>
+        <li><strong>Selection:</strong> selectable columns render real <a href="/components/checkbox/">Checkbox</a>es with their own labels.</li>
+        <li><strong>Links &amp; icons:</strong> <code class="scd-inline-code">href</code> columns render real anchors; leading icons are decorative, so the cell text must carry the meaning.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-table-dynamic,sc-table-basic,sc-table-head,sc-table-row,sc-table-cell,sc-table-footer"></scd-api>
+    </div>
+
+    <script type="module">
+      import { html } from 'lit'
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      const PEOPLE = [
+        'Helena Voss', 'Marcus Bell', 'Priya Nair', 'Diego Castro', 'Aisha Rahman', 'Liam Walsh',
+        'Sofia Marenko', 'Noah Adeyemi', 'Mei Tanaka', 'Omar Haddad', 'Ingrid Solberg', 'Tarek Mansour',
+        'Yuki Sato', 'Carlos Vidal', 'Nadia Petrova', 'Sven Eriksson', 'Lucia Romano', 'Ahmed Farouk',
+        'Freya Lindqvist', 'Kenji Mori', 'Rosa Delgado', 'Viktor Novak', 'Amara Okeke', 'Theo Lambert',
+      ]
+      const ROLES = ['Engineer', 'Designer', 'Manager', 'Analyst', 'Researcher', 'Lead']
+      const STATUS_TEXT = ['Active', 'Pending', 'Archived', 'Invited']
+      const TXN = ['Grocery store', 'Salary deposit', 'Electric bill', 'Coffee shop', 'Monthly rent', 'Refund', 'Subscription', 'Wire transfer']
+      const SUBJECTS = ['Welcome aboard', 'Invoice #4821 is ready', 'Your weekly digest', 'Meeting moved to 3pm', 'Design review notes', 'Action required', 'Trip itinerary', 'Password was changed']
+      const PREVIEWS = ['Hi, thanks for signing up — here is how to get started', 'Please find the attached invoice for last month', 'A summary of what happened this week', 'Heads up: the sync is now at 3pm on Thursday', 'A few comments from today’s review session', 'We noticed a new sign-in to your account', 'Your flights and hotel for next week', 'If this wasn’t you, secure your account now']
+      const MESSAGES = ['Add table head, cell and column components', 'Fix subgrid column alignment', 'Wire up row selection', 'Make pagination work', 'Refactor the sort comparator', 'Update tokens for dark mode', 'Reflect aria-sort on headers', 'Document the table API']
+      const HASHES = ['effc767', 'a91b3d0', '7f2c8e4', 'b3490af', 'c12d77e', '5e8a0b9', 'd4f1c62', '0a7e913', '9c3b5f1', '2d6e8a4', 'f08b1c7', '3a9d4e0']
+      const ISSUES = ['TABLE-03', 'TABLE-11', 'TABLE-07', 'TABLE-22', 'TABLE-15', 'TABLE-09', 'TABLE-18', 'TABLE-04']
+
+      const range = (n) => Array.from({ length: n }, (_, i) => i)
+      const pick = (arr, i) => arr[i % arr.length]
+      const money = (i) => '$' + (((i * 137 + 49) % 900) + 100) + '.' + String((i * 7) % 100).padStart(2, '0')
+      const day = (i) => 'Apr ' + String((i % 28) + 1).padStart(2, '0')
+      const sender = (i) => PEOPLE[i].split(' ')[0].toLowerCase() + '@example.com'
+      const avatarCell = (name) => html`<span style="display:inline-flex;align-items:center;gap:var(--sc-space-s)"><sc-avatar size="s" alt=${name}></sc-avatar>${name}</span>`
+      const txnCell = (name, ref) => html`<span style="display:inline-flex;align-items:center;gap:var(--sc-space-s)"><sc-avatar size="s" alt=${name}></sc-avatar><span style="display:inline-flex;flex-direction:column;align-items:flex-start">${name}<span style="font-size:14px;line-height:20px;color:var(--sc-color-text-tertiary)">${ref}</span></span></span>`
+      const amount = (val, kind) => html`<span style="color:var(--sc-color-text-${kind})">${val}</span>`
+
+      // sc-table-basic only re-paginates in updated() (its own property changes);
+      // populating .rows after first render doesn't re-trigger it. Nudge the inner
+      // basic table to re-render once the rows are in place so pagination + footer
+      // (8/page → 3 pages for 24 rows) kick in.
+      const repaginate = async (t) => {
+        await t.updateComplete
+        const basic = t.shadowRoot?.querySelector('sc-table-basic')
+        if (basic) { basic.requestUpdate(); await basic.updateComplete }
+      }
+
+      const bind = async (id, columns, rows) => {
+        const t = document.getElementById(id)
+        if (!t) return
+        t.columns = columns
+        t.rows = rows
+        await repaginate(t)
+      }
+
+      // Bind only once <scd-shell> has placed the tables into the document.
+      onReady('#scd-table-default', () => {
+      // Default
+      bind('scd-table-default',
+        [
+          { key: 'name', label: 'Name', sortable: true, width: 'minmax(0,1.4fr)' },
+          { key: 'role', label: 'Role', sortable: true },
+          { key: 'status', label: 'Status', sortable: true },
+          { key: 'score', label: 'Score', sortable: true, align: 'trailing' },
+          { key: 'updated', label: 'Updated', sortable: true, align: 'trailing' },
+        ],
+        range(24).map((i) => ({ name: PEOPLE[i], role: pick(ROLES, i), status: pick(STATUS_TEXT, i), score: ((i * 13) % 90) + 10, updated: day(i) })),
+      )
+
+      // Bank account transactions
+      bind('scd-table-bank',
+        [
+          { key: 'sel', selectable: true, width: 'auto' },
+          { key: 'date', label: 'Date', sortable: true, width: 'auto' },
+          { key: 'desc', label: 'Description', sortable: true, width: 'minmax(0,1fr)' },
+          { key: 'debit', label: 'Debit', align: 'trailing', width: 'auto' },
+          { key: 'credit', label: 'Credit', align: 'trailing', width: 'auto' },
+          { key: 'balance', label: 'Balance', align: 'trailing', width: 'auto' },
+        ],
+        range(24).map((i) => {
+          const neg = i % 2 === 0
+          const name = pick(TXN, i)
+          return { selected: i === 0, date: day(i), desc: txnCell(name, 'Ref ' + (1000 + i)), debit: neg ? amount(money(i), 'negative') : '', credit: neg ? '' : amount(money(i + 3), 'positive'), balance: money(i + 9) }
+        }),
+      )
+
+      // Email
+      bind('scd-table-email',
+        [
+          { key: 'sel', selectable: true, sortable: true, width: 'auto' },
+          { key: 'star', label: 'Starred', sortable: true, width: 'auto', leadingIcon: (r) => (r.starred ? 'star' : '') },
+          { key: 'sender', label: 'Sender', sortable: true },
+          { key: 'subject', label: 'Subject', sortable: true, width: 'minmax(0,1fr)', secondaryText: (r) => r.preview },
+          { key: 'attach', width: 'auto', leadingIcon: (r) => (r.attachment ? 'paperclip' : '') },
+          { key: 'date', label: 'Date', align: 'trailing', width: 'auto' },
+        ],
+        range(24).map((i) => ({ starred: i % 2 === 0, attachment: i % 3 === 0, sender: sender(i), subject: pick(SUBJECTS, i), preview: pick(PREVIEWS, i), date: day(i) })),
+      )
+
+      // Repo
+      bind('scd-table-repo',
+        [
+          { key: 'author', label: 'Author', sortable: true },
+          { key: 'commit', label: 'Commit', sortable: true, width: 'auto', href: () => '#sc-table-dynamic' },
+          { key: 'message', label: 'Message', sortable: true, width: 'minmax(0,1fr)' },
+          { key: 'date', label: 'Date', sortable: true, align: 'trailing', width: 'auto' },
+          { key: 'issues', label: 'Issues', sortable: true, align: 'trailing', width: 'auto', href: () => '#sc-table-dynamic' },
+        ],
+        range(24).map((i) => ({ author: avatarCell(PEOPLE[i]), commit: pick(HASHES, i), message: pick(MESSAGES, i), date: day(i), issues: pick(ISSUES, i) })),
+      )
+
+      // Fetched from an API
+      const fetchTable = document.getElementById('scd-table-fetch')
+      if (fetchTable) {
+        fetchTable.columns = [
+          { key: 'name', label: 'Name', sortable: true, width: 'minmax(0,1fr)' },
+          { key: 'email', label: 'Email', sortable: true, width: 'minmax(0,1.2fr)' },
+          { key: 'company', label: 'Company', sortable: true },
+          { key: 'city', label: 'City', sortable: true, align: 'trailing' },
+        ]
+        fetch('https://jsonplaceholder.typicode.com/users')
+          .then((res) => (res.ok ? res.json() : Promise.reject(new Error('HTTP ' + res.status))))
+          .then((users) => {
+            fetchTable.rows = users.map((u) => ({ name: u.name, email: u.email, company: u.company.name, city: u.address.city }))
+            return repaginate(fetchTable)
+          })
+          .catch(() => { /* leave the table empty on error */ })
+      }
+      })
+    </script>

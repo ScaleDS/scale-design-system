@@ -16,6 +16,7 @@
     "dist",
     "scss",
     "context",
+    "guidance",
     "assets",
     "mcp/dist",
     "vite-plugin.js",

@@ -1,0 +1,105 @@
+    <div class="scd-page-header">
+      <h1>Button Icon</h1>
+      <div class="scd-page-header-text">
+        <p>An icon-only button that communicates an action without a visible label.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-button-icon.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=23278-183583"
+        framer="https://scaleframer.framer.website/components/button-icon"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-button-icon'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Types</h3>
+      <p>Eight visual types, ordered by emphasis. Always pass a
+        <code class="scd-inline-code">label</code> — it becomes the accessible name.</p>
+      <scd-demo>
+        <sc-button-icon type="primary" icon="settings" label="Settings"></sc-button-icon>
+        <sc-button-icon type="secondary" icon="bell" label="Notifications"></sc-button-icon>
+        <sc-button-icon type="tertiary" icon="more-horizontal" label="More"></sc-button-icon>
+        <sc-button-icon type="tertiary-mono" icon="search" label="Search"></sc-button-icon>
+        <sc-button-icon type="outline" icon="edit" label="Edit"></sc-button-icon>
+        <sc-button-icon type="outline-mono" icon="filter" label="Filter"></sc-button-icon>
+        <sc-button-icon type="mono" icon="share-2" label="Share"></sc-button-icon>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>On dark surfaces</h3>
+      <p>The <code class="scd-inline-code">inverse</code> type is tuned to read on a dark or
+        brand-colored background.</p>
+      <scd-demo>
+        <div style="display:flex;gap:var(--sc-space-m);padding:var(--sc-space-l);background:var(--sc-color-background-mono);border-radius:var(--sc-border-radius-l)">
+          <sc-button-icon type="inverse" icon="play" label="Play"></sc-button-icon>
+          <sc-button-icon type="inverse" icon="pause" label="Pause"></sc-button-icon>
+          <sc-button-icon type="inverse" icon="skip-forward" label="Next"></sc-button-icon>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Sizes</h3>
+      <p>Two sizes — <code class="scd-inline-code">l</code> (default, 24px icon) and
+        <code class="scd-inline-code">s</code> (16px icon).</p>
+      <scd-demo>
+        <sc-button-icon size="l" type="secondary" icon="star" label="Star"></sc-button-icon>
+        <sc-button-icon size="s" type="secondary" icon="star" label="Star"></sc-button-icon>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-button-icon type="primary" icon="x" label="Close" disabled></sc-button-icon>
+        <sc-button-icon type="outline" icon="trash-2" label="Delete" disabled></sc-button-icon>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>dense toolbars and overflow actions where a text
+        label won&rsquo;t fit. If you have room for a label, prefer a
+        <a href="/components/button/">Button</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Always set a <code class="scd-inline-code">label</code> describing the action, not the icon.</li>
+            <li>Use universally understood icons — close, search, settings, more.</li>
+            <li>Pair with a <a href="/components/tooltip/">Tooltip</a> when the icon may be ambiguous.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use an icon button when a text label would fit — use <a href="/components/button/">Button</a>.</li>
+            <li>Don&rsquo;t invent obscure icons for actions people won&rsquo;t recognise.</li>
+            <li>Don&rsquo;t ship one without a <code class="scd-inline-code">label</code> — the console warns and screen readers fall back to the icon name.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Element:</strong> renders a native <code class="scd-inline-code">&lt;button type="button"&gt;</code> — keyboard focusable by default.</li>
+        <li><strong>Name:</strong> the <code class="scd-inline-code">label</code> sets <code class="scd-inline-code">aria-label</code>; with no label it falls back to the icon name and warns in the console.</li>
+        <li><strong>Activation:</strong> <kbd>Enter</kbd> / <kbd>Space</kbd> activates.</li>
+        <li><strong>Disabled:</strong> <code class="scd-inline-code">disabled</code> removes it from the tab order and blocks pointer events.</li>
+        <li><strong>Target size:</strong> the <code class="scd-inline-code">l</code> size gives a comfortable touch target; prefer it on touch surfaces.</li>
+        <li><strong>Focus:</strong> shows the global keyboard focus ring.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-button-icon"></scd-api>
+    </div>

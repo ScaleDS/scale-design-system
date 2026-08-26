@@ -1,0 +1,107 @@
+    <div class="scd-page-header">
+      <h1>Checkbox</h1>
+      <div class="scd-page-header-text">
+        <p>A labelled, form-associated checkbox that emits <code class="scd-inline-code">change</code>
+          events and binds to a form via <code class="scd-inline-code">name</code> /
+          <code class="scd-inline-code">value</code>. For the bare square without a label, use the
+          <code class="scd-inline-code">sc-checkbox-item</code> primitive.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-checkbox.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=9709-79005"
+        framer="https://scaleframer.framer.website/components/form"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-checkbox'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>States</h3>
+      <p><code class="scd-inline-code">indeterminate</code> represents a partially-selected
+        parent in a checkbox tree.</p>
+      <scd-demo>
+        <sc-checkbox>Unchecked</sc-checkbox>
+        <sc-checkbox checked>Checked</sc-checkbox>
+        <sc-checkbox indeterminate>Indeterminate</sc-checkbox>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Validation</h3>
+      <p>Set <code class="scd-inline-code">state</code> to <code class="scd-inline-code">negative</code>
+        or <code class="scd-inline-code">positive</code> to reflect form validity. Add
+        <code class="scd-inline-code">required</code> for native constraint validation.</p>
+      <scd-demo>
+        <sc-checkbox state="negative" required>Please accept the terms</sc-checkbox>
+        <sc-checkbox checked state="positive">Verified</sc-checkbox>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-checkbox disabled>Unchecked</sc-checkbox>
+        <sc-checkbox checked disabled>Checked</sc-checkbox>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3><code class="scd-inline-code">sc-checkbox-item</code> primitive</h3>
+      <p>The standalone checkbox visual — just the square and tick, with no label or form
+        association. Reach for it in custom layouts (cards, list items) where you own the
+        surrounding markup.</p>
+      <scd-demo>
+        <sc-checkbox-item></sc-checkbox-item>
+        <sc-checkbox-item checked></sc-checkbox-item>
+        <sc-checkbox-item indeterminate></sc-checkbox-item>
+        <sc-checkbox-item state="negative"></sc-checkbox-item>
+        <sc-checkbox-item checked disabled></sc-checkbox-item>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>multi-select options, terms acceptance, and labelled
+        settings that need form binding. For a single on/off setting, consider a
+        <a href="/components/toggle/">Toggle</a>; for mutually exclusive choices, use
+        <a href="/components/radio/">Radio</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Write a clear, positive label — the statement is true when checked.</li>
+            <li>Use <code class="scd-inline-code">indeterminate</code> only for a parent summarising mixed children.</li>
+            <li>Reach for <code class="scd-inline-code">sc-checkbox</code> in forms so it binds and validates.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a checkbox for one mutually exclusive choice — use <a href="/components/radio/">Radio</a>.</li>
+            <li>Don&rsquo;t use the bare <code class="scd-inline-code">sc-checkbox-item</code> without your own label and form wiring.</li>
+            <li>Don&rsquo;t phrase labels as negatives — &ldquo;Don&rsquo;t send emails&rdquo; is hard to parse when checked.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> renders <code class="scd-inline-code">role="checkbox"</code> with <code class="scd-inline-code">aria-checked</code> reflecting <code class="scd-inline-code">true</code> / <code class="scd-inline-code">false</code> / <code class="scd-inline-code">mixed</code> (indeterminate).</li>
+        <li><strong>Keyboard:</strong> <kbd>Space</kbd> toggles the box; the label is also clickable.</li>
+        <li><strong>Form:</strong> <code class="scd-inline-code">sc-checkbox</code> is form-associated — <code class="scd-inline-code">required</code> sets <code class="scd-inline-code">valueMissing</code> validity and it participates in reset.</li>
+        <li><strong>Label:</strong> the slotted text is the accessible name; <code class="scd-inline-code">sc-checkbox-item</code> alone has none, so pair it with your own label.</li>
+        <li><strong>State colour:</strong> <code class="scd-inline-code">negative</code> isn&rsquo;t signalled by colour alone — pair it with <a href="/components/help-text/">Help Text</a> describing the error.</li>
+        <li><strong>Focus:</strong> shows the global keyboard focus ring on the square.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-checkbox,sc-checkbox-item"></scd-api>
+    </div>

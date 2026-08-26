@@ -1,0 +1,72 @@
+    <div class="scd-page-header">
+      <h1>Section FAQ</h1>
+      <div class="scd-page-header-text">
+        <p>Accordion-based answers to common questions, making it easy for users to find what
+          they're looking for — a heading/subtext column beside a stack of slotted
+          <a href="/components/accordion/">Accordions</a>.</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-section-faq'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <scd-demo>
+        <sc-section-faq>
+          <h2 slot="heading">FAQ</h2>
+          <p slot="subtext">Common questions</p>
+          <sc-accordion heading="Why Scale?">
+            Scale brings together 10 years of design system experience in a simple, pragmatic way.
+          </sc-accordion>
+          <sc-accordion heading="Is dark mode included?" open>
+            Yes. Scale uses semantic tokens so light/dark switching is automatic.
+          </sc-accordion>
+          <sc-accordion heading="What does lifetime updates mean?">
+            Pay once and receive all future updates for free.
+          </sc-accordion>
+        </sc-section-faq>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>FAQ pages, help sections, and common questions
+        about a product or feature.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Write question-style accordion headings in the user&rsquo;s words (&ldquo;Is dark mode included?&rdquo;).</li>
+            <li>Order questions by how often they&rsquo;re asked — most common first.</li>
+            <li>Keep answers short and self-contained; link out for depth.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t bury essential information (pricing, requirements) in an FAQ — put it on the page proper.</li>
+            <li>Don&rsquo;t open several items by default; at most one, to show the pattern.</li>
+            <li>Don&rsquo;t let the list sprawl — past a dozen questions, group or split the page.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Headings:</strong> the section imposes no heading level — slot the <code class="scd-inline-code">h2</code>/<code class="scd-inline-code">h3</code> that fits the page outline into <code class="scd-inline-code">heading</code>.</li>
+        <li><strong>Accordions:</strong> keyboard and screen-reader behaviour comes from the slotted <a href="/components/accordion/">Accordion</a> items — see that page for the toggle semantics.</li>
+        <li><strong>Structure:</strong> the section itself is presentational; reading and tab order follow the slotted question order.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-section-faq"></scd-api>
+    </div>

@@ -1,0 +1,115 @@
+    <div class="scd-page-header">
+      <h1>Button Group</h1>
+      <div class="scd-page-header-text">
+        <p>Related buttons bundled together in a row with consistent spacing and shared alignment.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-button-group.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=23278-205767"
+        framer="https://scaleframer.framer.website/components/button-group"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-button-group'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Wrap related <a href="/components/button/">Button</a>s and give the group a
+        <code class="scd-inline-code">label</code> for its accessible name.</p>
+      <scd-demo>
+        <sc-button-group label="Document actions">
+          <sc-button type="primary" leading-icon="save">Save</sc-button>
+          <sc-button type="secondary" leading-icon="copy">Duplicate</sc-button>
+          <sc-button type="text" leading-icon="trash-2">Delete</sc-button>
+        </sc-button-group>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Selectable</h3>
+      <p><code class="scd-inline-code">selectable</code> plus a <code class="scd-inline-code">value</code> turns the group
+        into a single-select segmented control — the child matching <code class="scd-inline-code">value</code> renders as
+        <code class="scd-inline-code">primary</code> and the group fires a <code class="scd-inline-code">change</code> event.</p>
+      <scd-demo>
+        <sc-button-group selectable value="7d" label="Time range">
+          <sc-button-pill value="24h">24h</sc-button-pill>
+          <sc-button-pill value="7d">7d</sc-button-pill>
+          <sc-button-pill value="30d">30d</sc-button-pill>
+          <sc-button-pill value="90d">90d</sc-button-pill>
+          <sc-button-pill value="all">All</sc-button-pill>
+        </sc-button-group>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Orientation</h3>
+      <p>Set <code class="scd-inline-code">orientation="vertical"</code> to stack the buttons into a column.</p>
+      <scd-demo>
+        <sc-button-group orientation="vertical" align="stretch" label="Account">
+          <sc-button type="secondary" leading-icon="user">Profile</sc-button>
+          <sc-button type="secondary" leading-icon="settings">Settings</sc-button>
+          <sc-button type="secondary" leading-icon="log-out">Sign out</sc-button>
+        </sc-button-group>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Gap</h3>
+      <p>Tighten or loosen the spacing between buttons with
+        <code class="scd-inline-code">gap</code> — <code class="scd-inline-code">xs</code>,
+        <code class="scd-inline-code">s</code>, <code class="scd-inline-code">m</code> (default), or
+        <code class="scd-inline-code">l</code>.</p>
+      <scd-demo>
+        <sc-button-group gap="xs" label="Tight group">
+          <sc-button type="secondary">One</sc-button>
+          <sc-button type="secondary">Two</sc-button>
+          <sc-button type="secondary">Three</sc-button>
+        </sc-button-group>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>form action rows, toolbars, and segmented
+        filters — any time a set of buttons act on the same context. Add
+        <code class="scd-inline-code">selectable</code> to make it a radio-like single-select.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Group buttons that act on the same object or context.</li>
+            <li>Keep one primary action per group; let the rest carry lower emphasis.</li>
+            <li>Use <code class="scd-inline-code">selectable</code> when the buttons are mutually exclusive options.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t mix unrelated actions into one group just to align them.</li>
+            <li>Don&rsquo;t use a selectable group for multi-select — reach for checkboxes instead.</li>
+            <li>Don&rsquo;t leave the group without a <code class="scd-inline-code">label</code> for assistive tech.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> renders <code class="scd-inline-code">role="group"</code>, or
+          <code class="scd-inline-code">role="radiogroup"</code> when <code class="scd-inline-code">selectable</code> — with the children exposed as <code class="scd-inline-code">radio</code>s.</li>
+        <li><strong>Name:</strong> the <code class="scd-inline-code">label</code> becomes the group&rsquo;s <code class="scd-inline-code">aria-label</code>; always set it.</li>
+        <li><strong>Orientation:</strong> <code class="scd-inline-code">aria-orientation</code> follows the <code class="scd-inline-code">orientation</code> prop so screen readers announce the layout.</li>
+        <li><strong>Selection:</strong> the active child carries <code class="scd-inline-code">aria-checked="true"</code>; the rest are <code class="scd-inline-code">false</code>.</li>
+        <li><strong>Focus:</strong> each button keeps its own keyboard focus ring.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-button-group"></scd-api>
+    </div>

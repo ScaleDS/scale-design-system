@@ -1,0 +1,98 @@
+    <div class="scd-page-header">
+      <h1>Status Indicator</h1>
+      <div class="scd-page-header-text">
+        <p>A small 8px coloured dot that conveys a state at a glance — presence, list-item
+          status, or a compact marker beside a label.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-status-indicator.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=74097-132835"
+        framer="https://scaleframer.framer.website/components/status-indicator"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-status-indicator'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Status</h3>
+      <p>Eight colour variants map to semantic states.</p>
+      <scd-demo>
+        <div style="display:flex;align-items:center;gap:var(--sc-space-l);flex-wrap:wrap">
+          <sc-status-indicator status="default"></sc-status-indicator>
+          <sc-status-indicator status="brand"></sc-status-indicator>
+          <sc-status-indicator status="info"></sc-status-indicator>
+          <sc-status-indicator status="warning"></sc-status-indicator>
+          <sc-status-indicator status="negative"></sc-status-indicator>
+          <sc-status-indicator status="positive"></sc-status-indicator>
+          <sc-status-indicator status="disabled"></sc-status-indicator>
+          <div style="display:inline-flex;padding:var(--sc-space-s);background:var(--sc-color-background-mono);border-radius:var(--sc-border-radius-xs)">
+            <sc-status-indicator status="inverse"></sc-status-indicator>
+          </div>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Beside a label</h3>
+      <p>The common case — the dot supplements adjacent text, so it stays decorative.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-s)">
+          <span style="display:inline-flex;align-items:center;gap:var(--sc-space-s)"><sc-status-indicator status="positive"></sc-status-indicator>Online</span>
+          <span style="display:inline-flex;align-items:center;gap:var(--sc-space-s)"><sc-status-indicator status="warning"></sc-status-indicator>Away</span>
+          <span style="display:inline-flex;align-items:center;gap:var(--sc-space-s)"><sc-status-indicator status="default"></sc-status-indicator>Offline</span>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Standalone with label</h3>
+      <p>When the dot stands alone, <code class="scd-inline-code">label</code> exposes it as an
+        <code class="scd-inline-code">img</code> with an accessible name.</p>
+      <scd-demo>
+        <sc-status-indicator status="positive" label="Online"></sc-status-indicator>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>presence dots, list-item status, and compact state
+        markers next to text. For an icon with a glyph, use a
+        <a href="/components/status-icon/">Status Icon</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Place the dot directly before the label it describes.</li>
+            <li>Map <code class="scd-inline-code">status</code> to a consistent meaning across the product.</li>
+            <li>Set <code class="scd-inline-code">label</code> whenever the dot appears without text.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use the dot as the only signal of state — colour alone isn&rsquo;t accessible.</li>
+            <li>Don&rsquo;t reuse the same colour for conflicting meanings.</li>
+            <li>Don&rsquo;t use it where a labelled <a href="/components/badge/">Badge</a> or <a href="/components/status-icon/">Status Icon</a> would be clearer.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Decorative by default:</strong> with no <code class="scd-inline-code">label</code> the dot is <code class="scd-inline-code">aria-hidden</code>, relying on adjacent text for meaning.</li>
+        <li><strong>Standalone:</strong> setting <code class="scd-inline-code">label</code> switches it to <code class="scd-inline-code">role="img"</code> with that <code class="scd-inline-code">aria-label</code>.</li>
+        <li><strong>Not colour-only:</strong> because the dot is just colour, always pair it with text (or a label) so the state is conveyed non-visually.</li>
+        <li><strong>Contrast:</strong> use <code class="scd-inline-code">inverse</code> on dark surfaces; ensure the dot is distinguishable from its background.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-status-indicator"></scd-api>
+    </div>

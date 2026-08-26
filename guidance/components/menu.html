@@ -1,0 +1,106 @@
+    <div class="scd-page-header">
+      <h1>Menu</h1>
+      <div class="scd-page-header-text">
+        <p>A temporary list of actions or options shown on a surface, letting users pick a single
+          command. The <code class="scd-inline-code">sc-menu-dropdown</code> is the surface;
+          <code class="scd-inline-code">sc-menu-item</code> rows are its children.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-menu-dropdown.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=5484-8702"
+        framer="https://scaleframer.framer.website/components/menu"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-menu-dropdown'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Dropdown</h3>
+      <p>Slot <code class="scd-inline-code">sc-menu-item</code> children into a
+        <code class="scd-inline-code">sc-menu-dropdown</code>. Flag a destructive action with
+        <code class="scd-inline-code">destructive</code>.</p>
+      <scd-demo>
+        <sc-menu-dropdown>
+          <sc-menu-item label="Profile" leading-icon="user"></sc-menu-item>
+          <sc-menu-item label="Settings" leading-icon="settings"></sc-menu-item>
+          <sc-menu-item label="Billing" leading-icon="credit-card"></sc-menu-item>
+          <sc-menu-item label="Sign out" destructive leading-icon="log-out"></sc-menu-item>
+        </sc-menu-dropdown>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Selected state</h3>
+      <p>Mark the active choice with <code class="scd-inline-code">state="selected"</code> and a
+        trailing check.</p>
+      <scd-demo>
+        <sc-menu-dropdown>
+          <sc-menu-item label="Profile" state="selected" leading-icon="user" trailing-icon="check"></sc-menu-item>
+          <sc-menu-item label="Settings" leading-icon="settings"></sc-menu-item>
+          <sc-menu-item label="Billing" leading-icon="credit-card"></sc-menu-item>
+          <sc-menu-item label="Help" leading-icon="help-circle"></sc-menu-item>
+        </sc-menu-dropdown>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Menu item rows (<code class="scd-inline-code">sc-menu-item</code>)</h3>
+      <p>A single row. <code class="scd-inline-code">type</code> switches between
+        <code class="scd-inline-code">row</code>, <code class="scd-inline-code">button</code>, and
+        <code class="scd-inline-code">link</code> behaviour; add leading/trailing icons and a
+        <code class="scd-inline-code">state</code>.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-s);width:320px">
+          <sc-menu-item label="Default"></sc-menu-item>
+          <sc-menu-item label="Selected" state="selected"></sc-menu-item>
+          <sc-menu-item label="Disabled" state="disabled"></sc-menu-item>
+          <sc-menu-item label="Delete account" destructive leading-icon="trash-2"></sc-menu-item>
+          <sc-menu-item label="Profile" leading-icon="user" trailing-icon="chevron-right"></sc-menu-item>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>header nav menus, user menus, and action menus. Pair it
+        with a trigger — typically a <a href="/components/button-icon/">Button Icon</a> — to open
+        and close the surface.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep menus short and group related actions; order by frequency or importance.</li>
+            <li>Use <code class="scd-inline-code">destructive</code> for irreversible actions, placed last.</li>
+            <li>Set <code class="scd-inline-code">href</code> (or <code class="scd-inline-code">type="link"</code>) for navigation items so they behave like links.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a menu for a primary, always-visible action — use a <a href="/components/button/">Button</a>.</li>
+            <li>Don&rsquo;t pack long, scrolling lists in — consider a dedicated page or search.</li>
+            <li>Don&rsquo;t mix destructive and routine actions without separating them.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Roles:</strong> the dropdown is a <code class="scd-inline-code">role="menu"</code> containing <code class="scd-inline-code">role="menuitem"</code> rows.</li>
+        <li><strong>Keyboard:</strong> <kbd>↑</kbd>/<kbd>↓</kbd> move between items, <kbd>Home</kbd>/<kbd>End</kbd> jump to the ends, and <kbd>Esc</kbd> fires a <code class="scd-inline-code">close</code> event for the trigger to handle.</li>
+        <li><strong>Activation:</strong> items emit a <code class="scd-inline-code">select</code> event; link items (<code class="scd-inline-code">href</code> / <code class="scd-inline-code">type="link"</code>) render a real <code class="scd-inline-code">&lt;a&gt;</code>.</li>
+        <li><strong>Disabled:</strong> <code class="scd-inline-code">state="disabled"</code> sets <code class="scd-inline-code">aria-disabled</code> and skips activation.</li>
+        <li><strong>Trigger:</strong> the opening control should expose <code class="scd-inline-code">aria-haspopup="menu"</code> and <code class="scd-inline-code">aria-expanded</code>, and return focus to itself on close.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-menu-dropdown,sc-menu-item"></scd-api>
+    </div>

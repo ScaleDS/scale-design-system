@@ -1,0 +1,100 @@
+    <div class="scd-page-header">
+      <h1>Tooltip</h1>
+      <div class="scd-page-header-text">
+        <p>Small floating labels that appear on hover or focus to give a little extra context about an element.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-tooltip.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=5929-18392"
+        framer="https://scaleframer.framer.website/components/tooltip"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-tooltip'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Placement</h3>
+      <p>Hover or focus a trigger. <code class="scd-inline-code">placement</code> is
+        <code class="scd-inline-code">top</code> (default), <code class="scd-inline-code">bottom</code>,
+        <code class="scd-inline-code">left</code>, or <code class="scd-inline-code">right</code>.</p>
+      <scd-demo>
+        <div style="display:flex;gap:var(--sc-space-l);flex-wrap:wrap">
+          <sc-tooltip content="Tooltip on top" placement="top"><sc-button size="s">Top</sc-button></sc-tooltip>
+          <sc-tooltip content="Tooltip on bottom" placement="bottom"><sc-button size="s">Bottom</sc-button></sc-tooltip>
+          <sc-tooltip content="Tooltip on left" placement="left"><sc-button size="s">Left</sc-button></sc-tooltip>
+          <sc-tooltip content="Tooltip on right" placement="right"><sc-button size="s">Right</sc-button></sc-tooltip>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Triggers</h3>
+      <p>Works on any focusable trigger. <code class="scd-inline-code">trigger="click"</code> toggles
+        on click instead of hover.</p>
+      <scd-demo>
+        <div style="display:flex;gap:var(--sc-space-l);flex-wrap:wrap;align-items:center">
+          <sc-tooltip content="Saved to your workspace"><sc-button size="s">Hover or focus</sc-button></sc-tooltip>
+          <sc-tooltip content="A reusable design token"><span tabindex="0" style="text-decoration:underline dotted;cursor:help">tokens</span></sc-tooltip>
+          <sc-tooltip content="More information"><sc-button-icon icon="info" label="Info" size="s"></sc-button-icon></sc-tooltip>
+          <sc-tooltip content="Toggled by click" trigger="click"><sc-button size="s">Click me</sc-button></sc-tooltip>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Options</h3>
+      <p><code class="scd-inline-code">without-arrow</code> hides the arrow;
+        <code class="scd-inline-code">disabled</code> keeps the tip from ever opening.</p>
+      <scd-demo>
+        <div style="display:flex;gap:var(--sc-space-l);flex-wrap:wrap">
+          <sc-tooltip content="No arrow here" without-arrow><sc-button size="s">No arrow</sc-button></sc-tooltip>
+          <sc-tooltip content="You will never see this" disabled><sc-button size="s">Disabled tooltip</sc-button></sc-tooltip>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>short, text-only hints for an icon or control.
+        Keep content text-only — never put interactive elements inside. The tip is
+        <code class="scd-inline-code">position:fixed</code> so it escapes
+        <code class="scd-inline-code">overflow:hidden</code> ancestors and flips on
+        collision.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep content to a short, plain-text phrase — a label or one-line hint.</li>
+            <li>Put tooltips on focusable triggers so keyboard users get them too.</li>
+            <li>Use one to name an icon-only control (e.g. a <a href="/components/button-icon/">Button Icon</a>).</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t put links, buttons, or form fields inside — the tip is not part of the focus order.</li>
+            <li>Don&rsquo;t hide essential information in a tooltip; it must be discoverable without one.</li>
+            <li>Don&rsquo;t tooltip disabled elements — they don&rsquo;t receive hover or focus.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> the tip carries <code class="scd-inline-code">role="tooltip"</code> and a unique id; the first focusable slotted trigger gets <code class="scd-inline-code">aria-describedby</code> pointing at it, so screen readers announce the hint with the trigger.</li>
+        <li><strong>Keyboard:</strong> shows on keyboard focus as well as pointer hover; <kbd>Esc</kbd> dismisses while open.</li>
+        <li><strong>Content:</strong> text-only — interactive elements inside are unreachable since the tip never takes focus.</li>
+        <li><strong>Pointer:</strong> the tip is <code class="scd-inline-code">pointer-events:none</code>, so it never steals hover from the trigger.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-tooltip"></scd-api>
+    </div>

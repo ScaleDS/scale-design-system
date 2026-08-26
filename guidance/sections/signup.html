@@ -1,0 +1,92 @@
+    <div class="scd-page-header">
+      <h1>Section Signup</h1>
+      <div class="scd-page-header-text">
+        <p>A card-based signup section with heading, subtext, an input, and an
+          action button — slot your own <a href="/components/input/">Input</a> and
+          <a href="/components/button/">Button</a> so it stays a real form.</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-section-signup'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <scd-demo>
+        <sc-section-signup>
+          <span slot="heading">Sign up for updates</span>
+          <span slot="subtext">Stay up to date with releases.</span>
+          <sc-input id="signup-email" slot="input" label="Email" placeholder="you@example.com" type="email" required></sc-input>
+          <sc-button id="signup-submit" slot="action" type="primary">Subscribe</sc-button>
+        </sc-section-signup>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>email capture, newsletter signup, and
+        call-to-action blocks. For the bare inline field-plus-button, use
+        <a href="/components/signup/">Signup</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>State the value of signing up in the <code class="scd-inline-code">subtext</code> — what they&rsquo;ll receive.</li>
+            <li>Ask for one thing (an email); use a labelled <code class="scd-inline-code">type="email"</code> input.</li>
+            <li>Use an action-led button label — &ldquo;Subscribe&rdquo;, &ldquo;Get updates&rdquo;.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t add several fields — for a full form, build one with <a href="/components/input/">Input</a> directly.</li>
+            <li>Don&rsquo;t hide the field&rsquo;s accessible name — keep <code class="scd-inline-code">label</code> set even when visually hidden.</li>
+            <li>Don&rsquo;t use it as a page-opening CTA — that&rsquo;s the <a href="/sections/hero/">Hero</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Field name:</strong> the section adds no labelling — keep <code class="scd-inline-code">label</code> on the slotted <a href="/components/input/">Input</a> (use <code class="scd-inline-code">show-label="false"</code> to hide it visually while keeping the accessible name).</li>
+        <li><strong>Headings:</strong> the heading slot is styled but imposes no level — slot a real heading element if it belongs in the page outline.</li>
+        <li><strong>Form behaviour:</strong> validation, <kbd>Enter</kbd>-to-submit, and the submit action come from the slotted <a href="/components/input/">Input</a> and <a href="/components/button/">Button</a> — wrap them in a <code class="scd-inline-code">&lt;form&gt;</code> if you need native submission.</li>
+        <li><strong>Order:</strong> reading and tab order follow slot order — input before action.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-section-signup"></scd-api>
+    </div>
+
+    <script type="module">
+      // showLabel / showHelpText are boolean props — `show-label="false"` in HTML reads as
+      // `true` (attribute present), so the only reliable way to hide them is to set the
+      // properties in JS once the input has upgraded.
+      import { onReady } from '/src/guidelines/ready.ts'
+      onReady('#signup-email', () => {
+        const el = document.getElementById('signup-email')
+        el.showLabel = false
+        el.showHelpText = false
+
+        // sc-button renders an inner type="button" and the section has no <form>,
+        // so wire the submit by hand: validate the email on click and only then
+        // "submit". reportValidity() surfaces the required / type=email message.
+        const submit = document.getElementById('signup-submit')
+        submit?.addEventListener('click', () => {
+          if (!el.reportValidity()) return
+          submit.loading = true
+          setTimeout(() => {
+            submit.loading = false
+            el.value = ''
+          }, 800)
+        })
+      })
+    </script>

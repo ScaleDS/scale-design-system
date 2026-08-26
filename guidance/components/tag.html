@@ -1,0 +1,121 @@
+    <div class="scd-page-header">
+      <h1>Tag</h1>
+      <div class="scd-page-header-text">
+        <p>A small element for categorising or filtering content — often dismissible or
+          clickable. Three independent capabilities:
+          <code class="scd-inline-code">selectable</code> (a toggle chip),
+          <code class="scd-inline-code">removable</code> (a trailing ×), or a plain static label.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-tag.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=3786-5372"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-tag'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Selectable</h3>
+      <p><code class="scd-inline-code">selectable</code> makes a toggle chip — click or
+        <kbd>Enter</kbd>/<kbd>Space</kbd> flips <code class="scd-inline-code">selected</code> and
+        emits <code class="scd-inline-code">change</code>.</p>
+      <scd-demo>
+        <sc-tag>Text</sc-tag>
+        <sc-tag selectable>Text</sc-tag>
+        <sc-tag selectable selected>Text</sc-tag>
+        <sc-tag selectable disabled>Text</sc-tag>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Leading content</h3>
+      <p>Add a <code class="scd-inline-code">leading-icon</code> or an
+        <code class="scd-inline-code">avatar</code> (the avatar wins if both are set).</p>
+      <scd-demo>
+        <sc-tag leading-icon="tag">Text</sc-tag>
+        <sc-tag avatar="https://i.pravatar.cc/32?img=12" avatar-alt="Jane">Jane Doe</sc-tag>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Removable</h3>
+      <p><code class="scd-inline-code">removable</code> adds a × that emits
+        <code class="scd-inline-code">remove</code> (<kbd>Delete</kbd>/<kbd>Backspace</kbd> on a
+        focused tag also removes it). Handle <code class="scd-inline-code">remove</code> to drop the
+        tag — here the chips remove themselves.</p>
+      <scd-demo code='&lt;sc-tag removable&gt;Text&lt;/sc-tag&gt;
+
+// remove the tag when the × is clicked:
+tag.addEventListener("remove", () =&gt; tag.remove())'>
+        <sc-tag removable>Text</sc-tag>
+        <sc-tag leading-icon="tag" removable>Design</sc-tag>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Filter group</h3>
+      <scd-demo>
+        <div style="display:flex;gap:var(--sc-space-s);flex-wrap:wrap">
+          <sc-tag selectable selected leading-icon="check">All</sc-tag>
+          <sc-tag selectable>Active</sc-tag>
+          <sc-tag selectable>Archived</sc-tag>
+          <sc-tag selectable>Draft</sc-tag>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>category labels, filter chips, and removable selections.
+        Add a <code class="scd-inline-code">leading-icon</code> or
+        <code class="scd-inline-code">avatar</code> before the label. For a status label, use a
+        <a href="/components/badge/">Badge</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use <code class="scd-inline-code">selectable</code> tags for filters and <code class="scd-inline-code">removable</code> for chosen values.</li>
+            <li>Keep labels short — a word or two.</li>
+            <li>Handle the <code class="scd-inline-code">remove</code> event to actually drop the tag from your data.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a plain tag where a labelled <a href="/components/badge/">Badge</a> or <a href="/components/status-indicator/">Status Indicator</a> fits better.</li>
+            <li>Don&rsquo;t make a tag both selectable and removable if the interactions compete confusingly.</li>
+            <li>Don&rsquo;t rely on colour alone for a selected filter — the fill plus state should read clearly.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Selectable:</strong> becomes a <code class="scd-inline-code">role="button"</code> with <code class="scd-inline-code">aria-pressed</code> and a tab stop; <kbd>Enter</kbd>/<kbd>Space</kbd> toggles it.</li>
+        <li><strong>Removable:</strong> the × is a real <code class="scd-inline-code">&lt;button&gt;</code> labelled by <code class="scd-inline-code">remove-label</code>; <kbd>Delete</kbd>/<kbd>Backspace</kbd> on a focused tag also removes it.</li>
+        <li><strong>Plain:</strong> a non-selectable tag is static text with no role — keep its meaning in the label.</li>
+        <li><strong>Disabled:</strong> sets <code class="scd-inline-code">aria-disabled</code> and drops the tab stop.</li>
+        <li><strong>Avatar:</strong> provide <code class="scd-inline-code">avatar-alt</code> so the image has a text alternative.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-tag"></scd-api>
+    </div>
+
+    <script type="module">
+      // Make the removable demo chips actually remove themselves on the remove event.
+      import { onReady } from '/src/guidelines/ready.ts'
+      onReady('sc-tag[removable]', () => {
+        document.querySelectorAll('sc-tag[removable]').forEach((t) =>
+          t.addEventListener('remove', () => t.remove())
+        )
+      })
+    </script>

@@ -1,0 +1,121 @@
+    <div class="scd-page-header">
+      <h1>File Upload</h1>
+      <div class="scd-page-header-text">
+        <p>A form-associated upload control. The dashed dropzone wraps a real
+          <code class="scd-inline-code">&lt;input type="file"&gt;</code>, so the keyboard
+          &ldquo;Browse&rdquo; button opens the native picker; drag-and-drop is a progressive
+          enhancement on top.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-file-upload.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=31988-140033"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-file-upload'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Vertical (desktop)</h3>
+      <p>The default <code class="scd-inline-code">vertical</code> layout is a centred dropzone
+        with a large icon. Try dropping or browsing a file to see the
+        <code class="scd-inline-code">sc-file-upload-item</code> rows appear.</p>
+      <scd-demo>
+        <sc-file-upload style="max-width:448px"></sc-file-upload>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Horizontal (compact)</h3>
+      <p><code class="scd-inline-code">layout="horizontal"</code> packs the icon and browse line
+        into a single row for tighter spaces.</p>
+      <scd-demo>
+        <sc-file-upload layout="horizontal" style="max-width:370px"></sc-file-upload>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Multiple &amp; accept</h3>
+      <p><code class="scd-inline-code">multiple</code> keeps every selected file;
+        <code class="scd-inline-code">accept</code> mirrors the native filter; and
+        <code class="scd-inline-code">secondary-text</code> sets the helper line.</p>
+      <scd-demo>
+        <sc-file-upload multiple accept="image/*" secondary-text="PNG or JPG, up to 5mb." style="max-width:448px"></sc-file-upload>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Max size</h3>
+      <p><code class="scd-inline-code">max-size</code> (bytes) flags files that are too large as
+        a negative row instead of accepting them.</p>
+      <scd-demo>
+        <sc-file-upload multiple max-size="1048576" secondary-text="Each file up to 1 MB." style="max-width:448px"></sc-file-upload>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-file-upload disabled style="max-width:448px"></sc-file-upload>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>File rows (<code class="scd-inline-code">sc-file-upload-item</code>)</h3>
+      <p>The component renders these rows for you, but you can use them standalone when wiring a
+        real upload. <code class="scd-inline-code">state</code> drives the visual, and
+        <code class="scd-inline-code">value</code> is the upload percentage.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-s);max-width:448px">
+          <sc-file-upload-item state="uploading" value="50" name="annual-report.pdf" text="1.2 MB"></sc-file-upload-item>
+          <sc-file-upload-item state="positive" name="annual-report.pdf" text="Upload complete"></sc-file-upload-item>
+          <sc-file-upload-item state="negative" name="huge-video.mov" text="File exceeds the 5 MB limit."></sc-file-upload-item>
+          <sc-file-upload-item name="annual-report.pdf" text="1.2 MB"></sc-file-upload-item>
+          <sc-file-upload-item disabled name="locked.txt" text="2 KB"></sc-file-upload-item>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>document and image uploads in forms. Selected files
+        render as <code class="scd-inline-code">sc-file-upload-item</code> rows that show
+        progress and flag over-size files.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>State accepted formats and the size limit in <code class="scd-inline-code">secondary-text</code> up front.</li>
+            <li>Set <code class="scd-inline-code">accept</code> and <code class="scd-inline-code">max-size</code> so invalid files are caught early.</li>
+            <li>Use <code class="scd-inline-code">multiple</code> only when several files are genuinely expected.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t rely on drag-and-drop alone — the Browse button is the accessible path.</li>
+            <li>Don&rsquo;t hide upload progress or failure; let the file rows carry it.</li>
+            <li>Don&rsquo;t accept files you can&rsquo;t process — filter with <code class="scd-inline-code">accept</code> rather than rejecting after upload.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Keyboard:</strong> the visible <strong>Browse</strong> button is a real <code class="scd-inline-code">&lt;button&gt;</code> that opens the native file picker; the underlying <code class="scd-inline-code">&lt;input type="file"&gt;</code> is hidden from the tab order.</li>
+        <li><strong>Drag-and-drop:</strong> a progressive enhancement only — every action is reachable without it.</li>
+        <li><strong>Announcements:</strong> added and removed files are reported through a polite <code class="scd-inline-code">role="status"</code> live region.</li>
+        <li><strong>Form:</strong> form-associated — <code class="scd-inline-code">required</code> sets <code class="scd-inline-code">valueMissing</code> validity, and files post under <code class="scd-inline-code">name</code>.</li>
+        <li><strong>File rows:</strong> each row exposes a remove control and conveys <code class="scd-inline-code">uploading</code> / <code class="scd-inline-code">positive</code> / <code class="scd-inline-code">negative</code> state with text, not colour alone.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-file-upload,sc-file-upload-item"></scd-api>
+    </div>

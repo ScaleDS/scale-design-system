@@ -1,0 +1,81 @@
+    <div class="scd-page-header">
+      <h1>Spinner</h1>
+      <div class="scd-page-header-text">
+        <p>An animated, indeterminate loading indicator — a rotating 270° arc that tells users
+          something is happening behind the scenes.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-spinner.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=23278-205769"
+        framer="https://scaleframer.framer.website/components/spinner"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-spinner'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Size</h3>
+      <p>Two sizes — <code class="scd-inline-code">l</code> (48px) and
+        <code class="scd-inline-code">s</code> (24px).</p>
+      <scd-demo>
+        <sc-spinner size="l"></sc-spinner>
+        <sc-spinner size="s"></sc-spinner>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Type</h3>
+      <p><code class="scd-inline-code">type</code> sets the colour;
+        <code class="scd-inline-code">inverse</code> is tuned for dark surfaces.</p>
+      <scd-demo>
+        <sc-spinner type="primary"></sc-spinner>
+        <sc-spinner type="negative"></sc-spinner>
+        <sc-spinner type="mono"></sc-spinner>
+        <div style="display:inline-flex;padding:var(--sc-space-l);background:var(--sc-color-background-mono);border-radius:var(--sc-border-radius-m)">
+          <sc-spinner type="inverse"></sc-spinner>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>loading states of unknown duration. For a determinate
+        task with a known percentage, use a <a href="/components/progress-bar/">Progress Bar</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use a spinner only when you can&rsquo;t measure progress.</li>
+            <li>Set a meaningful <code class="scd-inline-code">label</code> describing what&rsquo;s loading.</li>
+            <li>Place it where the result will appear so the wait has context.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a spinner for a measurable task — use a <a href="/components/progress-bar/">Progress Bar</a>.</li>
+            <li>Don&rsquo;t show several spinners at once; one clear loading region is enough.</li>
+            <li>Don&rsquo;t leave a spinner running indefinitely — resolve to content or an error.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> exposes <code class="scd-inline-code">role="status"</code> so the loading state is announced; the SVG itself is <code class="scd-inline-code">aria-hidden</code>.</li>
+        <li><strong>Name:</strong> <code class="scd-inline-code">label</code> (default &ldquo;Loading&rdquo;) becomes the <code class="scd-inline-code">aria-label</code>.</li>
+        <li><strong>Reduced motion:</strong> under <code class="scd-inline-code">prefers-reduced-motion</code> it slows rather than stops — the motion is the meaning, so it keeps conveying &ldquo;in progress&rdquo;.</li>
+        <li><strong>Contrast:</strong> pick the <code class="scd-inline-code">type</code> that meets WCAG AA against its background — <code class="scd-inline-code">inverse</code> on dark.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-spinner"></scd-api>
+    </div>

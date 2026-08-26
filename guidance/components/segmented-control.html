@@ -1,0 +1,213 @@
+    <div class="scd-page-header">
+      <h1>Segmented Controller</h1>
+      <div class="scd-page-header-text">
+        <p class="scd-t-text-xl-regular" style="color: var(--sc-color-text-brand)">Inline toggle with two or more exclusive options &mdash; ideal for switching views or filtering content.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-segmented-control.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=81768-10721"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-segmented-control'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Switching views</h3>
+      <p>The control is the switcher; you swap the content. Set <code class="scd-inline-code">items</code>
+        (an array of <code class="scd-inline-code">{ label, value, icon? }</code>) and listen for the
+        <code class="scd-inline-code">change</code> event to show the matching view &mdash; keep the
+        selected segment and the visible content in sync.</p>
+      <scd-demo code='&lt;sc-segmented-control id="view" value="list"&gt;&lt;/sc-segmented-control&gt;
+&lt;div id="panels"&gt;…one element per view…&lt;/div&gt;
+
+control.items = [
+  { label: "List", value: "list", icon: "list" },
+  { label: "Board", value: "board", icon: "grid" },
+  { label: "Timeline", value: "timeline", icon: "clock" },
+]
+control.addEventListener("change", (e) =&gt; showView(e.detail.value))'>
+        <div style="width:100%">
+          <sc-segmented-control id="scd-seg-view" value="list" style="margin-bottom: var(--sc-space-l)"></sc-segmented-control>
+          <div>
+            <div data-seg-panel="list" style="border:1px solid var(--sc-color-border-subtle); border-radius: var(--sc-border-radius-m); padding: var(--sc-space-l);">
+              <h4 style="margin:0 0 var(--sc-space-s)">List</h4>
+              <p style="margin:0; color:var(--sc-color-text-secondary)">A dense, scannable list of every task, one row at a time.</p>
+            </div>
+            <div data-seg-panel="board" hidden style="border:1px solid var(--sc-color-border-subtle); border-radius: var(--sc-border-radius-m); padding: var(--sc-space-l);">
+              <h4 style="margin:0 0 var(--sc-space-s)">Board</h4>
+              <p style="margin:0; color:var(--sc-color-text-secondary)">Cards grouped into columns by status, for drag-and-drop flow.</p>
+            </div>
+            <div data-seg-panel="timeline" hidden style="border:1px solid var(--sc-color-border-subtle); border-radius: var(--sc-border-radius-m); padding: var(--sc-space-l);">
+              <h4 style="margin:0 0 var(--sc-space-s)">Timeline</h4>
+              <p style="margin:0; color:var(--sc-color-text-secondary)">Tasks plotted across a schedule to see overlap and sequence.</p>
+            </div>
+          </div>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Two to five segments</h3>
+      <p>Keep it to a small, balanced set &mdash; two to five short, parallel options that fit on one line.</p>
+      <scd-demo code='&lt;sc-segmented-control value="week"&gt;&lt;/sc-segmented-control&gt;
+
+control.items = [
+  { label: "Day", value: "day" },
+  { label: "Week", value: "week" },
+  { label: "Month", value: "month" },
+]'>
+        <sc-segmented-control id="scd-seg-two" value="overview"></sc-segmented-control>
+        <sc-segmented-control id="scd-seg-three" value="week"></sc-segmented-control>
+        <sc-segmented-control id="scd-seg-four" value="day"></sc-segmented-control>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Icon and text</h3>
+      <p>Give an item an <code class="scd-inline-code">icon</code> (a Feather icon name) to render it
+        before the label. Use icons consistently across every segment, not just some.</p>
+      <scd-demo code='control.items = [
+  { label: "List", value: "list", icon: "list" },
+  { label: "Board", value: "board", icon: "grid" },
+  { label: "Calendar", value: "calendar", icon: "calendar" },
+]'>
+        <sc-segmented-control id="scd-seg-icons" value="board"></sc-segmented-control>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Icon only</h3>
+      <p>Set <code class="scd-inline-code">icon-only</code> to render icons alone &mdash; each
+        item&rsquo;s <code class="scd-inline-code">label</code> becomes its accessible name. Best for
+        universally-understood views where the icons need no caption.</p>
+      <scd-demo code='&lt;sc-segmented-control icon-only value="grid"&gt;&lt;/sc-segmented-control&gt;
+
+control.items = [
+  { label: "List view", value: "list", icon: "list" },
+  { label: "Grid view", value: "grid", icon: "grid" },
+  { label: "Columns view", value: "columns", icon: "columns" },
+]'>
+        <sc-segmented-control id="scd-seg-icononly" icon-only value="grid"></sc-segmented-control>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <p>Set <code class="scd-inline-code">disabled</code> to disable the whole control, or mark an
+        individual item <code class="scd-inline-code">disabled: true</code> when a view isn&rsquo;t
+        available yet.</p>
+      <scd-demo code='&lt;sc-segmented-control disabled value="week"&gt;&lt;/sc-segmented-control&gt;
+
+// or disable a single segment:
+control.items = [
+  { label: "Day", value: "day" },
+  { label: "Week", value: "week" },
+  { label: "Month", value: "month", disabled: true },
+]'>
+        <sc-segmented-control id="scd-seg-disabled" disabled value="week"></sc-segmented-control>
+        <sc-segmented-control id="scd-seg-disabled-item" value="day"></sc-segmented-control>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>a compact, in-place switch between a few alternative views or modes of one content area. For page-level content sections or larger sets, reach for <a href="/components/tabs/">Tabs</a> instead; for a binary on/off, use a <a href="/components/toggle/">Toggle</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use it to switch between peer views of the <em>same</em> content, in place.</li>
+            <li>Keep to two&ndash;five short, similar-length segments on a single line.</li>
+            <li>Always keep one segment selected, matching the content on screen.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use it to navigate between pages or for many sections &mdash; use <a href="/components/tabs/">Tabs</a>.</li>
+            <li>Don&rsquo;t mix text-only and icon-only segments in one control, or let labels wrap.</li>
+            <li>Don&rsquo;t use it to trigger actions or for multi-select.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Pattern:</strong> a view switcher, not a tabbed interface &mdash; the container is a <code class="scd-inline-code">role="group"</code> of native <code class="scd-inline-code">&lt;button&gt;</code>s (label it via <code class="scd-inline-code">label</code>), with the active one marked <code class="scd-inline-code">aria-current="true"</code>. When you need full tab semantics (arrow-key roving, associated <code class="scd-inline-code">tabpanel</code>s), use <a href="/components/tabs/">Tabs</a> instead.</li>
+        <li><strong>Keyboard:</strong> every segment is in the tab order; <kbd>Tab</kbd> / <kbd>Shift</kbd>+<kbd>Tab</kbd> moves between them and <kbd>Enter</kbd> / <kbd>Space</kbd> switches the view. There is no arrow-key roving.</li>
+        <li><strong>Content sync:</strong> update the shown content immediately on <code class="scd-inline-code">change</code> so the selected segment always reflects what&rsquo;s visible.</li>
+        <li><strong>Focus:</strong> visible focus ring on keyboard focus; never removed.</li>
+        <li><strong>Icon only:</strong> each item&rsquo;s <code class="scd-inline-code">label</code> becomes the button&rsquo;s accessible name, so screen-reader users still hear the view name.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-segmented-control"></scd-api>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+      onReady('#scd-seg-view', () => {
+        const set = (id, items) => {
+          const el = document.getElementById(id)
+          if (el) el.items = items
+        }
+
+        // Hero demo: the control swaps which panel is shown.
+        const view = document.getElementById('scd-seg-view')
+        if (view) {
+          view.items = [
+            { label: 'List', value: 'list', icon: 'list' },
+            { label: 'Board', value: 'board', icon: 'grid' },
+            { label: 'Timeline', value: 'timeline', icon: 'clock' },
+          ]
+          const panels = [...document.querySelectorAll('[data-seg-panel]')]
+          const show = (v) => panels.forEach((p) => { p.hidden = p.dataset.segPanel !== v })
+          show(view.value)
+          view.addEventListener('change', (e) => show(e.detail.value))
+        }
+
+        set('scd-seg-two', [
+          { label: 'Overview', value: 'overview' },
+          { label: 'Activity', value: 'activity' },
+        ])
+        set('scd-seg-three', [
+          { label: 'Day', value: 'day' },
+          { label: 'Week', value: 'week' },
+          { label: 'Month', value: 'month' },
+        ])
+        set('scd-seg-four', [
+          { label: 'Day', value: 'day' },
+          { label: 'Week', value: 'week' },
+          { label: 'Month', value: 'month' },
+          { label: 'Year', value: 'year' },
+        ])
+        set('scd-seg-icons', [
+          { label: 'List', value: 'list', icon: 'list' },
+          { label: 'Board', value: 'board', icon: 'grid' },
+          { label: 'Calendar', value: 'calendar', icon: 'calendar' },
+        ])
+        set('scd-seg-icononly', [
+          { label: 'List view', value: 'list', icon: 'list' },
+          { label: 'Grid view', value: 'grid', icon: 'grid' },
+          { label: 'Columns view', value: 'columns', icon: 'columns' },
+        ])
+        set('scd-seg-disabled', [
+          { label: 'Day', value: 'day' },
+          { label: 'Week', value: 'week' },
+          { label: 'Month', value: 'month' },
+        ])
+        set('scd-seg-disabled-item', [
+          { label: 'Day', value: 'day' },
+          { label: 'Week', value: 'week' },
+          { label: 'Month', value: 'month', disabled: true },
+        ])
+      })
+    </script>

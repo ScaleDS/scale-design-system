@@ -1,0 +1,92 @@
+    <div class="scd-page-header">
+      <h1>Card Image</h1>
+      <div class="scd-page-header-text">
+        <p>A card surface with a dedicated image area plus <code class="scd-inline-code">heading</code>
+          and <code class="scd-inline-code">description</code> slots. Ships light and dark image
+          sources that switch with the theme.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-card-image.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=4283-5763"
+        framer="available"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-card-image'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default variant</h3>
+      <p>Image on top, text below. Provide <code class="scd-inline-code">image-src</code> and
+        <code class="scd-inline-code">image-src-dark</code> so the artwork tracks the active theme.</p>
+      <scd-demo>
+        <sc-card-image
+          variant="default"
+          image-src="/images/framer/sc-image-framer-bento-components-light.png"
+          image-src-dark="/images/framer/sc-image-framer-bento-components-dark.png"
+          image-alt="Components" style="max-width:400px">
+          <h4 slot="heading">Component Library</h4>
+          <p slot="description">Drag and drop components with endless combinations.</p>
+        </sc-card-image>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Fill variant</h3>
+      <p>The image fills the card and text sits above it — set a fixed
+        <code class="scd-inline-code">height</code> for a consistent tile.</p>
+      <scd-demo>
+        <sc-card-image
+          variant="fill"
+          image-src="/images/framer/sc-image-framer-bento-variables-light.png"
+          image-src-dark="/images/framer/sc-image-framer-bento-variables-dark.png"
+          image-alt="Variables" style="max-width:400px;height:400px">
+          <h4 slot="heading">120 Styles &amp; Variables</h4>
+          <p slot="description">Semantic color and type styles.</p>
+        </sc-card-image>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>feature cards, blog-post previews, and product
+        showcases — any content pairing an image with text, often laid out in a bento grid.
+        For a plain surface, use <a href="/components/card/">Card</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Put a real heading element in the <code class="scd-inline-code">heading</code> slot so the card joins the document outline.</li>
+            <li>Supply both <code class="scd-inline-code">image-src</code> and <code class="scd-inline-code">image-src-dark</code> so artwork reads in either theme.</li>
+            <li>Keep peer cards the same height — use the <code class="scd-inline-code">fill</code> variant with a fixed height in a grid.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t overlay text on a busy <code class="scd-inline-code">fill</code> image without enough contrast.</li>
+            <li>Don&rsquo;t leave <code class="scd-inline-code">image-alt</code> empty when the image carries meaning.</li>
+            <li>Don&rsquo;t use it for plain grouped content — reach for <a href="/components/card/">Card</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Heading:</strong> the <code class="scd-inline-code">heading</code> slot should hold a real <code class="scd-inline-code">&lt;h2&gt;</code>–<code class="scd-inline-code">&lt;h4&gt;</code> at the right level for the page outline.</li>
+        <li><strong>Image alt:</strong> <code class="scd-inline-code">image-alt</code> sets the <code class="scd-inline-code">&lt;img&gt;</code> alt — describe meaningful images, use <code class="scd-inline-code">""</code> for purely decorative ones.</li>
+        <li><strong>Theme:</strong> the component swaps to <code class="scd-inline-code">image-src-dark</code> in dark mode; make sure both sources convey the same information.</li>
+        <li><strong>Contrast:</strong> in the <code class="scd-inline-code">fill</code> variant, text sits over the image — keep it WCAG AA legible across both image sources.</li>
+        <li><strong>Interactivity:</strong> Card Image is a static surface — place a focusable <a href="/components/button/">Button</a> or link inside rather than making the whole card clickable.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-card-image"></scd-api>
+    </div>

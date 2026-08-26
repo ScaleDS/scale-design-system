@@ -1,0 +1,135 @@
+    <div class="scd-page-header">
+      <h1>Layout</h1>
+      <div class="scd-page-header-text">
+        <p>Layout is the structure underneath every screen: the responsive
+          <strong>breakpoints</strong> that decide when a layout reflows, and the
+          <strong>column grid</strong> that aligns content within each breakpoint. Design
+          mobile-first and layer enhancements up the scale, so layouts adapt predictably
+          rather than breaking at arbitrary widths. Build with the named Sass breakpoints
+          (<code class="scd-inline-code">$sc-breakpoint-mobile</code>,
+          <code class="scd-inline-code">-tablet</code>,
+          <code class="scd-inline-code">-desktop-m</code>,
+          <code class="scd-inline-code">-desktop</code>) and the shared grid rather than
+          raw pixel widths so the reflow stays consistent across the system.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-breakpoints.scss"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=175-628"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Breakpoints</h2>
+      <p>Four min-width breakpoints cover the standard device classes. Each is the lower
+        bound of a range: styles apply from that width upward, mobile-first.</p>
+      <sc-table-basic class="scd-border-table scd-bp-table scd-bp-table--breakpoints" label="Breakpoint scale">
+        <sc-table-row header slot="header">
+          <sc-table-head width="max-content">Name</sc-table-head>
+          <sc-table-head width="max-content">Variable</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Common use cases</sc-table-head>
+          <sc-table-head width="max-content">Min width</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Mobile</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">$sc-breakpoint-mobile</code></sc-table-cell>
+          <sc-table-cell>Single-column layouts, stacked navigation, touch-first controls</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">402px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Tablet</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">$sc-breakpoint-tablet</code></sc-table-cell>
+          <sc-table-cell>Two-column layouts, side navigation appears, denser content</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">810px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Desktop</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">$sc-breakpoint-desktop-m</code></sc-table-cell>
+          <sc-table-cell>Multi-column layouts, persistent sidebars, capped content width</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">1440px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Large desktop</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">$sc-breakpoint-desktop</code></sc-table-cell>
+          <sc-table-cell>Wide layouts on large monitors: content stays capped, surrounding space grows</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">1920px</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Column grid</h2>
+      <p>A shared column grid keeps content aligned within each breakpoint. The column
+        count steps up with the available width, while a constant 16px outer margin frames
+        the content on every screen. Place content on whole columns and let the gutters do
+        the spacing between them.</p>
+      <scd-grid-demo></scd-grid-demo>
+      <sc-table-basic class="scd-border-table scd-bp-table scd-bp-table--grid" label="Column grid scale">
+        <sc-table-row header slot="header">
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Columns</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Gutter</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Margin</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Mobile</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">4</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Tablet</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">12</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Desktop</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">12</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">32px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Large desktop</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">12</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">32px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Design mobile-first: start at the smallest width and layer enhancements upward.</li>
+            <li>Snap content to the column grid and let gutters handle the spacing between blocks.</li>
+            <li>Use breakpoints to reflow the layout (columns, navigation), not to redesign each screen from scratch.</li>
+            <li>Let content drive the breakpoint: change layout when it starts to break, not at a device&rsquo;s exact size.</li>
+            <li>Use relative units (%, rem, fr) within a breakpoint so the layout flexes between the fixed stops.</li>
+            <li>Test at and between every breakpoint, including the exact boundary values.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t target specific devices; breakpoints are width ranges, not iPhone or iPad sizes.</li>
+            <li>Don&rsquo;t place content on fractional columns or invent one-off gutters and margins.</li>
+            <li>Don&rsquo;t hide content at smaller widths; reflow or progressively disclose it instead.</li>
+            <li>Don&rsquo;t scatter one-off breakpoints; stay on the three-step scale unless content genuinely requires more.</li>
+            <li>Don&rsquo;t let content stretch edge-to-edge on large screens; cap the width so lines stay readable.</li>
+            <li>Don&rsquo;t hard-code pixel widths that assume a single viewport size.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Reflow (WCAG 1.4.10):</strong> content must reflow to a single column at 320px CSS width (equivalent to 400% zoom on a 1280px screen) without horizontal scrolling. The mobile breakpoint is what delivers this.</li>
+        <li><strong>Zoom:</strong> support up to 400% browser zoom; a layout should respond to zoom the same way it responds to a narrower viewport.</li>
+        <li><strong>Text spacing (WCAG 1.4.12):</strong> layouts must not clip or overlap when users increase line height or letter spacing. Leave breathing room at every breakpoint.</li>
+        <li><strong>Orientation (WCAG 1.3.4):</strong> don&rsquo;t lock layout to portrait or landscape; breakpoints should respond to width regardless of orientation.</li>
+      </ul>
+    </div>

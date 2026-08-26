@@ -1,0 +1,107 @@
+    <div class="scd-page-header">
+      <h1>Button</h1>
+      <div class="scd-page-header-text">
+        <p>The go-to element for triggering actions — tappable, clickable, and hard to miss.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-button.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=891-3479"
+        framer="https://scaleframer.framer.website/components/button"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-button'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Types</h3>
+      <p>Thirteen visual types, ordered by emphasis. Pair the highest-emphasis
+        <code class="scd-inline-code">primary</code> with lower-emphasis variants so a single action stands out.</p>
+      <scd-demo>
+        <sc-button type="primary">Primary</sc-button>
+        <sc-button type="secondary">Secondary</sc-button>
+        <sc-button type="tertiary">Tertiary</sc-button>
+        <sc-button type="tertiary-mono">Tertiary mono</sc-button>
+        <sc-button type="inverse">Inverse</sc-button>
+        <sc-button type="mono">Mono</sc-button>
+        <sc-button type="outline">Outline</sc-button>
+        <sc-button type="outline-mono">Outline mono</sc-button>
+        <sc-button type="text">Text</sc-button>
+        <sc-button type="text-mono">Text mono</sc-button>
+        <sc-button type="negative-primary">Negative primary</sc-button>
+        <sc-button type="negative-outline">Negative outline</sc-button>
+        <sc-button type="negative-text">Negative text</sc-button>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Sizes</h3>
+      <scd-demo>
+        <sc-button size="l" type="primary">Large</sc-button>
+        <sc-button size="m" type="primary">Medium</sc-button>
+        <sc-button size="s" type="primary">Small</sc-button>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>States</h3>
+      <scd-demo>
+        <sc-button type="primary" disabled>Disabled</sc-button>
+        <sc-button type="primary" loading>Loading</sc-button>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>With icons</h3>
+      <p>Add a <code class="scd-inline-code">leading-icon</code> or <code class="scd-inline-code">trailing-icon</code> to
+        reinforce the action. Keep labels — icon-only actions belong in
+        <a href="/components/button-icon/">Button Icon</a>.</p>
+      <scd-demo>
+        <sc-button type="primary" leading-icon="download">Download</sc-button>
+        <sc-button type="secondary" trailing-icon="arrow-right">Learn more</sc-button>
+        <sc-button type="outline" leading-icon="external-link" trailing-icon="chevron-right">Open</sc-button>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>primary user actions, form submissions,
+        navigation triggers — any interactive call to action.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Lead each view with a single primary action.</li>
+            <li>Use a clear, action-led verb for the label — &ldquo;Save&rdquo;, &ldquo;Download&rdquo;.</li>
+            <li>Pair a high-emphasis primary with lower-emphasis secondary or tertiary buttons.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t stack several primary buttons competing for attention.</li>
+            <li>Don&rsquo;t ship icon-only buttons here — use <a href="/components/button-icon/">Button Icon</a>.</li>
+            <li>Don&rsquo;t disable a button without making the reason obvious nearby.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Element:</strong> renders a native <code class="scd-inline-code">&lt;button&gt;</code>; with an <code class="scd-inline-code">href</code> it renders an <code class="scd-inline-code">&lt;a&gt;</code> link instead — both keyboard focusable.</li>
+        <li><strong>Activation:</strong> <kbd>Enter</kbd> / <kbd>Space</kbd> activates a button; a link follows on <kbd>Enter</kbd>.</li>
+        <li><strong>Busy / disabled:</strong> <code class="scd-inline-code">loading</code> and <code class="scd-inline-code">disabled</code> set <code class="scd-inline-code">aria-busy</code> / the disabled state and block activation.</li>
+        <li><strong>Label:</strong> the visible text carries the meaning — keep a label rather than relying on an icon alone.</li>
+        <li><strong>Focus:</strong> shows the global keyboard focus ring.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-button"></scd-api>
+    </div>

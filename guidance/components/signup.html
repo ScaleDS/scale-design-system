@@ -1,0 +1,123 @@
+    <div class="scd-page-header">
+      <h1>Signup</h1>
+      <div class="scd-page-header-text">
+        <p>A standalone inline email-capture form — an <a href="/components/input/">Input</a>
+          paired with a primary &ldquo;Sign up&rdquo; button that wraps below on narrow widths.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-signup.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=9709-35760"
+        framer="https://scaleframer.framer.website/components/form"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-signup'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <scd-demo>
+        <sc-signup style="max-width:480px"></sc-signup>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Custom labels</h3>
+      <p>Set <code class="scd-inline-code">placeholder</code> and
+        <code class="scd-inline-code">button-label</code> for other capture flows.</p>
+      <scd-demo>
+        <sc-signup placeholder="you@example.com" button-label="Subscribe" style="max-width:480px"></sc-signup>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>States</h3>
+      <p><code class="scd-inline-code">loading</code> shows the button spinner while submitting;
+        <code class="scd-inline-code">disabled</code> turns the whole control off.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l)">
+          <sc-signup loading style="max-width:480px"></sc-signup>
+          <sc-signup disabled style="max-width:480px"></sc-signup>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Live validation</h3>
+      <p>Listen for <code class="scd-inline-code">submit</code>, then set
+        <code class="scd-inline-code">state</code> and <code class="scd-inline-code">help-text</code>
+        from your handler. Try submitting empty, then &ldquo;foo&rdquo;, then a real email.</p>
+      <scd-demo code='&lt;sc-signup&gt;&lt;/sc-signup&gt;
+
+&lt;script type="module"&gt;
+  const el = document.querySelector("sc-signup")
+  el.addEventListener("submit", (e) =&gt; {
+    const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e.detail.value)
+    el.state = ok ? "positive" : "negative"
+    el.helpText = ok ? "Thanks — you are on the list!" : "Enter a valid email address."
+  })
+&lt;/script&gt;'>
+        <sc-signup data-signup-validate style="max-width:480px"></sc-signup>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>newsletter and waitlist capture inline on a page. For the
+        full marketing block with heading and subtext, use
+        <a href="/sections/signup/">Section Signup</a>. Emits
+        <code class="scd-inline-code">submit</code> with the entered value; set
+        <code class="scd-inline-code">state</code> + <code class="scd-inline-code">help-text</code>
+        from your handler to show validation.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Give immediate feedback on <code class="scd-inline-code">submit</code> via <code class="scd-inline-code">state</code> + <code class="scd-inline-code">help-text</code>.</li>
+            <li>Show <code class="scd-inline-code">loading</code> while the request is in flight.</li>
+            <li>Keep the button label action-led — &ldquo;Sign up&rdquo;, &ldquo;Subscribe&rdquo;.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use it for full forms — compose <a href="/components/input/">Input</a>s and a <a href="/components/button/">Button</a> instead.</li>
+            <li>Don&rsquo;t leave a submit without feedback; always resolve to success or error.</li>
+            <li>Don&rsquo;t rely on placeholder text as the field&rsquo;s only accessible name.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Field name:</strong> the inner input has no visible label, so give it an accessible name (e.g. an adjacent <code class="scd-inline-code">&lt;label&gt;</code> or context) rather than relying on the placeholder alone.</li>
+        <li><strong>Keyboard:</strong> <kbd>Enter</kbd> in the field submits, the same as clicking the button.</li>
+        <li><strong>Validation:</strong> set <code class="scd-inline-code">state="negative"</code> with a <code class="scd-inline-code">help-text</code> message so the error isn&rsquo;t colour-only; the help text is exposed to assistive tech.</li>
+        <li><strong>Loading / disabled:</strong> <code class="scd-inline-code">loading</code> sets the button&rsquo;s busy state; <code class="scd-inline-code">disabled</code> turns off both the input and button.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-signup"></scd-api>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      // Live validation: flip state + help-text on submit.
+      onReady('sc-signup[data-signup-validate]', () => {
+        document.querySelectorAll('sc-signup[data-signup-validate]').forEach((el) => {
+          el.addEventListener('submit', (e) => {
+            const ok = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((e.detail?.value ?? '').trim())
+            el.state = ok ? 'positive' : 'negative'
+            el.helpText = ok ? 'Thanks — you are on the list!' : 'Enter a valid email address.'
+          })
+        })
+      })
+    </script>

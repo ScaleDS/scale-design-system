@@ -1,0 +1,1292 @@
+    <div class="scd-page-header">
+      <h1>Color</h1>
+      <div class="scd-page-header-text">
+        <p>Color serves as a fundamental element that conveys mood, establishes brand identity, and ensures visual consistency across all user interfaces.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-variables-color.scss"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=4-19"
+        framer="https://scaleframer.framer.website/foundations/color"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Semantic</h2>
+      <p>Semantic tokens map a role (text, background, icon, border, surface, overlay) to a
+        primitive value per theme. Reference these, never raw hex. The swatches below are live,
+        so to compare light and dark, use the mode toggle in the header.</p>
+    </div>
+
+    <div class="scd-section">
+      <h3>Text</h3>
+      <sc-table-basic class="scd-color-table" label="Text color tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-name-col))">Name</sc-table-head>
+          <sc-table-head width="minmax(max-content, 1fr)">Usage</sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-prim-col))">Primitive</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-primary)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Primary</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-primary</code></sc-table-cell>
+            <sc-table-cell>Headings and labels</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 50</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-50</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-secondary)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Secondary</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-secondary</code></sc-table-cell>
+            <sc-table-cell>Main body text</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 800</span><span class="scd-when-dark">Neutral 100</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-800</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-100</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-tertiary)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Tertiary</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-tertiary</code></sc-table-cell>
+            <sc-table-cell>Supporting text, captions</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 600</span><span class="scd-when-dark">Neutral 200</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-200</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-primary-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Primary Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-primary-static</code></sc-table-cell>
+            <sc-table-cell>Headings and labels (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-secondary-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Secondary Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-secondary-static</code></sc-table-cell>
+            <sc-table-cell>Main body text (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 800</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-800</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-tertiary-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Tertiary Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-tertiary-static</code></sc-table-cell>
+            <sc-table-cell>Supporting text, captions (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 600</span><span class="scd-when-dark">Neutral 600</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-600</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-primary-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Primary Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-primary-inverse</code></sc-table-cell>
+            <sc-table-cell>Headings and labels on dark backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 50</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-50</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-secondary-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Secondary Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-secondary-inverse</code></sc-table-cell>
+            <sc-table-cell>Secondary inverse text</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 100</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-tertiary-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Tertiary Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-tertiary-inverse</code></sc-table-cell>
+            <sc-table-cell>Tertiary inverse text</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 200</span><span class="scd-when-dark">Neutral 600</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-200</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-600</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-primary-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Primary Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-primary-inverse-static</code></sc-table-cell>
+            <sc-table-cell>Always light (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 50</span><span class="scd-when-dark">Neutral 50</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-50</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-50</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-secondary-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Secondary Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-secondary-inverse-static</code></sc-table-cell>
+            <sc-table-cell>Secondary inverse text (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 100</span><span class="scd-when-dark">Neutral 100</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-100</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-tertiary-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Tertiary Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-tertiary-inverse-static</code></sc-table-cell>
+            <sc-table-cell>Tertiary inverse text (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 200</span><span class="scd-when-dark">Neutral 200</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-200</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-200</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-selected)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Selected</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-selected</code></sc-table-cell>
+            <sc-table-cell>Selected state text</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 500</span><span class="scd-when-dark">Brand 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-disabled)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Disabled</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-disabled</code></sc-table-cell>
+            <sc-table-cell>Disabled text</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 300</span><span class="scd-when-dark">Neutral 700</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-300</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-700</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-brand)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Brand</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-brand</code></sc-table-cell>
+            <sc-table-cell>Brand-colored text</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 500</span><span class="scd-when-dark">Brand 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-link)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Link</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-link</code></sc-table-cell>
+            <sc-table-cell>Hyperlinks (default)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 500</span><span class="scd-when-dark">Blue 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-link-hover)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Link Hover</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-link-hover</code></sc-table-cell>
+            <sc-table-cell>Hyperlinks (hover)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 600</span><span class="scd-when-dark">Blue 300</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-300</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-link-pressed)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Link Pressed</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-link-pressed</code></sc-table-cell>
+            <sc-table-cell>Hyperlinks (pressed)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 700</span><span class="scd-when-dark">Blue 200</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-700</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-200</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-warning)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Warning</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-warning</code></sc-table-cell>
+            <sc-table-cell>Warning messages</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Orange 700</span><span class="scd-when-dark">Orange 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-orange-700</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-orange-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-negative)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Negative</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-negative</code></sc-table-cell>
+            <sc-table-cell>Error messages</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 600</span><span class="scd-when-dark">Red 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-negative-hover)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Negative Hover</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-negative-hover</code></sc-table-cell>
+            <sc-table-cell>Error messages (hover)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 700</span><span class="scd-when-dark">Red 300</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-700</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-300</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-negative-pressed)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Negative Pressed</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-negative-pressed</code></sc-table-cell>
+            <sc-table-cell>Error messages (pressed)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 800</span><span class="scd-when-dark">Red 200</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-800</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-200</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-text-positive)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Text Positive</span><code class="scd-inline-code scd-t-text-m">--sc-color-text-positive</code></sc-table-cell>
+            <sc-table-cell>Success messages</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Green 600</span><span class="scd-when-dark">Green 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-green-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-green-400</code></sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Background</h3>
+      <sc-table-basic class="scd-color-table" label="Background color tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-name-col))">Name</sc-table-head>
+          <sc-table-head width="minmax(max-content, 1fr)">Usage</sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-prim-col))">Primitive</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-primary)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Primary</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-primary</code></sc-table-cell>
+            <sc-table-cell>Main background</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-hover)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Hover</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-hover</code></sc-table-cell>
+            <sc-table-cell>Hover state backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 50</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-50</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-pressed)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Pressed</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-pressed</code></sc-table-cell>
+            <sc-table-cell>Active/pressed states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 100</span><span class="scd-when-dark">Neutral 700</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-700</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-neutral)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Neutral</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-neutral</code></sc-table-cell>
+            <sc-table-cell>Neutral containers</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 100</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-neutral-hover)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Neutral Hover</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-neutral-hover</code></sc-table-cell>
+            <sc-table-cell>Neutral hover states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 150</span><span class="scd-when-dark">Neutral 750</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-150</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-750</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-neutral-pressed)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Neutral Pressed</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-neutral-pressed</code></sc-table-cell>
+            <sc-table-cell>Neutral pressed states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 200</span><span class="scd-when-dark">Neutral 700</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-200</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-700</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-selected)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Selected</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-selected</code></sc-table-cell>
+            <sc-table-cell>Selected item backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 50</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-50</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-subtle</code></sc-table-cell>
+            <sc-table-cell>Subtle emphasis</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 50</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-50</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-inverse</code></sc-table-cell>
+            <sc-table-cell>Inverse backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 50</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-50</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-disabled)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Disabled</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-disabled</code></sc-table-cell>
+            <sc-table-cell>Disabled elements</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 100</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-brand)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Brand</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-brand</code></sc-table-cell>
+            <sc-table-cell>Primary brand actions</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 500</span><span class="scd-when-dark">Brand 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-brand-hover)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Brand Hover</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-brand-hover</code></sc-table-cell>
+            <sc-table-cell>Brand hover states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 600</span><span class="scd-when-dark">Brand 300</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-300</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-brand-pressed)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Brand Pressed</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-brand-pressed</code></sc-table-cell>
+            <sc-table-cell>Brand pressed states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 700</span><span class="scd-when-dark">Brand 200</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-700</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-200</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-brand-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Brand Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-brand-subtle</code></sc-table-cell>
+            <sc-table-cell>Subtle brand backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 100</span><span class="scd-when-dark">Brand 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-info)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Info</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-info</code></sc-table-cell>
+            <sc-table-cell>Info messages</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 500</span><span class="scd-when-dark">Blue 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-info-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Info Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-info-subtle</code></sc-table-cell>
+            <sc-table-cell>Subtle info backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 100</span><span class="scd-when-dark">Blue 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-warning)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Warning</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-warning</code></sc-table-cell>
+            <sc-table-cell>Warning backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Orange 500</span><span class="scd-when-dark">Orange 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-orange-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-orange-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-warning-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Warning Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-warning-subtle</code></sc-table-cell>
+            <sc-table-cell>Subtle warning backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Orange 100</span><span class="scd-when-dark">Orange 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-orange-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-orange-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-negative)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Negative</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-negative</code></sc-table-cell>
+            <sc-table-cell>Error/destructive backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 500</span><span class="scd-when-dark">Red 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-negative-hover)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Negative Hover</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-negative-hover</code></sc-table-cell>
+            <sc-table-cell>Error hover states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 600</span><span class="scd-when-dark">Red 300</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-300</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-negative-pressed)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Negative Pressed</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-negative-pressed</code></sc-table-cell>
+            <sc-table-cell>Error pressed states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 700</span><span class="scd-when-dark">Red 200</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-700</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-200</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-negative-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Negative Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-negative-subtle</code></sc-table-cell>
+            <sc-table-cell>Subtle error backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 100</span><span class="scd-when-dark">Red 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-positive)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Positive</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-positive</code></sc-table-cell>
+            <sc-table-cell>Success backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Green 500</span><span class="scd-when-dark">Green 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-green-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-green-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-positive-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Positive Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-positive-subtle</code></sc-table-cell>
+            <sc-table-cell>Subtle success backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Green 100</span><span class="scd-when-dark">Green 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-green-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-green-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-mono)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Mono</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-mono</code></sc-table-cell>
+            <sc-table-cell>Monochrome backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 50</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-50</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-mono-hover)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Mono Hover</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-mono-hover</code></sc-table-cell>
+            <sc-table-cell>Monochrome hover states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 800</span><span class="scd-when-dark">Neutral 100</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-800</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-100</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-mono-pressed)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Mono Pressed</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-mono-pressed</code></sc-table-cell>
+            <sc-table-cell>Monochrome pressed states</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 700</span><span class="scd-when-dark">Neutral 200</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-700</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-200</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-inverse-static</code></sc-table-cell>
+            <sc-table-cell>Inverse backgrounds (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-system-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background System Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-system-static</code></sc-table-cell>
+            <sc-table-cell>System background (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 1000</span><span class="scd-when-dark">Neutral 1000</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-1000</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-1000</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-background-system-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Background System Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-background-system-inverse-static</code></sc-table-cell>
+            <sc-table-cell>Inverse system background (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 0</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-0</code></sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Icon</h3>
+      <sc-table-basic class="scd-color-table" label="Icon color tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-name-col))">Name</sc-table-head>
+          <sc-table-head width="minmax(max-content, 1fr)">Usage</sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-prim-col))">Primitive</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-primary)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Primary</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-primary</code></sc-table-cell>
+            <sc-table-cell>Primary (default) icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 50</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-50</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-subtle</code></sc-table-cell>
+            <sc-table-cell>Secondary icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 600</span><span class="scd-when-dark">Neutral 600</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-600</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-600</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-inverse</code></sc-table-cell>
+            <sc-table-cell>Icons on dark backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 50</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-50</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-selected)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Selected</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-selected</code></sc-table-cell>
+            <sc-table-cell>Selected state icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 500</span><span class="scd-when-dark">Brand 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-disabled)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Disabled</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-disabled</code></sc-table-cell>
+            <sc-table-cell>Disabled icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 300</span><span class="scd-when-dark">Neutral 700</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-300</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-700</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-brand)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Brand</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-brand</code></sc-table-cell>
+            <sc-table-cell>Brand-colored icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 500</span><span class="scd-when-dark">Brand 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-info)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Info</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-info</code></sc-table-cell>
+            <sc-table-cell>Information icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 500</span><span class="scd-when-dark">Blue 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-warning)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Warning</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-warning</code></sc-table-cell>
+            <sc-table-cell>Warning icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Orange 500</span><span class="scd-when-dark">Orange 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-orange-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-orange-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-negative)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Negative</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-negative</code></sc-table-cell>
+            <sc-table-cell>Error icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 500</span><span class="scd-when-dark">Red 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-positive)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Positive</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-positive</code></sc-table-cell>
+            <sc-table-cell>Success icons</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Green 500</span><span class="scd-when-dark">Green 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-green-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-green-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-primary-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Primary Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-primary-static</code></sc-table-cell>
+            <sc-table-cell>Primary (default) icons (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-icon-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Icon Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-icon-inverse-static</code></sc-table-cell>
+            <sc-table-cell>Icons on dark backgrounds (non-adaptive)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 50</span><span class="scd-when-dark">Neutral 50</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-50</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-50</code></sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Border</h3>
+      <sc-table-basic class="scd-color-table" label="Border color tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-name-col))">Name</sc-table-head>
+          <sc-table-head width="minmax(max-content, 1fr)">Usage</sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-prim-col))">Primitive</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-primary)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Primary</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-primary</code></sc-table-cell>
+            <sc-table-cell>Primary borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 300</span><span class="scd-when-dark">Neutral 700</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-300</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-700</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-subtle)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-subtle</code></sc-table-cell>
+            <sc-table-cell>Subtle borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 100</span><span class="scd-when-dark">Neutral 750</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-100</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-750</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-focus)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Focus</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-focus</code></sc-table-cell>
+            <sc-table-cell>Focus state borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 500</span><span class="scd-when-dark">Blue 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-inverse</code></sc-table-cell>
+            <sc-table-cell>Borders on dark backgrounds</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-selected)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Selected</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-selected</code></sc-table-cell>
+            <sc-table-cell>Selected element borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 500</span><span class="scd-when-dark">Blue 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-disabled)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Disabled</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-disabled</code></sc-table-cell>
+            <sc-table-cell>Disabled borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 200</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-200</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-brand)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Brand</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-brand</code></sc-table-cell>
+            <sc-table-cell>Brand-colored borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Brand 500</span><span class="scd-when-dark">Brand 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-brand-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-brand-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-info)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Info</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-info</code></sc-table-cell>
+            <sc-table-cell>Info borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Blue 500</span><span class="scd-when-dark">Blue 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-blue-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-blue-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-warning)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Warning</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-warning</code></sc-table-cell>
+            <sc-table-cell>Warning borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Orange 500</span><span class="scd-when-dark">Orange 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-orange-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-orange-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-negative)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Negative</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-negative</code></sc-table-cell>
+            <sc-table-cell>Error borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Red 500</span><span class="scd-when-dark">Red 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-red-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-red-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-positive)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Positive</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-positive</code></sc-table-cell>
+            <sc-table-cell>Success borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Green 500</span><span class="scd-when-dark">Green 400</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-green-500</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-green-400</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-border-mono)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Border Mono</span><code class="scd-inline-code scd-t-text-m">--sc-color-border-mono</code></sc-table-cell>
+            <sc-table-cell>Monochrome borders</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 900</span><span class="scd-when-dark">Neutral 50</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-900</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-50</code></sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Surface</h3>
+      <sc-table-basic class="scd-color-table" label="Surface color tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-name-col))">Name</sc-table-head>
+          <sc-table-head width="minmax(max-content, 1fr)">Usage</sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-prim-col))">Primitive</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-surface-l0)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Surface L0</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l0</code></sc-table-cell>
+            <sc-table-cell>Base page background, lowest elevation</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 1000</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-1000</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-surface-l1)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Surface L1</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l1</code></sc-table-cell>
+            <sc-table-cell>Cards on page, subtle containers</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 950</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-950</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-surface-l2)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Surface L2</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l2</code></sc-table-cell>
+            <sc-table-cell>Dropdowns, popovers, panels</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-surface-l3)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Surface L3</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l3</code></sc-table-cell>
+            <sc-table-cell>Modals, dialogs, overlays</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 850</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-850</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-surface-l4)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Surface L4</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l4</code></sc-table-cell>
+            <sc-table-cell>Highest elevation, system alerts</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Overlay</h3>
+      <sc-table-basic class="scd-color-table" label="Overlay color tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-name-col))">Name</sc-table-head>
+          <sc-table-head width="minmax(max-content, 1fr)">Usage</sc-table-head>
+          <sc-table-head width="minmax(min-content, var(--scd-color-prim-col))">Primitive</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-30)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 30</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-30</code></sc-table-cell>
+            <sc-table-cell>30% opacity overlay (theme-aware)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0 Alpha 30</span><span class="scd-when-dark">Neutral 1000 Alpha 30</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0-alpha-30</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-1000-alpha-30</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-30-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 30 Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-30-static</code></sc-table-cell>
+            <sc-table-cell>30% opacity overlay (fixed)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0 Alpha 30</span><span class="scd-when-dark">Neutral 0 Alpha 30</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0-alpha-30</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-0-alpha-30</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-30-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 30 Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-30-inverse</code></sc-table-cell>
+            <sc-table-cell>30% opacity inverse overlay</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 1000 Alpha 30</span><span class="scd-when-dark">Neutral 0 Alpha 30</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-1000-alpha-30</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-0-alpha-30</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-30-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 30 Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-30-inverse-static</code></sc-table-cell>
+            <sc-table-cell>30% opacity inverse overlay (fixed)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 1000 Alpha 30</span><span class="scd-when-dark">Neutral 1000 Alpha 30</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-1000-alpha-30</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-1000-alpha-30</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-70)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 70</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-70</code></sc-table-cell>
+            <sc-table-cell>70% opacity overlay</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0 Alpha 70</span><span class="scd-when-dark">Neutral 1000 Alpha 70</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0-alpha-70</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-1000-alpha-70</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-70-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 70 Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-70-static</code></sc-table-cell>
+            <sc-table-cell>70% opacity overlay (fixed)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0 Alpha 70</span><span class="scd-when-dark">Neutral 0 Alpha 70</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0-alpha-70</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-0-alpha-70</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-70-inverse)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 70 Inverse</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-70-inverse</code></sc-table-cell>
+            <sc-table-cell>70% opacity inverse overlay</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 1000 Alpha 70</span><span class="scd-when-dark">Neutral 0 Alpha 70</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-1000-alpha-70</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-0-alpha-70</code></sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-overlay-70-inverse-static)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name">Overlay 70 Inverse Static</span><code class="scd-inline-code scd-t-text-m">--sc-color-overlay-70-inverse-static</code></sc-table-cell>
+            <sc-table-cell>70% opacity inverse overlay (fixed)</sc-table-cell>
+            <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 1000 Alpha 70</span><span class="scd-when-dark">Neutral 1000 Alpha 70</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-1000-alpha-70</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-1000-alpha-70</code></sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Primitives</h2>
+      <p>Primitives are the raw, theme-independent values: the base palette every semantic
+        token resolves to. Reference the semantic tokens above in product UI rather than these
+        directly, so light/dark theming stays automatic. The contrast pill shows each value&rsquo;s WCAG ratio against the
+        background it reads best on, black or white.</p>
+    </div>
+
+    <div class="scd-section">
+      <h3>Neutral</h3>
+      <sc-table-basic class="scd-primitive-table" label="Neutral primitive colors">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="120px">Contrast</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1.4fr)">Variable</sc-table-head>
+          <sc-table-head width="168px">Hex</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-0)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="21:1 contrast on black">21 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 0</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-0</code></sc-table-cell>
+            <sc-table-cell>#FFFFFF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-50)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="18.8:1 contrast on black">18.8 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 50</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-50</code></sc-table-cell>
+            <sc-table-cell>#F2F2F2</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-100)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="16.7:1 contrast on black">16.7 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 100</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-100</code></sc-table-cell>
+            <sc-table-cell>#E5E5E5</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-150)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="14.9:1 contrast on black">14.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 150</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-150</code></sc-table-cell>
+            <sc-table-cell>#D9D9D9</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-200)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="13.1:1 contrast on black">13.1 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 200</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-200</code></sc-table-cell>
+            <sc-table-cell>#CCCCCC</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-250)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="11.4:1 contrast on black">11.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 250</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-250</code></sc-table-cell>
+            <sc-table-cell>#BFBFBF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-300)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="10:1 contrast on black">10 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 300</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-300</code></sc-table-cell>
+            <sc-table-cell>#B3B3B3</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-350)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="8.6:1 contrast on black">8.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 350</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-350</code></sc-table-cell>
+            <sc-table-cell>#A6A6A6</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-400)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="7.4:1 contrast on black">7.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 400</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-400</code></sc-table-cell>
+            <sc-table-cell>#999999</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-450)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="6.2:1 contrast on black">6.2 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 450</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-450</code></sc-table-cell>
+            <sc-table-cell>#8C8C8C</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-500)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="5.3:1 contrast on black">5.3 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 500</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-500</code></sc-table-cell>
+            <sc-table-cell>#808080</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-550)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="4.7:1 contrast on white">4.7 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 550</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-550</code></sc-table-cell>
+            <sc-table-cell>#737373</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-600)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="5.7:1 contrast on white">5.7 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 600</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-600</code></sc-table-cell>
+            <sc-table-cell>#666666</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-650)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="7:1 contrast on white">7 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 650</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-650</code></sc-table-cell>
+            <sc-table-cell>#595959</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-700)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="8.6:1 contrast on white">8.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 700</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-700</code></sc-table-cell>
+            <sc-table-cell>#4C4C4C</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-750)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="10.4:1 contrast on white">10.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 750</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-750</code></sc-table-cell>
+            <sc-table-cell>#404040</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-800)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="12.6:1 contrast on white">12.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 800</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-800</code></sc-table-cell>
+            <sc-table-cell>#333333</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-850)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="15.1:1 contrast on white">15.1 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 850</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-850</code></sc-table-cell>
+            <sc-table-cell>#262626</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-900)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="17.4:1 contrast on white">17.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 900</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-900</code></sc-table-cell>
+            <sc-table-cell>#1A1A1A</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-950)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="19.4:1 contrast on white">19.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 950</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-950</code></sc-table-cell>
+            <sc-table-cell>#0D0D0D</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-neutral-1000)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="21:1 contrast on white">21 : 1</span></sc-table-cell>
+            <sc-table-cell>Neutral 1000</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-neutral-1000</code></sc-table-cell>
+            <sc-table-cell>#000000</sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Brand</h3>
+      <sc-table-basic class="scd-primitive-table" label="Brand primitive colors">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="120px">Contrast</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1.4fr)">Variable</sc-table-head>
+          <sc-table-head width="168px">Hex</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-100)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="14.9:1 contrast on black">14.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 100</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-100</code></sc-table-cell>
+            <sc-table-cell>#D0D8FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-200)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="10.9:1 contrast on black">10.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 200</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-200</code></sc-table-cell>
+            <sc-table-cell>#A9B7FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-300)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="7.7:1 contrast on black">7.7 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 300</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-300</code></sc-table-cell>
+            <sc-table-cell>#8196FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-400)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="5.5:1 contrast on black">5.5 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 400</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-400</code></sc-table-cell>
+            <sc-table-cell>#5A76FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-500)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="5.4:1 contrast on white">5.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 500</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-500</code></sc-table-cell>
+            <sc-table-cell>#3355FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-600)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="7.4:1 contrast on white">7.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 600</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-600</code></sc-table-cell>
+            <sc-table-cell>#2945CE</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-700)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="10.3:1 contrast on white">10.3 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 700</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-700</code></sc-table-cell>
+            <sc-table-cell>#1F349D</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-800)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="14:1 contrast on white">14 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 800</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-800</code></sc-table-cell>
+            <sc-table-cell>#16246C</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-brand-900)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="17.9:1 contrast on white">17.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Brand 900</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-brand-900</code></sc-table-cell>
+            <sc-table-cell>#0C133B</sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Purple</h3>
+      <sc-table-basic class="scd-primitive-table" label="Purple primitive colors">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="120px">Contrast</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1.4fr)">Variable</sc-table-head>
+          <sc-table-head width="168px">Hex</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-100)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="14.5:1 contrast on black">14.5 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 100</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-100</code></sc-table-cell>
+            <sc-table-cell>#DCD0FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-200)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="10.3:1 contrast on black">10.3 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 200</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-200</code></sc-table-cell>
+            <sc-table-cell>#BEA9FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-300)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="7.1:1 contrast on black">7.1 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 300</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-300</code></sc-table-cell>
+            <sc-table-cell>#A181FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-400)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="4.9:1 contrast on black">4.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 400</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-400</code></sc-table-cell>
+            <sc-table-cell>#835AFF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-500)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="6:1 contrast on white">6 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 500</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-500</code></sc-table-cell>
+            <sc-table-cell>#6633FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-600)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="8.2:1 contrast on white">8.2 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 600</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-600</code></sc-table-cell>
+            <sc-table-cell>#5229CE</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-700)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="11.1:1 contrast on white">11.1 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 700</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-700</code></sc-table-cell>
+            <sc-table-cell>#3F1F9D</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-800)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="14.6:1 contrast on white">14.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 800</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-800</code></sc-table-cell>
+            <sc-table-cell>#2B166C</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-purple-900)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="18.2:1 contrast on white">18.2 : 1</span></sc-table-cell>
+            <sc-table-cell>Purple 900</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-purple-900</code></sc-table-cell>
+            <sc-table-cell>#180C3B</sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Blue</h3>
+      <sc-table-basic class="scd-primitive-table" label="Blue primitive colors">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="120px">Contrast</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1.4fr)">Variable</sc-table-head>
+          <sc-table-head width="168px">Hex</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-100)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="14.9:1 contrast on black">14.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 100</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-100</code></sc-table-cell>
+            <sc-table-cell>#D0D8FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-200)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="10.9:1 contrast on black">10.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 200</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-200</code></sc-table-cell>
+            <sc-table-cell>#A9B7FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-300)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="7.7:1 contrast on black">7.7 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 300</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-300</code></sc-table-cell>
+            <sc-table-cell>#8196FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-400)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="5.5:1 contrast on black">5.5 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 400</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-400</code></sc-table-cell>
+            <sc-table-cell>#5A76FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-500)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="5.4:1 contrast on white">5.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 500</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-500</code></sc-table-cell>
+            <sc-table-cell>#3355FF</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-600)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="7.4:1 contrast on white">7.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 600</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-600</code></sc-table-cell>
+            <sc-table-cell>#2945CE</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-700)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="10.3:1 contrast on white">10.3 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 700</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-700</code></sc-table-cell>
+            <sc-table-cell>#1F349D</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-800)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="14:1 contrast on white">14 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 800</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-800</code></sc-table-cell>
+            <sc-table-cell>#16246C</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-blue-900)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="17.9:1 contrast on white">17.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Blue 900</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-blue-900</code></sc-table-cell>
+            <sc-table-cell>#0C133B</sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Green</h3>
+      <sc-table-basic class="scd-primitive-table" label="Green primitive colors">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="120px">Contrast</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1.4fr)">Variable</sc-table-head>
+          <sc-table-head width="168px">Hex</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-100)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="15.7:1 contrast on black">15.7 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 100</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-100</code></sc-table-cell>
+            <sc-table-cell>#C4E7D0</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-200)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="12.2:1 contrast on black">12.2 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 200</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-200</code></sc-table-cell>
+            <sc-table-cell>#93D4A9</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-300)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="9.4:1 contrast on black">9.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 300</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-300</code></sc-table-cell>
+            <sc-table-cell>#62C081</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-400)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="7.3:1 contrast on black">7.3 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 400</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-400</code></sc-table-cell>
+            <sc-table-cell>#31AD5A</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-500)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="5.6:1 contrast on black">5.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 500</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-500</code></sc-table-cell>
+            <sc-table-cell>#009933</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-600)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="5.4:1 contrast on white">5.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 600</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-600</code></sc-table-cell>
+            <sc-table-cell>#007C29</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-700)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="8:1 contrast on white">8 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 700</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-700</code></sc-table-cell>
+            <sc-table-cell>#005E1F</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-800)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="11.9:1 contrast on white">11.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 800</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-800</code></sc-table-cell>
+            <sc-table-cell>#004116</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-green-900)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="16.9:1 contrast on white">16.9 : 1</span></sc-table-cell>
+            <sc-table-cell>Green 900</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-green-900</code></sc-table-cell>
+            <sc-table-cell>#00230C</sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Orange</h3>
+      <sc-table-basic class="scd-primitive-table" label="Orange primitive colors">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="120px">Contrast</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1.4fr)">Variable</sc-table-head>
+          <sc-table-head width="168px">Hex</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-100)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="16.7:1 contrast on black">16.7 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 100</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-100</code></sc-table-cell>
+            <sc-table-cell>#FCE1C7</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-200)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="13.8:1 contrast on black">13.8 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 200</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-200</code></sc-table-cell>
+            <sc-table-cell>#F9C998</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-300)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="11.4:1 contrast on black">11.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 300</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-300</code></sc-table-cell>
+            <sc-table-cell>#F7B06A</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-400)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="9.4:1 contrast on black">9.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 400</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-400</code></sc-table-cell>
+            <sc-table-cell>#F4983B</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-500)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="7.8:1 contrast on black">7.8 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 500</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-500</code></sc-table-cell>
+            <sc-table-cell>#F27F0D</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-600)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="5.3:1 contrast on black">5.3 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 600</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-600</code></sc-table-cell>
+            <sc-table-cell>#C4670B</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-700)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="6.2:1 contrast on white">6.2 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 700</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-700</code></sc-table-cell>
+            <sc-table-cell>#954E08</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-800)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="10:1 contrast on white">10 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 800</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-800</code></sc-table-cell>
+            <sc-table-cell>#673606</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-orange-900)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="15.6:1 contrast on white">15.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Orange 900</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-orange-900</code></sc-table-cell>
+            <sc-table-cell>#381D03</sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Red</h3>
+      <sc-table-basic class="scd-primitive-table" label="Red primitive colors">
+        <sc-table-row header slot="header">
+          <sc-table-head width="56px"></sc-table-head>
+          <sc-table-head width="120px">Contrast</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1.4fr)">Variable</sc-table-head>
+          <sc-table-head width="168px">Hex</sc-table-head>
+        </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-100)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="14.3:1 contrast on black">14.3 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 100</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-100</code></sc-table-cell>
+            <sc-table-cell>#F9CACA</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-200)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="10.2:1 contrast on black">10.2 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 200</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-200</code></sc-table-cell>
+            <sc-table-cell>#F49E9E</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-300)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="7.4:1 contrast on black">7.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 300</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-300</code></sc-table-cell>
+            <sc-table-cell>#F07272</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-400)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-black" title="5.5:1 contrast on black">5.5 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 400</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-400</code></sc-table-cell>
+            <sc-table-cell>#EB4646</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-500)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="4.6:1 contrast on white">4.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 500</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-500</code></sc-table-cell>
+            <sc-table-cell>#E61A1A</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-600)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="6.6:1 contrast on white">6.6 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 600</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-600</code></sc-table-cell>
+            <sc-table-cell>#BA1515</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-700)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="9.4:1 contrast on white">9.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 700</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-700</code></sc-table-cell>
+            <sc-table-cell>#8E1010</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-800)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="13.4:1 contrast on white">13.4 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 800</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-800</code></sc-table-cell>
+            <sc-table-cell>#620B0B</sc-table-cell>
+          </sc-table-row>
+          <sc-table-row>
+            <sc-table-cell><span style="display:inline-block;width:32px;height:32px;border-radius:50%;border:1px solid var(--sc-color-border-subtle);vertical-align:middle;background:var(--sc-color-red-900)"></span></sc-table-cell>
+            <sc-table-cell><span class="scd-contrast scd-contrast--on-white" title="17.8:1 contrast on white">17.8 : 1</span></sc-table-cell>
+            <sc-table-cell>Red 900</sc-table-cell>
+            <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-color-red-900</code></sc-table-cell>
+            <sc-table-cell>#350606</sc-table-cell>
+          </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Reference semantic tokens (<code class="scd-inline-code">--sc-color-text-*</code>, <code class="scd-inline-code">-background-*</code>, <code class="scd-inline-code">-border-*</code>…) in product UI so light and dark theming stays automatic.</li>
+            <li>Match the token to its role: body copy on text tokens, containers on surface or background tokens, dividers on border tokens.</li>
+            <li>Use the <code class="scd-inline-code">-inverse</code> tokens on dark or brand-filled surfaces, and <code class="scd-inline-code">-static</code> tokens where a value must not flip with the theme.</li>
+            <li>Pair status colors (positive, warning, negative) with an icon, label, or shape so meaning survives for color-blind users.</li>
+            <li>Check every text-on-surface pairing against WCAG AA in both themes; the contrast ratio is listed beside each primitive.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t hardcode raw hex (e.g. <code class="scd-inline-code">#3355FF</code>) when a semantic token exists.</li>
+            <li>Don&rsquo;t use brand or accent colors for long-form body text or large fills where contrast falls short.</li>
+            <li>Don&rsquo;t rely on color alone to communicate state: success, warning, and error must carry a second cue.</li>
+            <li>Don&rsquo;t reference primitive tokens directly in product UI; they&rsquo;re the raw palette the semantic layer resolves to.</li>
+            <li>Don&rsquo;t override a token&rsquo;s value inline; adjust the role or choose a token that already fits.</li>
+            <li>Don&rsquo;t place text on a surface that fails 4.5:1 (3:1 for large text), even briefly in a hover or pressed state.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Text contrast:</strong> text meets WCAG 2.1 AA: 4.5:1 for body text and 3:1 for large text (≥24px, or ≥18.66px bold). Each primitive lists its ratio against the background it reads best on.</li>
+        <li><strong>Non-text contrast:</strong> icons, borders, and UI components that convey meaning meet 3:1 against adjacent colors (WCAG 1.4.11).</li>
+        <li><strong>Don&rsquo;t rely on color alone:</strong> pair status and selected states with an icon, label, or pattern so information isn&rsquo;t lost to color vision deficiency (WCAG 1.4.1).</li>
+        <li><strong>Focus:</strong> use <code class="scd-inline-code">--sc-color-border-focus</code> for a clearly visible focus indicator at 3:1 contrast, and never remove it without an equivalent cue.</li>
+        <li><strong>Theming:</strong> semantic tokens adapt to light and dark automatically and honor <code class="scd-inline-code">prefers-color-scheme</code>. Verify contrast holds in both themes, not just one.</li>
+        <li><strong>States:</strong> keep hover, pressed, selected, and disabled distinguishable by more than hue alone, and ensure disabled text still reads where it must remain legible.</li>
+      </ul>
+    </div>

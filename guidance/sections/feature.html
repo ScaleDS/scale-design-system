@@ -1,0 +1,81 @@
+    <div class="scd-page-header">
+      <h1>Section Feature</h1>
+      <div class="scd-page-header-text">
+        <p>A split feature section — a text column (heading, subtext, optional
+          <code class="scd-inline-code">actions</code>) beside an image column that swaps to
+          <code class="scd-inline-code">image-src-dark</code> in dark mode.</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-section-feature'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <scd-demo>
+        <sc-section-feature
+          image-src="/images/framer/sc-image-framer-feature-variables-light.png"
+          image-src-dark="/images/framer/sc-image-framer-feature-variables-dark.png"
+          image-alt="Feature">
+          <h2 slot="heading">Global Semantic Color</h2>
+          <p slot="subtext">Use colour meaningfully across projects with automatic light/dark switching.</p>
+        </sc-section-feature>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Reversed</h3>
+      <scd-demo>
+        <sc-section-feature reverse
+          image-src="/images/framer/sc-image-framer-feature-typography-light.png"
+          image-src-dark="/images/framer/sc-image-framer-feature-typography-dark.png"
+          image-alt="Typography">
+          <h2 slot="heading">Responsive Typography</h2>
+          <p slot="subtext">T-shirt sized type scale with fluid responsiveness. No manual breakpoints.</p>
+        </sc-section-feature>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>feature highlights and product walkthroughs.
+        Alternate <code class="scd-inline-code">reverse</code> down a page for a rhythmic
+        text/image cadence.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Alternate <code class="scd-inline-code">reverse</code> on consecutive features so text and image zig-zag down the page.</li>
+            <li>Provide both <code class="scd-inline-code">image-src</code> and <code class="scd-inline-code">image-src-dark</code> so the image matches the theme.</li>
+            <li>Keep the subtext to a sentence or two — one benefit per feature.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t crowd the <code class="scd-inline-code">actions</code> slot — one primary CTA at most per feature.</li>
+            <li>Don&rsquo;t use it for a grid of small features — that&rsquo;s <a href="/sections/bento/">Section Bento</a>.</li>
+            <li>Don&rsquo;t put text inside the image; keep copy in the text column where it scales and translates.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Image:</strong> always set <code class="scd-inline-code">image-alt</code> — or pass an empty value if the image is purely decorative.</li>
+        <li><strong>Headings:</strong> the section imposes no heading level — slot the <code class="scd-inline-code">h2</code>/<code class="scd-inline-code">h3</code> that fits the page outline into <code class="scd-inline-code">heading</code>.</li>
+        <li><strong>Order:</strong> <code class="scd-inline-code">reverse</code> swaps the rendered column order, so visual and reading order stay in sync.</li>
+        <li><strong>Theme:</strong> the dark-mode image swap is automatic via the theme controller; both images need the same <code class="scd-inline-code">image-alt</code> meaning.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-section-feature"></scd-api>
+    </div>

@@ -1,0 +1,121 @@
+    <div class="scd-page-header">
+      <h1>Text Area</h1>
+      <div class="scd-page-header-text">
+        <p>A multi-line text field for longer-form input — the resizable counterpart to
+          <a href="/components/input/">Input</a>, with the same label / help-text / state API and
+          form association.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-text-area.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=9709-93287"
+        framer="https://scaleframer.framer.website/components/form"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-text-area'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <scd-demo>
+        <sc-text-area label="Message" placeholder="Write a message…" help-text="Help text" style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Filled</h3>
+      <scd-demo>
+        <sc-text-area label="Message" value="The quick brown fox jumps over the lazy dog." help-text="Help text" style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Negative</h3>
+      <scd-demo>
+        <sc-text-area label="Message" value="Too short" state="negative" help-text="Please enter at least 20 characters." style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Positive</h3>
+      <scd-demo>
+        <sc-text-area label="Message" value="Looks good to me!" state="positive" help-text="Looks good." style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-text-area label="Message" value="Cannot edit this." state="disabled" help-text="Help text" style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Taller (rows=6)</h3>
+      <p><code class="scd-inline-code">rows</code> sets the initial height.</p>
+      <scd-demo>
+        <sc-text-area label="Description" placeholder="Describe your issue…" rows="6" show-help-text="false" style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>No resize</h3>
+      <p><code class="scd-inline-code">resize="none"</code> removes the drag handle (also
+        <code class="scd-inline-code">both</code> / <code class="scd-inline-code">horizontal</code>).</p>
+      <scd-demo>
+        <sc-text-area label="Comment" placeholder="No resize handle" resize="none" show-help-text="false" style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>No label</h3>
+      <p><code class="scd-inline-code">show-label="false"</code> hides the visible label — provide
+        an accessible name another way.</p>
+      <scd-demo>
+        <sc-text-area label="Notes" show-label="false" placeholder="Label hidden" show-help-text="false" style="max-width:370px"></sc-text-area>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>messages, comments, and descriptions — any free-text
+        input that may span multiple lines. For single-line entry, use an
+        <a href="/components/input/">Input</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Size <code class="scd-inline-code">rows</code> to the expected length of input.</li>
+            <li>Use <code class="scd-inline-code">maxlength</code> and show a count when there&rsquo;s a limit.</li>
+            <li>Explain errors in <code class="scd-inline-code">help-text</code> with <code class="scd-inline-code">state="negative"</code>.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a text area for single-line input — use an <a href="/components/input/">Input</a>.</li>
+            <li>Don&rsquo;t disable resize without a good reason; users may need more room.</li>
+            <li>Don&rsquo;t hide the label without giving the field an accessible name.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Label:</strong> the <code class="scd-inline-code">label</code> is wired to the textarea via <code class="scd-inline-code">aria-labelledby</code>; if you hide it with <code class="scd-inline-code">show-label="false"</code>, supply a name another way.</li>
+        <li><strong>Form:</strong> form-associated — <code class="scd-inline-code">required</code> sets <code class="scd-inline-code">valueMissing</code> validity, and <code class="scd-inline-code">maxlength</code>/<code class="scd-inline-code">minlength</code> apply natively; it participates in submit/reset.</li>
+        <li><strong>Errors:</strong> <code class="scd-inline-code">state="negative"</code> styles the field and its <a href="/components/help-text/">Help Text</a> — keep a message so the error isn&rsquo;t colour-only.</li>
+        <li><strong>Focus:</strong> shows a keyboard-only focus ring (suppressed for pointer focus).</li>
+        <li><strong>Events:</strong> emits <code class="scd-inline-code">input</code> and <code class="scd-inline-code">change</code> with <code class="scd-inline-code">{ value }</code>.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-text-area"></scd-api>
+    </div>

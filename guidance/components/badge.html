@@ -1,0 +1,79 @@
+    <div class="scd-page-header">
+      <h1>Badge</h1>
+      <div class="scd-page-header-text">
+        <p>Status indicators that show notifications, or state on top of another element.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-badge.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=1673-3961"
+        framer="https://scaleframer.framer.website/components/badge"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-badge'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Status</h3>
+      <p>Seven statuses set the badge colour to match its meaning.</p>
+      <scd-demo>
+        <sc-badge status="default">Default</sc-badge>
+        <sc-badge status="info">Info</sc-badge>
+        <sc-badge status="warning">Warning</sc-badge>
+        <sc-badge status="negative">Negative</sc-badge>
+        <sc-badge status="positive">Positive</sc-badge>
+        <sc-badge status="mono">Mono</sc-badge>
+        <sc-badge status="disabled">Disabled</sc-badge>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>With icons</h3>
+      <p>An <code class="scd-inline-code">icon</code> reinforces the status at a glance.</p>
+      <scd-demo>
+        <sc-badge status="info" icon="info">Info</sc-badge>
+        <sc-badge status="positive" icon="check-circle">Success</sc-badge>
+        <sc-badge status="warning" icon="alert-triangle">Warning</sc-badge>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>status labels, category tags, notification
+        counts, and feature flags.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep labels to one or two words.</li>
+            <li>Match the status colour to its meaning — positive for success, negative for errors.</li>
+            <li>Always pair the colour with a clear text label.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a badge for an interactive action — use a <a href="/components/button/">Button</a> or <a href="/components/tag/">Tag</a>.</li>
+            <li>Don&rsquo;t rely on colour alone to carry the meaning.</li>
+            <li>Don&rsquo;t crowd a view with many competing badges.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Text-led:</strong> the badge is a static inline label, so its meaning comes from the slotted text — colour is never the only signal.</li>
+        <li><strong>Icon:</strong> the optional <code class="scd-inline-code">icon</code> is decorative and reinforces the label rather than replacing it.</li>
+        <li><strong>Not focusable:</strong> a badge is not interactive; if it labels another element, place it where its text reads in a sensible order.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-badge"></scd-api>
+    </div>

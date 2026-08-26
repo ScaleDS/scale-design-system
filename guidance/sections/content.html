@@ -1,0 +1,66 @@
+    <div class="scd-page-header">
+      <h1>Section Content</h1>
+      <div class="scd-page-header-text">
+        <p>A simple heading + subtext block, centered or left-aligned.</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-section-content'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Alignments</h3>
+      <p>Centered by default; <code class="scd-inline-code">align="left"</code> left-aligns.</p>
+      <scd-demo>
+        <sc-section-content>
+          <h2 slot="heading">Centered heading</h2>
+          <p slot="subtext">This content is centered by default.</p>
+        </sc-section-content>
+        <sc-section-content align="left">
+          <h2 slot="heading">Left-aligned heading</h2>
+          <p slot="subtext">Use align="left" for left alignment.</p>
+        </sc-section-content>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>text-only sections, section headers, and
+        standalone content blocks between richer sections.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use it to introduce or break up richer sections with a heading and a line or two of subtext.</li>
+            <li>Keep one alignment per page — mixing centered and left-aligned blocks reads as accidental.</li>
+            <li>Slot real heading elements so the block joins the page outline.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t pour long-form copy into <code class="scd-inline-code">subtext</code> — for fuller layouts use <a href="/sections/feature/">Section Feature</a>.</li>
+            <li>Don&rsquo;t stack several in a row to fake an article layout.</li>
+            <li>Don&rsquo;t put actions in it — pair it with a section that has them, or use <a href="/sections/signup/">Section Signup</a> for a CTA.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Headings:</strong> the section imposes no heading level — slot the <code class="scd-inline-code">h2</code>/<code class="scd-inline-code">h3</code> that fits the page outline into <code class="scd-inline-code">heading</code>.</li>
+        <li><strong>Structure:</strong> purely presentational (no roles or landmarks added) — the slotted elements carry all semantics.</li>
+        <li><strong>Alignment:</strong> <code class="scd-inline-code">align</code> only changes <code class="scd-inline-code">text-align</code>; reading order is unaffected.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-section-content"></scd-api>
+    </div>

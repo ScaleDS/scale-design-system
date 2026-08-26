@@ -1,0 +1,709 @@
+    <div class="scd-page-header">
+      <h1>Changelog</h1>
+      <div class="scd-page-header-text">
+        <p>Every Scale release, newest first. From 4.0 the changelog covers the Lit web
+          components that power this site, with detailed release notes on GitHub; versions up to
+          3.2 chart the Figma library&rsquo;s evolution.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/releases"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=3823-6378"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v4.1</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2026-08-16">16 August 2026</time>
+        <span class="scd-changelog-platform">Lit + Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li><strong>Motion system</strong>: 88 tokens covering durations, easings, composite
+          transitions, ambient loops, distances and scales. Every duration is zeroed under
+          <code class="scd-inline-code">prefers-reduced-motion</code>, except the loops, because a
+          spinner that stops spinning reads as a hang</li>
+        <li>Motion foundation page, where every demo reads the live token or runs the real mixin,
+          so the documentation cannot drift from the system</li>
+        <li>Choreography mixins for motion across more than one element: Stagger, Fade through,
+          Shared axis, Push and Container transform. They sit outside the main stylesheet, so
+          import them where you need them</li>
+        <li>Motion variables in the Figma library, with demo components for each transition and
+          choreography pattern</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Around 28 components moved onto the motion tokens. Banner and Toast gained real enter
+          and exit motion, and now wait for the exit to finish before detaching</li>
+        <li>Tabs: label typography moved from 12px to 14px</li>
+        <li>Motion tokens are now served to agents through the MCP server, the token file and the
+          agent context, so a coding agent can ask for a transition instead of inventing one</li>
+        <li>Guidelines site: spacing reworked across every page, and the Related section retired
+          from component and section pages</li>
+        <li>Stylesheets: every SCSS file now opens with the same header and uses the same section
+          labels, with the longer explanations moved into the documentation. No token values or
+          rules changed</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v4.0</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2026-07-08">8 July 2026</time>
+        <span class="scd-changelog-platform">Lit + Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li><strong>Lit Web Component and Agentic version of Scale</strong></li>
+        <li>Add Specs to each component, these are for their conversion to Lit components</li>
+        <li>Segmented Controller component for Web and fix the App one</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Card Selector: Change hover state border color, only the selected state needs to change to blue</li>
+        <li>Background Selected: Change from light blue to light grey</li>
+        <li>Materials: Fix spelling mistake in &ldquo;Ultrathin&rdquo; that was &ldquo;Ultathin&rdquo;. Swap values in light mode for Chrome and Thick</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v3.2</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2026-04-05">5 April 2026</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Native Slots: Replace all manual slot components with native Figma versions, with guidelines added to the Welcome page</li>
+        <li>Tab Module: Tabs and Tab Content slot are combined into a module component</li>
+        <li>Section Feature Bento 3: New Bento Section that splits 4 cards up into 70/30 and 30/70% rows</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Rename Section components to match their Framer versions</li>
+        <li>Image: Create a new image component that supports Figma&rsquo;s native aspect ratio lock, deprecate the old one</li>
+        <li>Accordion: Change name to &ldquo;Accordion Item&rdquo; and create a 6 item Accordion component, add open/close interaction</li>
+        <li>Badge Status: Rename to &ldquo;Status Indicator&rdquo; and give it its own page</li>
+        <li>Banner: Add &ldquo;Mono&rdquo; variant for general banners that have no status</li>
+        <li>Card: Re-build so it contains all surface and border radius variants</li>
+        <li>Card Selector: Remove mobile variant</li>
+        <li>Menu Item: Remove spacer, divider and add rounded corners</li>
+        <li>Row: Remove hover, selected states and spacer components</li>
+        <li>Table: Remove hover and selected states</li>
+        <li>Tabs: Remove &ldquo;Horizontal&rdquo; variant, this is now part of the App Tab Bar</li>
+        <li>Pictograms: Remove 4 pictograms</li>
+        <li>Documentation updates for all affected foundation and component pages</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v3.1</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2026-02-19">19 February 2026</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Focussing on the Framer version of Scale</li>
+        <li>New cover image that&rsquo;ll be shared between Figma and Framer versions</li>
+        <li>8 fictional company logos</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Change content in Cover page</li>
+        <li>Rename &ldquo;Tokens&rdquo; to &ldquo;Foundations&rdquo;</li>
+        <li>Rename &ldquo;Modules&rdquo; to &ldquo;Sections&rdquo;</li>
+        <li>Update descriptions for all foundations, component and section pages</li>
+        <li>Surfaces and Shadows: Remove levels 5 and 6, leaving only 5 levels of elevation (including L0)</li>
+        <li>Section Social Proof: Rename from &ldquo;Logo&rdquo; and replace placeholder logos with fictional company ones</li>
+        <li>Alert: Remove &ldquo;In-line&rdquo; variant to make sure Alerts only have a single, consistent look</li>
+        <li>Checkbox and Radio: Fix text style by changing it to &ldquo;Text L&rdquo; and also setting its content to fill width</li>
+        <li>Toggle: Update Web version to look like the app one</li>
+        <li>Badge: Update to have a single consistent style</li>
+        <li>Remove UI Kit page</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v3.0</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2025-09-17">17 September 2025</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Liquid Glass Materials and Components are here!</li>
+        <li>Components:
+          <ul>
+            <li>Button, Button Pill and Button Icon</li>
+            <li>Chat</li>
+            <li>Menu, Menu Item</li>
+            <li>Nav Bar</li>
+            <li>Segmented Controller</li>
+            <li>Sheets</li>
+            <li>Slider</li>
+            <li>Stepper</li>
+            <li>Sticky Button</li>
+            <li>Tab Bar</li>
+            <li>Toggle</li>
+            <li>Toolbars</li>
+          </ul>
+        </li>
+        <li>Materials and effects</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Turn 4 typography modes into separate &ldquo;Web&rdquo; and &ldquo;App&rdquo; collections, then create separate &ldquo;Web&rdquo; and &ldquo;App&rdquo; text style sets</li>
+        <li>Added Text XS size (10px) for Web and App typography</li>
+        <li>Removed App &ldquo;Dialog&rdquo; component as it&rsquo;s the same as the Web modal one</li>
+        <li>Removed &ldquo;&#8627; &rdquo; from all page names to clean up the assets panel and make them more searchable</li>
+        <li>Add &ldquo;App&rdquo; to the beginning of all app component pages</li>
+        <li>Spinner: Rename &ldquo;Inversed&rdquo; variant to &ldquo;Inverse&rdquo;</li>
+        <li>Button: Secondary variant, change hover and pressed text colours to &ldquo;Text Primary&rdquo;</li>
+        <li>Button Icon: Add &ldquo;Appearance&rdquo; variant for Liquid Glass</li>
+        <li>Sticky Button: Update progressive blur</li>
+        <li>Avatar: Change L size from 40 to 48px</li>
+        <li>Surface component added to Avatar</li>
+        <li>All app component widths and mobile breakpoints changed from 393 to 402px</li>
+        <li>Move &ldquo;Web&rdquo; components into components section</li>
+        <li>Link text style: Added regular weight and removed &ldquo;Hover&rdquo; styles as this can be done natively</li>
+        <li>Menu Item: Add Destructive and Disabled variants</li>
+        <li>Shadows: Change values so you no longer have to select &ldquo;Clip content&rdquo; for them to render properly, and uncheck &ldquo;Display behind transparent backgrounds&rdquo; so they work with Liquid Glass elements</li>
+        <li>Checkbox and Radio component names changed so the component with text is the main name and the item is &ldquo;item&rdquo;</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.9.5</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2025-04-28">28 April 2025</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Semantic Color Variable Picker plugin: Helps you find the right color variable when designing with Scale</li>
+        <li>Tabs: Added tab group component that has up to 8 tabs</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Button and Button Pill: Update label padding so it&rsquo;s consistent across all sizes</li>
+        <li>Toggle: Change background of off state to &ldquo;Background Neutral&rdquo; so it has better contrast</li>
+        <li>Sticky Button: Remove &ldquo;Fluid&rdquo; variant, now the buttons always go full-width</li>
+        <li>Border Inverse: Docs updated to match its primitive of Neutral 50</li>
+        <li>Typography: Correctly label Android set as &ldquo;Android&rdquo;</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.9</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2024-12-25">25 December 2024</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Brought back &ldquo;UI Kits&rdquo; section, with a link to the updated Scale.Chat community file</li>
+        <li>Added documentation about how to purchase a licence, download the .fig file from Gumroad and import it into your Figma account</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Button components: Update structure to improve perceptive horizontal balance when an icon is turned on</li>
+        <li>Alert: Add another button and tweak spacing between elements</li>
+        <li>Dialog: Change width to 281px (393 &minus; 56px on each side) and rename content component</li>
+        <li>Avatar: Change size from &ldquo;Large, Small&rdquo; to &ldquo;L, S&rdquo;, change &ldquo;Initials&rdquo; variable to &ldquo;Text&rdquo;</li>
+        <li>Checkbox and Checkmark: Update structure, change &ldquo;Enabled&rdquo; to &ldquo;Default&rdquo; and &ldquo;Active&rdquo; to &ldquo;Selected&rdquo;, add &ldquo;Selected Disabled&rdquo; and &ldquo;Indeterminate&rdquo; variants, change &ldquo;Error&rdquo; to &ldquo;Negative&rdquo;</li>
+        <li>Radio: Update structure, change &ldquo;Enabled&rdquo; to &ldquo;Default&rdquo; and &ldquo;Active&rdquo; to &ldquo;Selected&rdquo;, add &ldquo;Selected Disabled&rdquo; variant, change &ldquo;Error&rdquo; to &ldquo;Negative&rdquo;</li>
+        <li>Date Picker: Change selected state text to &ldquo;Text Primary Inverse&rdquo;, remove &ldquo;Alignment&rdquo; variant</li>
+        <li>Input and Text Area: Change &ldquo;Focussed&rdquo; to &ldquo;Focus&rdquo; so their focus variants are consistent with Checkbox, Checkmark and Radio</li>
+        <li>Chat: Change alignment &ldquo;Left, Right&rdquo; to &ldquo;Leading, Trailing&rdquo;</li>
+        <li>Segmented Controller: Change &ldquo;Active&rdquo; to &ldquo;Selected&rdquo;</li>
+        <li>All Components: Fixes for text styles and colors that weren&rsquo;t assigned correctly</li>
+        <li>General documentation updates</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.8</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2024-12-13">13 December 2024</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>File Upload component: For uploading and displaying files</li>
+        <li>Input PIN component: For pin and secure code entry</li>
+        <li>Card Selector component: For more visual option selection</li>
+        <li>Help Text component: For input fields and disclaimers</li>
+        <li>Status icons at 16 and 32px</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Input and Text Area: Remove status icons from inside the field to a Help Text component for better accessibility</li>
+        <li>Progress Bar: Add Negative and Positive states</li>
+        <li>Chip: Renamed to &ldquo;Tag&rdquo;, add &ldquo;Hover&rdquo; state and trailing close icon</li>
+        <li>Remove spinner from button properties that weren&rsquo;t in use</li>
+        <li>Reset all module components in the Scale landing page template now that the live site has been updated</li>
+        <li>Moved Segmented Controller into the App section</li>
+        <li>Change card content component names from &ldquo;Content/Card...&rdquo; to &ldquo;Card/Content...&rdquo;</li>
+        <li>Documentation updates and cleanup</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.7</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2024-10-30">30 October 2024</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Scale gets a makeover! New website that includes 3D imagery created in Blender &#129321;</li>
+        <li>Sticky Button component: For mobile responsive and app actions that stick to the bottom of the screen</li>
+        <li>Iconography: Refine icon set, introduce 16 and 32px versions and create new &ldquo;Color&rdquo; icon</li>
+        <li>Add a Border Focus Semantic Variable</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Update all components and documentation affected by the icon upgrade</li>
+        <li>Deleted the &ldquo;Made with Scale&rdquo; page in this library, this will be replaced soon with new example UI kits</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.6</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2024-08-25">25 August 2024</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Segmented Controller component: With properties that allow you to display a label only, icon with label or only an icon</li>
+        <li>Button components: Add &ldquo;Inverse&rdquo; variant, move &ldquo;Loading&rdquo; to a separate variant and move all button types to their own pages</li>
+        <li>Type variables and styles: Add Heading &ldquo;Light&rdquo; and &ldquo;Regular&rdquo; weights for all sizes, fix scoping</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Refactor all components with show/hide booleans and instances with consistent property names. eg, &ldquo;Left Icon&rdquo; becomes &ldquo;Show Leading Icon&rdquo; and &ldquo;&#8627; Left Icon Instance&rdquo; becomes &ldquo;Leading Icon&rdquo;</li>
+        <li>Breakpoint Variables: Rename to match grid styles and add &ldquo;Desktop 1920px&rdquo; width</li>
+        <li>Toast component: Update to include only Default, Info, Negative and Positive variants</li>
+        <li>Progress: Move each component to its own page</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.5</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2024-04-28">28 April 2024</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Typography Variables!!!! Automatically switch between Desktop and Mobile (Web), iOS and Android type styles and their breakpoints</li>
+        <li>Unit Variables that set the global scale of any number value across the entire system, eg: Unit/8, Unit/16 etc</li>
+        <li>Border Width variables for stroke thickness</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Typography styles are now separated by weight so you can add more later, eg: Text L Strong is now Text L/Semi Bold</li>
+        <li>Typography documentation updates to support variables</li>
+        <li>Added Link S (12) and Link S hover style</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.4</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2024-03-07">7 March 2024</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>App Carousel Modules: Default, Blog, Product, Video, Feature Icon, Gallery, Filter and Tabs</li>
+        <li>3 App templates for Facebook, Twitter (X) and Youtube</li>
+        <li>Card content component: Social 2</li>
+        <li>Type tokens: Text XL (20/28) and Text 2XL (24/32) Regular and Semi Bold</li>
+        <li>&ldquo;X&rdquo; social icon</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Tab Bar: Nest Home Indicator inside the Tab Bar with a show/hide toggle</li>
+        <li>Divider: Give each type 1, 2 and 4 width variants</li>
+        <li>Change &ldquo;XXS&rdquo; type styles to &ldquo;2XS&rdquo;</li>
+        <li>Documentation updates</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.3</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-11-26">26 November 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Text Area component: For long form text input</li>
+        <li>Avatar Group component: That displays up to 6 Avatars</li>
+        <li>Banner component: Like the alert component, but it sits at the top of the screen</li>
+        <li>Breadcrumb component: With up to 5 page levels</li>
+        <li>Icons: Primary and Inverse status icons, with &ldquo;Icon Warning Primary Static&rdquo; for the banner component</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Avatar component: Remove &ldquo;State: Enabled&rdquo; as there is only one state</li>
+        <li>Toast component: Rename to Alert, then create a new component just for Toasts</li>
+        <li>Alert component: Rename to Dialog</li>
+        <li>Change &ldquo;Border Inverse&rdquo; variable from &ldquo;Neutral 10&rdquo; to &ldquo;Neutral 0&rdquo;</li>
+        <li>Variables: Add &ldquo;Icon Primary Static&rdquo; that stays the same color in both light and dark modes</li>
+        <li>Move Overlay, Radio, Checkbox, Checkmark and Signup components to their own pages</li>
+        <li>General housekeeping</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.2</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-09-06">6 September 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Responsive Web Modules are here! Design your own landing page with Hero, Logo, Feature, Pricing, FAQ and CTA modules</li>
+        <li>Web content text and content module components</li>
+        <li>Breakpoint variables: For Desktop (1440), Tablet LS (1024), Tablet PT (768) and Mobile (393)</li>
+        <li>Space Aspect Ratio component: That allows you to select and swap the aspect ratio when it&rsquo;s nested in other components</li>
+        <li>Image Overlay component: Overlay semantic tokens were converted into variants to swap between when used inside the image component</li>
+        <li>Button Group and Button Pill Group components</li>
+        <li>Accordion component</li>
+        <li>Form Sign Up component</li>
+        <li>Semantic tokens: Background Inverse Static</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Semantic Background: Subtle tokens updated. ie. Background Info Subtle uses Blue 100 (Light) and Blue 800 (Dark)</li>
+        <li>Semantic Text: Primary Static, Secondary Static, Tertiary Static, Primary Inverse Static, Secondary Inverse Static, Tertiary Inverse Static variables added</li>
+        <li>Primitive: Delete all 50 value color tokens. ie. Red 50, Orange 50, Blue 50, Green 50 and Purple 50</li>
+        <li>System components: Replace App/System components with the ones from Apple&rsquo;s iOS 17 library</li>
+        <li>Content components: Update content components so they&rsquo;re more scalable across card and module use</li>
+        <li>Card: Add &ldquo;Inverse Static&rdquo;, &ldquo;Surface L2 and L3&rdquo; level variants</li>
+        <li>Card Content Default and Blog: Merge into one component</li>
+        <li>Image: Update with Space Aspect Ratio component</li>
+        <li>Title tool component: Move intro component into it</li>
+        <li>Header: Fix auto layout and change &ldquo;State: Closed, Open&rdquo; to &ldquo;Open: False, True&rdquo;, rename and reorder properties, add instance property for the logo</li>
+        <li>Footer: Fix auto layout, add instance property for the logo</li>
+        <li>Layout and spacing docs: Update with section about spacing variables</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.1</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-08-02">2 August 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Component instance tables added that show you all possible compositions of each component, in light and dark modes</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Typography: Merge Title styles into the Header group, so Title S becomes Heading 2XL</li>
+        <li>Border Radius variables: Update to only appear in the Border Radius settings</li>
+        <li>Now that we have variables, delete deprecated color styles</li>
+        <li>Divider component: Add auto-layout and full width to its line so it can fill the width of its parent element properly</li>
+        <li>Card component: Change Surface variant to L2</li>
+        <li>Switch component: Change name to Toggle</li>
+        <li>Tab Bar component: Make 2 tabs the minimum you can display</li>
+        <li>Footer component: Move dividers in each section for better boolean control, and remove boolean from Credits</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v2.0</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-07-15">15 July 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Figma Variables
+          <ul>
+            <li>Primitive</li>
+            <li>Semantic</li>
+            <li>Spacing</li>
+            <li>Border Radius</li>
+          </ul>
+        </li>
+        <li>Update all components with variables</li>
+        <li>Update documentation to reflect the upgrade to variables</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.9</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-06-15">15 June 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Scale is now available for sale from the Figma Community &#128588;</li>
+        <li>#madewithscale: Uber Eats app design</li>
+        <li>24px icons: Delivery and Pickup</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.8</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-05-28">28 May 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Merge &ldquo;Button&rdquo; semantic tokens into &ldquo;Background&rdquo; group, reducing 101 tokens down to 82</li>
+        <li>New table layout for color and semantic tokens</li>
+        <li>#madewithscale: AirBnb app design</li>
+        <li>New section that links to the free UI Kits that have been &ldquo;Made with Scale&rdquo;</li>
+        <li>24px icons: Filter 2, House, Room, Rural, AirBnb, UFO, Window</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Border property toggle added to color info component, to make them visible in similar backgrounds</li>
+        <li>24px Icon: Map</li>
+        <li>Documentation updates after &ldquo;The Merge&rdquo;</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.7</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-04-26">26 April 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Modal Component with a replaceable Slot</li>
+        <li>Modal Content Components for Text, Radio list, Login form, Date picker</li>
+        <li>24px Apple and Google icons</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Calendar component updates for date picker and modal components</li>
+        <li>Rename App Modal to Modal Sheet, so the Web modal can be called Modal</li>
+        <li>Add &ldquo;&#9999;&#65039; Text&rdquo; property to radio, checkbox and checkmark group components</li>
+        <li>General housekeeping, variant and property refinement</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.6.5</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-04-07">7 April 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Button Pill component</li>
+        <li>Wallet 24px icon</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Move #madewithscale designs to free UI Kit that you can grab from the Figma Community</li>
+        <li>#madewithscale: Commonwealth Bank app design</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.6</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-04-02">2 April 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Table Header, Cell, Column, Row and Footer components</li>
+        <li>Page control component</li>
+        <li>Video short and thumbnail card content components</li>
+        <li>24px attachment icon</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Card component: Add &ldquo;Border radius&rdquo; 0, 8 and 16px variants</li>
+        <li>Update #madewithscale Youtube App with new video card content components</li>
+        <li>Change the page order of components to be alphabetical</li>
+        <li>Move &ldquo;Avatar&rdquo; and &ldquo;Divider&rdquo; to components global</li>
+        <li>Divider component: Add &ldquo;Default&rdquo; variant that is darker</li>
+        <li>Badge components: Add &ldquo;Default&rdquo; and &ldquo;Subtle&rdquo; variants</li>
+        <li>Semantic tokens: Re-order background tokens and add &ldquo;Background Brand Subtle&rdquo; token</li>
+        <li>Button component: Fix mono icon colours to be &ldquo;Default&rdquo; instead of &ldquo;Brand&rdquo;</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.5</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-03-11">11 March 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Date Picker component</li>
+        <li>Tooltip component</li>
+        <li>#madewithscale: Youtube</li>
+        <li>&ldquo;Text Disabled&rdquo; semantic token</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Button tokens: Added &ldquo;Mono&rdquo; styles for buttons that are almost black in appearance</li>
+        <li>Button component: Added &ldquo;Mono&rdquo; and Small &ldquo;S&rdquo; size variants</li>
+        <li>Button Icon component: Added &ldquo;Mono&rdquo; variant</li>
+        <li>Icons: &ldquo;More&rdquo; vertical, Youtube &ldquo;Shorts, Subs and Library&rdquo;</li>
+        <li>Text &ldquo;Primary Inverse Static&rdquo; token for text that stays white between themes</li>
+        <li>Change &ldquo;Icon Subtle&rdquo; in dark mode to Neutral 600</li>
+        <li>Add &ldquo;Static&rdquo; overlay tokens that stay the same value between light and dark mode</li>
+        <li>Avatar component: Move to its own page</li>
+        <li>Warning status icon: Turn &ldquo;i&rdquo; into &ldquo;!&rdquo;</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.4</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-02-25">25 February 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Our first web components, Header and Footer: Desktop and Mobile versions with variants and properties that provide flexibility in design</li>
+        <li>Menu Desktop, Mobile and Footer components</li>
+        <li>Button Component specs provided by the Eightshapes &ldquo;Specs&rdquo; plugin from Nathan Curtis</li>
+        <li>#madewithscale section: Where you&rsquo;ll be able to see real world apps that can be made with Scale. First up... Twitter</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Menu Dropdown component: Moved to Menu page</li>
+        <li>Update logo with base components, variants for size and properties to hide the text so it can become a logo mark</li>
+        <li>Icon Inverse Static token, that stays the same color between themes</li>
+        <li>Remove Background System Static token for dark mode, static tokens don&rsquo;t need to be in both themes to work</li>
+        <li>Button component: Added Text Mono variant and change M button label size to M (14px)</li>
+        <li>Tab component: Add right icon property</li>
+        <li>Avatar component: Change L size to 40px from 48px</li>
+        <li>Row Component: Change spacing between Primary and Secondary to 0px from 4px</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.3</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2023-01-22">22 January 2023</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Button &ldquo;Outline&rdquo; semantic tokens and &ldquo;Outline, Outline Mono&rdquo; component variants</li>
+        <li>Button &ldquo;Negative&rdquo; semantic tokens and &ldquo;Negative Primary, Negative Outline, Negative Text&rdquo; component variants</li>
+        <li>Icon Subtle semantic token</li>
+        <li>24px icons for Twitter Verified, Spaces and Sparkles</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Button &ldquo;Tertiary Mono&rdquo; variant</li>
+        <li>Change &ldquo;Secondary&rdquo; and &ldquo;Tertiary&rdquo; buttons to neutral in light mode</li>
+        <li>Removed &ldquo;OnBrand&rdquo; semantic tokens, &ldquo;Primary Inverse&rdquo; works well in their place</li>
+        <li>Update all &ldquo;Disabled&rdquo; and &ldquo;Subtle&rdquo; Neutral tokens</li>
+        <li>Update default tab icon to &ldquo;Icon Subtle&rdquo; token, add &ldquo;Label&rdquo; show/hide property</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.2</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2022-12-24">24 December 2022</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Card Container Component with a replaceable Slot</li>
+        <li>Content Components for Default, Blog, Social and Product Cards</li>
+        <li>Custom Alert Component</li>
+        <li>Emoji Image Component for use in chat and social designs</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Row Component: Add &ldquo;Indent&rdquo; property that show/hides left and right padding</li>
+        <li>Moved social icons to their own section and created brand mark versions</li>
+        <li>Removed icons that were double ups</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.1</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2022-11-06">6 November 2022</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li>Chip component</li>
+        <li>Progress: Bar component</li>
+        <li>Progress: Slider component</li>
+        <li>Menu: Dropdown component</li>
+        <li>Hundreds of new icons</li>
+      </ul>
+      <h3>Improved</h3>
+      <ul>
+        <li>Color and Semantic Tokens updated with new color info component</li>
+        <li>Border Subtle Semantic Token added with multiple tokens being reordered</li>
+        <li>Text Brand and Border Brand Semantic Tokens added</li>
+        <li>Avatar: Added XS size for Image and Icon variants</li>
+        <li>Row: Added Pressed and Selected states</li>
+        <li>Width changed on all components to support iPhone 14 Pro</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale v1.0</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2022-08-30">30 August 2022</time>
+        <span class="scd-changelog-platform">Figma</span>
+      </p>
+      <p>Hello, and welcome to Scale &#128578;.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Dezin</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="negative">Deprecated</sc-badge>
+        <time datetime="2018-01-24">24 January 2018</time> &ndash; <time datetime="2021-03">March 2021</time>
+        <span class="scd-changelog-platform">Sketch + Webflow + Figma</span>
+      </p>
+      <p>Before Scale there was Dezin &mdash; a design system originally built for Sketch, later
+        turned into Webflow and Figma versions. Dezin laid the groundwork for what would become
+        Scale, and has since been deprecated.</p>
+    </div>

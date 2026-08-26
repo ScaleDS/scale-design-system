@@ -1,0 +1,84 @@
+    <div class="scd-page-header">
+      <h1>Footer</h1>
+      <div class="scd-page-header-text">
+        <p>The bottom section of a website — home to the brand mark, copyright, and a legal
+          link.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-footer.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=5469-9149"
+        framer="https://scaleframer.framer.website/components/footer"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-footer'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Set <code class="scd-inline-code">copyright</code> and point
+        <code class="scd-inline-code">licence-href</code> at your legal page; the
+        <a href="/components/logo/">Logo</a> mark is built in.</p>
+      <scd-demo>
+        <sc-footer
+          copyright="©2020 - 2026 Christopher Deane. All rights reserved."
+          licence-label="Licence Agreement"
+          licence-href="#"
+        ></sc-footer>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Custom link label</h3>
+      <p>Change <code class="scd-inline-code">licence-label</code> for other legal destinations
+        like Terms or Privacy.</p>
+      <scd-demo>
+        <sc-footer
+          copyright="© 2026 Acme Inc."
+          licence-label="Terms &amp; Privacy"
+          licence-href="#"
+        ></sc-footer>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>page footers, the bottom of marketing sites, and legal
+        pages. Pairs with the <a href="/components/header/">Header</a> at the top of the page.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep the footer minimal — brand mark, copyright, and the essential legal link.</li>
+            <li>Place it as the last element on the page, full width.</li>
+            <li>Point <code class="scd-inline-code">licence-href</code> at a real, current legal page.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t overload it with navigation — that belongs in the <a href="/components/header/">Header</a> or a sitemap.</li>
+            <li>Don&rsquo;t leave a placeholder <code class="scd-inline-code">#</code> link in production.</li>
+            <li>Don&rsquo;t omit the copyright on a public marketing site.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Landmark:</strong> wrap the element in a native <code class="scd-inline-code">&lt;footer&gt;</code> (or add <code class="scd-inline-code">role="contentinfo"</code>) so it&rsquo;s announced as the page footer landmark.</li>
+        <li><strong>Link:</strong> the licence is a real <code class="scd-inline-code">&lt;a&gt;</code> — keyboard focusable, with a label describing the destination.</li>
+        <li><strong>Logo:</strong> the built-in <a href="/components/logo/">Logo</a> mark is decorative here; the copyright text carries the brand meaning.</li>
+        <li><strong>Contrast:</strong> the secondary copyright text must still meet WCAG AA against the page background.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-footer"></scd-api>
+    </div>

@@ -1,0 +1,109 @@
+    <div class="scd-page-header">
+      <h1>Help Text</h1>
+      <div class="scd-page-header-text">
+        <p>Small instructional copy near a form field that guides users on what to enter or what
+          went wrong. Status variants pair the message with a <a href="/components/status-icon/">Status
+          Icon</a>.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-help-text.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=31938-27580"
+        framer="https://scaleframer.framer.website/components/help-text"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-help-text'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Plain hint copy with no icon.</p>
+      <scd-demo>
+        <sc-help-text text="This is default help text."></sc-help-text>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Info</h3>
+      <scd-demo>
+        <sc-help-text status="info" text="This field requires verification."></sc-help-text>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Warning</h3>
+      <scd-demo>
+        <sc-help-text status="warning" text="This action cannot be undone."></sc-help-text>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Negative</h3>
+      <scd-demo>
+        <sc-help-text status="negative" text="Invalid email address."></sc-help-text>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Positive</h3>
+      <scd-demo>
+        <sc-help-text status="positive" text="Username is available."></sc-help-text>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Sizes</h3>
+      <p>Three sizes — <code class="scd-inline-code">l</code> (default),
+        <code class="scd-inline-code">m</code>, and <code class="scd-inline-code">s</code> — to
+        match the field they describe.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-m)">
+          <sc-help-text size="l" status="info" text="Large help text"></sc-help-text>
+          <sc-help-text size="m" status="info" text="Medium help text"></sc-help-text>
+          <sc-help-text size="s" status="info" text="Small help text"></sc-help-text>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>field hints, validation messages, and success feedback.
+        Most inputs accept a <code class="scd-inline-code">help-text</code> prop that renders
+        this component for you.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep it short and specific — say what to enter or exactly what&rsquo;s wrong.</li>
+            <li>Use <code class="scd-inline-code">negative</code> for errors and <code class="scd-inline-code">positive</code> for confirmation.</li>
+            <li>Place it directly below the field it describes.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t restate the label — add information the label doesn&rsquo;t already give.</li>
+            <li>Don&rsquo;t stack several help texts on one field; lead with the most important.</li>
+            <li>Don&rsquo;t rely on colour alone — the wording must carry the meaning.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Association:</strong> reference it from the field with <code class="scd-inline-code">aria-describedby</code> so screen readers announce it with the input (the <code class="scd-inline-code">help-text</code> prop on inputs wires this for you).</li>
+        <li><strong>Errors:</strong> for <code class="scd-inline-code">negative</code> messages, also expose the field&rsquo;s invalid state (<code class="scd-inline-code">aria-invalid</code>) and announce the text via a live region when it appears.</li>
+        <li><strong>Icon:</strong> the status icon is decorative reinforcement — the message text must stand on its own without colour or icon.</li>
+        <li><strong>Contrast:</strong> the secondary text colour must meet WCAG AA; <code class="scd-inline-code">disabled</code> is intentionally dimmed, so don&rsquo;t use it to convey active meaning.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-help-text"></scd-api>
+    </div>

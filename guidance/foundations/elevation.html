@@ -1,0 +1,161 @@
+    <div class="scd-page-header">
+      <h1>Elevation</h1>
+      <div class="scd-page-header-text">
+        <p>Scale uses a five-level elevation system to communicate visual depth and
+          spatial hierarchy. Surface tokens define the background of an element at each
+          level and adapt automatically between light and dark themes; paired shadow
+          tokens reinforce that depth. Build with the named tokens
+          (<code class="scd-inline-code">--sc-color-surface-*</code>,
+          <code class="scd-inline-code">--sc-shadow-*</code>) rather than raw values so
+          depth stays consistent across both themes.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-variables-shadows.scss"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=52399-33777"
+        framer="https://scaleframer.framer.website/foundations/elevation"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>How it works</h2>
+      <p>Each level maps to a surface color token with a light and dark value. In light
+        mode every surface is white: depth is communicated through shadows and borders.
+        In dark mode surfaces progressively lighten to create visible depth without
+        relying on shadows. Levels stack from the page background up to the highest
+        overlay; use the mode toggle in the header to compare how the same stack reads in
+        each theme.</p>
+      <div class="scd-elevation-stack" aria-hidden="true">
+        <div class="scd-elevation-layer scd-elevation-layer--l0">
+          <span class="scd-elevation-layer__label">L0 · Base</span>
+          <div class="scd-elevation-layer scd-elevation-layer--l1">
+            <span class="scd-elevation-layer__label">L1 · Card</span>
+            <div class="scd-elevation-layer scd-elevation-layer--l2">
+              <span class="scd-elevation-layer__label">L2 · Panel</span>
+              <div class="scd-elevation-layer scd-elevation-layer--l3">
+                <span class="scd-elevation-layer__label">L3 · Modal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Surfaces</h2>
+      <p>Surface tokens set the background plane of an element by elevation level. Match
+        the token to the element&rsquo;s spatial role using the usage guidance below. The
+        swatch and primitive shown reflect the active theme.</p>
+      <sc-table-basic class="scd-border-table scd-elevation-table" label="Surface elevation tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-border-preview-col)">Level</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Variable</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Usage</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Primitive</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-surface-swatch" style="background: var(--sc-color-surface-l0)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L0</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l0</code></sc-table-cell>
+          <sc-table-cell>Base page background, lowest elevation</sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 1000</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-1000</code></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-surface-swatch" style="background: var(--sc-color-surface-l1)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L1</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l1</code></sc-table-cell>
+          <sc-table-cell>Cards on page, subtle containers</sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 950</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-950</code></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-surface-swatch" style="background: var(--sc-color-surface-l2)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L2</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l2</code></sc-table-cell>
+          <sc-table-cell>Dropdowns, popovers, panels</sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 900</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-900</code></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-surface-swatch" style="background: var(--sc-color-surface-l3)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L3</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l3</code></sc-table-cell>
+          <sc-table-cell>Modals, dialogs, overlays</sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 850</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-850</code></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-surface-swatch" style="background: var(--sc-color-surface-l4)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L4</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l4</code></sc-table-cell>
+          <sc-table-cell>Highest elevation, system alerts</sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name"><span class="scd-when-light">Neutral 0</span><span class="scd-when-dark">Neutral 800</span></span><code class="scd-inline-code scd-t-text-m scd-when-light">--sc-color-neutral-0</code><code class="scd-inline-code scd-t-text-m scd-when-dark">--sc-color-neutral-800</code></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Shadows</h2>
+      <p>Each level above L0 is paired with a shadow token. All shadows use a dual layer:
+        a directional shadow (y-offset + blur) for depth and an ambient shadow (no offset,
+        smaller blur) for grounding.</p>
+      <sc-table-basic class="scd-border-table scd-shadow-table" label="Shadow elevation tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-border-preview-col)">Shadow</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Variable</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Box shadow</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Surface pairing</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-shadow-box" style="background: var(--sc-color-surface-l1); box-shadow: var(--sc-shadow-l1)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Shadow L1</span><code class="scd-inline-code scd-t-text-m">--sc-shadow-l1</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value"><span class="scd-shadow-layer">0px 2px 4px rgba(0,0,0,0.1)</span><span class="scd-shadow-layer">0px 0px 2px rgba(0,0,0,0.08)</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L1</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l1</code></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-shadow-box" style="background: var(--sc-color-surface-l2); box-shadow: var(--sc-shadow-l2)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Shadow L2</span><code class="scd-inline-code scd-t-text-m">--sc-shadow-l2</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value"><span class="scd-shadow-layer">0px 4px 8px rgba(0,0,0,0.1)</span><span class="scd-shadow-layer">0px 0px 4px rgba(0,0,0,0.08)</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L2</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l2</code></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-shadow-box" style="background: var(--sc-color-surface-l3); box-shadow: var(--sc-shadow-l3)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Shadow L3</span><code class="scd-inline-code scd-t-text-m">--sc-shadow-l3</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value"><span class="scd-shadow-layer">0px 8px 16px rgba(0,0,0,0.1)</span><span class="scd-shadow-layer">0px 0px 6px rgba(0,0,0,0.08)</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L3</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l3</code></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-shadow-box" style="background: var(--sc-color-surface-l4); box-shadow: var(--sc-shadow-l4)"></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Shadow L4</span><code class="scd-inline-code scd-t-text-m">--sc-shadow-l4</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value"><span class="scd-shadow-layer">0px 10px 20px rgba(0,0,0,0.1)</span><span class="scd-shadow-layer">0px 0px 8px rgba(0,0,0,0.08)</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Surface L4</span><code class="scd-inline-code scd-t-text-m">--sc-color-surface-l4</code></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use the correct level for each element&rsquo;s role: a card belongs on L1, a modal on L3.</li>
+            <li>Pair elevated surfaces (L3/L4) with a dimming overlay so the content below recedes.</li>
+            <li>Use shadows to reinforce elevation in light mode, where every surface is white.</li>
+            <li>Test in both themes: depth that only works in one mode is incomplete.</li>
+            <li>Stay within the five levels; they cover every standard UI pattern.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t skip levels arbitrarily; jumping L0&nbsp;&rarr;&nbsp;L3 breaks the spatial logic.</li>
+            <li>Don&rsquo;t use surface tokens for interactive states; hover, pressed, and selected use <code class="scd-inline-code">Background/</code> tokens.</li>
+            <li>Don&rsquo;t rely on shadows alone in dark mode: they&rsquo;re nearly invisible; the surface lightening carries the depth.</li>
+            <li>Don&rsquo;t nest more than three levels deep; a card in a panel in a modal is a sign to rethink the hierarchy.</li>
+            <li>Don&rsquo;t use surface tokens for decoration; they communicate elevation, not visual styling.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Contrast:</strong> text and UI on every surface must meet WCAG&nbsp;2.1&nbsp;AA: 4.5:1 for text under 24px, 3:1 for text 24px and larger and for UI components.</li>
+        <li><strong>Surface-to-surface:</strong> adjacent levels should be visually distinguishable; in dark mode the progressive lightening keeps stacked surfaces perceptible.</li>
+        <li><strong>Never rely on elevation alone:</strong> reinforce hierarchy with borders, headings, and labels so structure survives without depth perception.</li>
+        <li><strong>Modals:</strong> pair L3/L4 overlays with backdrop dimming, and expose layered content to screen readers with correct ARIA roles and focus management.</li>
+        <li><strong>Test broadly:</strong> verify contrast on every level in both themes, with color-blindness simulators, at low brightness, and on low-quality displays.</li>
+      </ul>
+    </div>

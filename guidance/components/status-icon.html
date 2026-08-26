@@ -1,0 +1,94 @@
+    <div class="scd-page-header">
+      <h1>Status Icon</h1>
+      <div class="scd-page-header-text">
+        <p>An informational status icon — info, warning, error, and success — in three sizes,
+          with an inverse variant for status-coloured surfaces.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-status-icon.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=48-1153"
+        framer="https://scaleframer.framer.website/foundations/iconography"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-status-icon'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Status</h3>
+      <p>Four statuses — <code class="scd-inline-code">info</code>,
+        <code class="scd-inline-code">warning</code>, <code class="scd-inline-code">error</code>,
+        and <code class="scd-inline-code">success</code>.</p>
+      <scd-demo>
+        <sc-status-icon status="info"></sc-status-icon>
+        <sc-status-icon status="warning"></sc-status-icon>
+        <sc-status-icon status="error"></sc-status-icon>
+        <sc-status-icon status="success"></sc-status-icon>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Sizes</h3>
+      <p><code class="scd-inline-code">size</code> accepts <code class="scd-inline-code">16</code>,
+        <code class="scd-inline-code">24</code> (default), or
+        <code class="scd-inline-code">32</code>.</p>
+      <scd-demo>
+        <sc-status-icon status="info" size="16"></sc-status-icon>
+        <sc-status-icon status="info" size="24"></sc-status-icon>
+        <sc-status-icon status="info" size="32"></sc-status-icon>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Inverse</h3>
+      <p><code class="scd-inline-code">inverse</code> swaps the disc and glyph colours so the
+        icon reads on a status-coloured surface (as in <a href="/components/toast/">Toast</a>).</p>
+      <scd-demo>
+        <div style="display:inline-flex;gap:var(--sc-space-m);padding:var(--sc-space-l);background:var(--sc-color-icon-positive);border-radius:var(--sc-border-radius-m)">
+          <sc-status-icon status="success" inverse></sc-status-icon>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>validation feedback, alert icons, and help-text icons.
+        For a minimal coloured dot, use a
+        <a href="/components/status-indicator/">Status Indicator</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Pair the icon with text that states the same meaning.</li>
+            <li>Match <code class="scd-inline-code">status</code> to severity — error for blocking, warning for caution.</li>
+            <li>Use <code class="scd-inline-code">inverse</code> on status-coloured backgrounds so the icon stays legible.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t rely on the icon alone to convey state — colour and shape aren&rsquo;t enough on their own.</li>
+            <li>Don&rsquo;t use a status icon as a decorative bullet.</li>
+            <li>Don&rsquo;t mix statuses that contradict the surrounding message.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Decorative by default:</strong> the icon is a presentational SVG with no accessible name — the adjacent text must carry the status meaning.</li>
+        <li><strong>Standalone use:</strong> if the icon is the only indicator, give its container an accessible name (e.g. <code class="scd-inline-code">role="img" aria-label="Error"</code>).</li>
+        <li><strong>Not colour-only:</strong> each status also differs in glyph (i, !, ✕, ✓), but still back it with text for clarity.</li>
+        <li><strong>Contrast:</strong> on a custom background, use <code class="scd-inline-code">inverse</code> or check the disc colour meets WCAG AA.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-status-icon"></scd-api>
+    </div>

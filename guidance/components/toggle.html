@@ -1,0 +1,88 @@
+    <div class="scd-page-header">
+      <h1>Toggle</h1>
+      <div class="scd-page-header-text">
+        <p>On/off switches for settings or features — immediate, satisfying, and instantly
+          understood. Flipping a toggle applies the change straight away and emits
+          <code class="scd-inline-code">change</code>.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-toggle.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=1681-4816"
+        framer="https://scaleframer.framer.website/components/toggle"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-toggle'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Off</h3>
+      <scd-demo>
+        <sc-toggle></sc-toggle>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>On</h3>
+      <scd-demo code="&lt;sc-toggle checked&gt;&lt;/sc-toggle&gt;">
+        <sc-toggle checked></sc-toggle>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled off</h3>
+      <scd-demo code="&lt;sc-toggle disabled&gt;&lt;/sc-toggle&gt;">
+        <sc-toggle disabled></sc-toggle>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled on</h3>
+      <scd-demo code="&lt;sc-toggle checked disabled&gt;&lt;/sc-toggle&gt;">
+        <sc-toggle checked disabled></sc-toggle>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>instant settings like notifications or dark
+        mode. For options that only apply on submit, use a
+        <a href="/components/checkbox/">Checkbox</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Apply the change immediately when the toggle flips — that&rsquo;s the contract a switch implies.</li>
+            <li>Label what the toggle controls (&ldquo;Email notifications&rdquo;), not its state (&ldquo;On&rdquo;).</li>
+            <li>Use it for binary settings with an obvious on/off meaning.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a toggle in a form that only applies on submit — use a <a href="/components/checkbox/">Checkbox</a>.</li>
+            <li>Don&rsquo;t use toggles for mutually exclusive choices — use <a href="/components/radio/">Radio</a> buttons.</li>
+            <li>Don&rsquo;t ship a bare toggle without an accessible name.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> renders a native <code class="scd-inline-code">&lt;button role="switch"&gt;</code> with <code class="scd-inline-code">aria-checked</code> reflecting the state.</li>
+        <li><strong>Keyboard:</strong> <kbd>Enter</kbd> / <kbd>Space</kbd> toggles; a visible focus ring shows on keyboard focus.</li>
+        <li><strong>Name:</strong> there is no built-in label — provide one via <code class="scd-inline-code">aria-label</code> or an associated visible label.</li>
+        <li><strong>Disabled:</strong> uses the native <code class="scd-inline-code">disabled</code> button state (removed from the tab order) and dims the control.</li>
+        <li><strong>Form:</strong> form-associated — participates in submit and reset like a native input.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-toggle"></scd-api>
+    </div>

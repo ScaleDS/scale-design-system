@@ -1,0 +1,117 @@
+    <div class="scd-page-header">
+      <h1>Alert</h1>
+      <div class="scd-page-header-text">
+        <p>Inline messages that surface important information, warnings, errors, or success states right where the user needs them.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-alert.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=3464-5445"
+        framer="https://scaleframer.framer.website/components/alert"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-alert'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Info</h3>
+      <scd-demo>
+        <sc-alert status="info"><span slot="heading">Info heading</span>Information message text.</sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Warning</h3>
+      <scd-demo>
+        <sc-alert status="warning"><span slot="heading">Warning heading</span>Warning message text.</sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Negative</h3>
+      <scd-demo>
+        <sc-alert status="negative"><span slot="heading">Error heading</span>Error message text.</sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Positive</h3>
+      <scd-demo>
+        <sc-alert status="positive"><span slot="heading">Success heading</span>Success message text.</sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Without heading</h3>
+      <p>Set <code class="scd-inline-code">show-heading="false"</code> for a single-line message with no title.</p>
+      <scd-demo>
+        <sc-alert status="info" show-heading="false">Message without a heading.</sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Without actions</h3>
+      <p>Set <code class="scd-inline-code">show-actions="false"</code> to drop the action buttons entirely.</p>
+      <scd-demo>
+        <sc-alert status="warning" show-actions="false"><span slot="heading">Warning</span>Message with no action buttons.</sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Single action</h3>
+      <p>Slot one action and set <code class="scd-inline-code">show-action-2="false"</code> to keep a single button.</p>
+      <scd-demo>
+        <sc-alert status="negative" show-action-2="false"><span slot="heading">Error</span>Error with one action.<span slot="action">Dismiss</span></sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Custom actions</h3>
+      <p>Slot one or two actions with your own labels.</p>
+      <scd-demo>
+        <sc-alert status="info"><span slot="heading">Update available</span>A new version is ready to install.<span slot="action">Install</span><span slot="action-2">Later</span></sc-alert>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>persistent inline alerts inside a panel or
+        card. For a full-width page-level bar use <a href="/components/banner/">Banner</a>; for
+        transient feedback use <a href="/components/toast/">Toast</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Match the status to the message — positive for success, negative for errors.</li>
+            <li>Keep the heading short and the body to a sentence or two.</li>
+            <li>Place the alert inline, beside the content it refers to.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use an alert for page-level announcements — use <a href="/components/banner/">Banner</a>.</li>
+            <li>Don&rsquo;t use it for transient confirmations — use <a href="/components/toast/">Toast</a>.</li>
+            <li>Don&rsquo;t stack many alerts at once; surface the most important message.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> the container is <code class="scd-inline-code">role="alert"</code>, so assistive tech announces it as soon as it appears.</li>
+        <li><strong>Not colour alone:</strong> each status pairs its accent colour with a distinct <a href="/components/status-icon/">status icon</a>, so meaning never relies on colour.</li>
+        <li><strong>Actions:</strong> rendered as native <code class="scd-inline-code">&lt;button&gt;</code>s — focusable and activated with <kbd>Enter</kbd> / <kbd>Space</kbd>.</li>
+        <li><strong>Focus:</strong> action buttons show the global keyboard focus ring.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-alert"></scd-api>
+    </div>

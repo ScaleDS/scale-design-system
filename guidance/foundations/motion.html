@@ -1,0 +1,947 @@
+    <div class="scd-page-header">
+      <h1>Motion</h1>
+      <div class="scd-page-header-text">
+        <p>Motion is how the interface explains itself, and how the brand behaves. Get the first
+          right and the product is easy to follow. Get both right and it feels alive.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-motion-transitions.scss"
+        figma="https://www.figma.com/design/iAL4g6yJEFYqJH962fVUBD/Scale.Design-System"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <sc-tabs active="duration-easing" class="scd-motion-tabs">
+        <sc-tab slot="nav" panel="duration-easing">Duration and Easing</sc-tab>
+        <sc-tab slot="nav" panel="transitions">Transitions</sc-tab>
+        <sc-tab slot="nav" panel="choreography">Choreography</sc-tab>
+
+        <!-- ===================== DURATION AND EASING ===================== -->
+        <sc-tab-panel name="duration-easing">
+          <div class="scd-motion-panel">
+            <div class="scd-section">
+              <h2>Duration</h2>
+              <p>How long a movement takes. Fast enough to feel like a reply, slow enough to
+                follow: under about 100ms a change reads as instant, and past half a second it's
+                stopped feeling like movement and started feeling like waiting. The further
+                something travels, the longer it should take.</p>
+            </div>
+
+            <div class="scd-section">
+              <h3>Duration tokens</h3>
+              <p>Everything a user waits on lives here. Click any demo to replay it.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-duration-table" label="Duration scale">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="max-content">Value</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Common use cases</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="0"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 0</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-0</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-0"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Explicitly no motion: an instant state change</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="50"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 50</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-50</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-50"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The smallest perceptible change: a list row tinting on hover</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="100"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 100</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-100</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-100"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Quick exits: a tooltip or menu dismissing</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="150"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 150</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-150</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-150"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The workhorse: control state changes, hover and focus</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="200"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 200</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-200</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-200"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Overlay exits, medium fades</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="250"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 250</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-250</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-250"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Overlay entrances, expand and collapse</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="300"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 300</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-300</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-300"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Larger surfaces arriving from a screen edge</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="350"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 350</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-350</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-350"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Larger panels and sheets, when 300 feels rushed</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="400"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 400</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-400</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-400"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Full-edge surfaces leaving</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="450"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 450</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-450</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-450"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Fine-tuning the longest moves, just under the maximum</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="500"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 500</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-500</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-500"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The longest product motion: a full-height drawer</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h3>Loops</h3>
+              <p>For animation that loops, never for transitions. Reduced motion doesn't zero these
+                two. A loop with no duration just stops, and a frozen spinner no longer says
+                “working”, so looping components slow down instead. The spinner drops to 2s and
+                keeps turning.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-duration-table" label="Loop durations">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="max-content">Value</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Common use cases</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="1000"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 1000</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-1000</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-1000"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Spinner rotation, skeleton pulse, shimmer sweep</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-duration-preview stop="5000"></scd-duration-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Duration 5000</span><code class="scd-inline-code scd-t-text-m">--sc-motion-duration-5000</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-duration-5000"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Slow background motion, for a loop that should barely register</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+              <p>Loops pair with an <code class="scd-inline-code">--sc-motion-animation-*</code>
+                shorthand, which adds the easing and the iteration count. The demos below start
+                paused, because looping motion doesn't belong in a reading path. Click one to run
+                it.</p>
+              <scd-demo code="animation: sc-motion-spin var(--sc-motion-animation-spin);"></scd-demo>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-duration-table" label="Loop animations">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="minmax(0,max-content)">Recipe</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Use for</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-loop-preview loop="spin"></scd-loop-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Spin</span><code class="scd-inline-code scd-t-text-m">--sc-motion-animation-spin</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-animation-spin"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A spinner turning, at a constant speed so the seam never shows</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-loop-preview loop="pulse"></scd-loop-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Pulse</span><code class="scd-inline-code scd-t-text-m">--sc-motion-animation-pulse</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-animation-pulse"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A skeleton breathing. Eases at both ends, where the direction reverses</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-loop-preview loop="shimmer"></scd-loop-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Shimmer</span><code class="scd-inline-code scd-t-text-m">--sc-motion-animation-shimmer</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-animation-shimmer"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A loading sweep across a placeholder</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h2>Easing</h2>
+              <p>How a movement speeds up and slows down. Nothing in the real world starts or
+                stops at a constant speed, so anything on screen that does looks wrong before you
+                can say why. Easing is what separates movement that feels alive from movement that
+                feels like a machine part.</p>
+            </div>
+
+            <div class="scd-section">
+              <h3>Easing tokens</h3>
+              <p>Every curve in the system, starting with the four defaults. Click any demo to
+                replay it.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-easing-table" label="Easing tokens">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="minmax(0,1fr)">Curve value</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Description</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="linear" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Linear</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-linear</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-linear"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>No acceleration at all. Continuous loops only: a spinner or a progress shimmer</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Starts slow, ends fast. Exits only, so the element accelerates away</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Starts fast, settles slow. The default for anything entering</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Eases at both ends. For moves that start and finish on screen</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-sine" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Sine</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-sine</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-sine"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Barely reads as a curve. When motion should be felt but not seen</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-sine" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Sine</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-sine</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-sine"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Barely there. For large surfaces where a strong curve feels heavy</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-sine" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Sine</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-sine</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-sine"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Nearly linear through the middle. For long moves that shouldn't draw the eye</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-quad" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Quad</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-quad</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-quad"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The first step that clearly reads as easing. For small elements leaving</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-quad" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Quad</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-quad</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-quad"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A gentle settle. A safe choice for small UI moves</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-quad" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Quad</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-quad</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-quad"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Mild at both ends. For understated moves that start and finish on screen</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-cubic" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Cubic</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-cubic</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-cubic"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A pronounced ramp-up. The workhorse for elements accelerating away</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-cubic" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Cubic</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-cubic</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-cubic"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Snappy start, clear arrival. A safe default for medium moves</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-cubic" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Cubic</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-cubic</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-cubic"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Balanced and noticeable. Good for medium travel across the screen</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-quart" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Quart</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-quart</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-quart"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Lingers, then leaves fast. For surfaces exiting a real distance</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-quart" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Quart</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-quart</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-quart"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Arrives fast, then a long tail. For surfaces crossing real distance</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-quart" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Quart</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-quart</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-quart"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A fast middle between two slow ends. For large panels repositioning</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-quint" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Quint</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-quint</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-quint"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Almost nothing happens until the last third. Dramatic exits only</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-quint" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Quint</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-quint</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-quint"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Nearly all the travel in the first third. Dramatic entrances only</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-quint" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Quint</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-quint</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-quint"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A dash between two pauses. Rarely right for product UI</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-expo" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Expo</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-expo</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-expo"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>An almost flat start, then a snap. For full-screen exits</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-expo" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Expo</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-expo</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-expo"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Near-instant start, long glide. For dramatic full-screen entrances</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-expo" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Expo</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-expo</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-expo"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The most extreme curve here. Reserve it for hero moments</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-circ" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Circ</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-circ</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-circ"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Flat, then a sharp sweep. For mechanical, machine-like motion</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-circ" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Circ</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-circ</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-circ"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A sharp launch, then a hard flatten. For progress and meters</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-circ" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Circ</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-circ</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-circ"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Mechanical rather than organic. For progress and machine-like motion</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="accelerate" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Accelerate</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-accelerate</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-accelerate"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A surface leaving on the standard pair. Material-derived</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="decelerate" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Decelerate</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-decelerate</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-decelerate"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A surface arriving on the standard pair. Material-derived</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="emphasized-accelerate" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Emphasized Accelerate</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-emphasized-accelerate</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-emphasized-accelerate"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The outgoing half of every choreography pattern</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="emphasized-decelerate" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Emphasized Decelerate</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-emphasized-decelerate</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-emphasized-decelerate"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The incoming half of every choreography pattern</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-back" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Back</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-back</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-back"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Pulls back before it moves off, like a wind-up. Movement and size only, never opacity</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-back" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Back</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-back</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-back"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Overshoots the target, then settles back onto it. Movement and size only, never opacity</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="in-out-back" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease In Out Back</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-in-out-back</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-in-out-back"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Winds up and overshoots. Strong character, so use sparingly. Movement and size only</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h3>Springs</h3>
+              <p>Movement that settles like a real object, overshooting a little before it comes
+                to rest.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-easing-table" label="Spring easings">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="minmax(0,1fr)">Curve value</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Description</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="spring-subtle" demoMs="1200" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Spring Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-spring-subtle</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-spring-subtle"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A single soft settle, barely past the target. The safe one for product UI</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="spring" demoMs="1200" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Spring</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-spring</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-spring"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>One clear overshoot, then rest. The default spring</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="spring-bouncy" demoMs="1200" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Spring Bouncy</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-spring-bouncy</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-spring-bouncy"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Several visible bounces. Playful, so reserve it for delight moments</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h3>Expressive</h3>
+              <p>Elastic and bounce are real delight on the right element and toy-like on a
+                button, so keep them for brand moments and illustration.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-easing-table" label="Expressive easings">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="minmax(0,1fr)">Curve value</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Description</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="emphasized" demoMs="1200" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Emphasized</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-emphasized</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-emphasized"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The headline curve. For hero transitions</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-elastic" demoMs="1400" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Elastic</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-elastic</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-elastic"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Wobbles to a stop. Brand and illustration only</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-easing-curve token="out-bounce" demoMs="1400" compact></scd-easing-curve></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Ease Out Bounce</span><code class="scd-inline-code scd-t-text-m">--sc-motion-ease-out-bounce</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-ease-out-bounce"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Lands like a dropped ball. Brand and illustration only</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h2>Choosing motion</h2>
+              <div class="scd-guidelines">
+                <div class="scd-guideline">
+                  <h3>Do</h3>
+                  <ul>
+                    <li>Pick the job, not the numbers. The
+                      <code class="scd-inline-code">--sc-motion-transition-*</code> recipes already
+                      carry the timing that suits each one.</li>
+                    <li>Let distance scale duration: a small control settles in 50–150ms, a full-edge
+                      surface takes 300–500ms.</li>
+                    <li>Use <strong>ease-out</strong> for entrances, <strong>ease-in</strong> for exits,
+                      and <strong>ease-in-out</strong> for anything visible before and after.</li>
+                    <li>Keep travelling loops on <strong>linear</strong>. A curve on a repeat puts an
+                      acceleration and a deceleration at the seam, which reads as a stutter every
+                      iteration.</li>
+                    <li>Give every property in a single gesture the <strong>same</strong> composite, so the
+                      parts start and finish together.</li>
+                    <li>Animate <code class="scd-inline-code">translate</code>,
+                      <code class="scd-inline-code">scale</code> and
+                      <code class="scd-inline-code">opacity</code>, because they composite on the GPU and never
+                      trigger layout.</li>
+                  </ul>
+                </div>
+                <div class="scd-guideline">
+                  <h3>Don't</h3>
+                  <ul>
+                    <li>Don't hardcode a duration or a curve. If a value isn't on the scale, the nearest
+                      stop is almost always right.</li>
+                    <li>Don't put a spring or any overshooting curve on opacity or colour: an opacity that
+                      overshoots past 1 is a bug. They're spatial only.</li>
+                    <li>Don't pair different composites across one gesture. A 100ms slide next to a 200ms
+                      fade stops moving halfway through and reads as unfinished.</li>
+                    <li>Don't animate layout properties (<code class="scd-inline-code">width</code>,
+                      <code class="scd-inline-code">top</code>, <code class="scd-inline-code">margin</code>)
+                      when a transform will do.</li>
+                    <li>Don't set a <code class="scd-inline-code">setTimeout</code> to match a CSS duration.
+                      The timer starts a frame before the animation does, so the element is removed while
+                      still visible. Listen for <code class="scd-inline-code">transitionend</code>.</li>
+                    <li>Don't reach for elastic or bounce in product UI; they read as toy-like on a
+                      control. Keep them for brand and illustration.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="scd-section" id="reduced-motion">
+              <h2>Accessibility</h2>
+              <p>For some people motion isn't a matter of taste. Vestibular disorders can turn a
+                screen-crossing animation into nausea, dizziness or a migraine, and the person on
+                the receiving end has usually already told their operating system so.</p>
+              <p>When someone turns on reduced motion, every product duration drops to zero
+                automatically. Components inherit that, shadow DOM included, so you never need to
+                add your own opt-out.</p>
+              <p><strong>The demos on this page follow the same rule.</strong> With reduced motion
+                enabled at the OS level, everything above becomes instant, because the demos read the
+                same tokens your components do.</p>
+              <p>Two deliberate exceptions, both because zeroing would remove meaning rather than calm it:</p>
+              <ul>
+                <li>The <strong>loop durations</strong> (1000/5000) are never zeroed: a 0ms loop doesn't
+                  run at all, and a stopped spinner stops communicating “in progress”. The spinner instead
+                  slows to 2s and keeps turning.</li>
+                <li>A <strong>shimmer</strong> is large-area repeating movement and the most likely
+                  vestibular trigger in the set, so it degrades to a still gradient rather than a faster
+                  one.</li>
+              </ul>
+              <p>Beyond the tokens: never convey information through motion alone, keep anything that
+                loops out of the reading path, and avoid large-area parallax entirely.</p>
+            </div>
+
+            <div class="scd-section">
+              <h2>Design handoff</h2>
+              <p>Curve names are shared with Figma so a curve keeps its identity across
+                tools. Two things don't travel, and are worth knowing before a handoff:</p>
+              <ul>
+                <li><strong>After Effects inverts the words.</strong> Its “Easy Ease In” <em>decelerates
+                  into</em> a keyframe, which is this system's <code class="scd-inline-code">ease-out</code>.
+                  Everything else in the pipeline, Figma included, matches the names used here.</li>
+                <li><strong><code class="scd-inline-code">linear()</code> curves don't round-trip.</strong>
+                  Springs, <code class="scd-inline-code">emphasized</code>, elastic and bounce are sampled
+                  multi-point curves. Figma has no equivalent (its springs are parameterised by
+                  mass/stiffness/damping and its presets are unpublished), and in After Effects or Lottie
+                  they're a multi-keyframe construction rather than an ease. Match by eye and document the
+                  intent.</li>
+              </ul>
+              <p>Durations sync across to Figma as number variables, but easings have nowhere to bind
+                on a prototype transition, so they travel as documentation rather than as bound
+                variables.</p>
+            </div>
+          </div>
+        </sc-tab-panel>
+
+        <!-- =========================== TRANSITIONS ========================== -->
+        <sc-tab-panel name="transitions">
+          <div class="scd-motion-panel">
+            <div class="scd-section">
+              <h2>Transitions</h2>
+              <p>Reach for these first. Each one pairs a timing with a curve for a specific job,
+                so picking the job gets you the timing for free.</p>
+              <p>Drop them straight after the property in a
+                <code class="scd-inline-code">transition</code>:</p>
+              <scd-demo code="transition: opacity var(--sc-motion-transition-fade-in-l);"></scd-demo>
+              <p>Each demo below plays its entrance, holds, then plays its exit, so one click shows
+                the pair back to back. The recipe underneath highlights the half you're watching.</p>
+            </div>
+
+            <div class="scd-section">
+              <h3>State change</h3>
+              <p>Confirming a tap, a hover, a selection. The control stays exactly where it is
+                and only its colour changes, because the user is already looking at it and moving
+                it would be noise.</p>
+              <scd-transition-demo scene="states" enter="control" exit="control"
+                label="A row taking the selected state"></scd-transition-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>Fade</h3>
+              <p>Something appears that was not there before, without claiming to have come from
+                anywhere. A toast is the clearest case: it shows up where it will sit, says its
+                piece and goes.</p>
+              <scd-transition-demo scene="toast" enter="fade-in-l" exit="fade-out-l"
+                label="A toast arriving over the page"></scd-transition-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>Enter and Exit</h3>
+              <p>A surface with a home off-screen. It comes in from the edge it lives on and
+                leaves the same way, so the user always knows where it went and where to find it
+                again.</p>
+              <scd-transition-demo scene="drawer" enter="enter-l" exit="exit-l"
+                label="A drawer arriving from the trailing edge"></scd-transition-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>Scale</h3>
+              <p>A dialog belongs to the whole screen rather than to one side of it, so it grows
+                into the middle instead of sliding in from somewhere arbitrary.</p>
+              <scd-transition-demo scene="dialog" enter="scale-in" exit="scale-out"
+                label="A dialog growing into place"></scd-transition-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>In place</h3>
+              <p>Content that was already there becoming more or less of itself.</p>
+              <scd-transition-demo scene="accordion" enter="expand" exit="collapse"
+                label="An accordion opening"></scd-transition-demo>
+              <p>Reposition moves an element that stays on screen the whole way.</p>
+              <scd-transition-demo scene="tabs" enter="reposition" exit="reposition"
+                label="A selected segment moving"></scd-transition-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>Transition tokens</h3>
+              <p>Durations and easings below are read live from the tokens themselves.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table" label="Transition tokens">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="minmax(0,max-content)">Recipe</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Use for</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Micro</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-micro</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-micro" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out</code></sc-table-cell>
+                  <sc-table-cell>The smallest state change: a list row tint</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Control</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-control</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-control" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out</code></sc-table-cell>
+                  <sc-table-cell>Every hover, focus and selected state on a control</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Fade In S</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-fade-in-s</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-fade-in-s" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out</code></sc-table-cell>
+                  <sc-table-cell>Anchored surfaces entering: tooltip, menu, popover</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Fade Out S</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-fade-out-s</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-fade-out-s" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in</code></sc-table-cell>
+                  <sc-table-cell>Anchored surfaces leaving</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Fade In M</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-fade-in-m</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-fade-in-m" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out</code></sc-table-cell>
+                  <sc-table-cell>Mid-sized panels entering</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Fade Out M</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-fade-out-m</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-fade-out-m" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in</code></sc-table-cell>
+                  <sc-table-cell>Mid-sized panels leaving</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Fade In L</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-fade-in-l</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-fade-in-l" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out</code></sc-table-cell>
+                  <sc-table-cell>Overlays entering: modal, toast, banner, scrim</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Fade Out L</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-fade-out-l</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-fade-out-l" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in</code></sc-table-cell>
+                  <sc-table-cell>Overlays leaving</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Enter S</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-enter-s</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-enter-s" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out</code></sc-table-cell>
+                  <sc-table-cell>An 8px nudge onto an anchor</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Exit S</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-exit-s</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-exit-s" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in</code></sc-table-cell>
+                  <sc-table-cell>An 8px nudge off an anchor</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Enter L</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-enter-l</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-enter-l" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out-quint</code></sc-table-cell>
+                  <sc-table-cell>A surface arriving from a screen edge</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Exit L</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-exit-l</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-exit-l" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in-out</code></sc-table-cell>
+                  <sc-table-cell>Leaving the viewport but parking just outside, ready to be recalled</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Enter XL</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-enter-xl</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-enter-xl" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in-out-quart</code></sc-table-cell>
+                  <sc-table-cell>Scale's signature: full-edge drawers and panel rails</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Exit XL</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-exit-xl</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-exit-xl" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in-out</code></sc-table-cell>
+                  <sc-table-cell>Full-edge drawers and rails leaving</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Scale In</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-scale-in</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-scale-in" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-out-quint</code></sc-table-cell>
+                  <sc-table-cell>Centred surfaces growing into place</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Scale Out</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-scale-out</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-scale-out" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in</code></sc-table-cell>
+                  <sc-table-cell>Centred surfaces shrinking away</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Expand</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-expand</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-expand" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in-out</code></sc-table-cell>
+                  <sc-table-cell>Revealing content in place: an accordion opening</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Collapse</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-collapse</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-collapse" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in-out</code></sc-table-cell>
+                  <sc-table-cell>Hiding content in place</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Reposition</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-reposition</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-reposition" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">ease-in-out</code></sc-table-cell>
+                  <sc-table-cell>An element moving position, visible throughout</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Spring Subtle</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-spring-subtle</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-spring-subtle" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">spring-subtle</code></sc-table-cell>
+                  <sc-table-cell>A barely-there settle. <strong>Movement and size only</strong></sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Spring</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-spring</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-spring" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">spring</code></sc-table-cell>
+                  <sc-table-cell>The default spring. <strong>Movement and size only</strong></sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Spring Bouncy</span><code class="scd-inline-code scd-t-text-m">--sc-motion-transition-spring-bouncy</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-transition-spring-bouncy" show="duration"></scd-token-value> <code class="scd-inline-code scd-t-text-m">spring-bouncy</code></sc-table-cell>
+                  <sc-table-cell>Expressive overshoot. <strong>Movement and size only</strong></sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h2>Movement</h2>
+              <p>Transitions supply the <em>how long and what curve</em>. Keyframes and distances
+                supply the <em>what moves</em>. Pair them:</p>
+              <scd-demo code="animation: sc-motion-slide-in-from-top var(--sc-motion-transition-enter-l);"></scd-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>One keyframe, any distance</h3>
+              <p>The slide keyframes don't have a distance baked in. Each one reads
+                <code class="scd-inline-code">--sc-motion-slide-distance</code> off the element it's
+                animating, so the same eight keyframes cover both an 8px nudge and a full off-screen
+                exit.</p>
+              <scd-keyframe-demo name="sc-motion-slide-in-from-inline-start" recipe="enter-l" distances></scd-keyframe-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>Scales</h3>
+              <p>How far a surface is from full size when it starts or ends.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-duration-table" label="Scale tokens">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="max-content">Value</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Use for</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-scale-preview token="s"></scd-scale-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Scale S</span><code class="scd-inline-code scd-t-text-m">--sc-motion-scale-s</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-scale-s"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The default entrance: a surface growing into place</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-scale-preview token="m"></scd-scale-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Scale M</span><code class="scd-inline-code scd-t-text-m">--sc-motion-scale-m</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-scale-m"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>A larger step, for a surface arriving from further back</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-scale-preview token="grow"></scd-scale-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Scale Grow</span><code class="scd-inline-code scd-t-text-m">--sc-motion-scale-grow</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-scale-grow"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The outgoing view on a z-axis move, receding as it goes</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-scale-preview token="fade-through"></scd-scale-preview></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Scale Fade Through</span><code class="scd-inline-code scd-t-text-m">--sc-motion-scale-fade-through</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-scale-fade-through"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The incoming view on a fade through</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h3>Distances</h3>
+              <sc-table-basic class="scd-border-table scd-motion-table" label="Distance tokens">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="max-content">Value</sc-table-head>
+                  <sc-table-head width="minmax(0,1fr)">Use for</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Nudge</span><code class="scd-inline-code scd-t-text-m">--sc-motion-distance-nudge</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-distance-nudge"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Anchored surfaces easing off their trigger</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Travel</span><code class="scd-inline-code scd-t-text-m">--sc-motion-distance-travel</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-distance-travel"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>Moving between two views on the same axis, like tabs</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Full</span><code class="scd-inline-code scd-t-text-m">--sc-motion-distance-full</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-distance-full"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>All the way off-screen, whatever the element's width</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><span class="scd-type-var-name">Slide distance</span><code class="scd-inline-code scd-t-text-m">--sc-motion-slide-distance</code></sc-table-cell>
+                  <sc-table-cell><scd-token-value token="--sc-motion-slide-distance"></scd-token-value></sc-table-cell>
+                  <sc-table-cell>The distance the slide keyframes use. Override it per element</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+
+            <div class="scd-section">
+              <h3>Keyframes</h3>
+              <p>Fades, three sizes of scale, and eight directions of slide, each with a matching
+                counterpart.</p>
+              <p>The table shows the shapes rather than every name. The rest follow from these:
+                swap <code class="scd-inline-code">in</code> for
+                <code class="scd-inline-code">out</code>, and
+                <code class="scd-inline-code">top</code> for any of the eight edges.</p>
+              <p>Direction names the edge the element comes <em>from</em> (or goes <em>to</em>), and
+                the inline-axis pair follows the writing mode, so
+                <code class="scd-inline-code">inline-start</code> is the left edge in LTR and the
+                right edge in RTL.</p>
+              <sc-table-basic class="scd-border-table scd-motion-table scd-keyframe-table" label="Keyframes">
+                <sc-table-row header slot="header">
+                  <sc-table-head width="max-content"></sc-table-head>
+                  <sc-table-head width="minmax(min-content, max-content)">Name</sc-table-head>
+                  <sc-table-head width="minmax(200px,1fr)">Use for</sc-table-head>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-keyframe-demo compact name="sc-motion-fade-in" recipe="fade-in-l"></scd-keyframe-demo></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Fade in</span><code class="scd-inline-code scd-t-text-m">sc-motion-fade-in</code></sc-table-cell>
+                  <sc-table-cell>Anything appearing in place, with nothing to point at</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-keyframe-demo compact name="sc-motion-scale-in-m" recipe="scale-in"></scd-keyframe-demo></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Scale in M</span><code class="scd-inline-code scd-t-text-m">sc-motion-scale-in-m</code></sc-table-cell>
+                  <sc-table-cell>A surface growing into place, like a dialog taking focus</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-keyframe-demo compact name="sc-motion-slide-in-from-top" recipe="enter-l"></scd-keyframe-demo></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Slide in from top</span><code class="scd-inline-code scd-t-text-m">sc-motion-slide-in-from-top</code></sc-table-cell>
+                  <sc-table-cell>Surfaces that belong to the top edge, like a banner or toast</sc-table-cell>
+                </sc-table-row>
+                <sc-table-row>
+                  <sc-table-cell><scd-keyframe-demo compact name="sc-motion-slide-in-from-bottom" recipe="enter-l"></scd-keyframe-demo></sc-table-cell>
+                  <sc-table-cell><span class="scd-type-var-name">Slide in from bottom</span><code class="scd-inline-code scd-t-text-m">sc-motion-slide-in-from-bottom</code></sc-table-cell>
+                  <sc-table-cell>Sheets and pickers rising from the bottom edge</sc-table-cell>
+                </sc-table-row>
+              </sc-table-basic>
+            </div>
+          </div>
+        </sc-tab-panel>
+
+        <!-- ========================== CHOREOGRAPHY ========================== -->
+        <sc-tab-panel name="choreography">
+          <div class="scd-motion-panel">
+            <div class="scd-section">
+              <h2>Choreography</h2>
+              <p>Motion across more than one element. A transition handles a single thing
+                arriving or leaving; these handle two things trading places, or a group arriving
+                together.</p>
+              <p>They're mixins rather than tokens because each one puts its elements on
+                different sub-durations inside a single shared total, which no one custom property
+                can hold. They aren't in the main stylesheet, so import them where you need
+                them:</p>
+              <scd-demo code="@use '@scale-ds/scale-design-system/scss/sc-motion-choreography' as choreography;"></scd-demo>
+            </div>
+
+            <div class="scd-section">
+              <h3>Stagger</h3>
+              <p>A group arriving together, but not all at once. The eye gets a moment to take in
+                each item instead of meeting the whole list at the same instant.</p>
+              <scd-choreography-demo pattern="stagger"
+                label="Five rows entering in sequence"></scd-choreography-demo>
+              <scd-demo code=".row { @include choreography.stagger(5); }"></scd-demo>
+              <p>Siblings start 20ms apart, the interval Carbon measured as the smallest that
+                meaningfully reduces effort. Past 25 children the interval compresses so the total
+                never runs beyond 500ms.</p>
+              <p>The preview runs slower than that on purpose. Five rows at the real interval are
+                done in 80ms, over before the eye reads it as a sequence.</p>
+            </div>
+
+            <div class="scd-section">
+              <h3>Fade through</h3>
+              <p>Switching between two places with no relationship to each other, like top-level
+                nav destinations. Nothing slides, because there's no direction that would mean
+                anything.</p>
+              <scd-choreography-demo pattern="fade-through"
+                label="Two unrelated views trading places"></scd-choreography-demo>
+              <scd-demo code=".view--leaving { @include choreography.fade-through(outgoing); }
+  .view--arriving { @include choreography.fade-through(incoming); }"></scd-demo>
+              <p>The two halves run in sequence rather than together: the old view is gone before
+                the new one starts. Overlapping them would put two semi-transparent screens on top
+                of each other, which reads as a glitch.</p>
+            </div>
+
+            <div class="scd-section">
+              <h3>Shared axis</h3>
+              <p>Moving between two places that <em>are</em> related: forward and back through a
+                hierarchy, or side to side between peers. Both views travel the same axis, so the
+                direction tells the user which way they went.</p>
+              <scd-choreography-demo pattern="shared-axis"
+                label="Two related views on the x axis"></scd-choreography-demo>
+              <scd-demo code=".view--leaving { @include choreography.shared-axis(outgoing, $axis: x); }
+  .view--arriving { @include choreography.shared-axis(incoming, $axis: x); }"></scd-demo>
+              <p>Three axes: <code class="scd-inline-code">x</code> for lateral moves,
+                <code class="scd-inline-code">y</code> for vertical, and
+                <code class="scd-inline-code">z</code> for depth, where the outgoing view grows and
+                recedes while the incoming one comes forward. Pass
+                <code class="scd-inline-code">$direction: backward</code> to reverse it.</p>
+              <p>Both views travel a short distance and cross-fade, which keeps them reading as two
+                parts of one screen. When the new view is a whole screen of its own, use Push.</p>
+            </div>
+
+            <div class="scd-section">
+              <h3>Push</h3>
+              <p>One whole view replacing another, sliding edge to edge. It's what mobile platforms
+                do between screens. Reach for it when the thing arriving is a place of its own, not
+                a change inside the current one.</p>
+              <scd-choreography-demo pattern="push"
+                label="One view pushing the next across the frame"></scd-choreography-demo>
+              <scd-demo code=".view--leaving { @include choreography.push(outgoing); }
+  .view--arriving { @include choreography.push(incoming); }"></scd-demo>
+              <p>Nothing fades. Both views stay opaque for the whole move, so the change reads as
+                replacement rather than a blend. Give the container
+                <code class="scd-inline-code">overflow: hidden</code> so the view that leaves is
+                clipped at the edge.</p>
+              <p>Two axes: <code class="scd-inline-code">x</code> and
+                <code class="scd-inline-code">y</code>, with
+                <code class="scd-inline-code">$direction: backward</code> to reverse it. There's no
+                <code class="scd-inline-code">z</code>, because push is lateral by definition. Use
+                shared axis when you want depth.</p>
+            </div>
+
+            <div class="scd-section">
+              <h3>Container transform</h3>
+              <p>A card growing into the thing it opens, so the user keeps hold of what they
+                tapped. The browser does the work through the View Transitions API: give both
+                elements a matching name and it morphs the bounds, position and content between
+                them.</p>
+              <scd-choreography-demo pattern="container"
+                label="A card growing into the page"></scd-choreography-demo>
+              <scd-demo code=".card { @include choreography.container-transform(hero); }
+  .detail { @include choreography.container-transform(hero); }"></scd-demo>
+              <p>The demo above runs the timing the mixin sets, but moves the card's bounds by
+                hand. That's the argument for letting the browser do it: bounds are a layout
+                property, and animating layout is the one thing this page tells you not to do.
+                The View Transitions API morphs the same shape without touching layout.</p>
+              <p>The mixin only swaps the browser's defaults for Scale's timing:</p>
+              <scd-demo code="@include choreography.view-transition-defaults;"></scd-demo>
+            </div>
+          </div>
+        </sc-tab-panel>
+
+      </sc-tabs>
+    </div>

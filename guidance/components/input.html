@@ -1,0 +1,231 @@
+    <div class="scd-page-header">
+      <h1>Input</h1>
+      <div class="scd-page-header-text">
+        <p>A single-line text field with label, icons, help text, and validation states. It&rsquo;s
+          a form-associated custom element, so it participates in native
+          <code class="scd-inline-code">&lt;form&gt;</code> submission and validation just like a
+          built-in input.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-input.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=892-4256"
+        framer="https://scaleframer.framer.website/components/form"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-input'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <scd-demo>
+        <sc-input label="Email" placeholder="you@example.com" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Negative</h3>
+      <scd-demo>
+        <sc-input label="Email" placeholder="you@example.com" state="negative" help-text="Invalid email" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Positive</h3>
+      <scd-demo>
+        <sc-input label="Email" placeholder="you@example.com" state="positive" help-text="Looks good!" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-input label="Email" placeholder="you@example.com" state="disabled" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Leading icon</h3>
+      <scd-demo>
+        <sc-input label="Search" placeholder="Search..." leading-icon="search" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Trailing icon</h3>
+      <scd-demo>
+        <sc-input label="Password" placeholder="Enter password" trailing-icon="lock" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Required</h3>
+      <scd-demo>
+        <sc-input label="Full name" placeholder="John Doe" required show-help-text="false" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Required + email format</h3>
+      <p>Try submitting empty, then &ldquo;foo&rdquo;, then &ldquo;a@b.com&rdquo;.</p>
+      <scd-demo code='&lt;form&gt;
+  &lt;sc-input name="email" type="email" required label="Email"
+            placeholder="you@example.com"&gt;&lt;/sc-input&gt;
+  &lt;sc-button type="primary"
+    @click=${(e) =&gt; e.target.closest("form").requestSubmit()}&gt;Submit&lt;/sc-button&gt;
+&lt;/form&gt;
+&lt;!-- requestSubmit() runs validation: empty → "Please fill out this field."
+     · "foo" → blocked (no @) · "a@b.com" → submits --&gt;'>
+        <form data-email-form style="display:flex;flex-direction:column;gap:var(--sc-space-s);max-width:320px">
+          <sc-input name="email" type="email" required label="Email" placeholder="you@example.com" help-text="Enter a valid email"></sc-input>
+          <sc-button type="primary" data-submit>Submit</sc-button>
+          <span class="email-out" style="font:var(--sc-type-size-s)/1.4 system-ui;color:var(--sc-color-text-positive)"></span>
+        </form>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Form integration</h3>
+      <p>Submit &amp; reset — all four form-associated controls participate.</p>
+      <scd-demo code='&lt;form&gt;
+  &lt;sc-input name="email" type="email" label="Email" required&gt;&lt;/sc-input&gt;
+  &lt;sc-checkbox name="newsletter" value="yes"&gt;Subscribe&lt;/sc-checkbox&gt;
+  &lt;sc-radio name="plan" value="free"&gt;Free&lt;/sc-radio&gt;
+  &lt;sc-radio name="plan" value="pro" checked&gt;Pro&lt;/sc-radio&gt;
+  &lt;sc-toggle name="marketing" value="yes"&gt;&lt;/sc-toggle&gt;
+  &lt;sc-button type="primary" @click=${submit}&gt;Submit&lt;/sc-button&gt;
+  &lt;sc-button type="secondary" @click=${reset}&gt;Reset&lt;/sc-button&gt;
+&lt;/form&gt;
+&lt;!-- All controls are form-associated: new FormData(form) collects every
+     name/value, and form.reset() clears them. --&gt;'>
+        <form data-fa-form style="display:flex;flex-direction:column;gap:var(--sc-space-l);max-width:480px;padding:var(--sc-space-l);border:1px solid var(--sc-color-border-subtle);border-radius:var(--sc-border-radius-m)">
+          <sc-input name="email" type="email" label="Email" placeholder="you@example.com" required></sc-input>
+          <sc-checkbox name="newsletter" value="yes">Subscribe to newsletter</sc-checkbox>
+          <div style="display:flex;flex-direction:column;gap:var(--sc-space-s)">
+            <span style="font-weight:600;color:var(--sc-color-text-secondary)">Plan</span>
+            <sc-radio name="plan" value="free">Free</sc-radio>
+            <sc-radio name="plan" value="pro" checked>Pro</sc-radio>
+            <sc-radio name="plan" value="team">Team</sc-radio>
+          </div>
+          <sc-toggle name="marketing" value="yes"></sc-toggle>
+          <div style="display:flex;gap:var(--sc-space-s)">
+            <sc-button type="primary" data-fa-submit>Submit</sc-button>
+            <sc-button type="secondary" data-fa-reset>Reset</sc-button>
+          </div>
+          <pre class="form-output" style="background:var(--sc-color-background-subtle);padding:var(--sc-space-m);border-radius:var(--sc-border-radius-xs);font-family:ui-monospace,monospace;font-size:13px;margin:0;white-space:pre-wrap">(submit to see FormData JSON)</pre>
+        </form>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Date</h3>
+      <p><code class="scd-inline-code">kind="date"</code> turns the field into a
+        <a href="/components/date-picker/">Date Picker</a> dropdown.</p>
+      <scd-demo>
+        <sc-input kind="date" label="Start date" placeholder="Select a date" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Date — preselected</h3>
+      <scd-demo>
+        <sc-input kind="date" label="Start date" placeholder="Select a date" value="2011-04-15" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Date — range</h3>
+      <scd-demo>
+        <sc-input kind="date" mode="range" label="Trip dates" placeholder="Select dates" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Date — with help text</h3>
+      <scd-demo>
+        <sc-input kind="date" label="Date of birth" placeholder="Select a date" help-text="MM/DD/YYYY" show-help-text style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Date — disabled</h3>
+      <scd-demo>
+        <sc-input kind="date" label="Start date" placeholder="Select a date" value="2011-04-15" state="disabled" style="max-width:320px"></sc-input>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>form fields, search inputs, email capture — any
+        single-line text entry. For multi-line input use
+        <a href="/components/text-area/">Text Area</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Always give the field a clear <code class="scd-inline-code">label</code>; use <code class="scd-inline-code">placeholder</code> for an example, not the label.</li>
+            <li>Set <code class="scd-inline-code">type</code> / <code class="scd-inline-code">inputmode</code> (email, tel…) so mobile keyboards and validation match.</li>
+            <li>Explain errors in <code class="scd-inline-code">help-text</code> with <code class="scd-inline-code">state="negative"</code>.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use placeholder text as the only label — it disappears on input.</li>
+            <li>Don&rsquo;t mark a field <code class="scd-inline-code">positive</code> unless the success is meaningful to confirm.</li>
+            <li>Don&rsquo;t use Input for multi-line text — use <a href="/components/text-area/">Text Area</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Label:</strong> the <code class="scd-inline-code">label</code> is associated with the inner field; keep <code class="scd-inline-code">show-label</code> on, or provide an external label if hidden.</li>
+        <li><strong>Form:</strong> form-associated — native validation propagates to the host (<code class="scd-inline-code">type="email"</code>, <code class="scd-inline-code">pattern</code>, <code class="scd-inline-code">required</code>) and it participates in submit/reset.</li>
+        <li><strong>Errors:</strong> <code class="scd-inline-code">state="negative"</code> styles the field and its <a href="/components/help-text/">Help Text</a>; pair it with a message so the error isn&rsquo;t colour-only.</li>
+        <li><strong>Date kind:</strong> renders a <code class="scd-inline-code">&lt;button aria-haspopup="dialog"&gt;</code> with <code class="scd-inline-code">aria-expanded</code>; the calendar follows the <a href="/components/date-picker/">Date Picker</a> keyboard model.</li>
+        <li><strong>Focus:</strong> shows a keyboard-only focus ring (suppressed for pointer focus).</li>
+        <li><strong>Events:</strong> emits <code class="scd-inline-code">input</code> and <code class="scd-inline-code">change</code> with <code class="scd-inline-code">{ value }</code>.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-input"></scd-api>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      onReady('form[data-email-form]', () => {
+        document.querySelectorAll('form[data-email-form]').forEach((form) => {
+          const out = form.querySelector('.email-out')
+          form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            out.textContent = 'Submitted ✓'
+          })
+          form.querySelector('[data-submit]').addEventListener('click', () => {
+            out.textContent = ''
+            form.requestSubmit()
+          })
+        })
+      })
+
+      onReady('form[data-fa-form]', () => {
+        document.querySelectorAll('form[data-fa-form]').forEach((form) => {
+          const out = form.querySelector('.form-output')
+          form.addEventListener('submit', (e) => {
+            e.preventDefault()
+            out.textContent = JSON.stringify(Object.fromEntries(new FormData(form).entries()), null, 2)
+          })
+          form.addEventListener('reset', () => { out.textContent = '(form reset)' })
+          form.querySelector('[data-fa-submit]').addEventListener('click', () => form.requestSubmit())
+          form.querySelector('[data-fa-reset]').addEventListener('click', () => form.reset())
+        })
+      })
+    </script>

@@ -1,0 +1,85 @@
+    <div class="scd-page-header">
+      <h1>Avatar</h1>
+      <div class="scd-page-header-text">
+        <p>Circular representations of a person or entity — showing a photo, initials, or a placeholder icon.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-avatar.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=5926-18314"
+        framer="https://scaleframer.framer.website/components/avatar"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-avatar'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Sizes</h3>
+      <p>Five sizes from <code class="scd-inline-code">xs</code> (16px) to
+        <code class="scd-inline-code">xl</code> (96px). Match the size to the
+        surrounding text and control density.</p>
+      <scd-demo>
+        <sc-avatar size="xl" src="https://i.pravatar.cc/96?img=1" alt="Jane Doe"></sc-avatar>
+        <sc-avatar size="l" src="https://i.pravatar.cc/48?img=2" alt="John Smith"></sc-avatar>
+        <sc-avatar size="m" src="https://i.pravatar.cc/32?img=3" alt="Alice"></sc-avatar>
+        <sc-avatar size="s" src="https://i.pravatar.cc/24?img=4" alt="Bob"></sc-avatar>
+        <sc-avatar size="xs" src="https://i.pravatar.cc/16?img=5" alt="Charlie"></sc-avatar>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Behaviour &amp; states</h3>
+      <p>A fallback chain keeps the avatar meaningful: a
+        <code class="scd-inline-code">src</code> renders the photo; with no
+        <code class="scd-inline-code">src</code>, the first letter of
+        <code class="scd-inline-code">alt</code>; with neither, a placeholder icon.
+        <code class="scd-inline-code">disabled</code> dims the avatar.</p>
+      <scd-demo>
+        <sc-avatar size="l" src="https://i.pravatar.cc/48?img=6" alt="Diana"></sc-avatar>
+        <sc-avatar size="l" alt="Emily Ng"></sc-avatar>
+        <sc-avatar size="l"></sc-avatar>
+        <sc-avatar size="l" src="https://i.pravatar.cc/48?img=7" alt="Frank" disabled></sc-avatar>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>profile pictures, comment threads, user
+        lists, team members — anywhere a person needs a visual identity.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Always pass <code class="scd-inline-code">alt</code> with the person&rsquo;s name — it becomes the accessible label.</li>
+            <li>Use the initials fallback for users who have no photo.</li>
+            <li>Keep the size consistent within a single list or row.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t make an avatar the only label for an interactive control — pair it with a name or tooltip.</li>
+            <li>Don&rsquo;t line up many avatars by hand — use <a href="/components/avatar-group/">Avatar group</a>.</li>
+            <li>Don&rsquo;t rely on the placeholder icon to identify a specific person.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Name:</strong> renders <code class="scd-inline-code">role="img"</code> with an <code class="scd-inline-code">aria-label</code> taken from <code class="scd-inline-code">alt</code> (falls back to &ldquo;Avatar&rdquo; when empty) — always supply a meaningful <code class="scd-inline-code">alt</code>.</li>
+        <li><strong>Decorative layers:</strong> the initials and placeholder icon are <code class="scd-inline-code">aria-hidden</code>; the accessible name comes solely from <code class="scd-inline-code">alt</code>.</li>
+        <li><strong>Contrast:</strong> initials sit on a token-driven surface that meets WCAG AA against the text colour.</li>
+        <li><strong>Disabled:</strong> <code class="scd-inline-code">disabled</code> is visual only — convey the disabled state on the surrounding interactive element too.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-avatar"></scd-api>
+    </div>

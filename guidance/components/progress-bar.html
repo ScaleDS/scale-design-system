@@ -1,0 +1,133 @@
+    <div class="scd-page-header">
+      <h1>Progress Bar</h1>
+      <div class="scd-page-header-text">
+        <p>A presentational completion indicator (<code class="scd-inline-code">role="progressbar"</code>).
+          <code class="scd-inline-code">value</code> (0–100) drives the fill width;
+          <code class="scd-inline-code">status</code> sets the colour.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-progress-bar.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=23278-206529"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-progress-bar'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Progress</h3>
+      <p><code class="scd-inline-code">value</code> is the completion percentage, clamped to
+        0–100.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l);width:370px">
+          <sc-progress-bar value="0" label="Uploading file"></sc-progress-bar>
+          <sc-progress-bar value="25" label="Uploading file"></sc-progress-bar>
+          <sc-progress-bar value="50" label="Uploading file"></sc-progress-bar>
+          <sc-progress-bar value="75" label="Uploading file"></sc-progress-bar>
+          <sc-progress-bar value="100" label="Uploading file"></sc-progress-bar>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Status</h3>
+      <p><code class="scd-inline-code">status</code> colours the fill —
+        <code class="scd-inline-code">uploading</code>, <code class="scd-inline-code">positive</code>,
+        or <code class="scd-inline-code">negative</code>.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l);width:370px">
+          <sc-progress-bar value="60" status="uploading" label="Uploading"></sc-progress-bar>
+          <sc-progress-bar value="100" status="positive" label="Upload complete"></sc-progress-bar>
+          <sc-progress-bar value="100" status="negative" label="Upload failed"></sc-progress-bar>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Live upload</h3>
+      <p>Drive <code class="scd-inline-code">value</code> over time, then flip
+        <code class="scd-inline-code">status</code> and <code class="scd-inline-code">label</code>
+        on completion.</p>
+      <scd-demo code='&lt;sc-progress-bar value="0" status="uploading" label="Uploading file"&gt;&lt;/sc-progress-bar&gt;
+&lt;sc-button @click=${startUpload}&gt;Start upload&lt;/sc-button&gt;
+
+// startUpload(): tick value 0 → 100, then on completion
+//   bar.status = "positive"
+//   bar.label  = "Upload complete"'>
+        <div class="sc-upload-demo" style="display:flex;flex-direction:column;gap:var(--sc-space-m);width:370px">
+          <sc-progress-bar value="0" status="uploading" label="Uploading file"></sc-progress-bar>
+          <sc-button type="secondary" size="m" leading-icon="upload-cloud" style="align-self:flex-start" data-start-upload>Start upload</sc-button>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>file uploads, multi-step progress, and any determinate
+        task. Pass <code class="scd-inline-code">label</code> for an accessible name. For
+        indeterminate waits, use a <a href="/components/spinner/">Spinner</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use a progress bar when you can measure completion (determinate tasks).</li>
+            <li>Update <code class="scd-inline-code">label</code> to reflect the current state (&ldquo;Uploading&rdquo; → &ldquo;Complete&rdquo;).</li>
+            <li>Use <code class="scd-inline-code">positive</code> / <code class="scd-inline-code">negative</code> to signal the final outcome.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use it for unknown-duration waits — use a <a href="/components/spinner/">Spinner</a>.</li>
+            <li>Don&rsquo;t leave it stuck at a value without resolving to success or failure.</li>
+            <li>Don&rsquo;t rely on fill colour alone — keep a text label nearby.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> exposes <code class="scd-inline-code">role="progressbar"</code> with <code class="scd-inline-code">aria-valuemin="0"</code>, <code class="scd-inline-code">aria-valuemax="100"</code>, and a live <code class="scd-inline-code">aria-valuenow</code>.</li>
+        <li><strong>Name:</strong> <code class="scd-inline-code">label</code> sets <code class="scd-inline-code">aria-label</code>; always provide one so the bar isn&rsquo;t anonymous.</li>
+        <li><strong>Status:</strong> colour conveys outcome — reinforce it in the <code class="scd-inline-code">label</code> text (&ldquo;failed&rdquo;, &ldquo;complete&rdquo;).</li>
+        <li><strong>Updates:</strong> when value changes, screen readers announce the new percentage via <code class="scd-inline-code">aria-valuenow</code>.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-progress-bar"></scd-api>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      // Live upload: tick value 0 → 100, then mark positive on completion.
+      // The button is disabled mid-run to prevent overlapping runs.
+      onReady('[data-start-upload]', () => {
+        document.querySelectorAll('[data-start-upload]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const bar = btn.closest('.sc-upload-demo').querySelector('sc-progress-bar')
+            if (!bar) return
+            bar.value = 0
+            bar.status = 'uploading'
+            bar.label = 'Uploading file'
+            btn.setAttribute('disabled', '')
+            const id = window.setInterval(() => {
+              bar.value = Math.min(100, bar.value + 5)
+              if (bar.value >= 100) {
+                window.clearInterval(id)
+                bar.status = 'positive'
+                bar.label = 'Upload complete'
+                btn.removeAttribute('disabled')
+              }
+            }, 120)
+          })
+        })
+      })
+    </script>

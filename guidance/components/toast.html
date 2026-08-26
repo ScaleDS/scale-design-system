@@ -1,0 +1,125 @@
+    <div class="scd-page-header">
+      <h1>Toast</h1>
+      <div class="scd-page-header-text">
+        <p>Brief, self-dismissing notifications that pop up to confirm an action without
+          interrupting the flow. Shown imperatively via
+          <code class="scd-inline-code">ScToast.show()</code>, which stacks toasts in a corner of
+          the viewport.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-toast.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=9710-61807"
+        framer="https://scaleframer.framer.website/components/toast"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import { ScToast } from '@scale-ds/scale-design-system/components/sc-toast'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Status variants</h3>
+      <p>Click a trigger — the toast appears in the top-end corner.
+        <code class="scd-inline-code">default</code> is a plain inverse surface; the other statuses
+        add a leading <a href="/components/status-icon/">Status Icon</a>.</p>
+      <scd-demo code="ScToast.show({ status: 'positive', text: 'Your file uploaded successfully.', link: 'View' })">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sc-space-s)">
+          <sc-button data-toast data-status="default" data-text="Your changes have been saved." data-link="Undo">Default</sc-button>
+          <sc-button type="secondary" data-toast data-status="info" data-text="A new version is available." data-link="Refresh">Info</sc-button>
+          <sc-button type="secondary" data-toast data-status="negative" data-text="Something went wrong. Please try again." data-link="Retry">Negative</sc-button>
+          <sc-button type="secondary" data-toast data-status="positive" data-text="Your file uploaded successfully." data-link="View">Positive</sc-button>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Placement</h3>
+      <p>One stack per <code class="scd-inline-code">placement</code> — six corners are available.</p>
+      <scd-demo code="ScToast.show({ status: 'info', text: 'Bottom end.', placement: 'bottom-end' })">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sc-space-s)">
+          <sc-button type="secondary" data-toast data-status="info" data-text="Top start." data-placement="top-start">Top start</sc-button>
+          <sc-button type="secondary" data-toast data-status="info" data-text="Top center." data-placement="top-center">Top center</sc-button>
+          <sc-button type="secondary" data-toast data-status="info" data-text="Top end (default)." data-placement="top-end">Top end</sc-button>
+          <sc-button type="secondary" data-toast data-status="info" data-text="Bottom start." data-placement="bottom-start">Bottom start</sc-button>
+          <sc-button type="secondary" data-toast data-status="info" data-text="Bottom center." data-placement="bottom-center">Bottom center</sc-button>
+          <sc-button type="secondary" data-toast data-status="info" data-text="Bottom end." data-placement="bottom-end">Bottom end</sc-button>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Duration</h3>
+      <p>Each toast auto-dismisses after <code class="scd-inline-code">duration</code> ms
+        (default 4000); <code class="scd-inline-code">0</code> keeps it until dismissed.</p>
+      <scd-demo code="ScToast.show({ status: 'default', text: 'Stays until you dismiss it.', link: 'Got it', duration: 0 })">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sc-space-s)">
+          <sc-button type="secondary" data-toast data-status="default" data-text="Auto-dismisses after 4 seconds." data-link="Undo">4s (default)</sc-button>
+          <sc-button type="secondary" data-toast data-status="default" data-text="Stays until you dismiss it." data-link="Got it" data-duration="0">Persistent (0)</sc-button>
+          <sc-button type="secondary" data-toast data-status="info" data-text="Gone in 1 second." data-duration="1000">1s</sc-button>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>brief confirmations and feedback after an action
+        (&ldquo;Saved&rdquo;, &ldquo;Copied&rdquo;). For persistent page-level messages, use a
+        <a href="/components/banner/">Banner</a>; for inline contextual messages, an
+        <a href="/components/alert/">Alert</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep the message to one short sentence — toasts disappear quickly.</li>
+            <li>Pair a destructive confirmation with an action <code class="scd-inline-code">link</code> (e.g. &ldquo;Undo&rdquo;).</li>
+            <li>Use <code class="scd-inline-code">duration: 0</code> when the toast carries an action the user must take.</li>
+            <li>Pick one <code class="scd-inline-code">placement</code> per app and stick with it.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a toast for critical errors that need acknowledgement — use a <a href="/components/modal/">Modal</a> or <a href="/components/banner/">Banner</a>.</li>
+            <li>Don&rsquo;t put the only path to important content inside a toast — it auto-dismisses.</li>
+            <li>Don&rsquo;t fire toasts for every minor state change; reserve them for the result of a user action.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Announcements:</strong> <code class="scd-inline-code">status="negative"</code> renders <code class="scd-inline-code">role="alert"</code> (assertive); all other statuses use <code class="scd-inline-code">role="status"</code> (polite).</li>
+        <li><strong>Keyboard:</strong> <kbd>Esc</kbd> dismisses a focused toast; the close × is a real <code class="scd-inline-code">&lt;button&gt;</code> labelled &ldquo;Close notification&rdquo;.</li>
+        <li><strong>Link:</strong> with <code class="scd-inline-code">link-href</code> it&rsquo;s a real <code class="scd-inline-code">&lt;a&gt;</code>; without one it&rsquo;s a focusable <code class="scd-inline-code">role="link"</code> for click handling.</li>
+        <li><strong>Reduced motion:</strong> the exit animation is skipped under <code class="scd-inline-code">prefers-reduced-motion</code>.</li>
+        <li><strong>Timing:</strong> auto-dismiss can hide content before it&rsquo;s read — keep messages short, or use <code class="scd-inline-code">duration: 0</code> for anything actionable.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-toast"></scd-api>
+    </div>
+
+    <script type="module">
+      import { ScToast } from '@scale-ds/scale-design-system/components/sc-toast'
+      import { onReady } from '/src/guidelines/ready.ts'
+      onReady('sc-button[data-toast]', () => {
+        document.querySelectorAll('sc-button[data-toast]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const d = btn.dataset
+            ScToast.show({
+              status: d.status,
+              text: d.text,
+              link: d.link || undefined,
+              placement: d.placement || undefined,
+              duration: d.duration !== undefined ? Number(d.duration) : undefined,
+            })
+          })
+        })
+      })
+    </script>

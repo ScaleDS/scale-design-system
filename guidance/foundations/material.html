@@ -1,0 +1,128 @@
+    <div class="scd-page-header">
+      <h1>Material</h1>
+      <div class="scd-page-header-text">
+        <p>Materials are translucent surfaces that blur and tint whatever sits behind
+          them, so foreground UI stays legible while the content underneath shows through.
+          Scale ships five levels, from barely-there to nearly opaque:
+          <strong>Ultra Thin</strong>, <strong>Thin</strong>, <strong>Regular</strong>,
+          <strong>Thick</strong>, and <strong>Chrome</strong>.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-mixins-material.scss"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=52399-33777"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>How it works</h2>
+      <p>A material paints two layers over a backdrop blur: a <em>Fill&nbsp;-&nbsp;FX</em>
+        layer (a blended highlight that lifts the underlying colour) beneath a
+        <em>Fill</em> layer (the tint that sets opacity). The blur radius is constant; the
+        levels differ only in how opaque the fill is: Ultra&nbsp;Thin lets the most
+        colour through, Chrome the least.</p>
+      <div class="scd-material-stage">
+        <div class="scd-material-panel scd-material--ultrathin">
+          <span class="scd-material-panel__label">Ultra Thin</span>
+          <span class="scd-material-panel__meta">Most transparent</span>
+        </div>
+        <div class="scd-material-panel scd-material--thin">
+          <span class="scd-material-panel__label">Thin</span>
+          <span class="scd-material-panel__meta">Light separation</span>
+        </div>
+        <div class="scd-material-panel scd-material--regular">
+          <span class="scd-material-panel__label">Regular</span>
+          <span class="scd-material-panel__meta">Default panel</span>
+        </div>
+        <div class="scd-material-panel scd-material--thick">
+          <span class="scd-material-panel__label">Thick</span>
+          <span class="scd-material-panel__meta">Strong legibility</span>
+        </div>
+        <div class="scd-material-panel scd-material--chrome">
+          <span class="scd-material-panel__label">Chrome</span>
+          <span class="scd-material-panel__meta">Most opaque</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Levels</h2>
+      <p>Each level pairs a <code class="scd-inline-code">-fill</code> token with a
+        <code class="scd-inline-code">-fill-fx</code> token, applied through its mixin.
+        Match the level to how much the content below should remain visible, using the
+        usage guidance. The preview shows the real material over a busy backdrop in the
+        active theme.</p>
+      <sc-table-basic class="scd-border-table scd-material-table" label="Material tokens">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-border-preview-col)">Material</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Mixin &amp; tokens</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Effect</sc-table-head>
+          <sc-table-head width="minmax(min-content, 1fr)">Usage</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-material-swatch"><span class="scd-material-swatch__chip scd-material--ultrathin"></span></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Ultra Thin</span><code class="scd-inline-code scd-t-text-m">@include sc-material-ultrathin</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-ultrathin-fill</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-ultrathin-fill-fx</code></sc-table-cell>
+          <sc-table-cell>Blur 50px · FX blend <code class="scd-inline-code">color-dodge</code></sc-table-cell>
+          <sc-table-cell>Transient overlays where the background must stay highly visible: media scrubbers, keyboard backdrops.</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-material-swatch"><span class="scd-material-swatch__chip scd-material--thin"></span></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Thin</span><code class="scd-inline-code scd-t-text-m">@include sc-material-thin</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-thin-fill</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-thin-fill-fx</code></sc-table-cell>
+          <sc-table-cell>Blur 50px · FX blend <code class="scd-inline-code">color-dodge</code></sc-table-cell>
+          <sc-table-cell>Light separation over content: tooltips, popovers, inline notifications.</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-material-swatch"><span class="scd-material-swatch__chip scd-material--regular"></span></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Regular</span><code class="scd-inline-code scd-t-text-m">@include sc-material-regular</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-regular-fill</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-regular-fill-fx</code></sc-table-cell>
+          <sc-table-cell>Blur 50px · FX blend <code class="scd-inline-code">plus-lighter</code></sc-table-cell>
+          <sc-table-cell>The default panel material: sidebars, sheets, and cards floating over content.</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-material-swatch"><span class="scd-material-swatch__chip scd-material--thick"></span></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Thick</span><code class="scd-inline-code scd-t-text-m">@include sc-material-thick</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-thick-fill</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-thick-fill-fx</code></sc-table-cell>
+          <sc-table-cell>Blur 50px · FX blend <code class="scd-inline-code">plus-lighter</code></sc-table-cell>
+          <sc-table-cell>Stronger separation and legibility: modal sheets, notification banners over dense content.</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-material-swatch"><span class="scd-material-swatch__chip scd-material--chrome"></span></span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Chrome</span><code class="scd-inline-code scd-t-text-m">@include sc-material-chrome</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-chrome-fill</code><code class="scd-inline-code scd-t-text-m">--sc-color-material-chrome-fill-fx</code></sc-table-cell>
+          <sc-table-cell>Blur 50px · Fill blend <code class="scd-inline-code">hard-light</code></sc-table-cell>
+          <sc-table-cell>The most opaque level for persistent framing UI: toolbars, navigation bars, headers (the app&rsquo;s &ldquo;chrome&rdquo;).</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use materials over content that should stay partly visible: floating panels, navigation, and overlays.</li>
+            <li>Pick the level by how much the background should show through: Ultra&nbsp;Thin reveals most, Chrome least.</li>
+            <li>Reserve Chrome for persistent framing UI (toolbars, headers); use Regular for the typical floating panel.</li>
+            <li>Apply materials through their mixin so the two fill layers and blend modes stay correct.</li>
+            <li>Test in both themes: the fills invert between light and dark, and legibility can change with them.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t place a material over a flat, solid background; with nothing to blur it just looks like a faint tint.</li>
+            <li>Don&rsquo;t stack materials on materials; the compounded blur muddies both and tanks performance.</li>
+            <li>Don&rsquo;t hand-roll the fills with raw <code class="scd-inline-code">rgba()</code> values; use the tokens so themes stay in sync.</li>
+            <li>Don&rsquo;t put long-form reading content on a thin material; reach for a solid surface when legibility matters more than depth.</li>
+            <li>Don&rsquo;t rely on the blur for meaning: it&rsquo;s decoration, not a substitute for hierarchy or labelling.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Contrast:</strong> text and icons on a material must meet WCAG&nbsp;2.1&nbsp;AA against the <em>worst-case</em> backdrop that can scroll behind it: 4.5:1 for body text, 3:1 for large text and UI.</li>
+        <li><strong>Reduced transparency:</strong> honour <code class="scd-inline-code">prefers-reduced-transparency</code> (and the platform &ldquo;Reduce Transparency&rdquo; setting) by falling back to a solid surface token.</li>
+        <li><strong>Fallback:</strong> where <code class="scd-inline-code">backdrop-filter</code> is unsupported the fill still renders, but verify the un-blurred result stays legible.</li>
+        <li><strong>Motion:</strong> content moving behind a translucent surface can distract; keep critical text on calmer or more opaque levels (Thick, Chrome).</li>
+        <li><strong>Test broadly:</strong> check legibility over light and dark backdrops, busy imagery, and at low brightness. A material that only works over one backdrop is incomplete.</li>
+      </ul>
+    </div>

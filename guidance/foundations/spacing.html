@@ -1,0 +1,165 @@
+    <div class="scd-page-header">
+      <h1>Spacing</h1>
+      <div class="scd-page-header-text">
+        <p>A mathematical spacing system built on an 8px base unit, with a 2px
+          half-step for precision adjustments. This systematic approach creates
+          consistent, predictable layouts that scale gracefully across every
+          screen size and platform. Build with the named steps
+          (<code class="scd-inline-code">--sc-space-s</code>,
+          <code class="scd-inline-code">-m</code>,
+          <code class="scd-inline-code">-l</code>…) rather than raw pixels so
+          spacing stays proportional and consistent across the system.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-variables-spacing.scss"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=175-628"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Scale</h2>
+      <p>Built on an 8px base unit with a 2px half-step for precision adjustments.</p>
+      <sc-table-basic class="scd-type-primitive-table scd-space-table" label="Spacing scale">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-space-preview-col)">Size</sc-table-head>
+          <sc-table-head width="var(--scd-space-name-col)">Name</sc-table-head>
+          <sc-table-head width="max-content">Variable</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Common use cases</sc-table-head>
+          <sc-table-head width="var(--scd-space-value-col)">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-none)"></span></sc-table-cell>
+          <sc-table-cell>None</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-none</code></sc-table-cell>
+          <sc-table-cell>Remove spacing, reset margins</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">0px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-2xs)"></span></sc-table-cell>
+          <sc-table-cell>2XS</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-2xs</code></sc-table-cell>
+          <sc-table-cell><strong>Half-step</strong>: fine adjustments, optical corrections</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">2px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-xs)"></span></sc-table-cell>
+          <sc-table-cell>XS</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-xs</code></sc-table-cell>
+          <sc-table-cell>Tight spacing, icon-text gaps, small badges</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">4px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-s)"></span></sc-table-cell>
+          <sc-table-cell>S</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-s</code></sc-table-cell>
+          <sc-table-cell><strong>Base unit</strong>: standard element spacing</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">8px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-m)"></span></sc-table-cell>
+          <sc-table-cell>M</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-m</code></sc-table-cell>
+          <sc-table-cell>Comfortable element spacing, button padding</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">12px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-l)"></span></sc-table-cell>
+          <sc-table-cell>L</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-l</code></sc-table-cell>
+          <sc-table-cell>Component internal padding, card padding</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-xl)"></span></sc-table-cell>
+          <sc-table-cell>XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-xl</code></sc-table-cell>
+          <sc-table-cell>Component external margins, section spacing</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">24px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-2xl)"></span></sc-table-cell>
+          <sc-table-cell>2XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-2xl</code></sc-table-cell>
+          <sc-table-cell>Large component spacing, content blocks</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">32px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-3xl)"></span></sc-table-cell>
+          <sc-table-cell>3XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-3xl</code></sc-table-cell>
+          <sc-table-cell>Section separators, layout spacing</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">40px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-4xl)"></span></sc-table-cell>
+          <sc-table-cell>4XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-4xl</code></sc-table-cell>
+          <sc-table-cell>Major section breaks, hero padding</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">48px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-5xl)"></span></sc-table-cell>
+          <sc-table-cell>5XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-5xl</code></sc-table-cell>
+          <sc-table-cell>Large layout spacing, page margins</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">56px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-6xl)"></span></sc-table-cell>
+          <sc-table-cell>6XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-6xl</code></sc-table-cell>
+          <sc-table-cell>Extra large sections, hero elements</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">64px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-7xl)"></span></sc-table-cell>
+          <sc-table-cell>7XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-7xl</code></sc-table-cell>
+          <sc-table-cell>Massive layout spacing, landing pages</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">72px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-space-bar" style="inline-size: var(--sc-space-8xl)"></span></sc-table-cell>
+          <sc-table-cell>8XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-8xl</code></sc-table-cell>
+          <sc-table-cell>Maximum spacing, dramatic separation</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">80px</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use the spacing scale exclusively, never arbitrary values like 15px, 22px, or 35px.</li>
+            <li>Think in multiples of 8: estimate in 8s before reaching for a calculator (&ldquo;that needs about 3&times; spacing = 24px&rdquo;).</li>
+            <li>Apply the internal &le; external rule: padding inside a component should be less than the margins between components.</li>
+            <li>Reserve 2XS (2px) for optical adjustments, not standard spacing.</li>
+            <li>Create rhythm with repetition: use the same value for similar relationships (e.g. all form field gaps = M).</li>
+            <li>Let white space breathe; larger spacing values improve comprehension.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use values off the scale: no 10px, 18px, 25px, or 30px.</li>
+            <li>Don&rsquo;t mix arbitrary and system values; L (16px) beside a random 14px margin creates visual discord.</li>
+            <li>Don&rsquo;t ignore optical adjustments; when visual balance needs a slight deviation, that&rsquo;s what 2XS is for.</li>
+            <li>Don&rsquo;t over-complicate a component with more than 5&ndash;7 spacing values.</li>
+            <li>Don&rsquo;t forget responsive adjustments; spacing often needs to reduce on smaller screens.</li>
+            <li>Don&rsquo;t use large spacing on small components; a tiny badge with XL (24px) padding looks absurd.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Touch targets:</strong> keep interactive elements at least 44&times;44px (iOS) or 48&times;48px (Android) by combining content size with appropriate padding.</li>
+        <li><strong>Reading comfort:</strong> hold line length to 60&ndash;90 characters and use L to XL (16&ndash;24px) between paragraphs; large text blocks need more surrounding white space.</li>
+        <li><strong>Cognitive load:</strong> consistent, predictable spacing is easier to scan, helps users find information faster, and clarifies hierarchy for navigation.</li>
+      </ul>
+    </div>

@@ -1,0 +1,99 @@
+    <div class="scd-page-header">
+      <h1>Page Controls</h1>
+      <div class="scd-page-header-text">
+        <p>Pagination dots for carousels and steppers. Each dot is a native button; the active
+          one carries <code class="scd-inline-code">aria-current</code> and clicking a dot fires a
+          <code class="scd-inline-code">change</code> event.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-page-controls.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=892-5405"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-page-controls'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Active index</h3>
+      <p><code class="scd-inline-code">current</code> is the zero-based active page.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l);align-items:flex-start">
+          <sc-page-controls total="6" current="0"></sc-page-controls>
+          <sc-page-controls total="6" current="2"></sc-page-controls>
+          <sc-page-controls total="6" current="5"></sc-page-controls>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Count</h3>
+      <p><code class="scd-inline-code">total</code> sets the number of dots.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l);align-items:flex-start">
+          <sc-page-controls total="2" current="0"></sc-page-controls>
+          <sc-page-controls total="4" current="1"></sc-page-controls>
+          <sc-page-controls total="6" current="3"></sc-page-controls>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Interactive</h3>
+      <p>Click a dot — the active state moves and a <code class="scd-inline-code">change</code>
+        event fires with the new index.</p>
+      <scd-demo>
+        <sc-page-controls total="5" current="0" label="Carousel pages"></sc-page-controls>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-page-controls total="6" current="2" disabled></sc-page-controls>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>carousels, onboarding steppers, and any short sequence
+        of pages where a compact position indicator helps. For numbered table pagination, use the
+        <a href="/components/table/">Table</a> footer instead.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use for short sequences — a handful of slides or steps.</li>
+            <li>Give the group a meaningful <code class="scd-inline-code">label</code> for context.</li>
+            <li>Keep the dots in sync with the content they page through.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use dots for long lists — numbered pagination scales better.</li>
+            <li>Don&rsquo;t rely on dots as the only way to advance; pair with arrows or swipe.</li>
+            <li>Don&rsquo;t make dots the sole indicator of progress in a long multi-step form.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Pattern:</strong> a <code class="scd-inline-code">role="group"</code> of native <code class="scd-inline-code">&lt;button&gt;</code> dots (the WAI-ARIA carousel slide-picker pattern), labelled by <code class="scd-inline-code">label</code>.</li>
+        <li><strong>Active state:</strong> the current dot carries <code class="scd-inline-code">aria-current="true"</code> — colour isn&rsquo;t the only cue.</li>
+        <li><strong>Per-dot label:</strong> each button announces &ldquo;Go to page N&rdquo;.</li>
+        <li><strong>Target size:</strong> the hit area expands to ~24px even though the dot renders at 8px.</li>
+        <li><strong>Keyboard:</strong> each dot is tab-focusable and activates with <kbd>Enter</kbd> / <kbd>Space</kbd>; <code class="scd-inline-code">disabled</code> removes them from the tab order.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-page-controls"></scd-api>
+    </div>

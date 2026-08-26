@@ -1,0 +1,92 @@
+    <div class="scd-page-header">
+      <h1>Section Bento</h1>
+      <div class="scd-page-header-text">
+        <p>A bento grid with four <a href="/components/card-image/">Card Image</a>
+          slots arranged in a Z-pattern — row one spans 3 + 2 columns, row two flips
+          to 2 + 3. Optional <code class="scd-inline-code">heading</code> and
+          <code class="scd-inline-code">subtext</code> slots sit centred above the grid.</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-section-bento'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Four cards</h3>
+      <scd-demo>
+        <sc-section-bento>
+          <sc-card-image slot="card-1" variant="fill"
+            image-src="/images/framer/sc-image-framer-bento-components-light.png"
+            image-src-dark="/images/framer/sc-image-framer-bento-components-dark.png"
+            image-alt="Components">
+            <h4 slot="heading">56 Components</h4>
+            <p slot="description">Thousands of combinations.</p>
+          </sc-card-image>
+          <sc-card-image slot="card-2" variant="fill"
+            image-src="/images/framer/sc-image-framer-bento-variables-light.png"
+            image-src-dark="/images/framer/sc-image-framer-bento-variables-dark.png"
+            image-alt="Variables">
+            <h4 slot="heading">120 Styles</h4>
+            <p slot="description">Semantic color and type.</p>
+          </sc-card-image>
+          <sc-card-image slot="card-3" variant="fill"
+            image-src="/images/framer/sc-image-framer-bento-icons-light.png"
+            image-src-dark="/images/framer/sc-image-framer-bento-icons-dark.png"
+            image-alt="Icons">
+            <h4 slot="heading">288 Icons</h4>
+            <p slot="description">Feather + status icons.</p>
+          </sc-card-image>
+          <sc-card-image slot="card-4" variant="fill"
+            image-src="/images/framer/sc-image-framer-bento-sections-light.png"
+            image-src-dark="/images/framer/sc-image-framer-bento-sections-dark.png"
+            image-alt="Modules">
+            <h4 slot="heading">15 Modules</h4>
+            <p slot="description">Hero, Pricing, FAQ and more.</p>
+          </sc-card-image>
+        </sc-section-bento>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>feature showcases, product highlights, and
+        visual grid layouts. Slot a fill-variant card into each of
+        <code class="scd-inline-code">card-1</code>…<code class="scd-inline-code">card-4</code>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Fill all four card slots — the Z-pattern reads as broken with gaps.</li>
+            <li>Use <code class="scd-inline-code">variant="fill"</code> cards so each one stretches to its cell.</li>
+            <li>Keep card headings parallel in length and structure — the grid invites comparison.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t rely on the wide-vs-narrow cells to signal importance — the layout collapses to a single column on mobile.</li>
+            <li>Don&rsquo;t slot long-form content into the cards; this is a showcase, not a reading surface.</li>
+            <li>Don&rsquo;t use it for fewer than four items — use <a href="/sections/feature/">Section Feature</a> or a row of <a href="/components/card/">Cards</a> instead.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Headings:</strong> the section imposes no heading levels — slot a heading that fits the page outline (e.g. <code class="scd-inline-code">h2</code> in the <code class="scd-inline-code">heading</code> slot, <code class="scd-inline-code">h3</code>/<code class="scd-inline-code">h4</code> in the cards).</li>
+        <li><strong>Images:</strong> give every slotted <a href="/components/card-image/">Card Image</a> an <code class="scd-inline-code">image-alt</code>; the section adds no text alternatives itself.</li>
+        <li><strong>Order:</strong> reading and tab order follow slot order (<code class="scd-inline-code">card-1</code>→<code class="scd-inline-code">card-4</code>), matching the visual Z-pattern on desktop and the stacked order on mobile.</li>
+        <li><strong>Responsive:</strong> the grid reflows (5-column Z-pattern → single column ≤ 402px) without content changes.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-section-bento"></scd-api>
+    </div>

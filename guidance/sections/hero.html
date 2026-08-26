@@ -1,0 +1,76 @@
+    <div class="scd-page-header">
+      <h1>Hero</h1>
+      <div class="scd-page-header-text">
+        <p>The first thing visitors see — a bold, full-width section that sets the tone with a
+          message and a call to action. Supports a version <code class="scd-inline-code">badge</code>,
+          a themed background image, CTA buttons, and an optional email capture form
+          (<code class="scd-inline-code">show-form</code>).</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-hero'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Framed here for the docs — in production the hero spans the viewport
+        (<code class="scd-inline-code">90vh</code> tall).</p>
+      <scd-demo code='&lt;sc-hero badge="3.2" primary-label="Get Started" primary-href="#"
+         secondary-label="Learn more" secondary-href="#"&gt;
+  &lt;h2 slot="heading"&gt;Build faster with Scale&lt;/h2&gt;
+  &lt;p slot="subtext"&gt;A design system that helps individuals and organisations scale.&lt;/p&gt;
+&lt;/sc-hero&gt;'>
+        <div style="position:relative;height:400px;border:1px solid var(--sc-color-border-subtle);border-radius:8px;overflow:hidden;width:100%;transform:translateZ(0)">
+          <sc-hero style="height:100%" badge="3.2" primary-label="Get Started" primary-href="#" secondary-label="Learn more" secondary-href="#">
+            <h2 slot="heading">Build faster with Scale</h2>
+            <p slot="subtext">A design system that helps individuals and organisations scale.</p>
+          </sc-hero>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>the top section of a landing page, product
+        introductions, and conversion-focused entry points. Slot a
+        <code class="scd-inline-code">heading</code> and <code class="scd-inline-code">subtext</code>;
+        set the CTAs via <code class="scd-inline-code">primary-*</code> /
+        <code class="scd-inline-code">secondary-*</code>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Lead with one clear value statement in <code class="scd-inline-code">heading</code> — a line, not a paragraph.</li>
+            <li>Use one hero per page, at the very top.</li>
+            <li>Provide both <code class="scd-inline-code">image-src</code> and <code class="scd-inline-code">image-src-dark</code> when using a background image so it matches the theme.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t combine the CTA buttons and the email form — pick one conversion goal.</li>
+            <li>Don&rsquo;t put body copy in <code class="scd-inline-code">subtext</code>; details belong in the sections below.</li>
+            <li>Don&rsquo;t use a hero mid-page for feature highlights — that&rsquo;s <a href="/sections/feature/">Section Feature</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Headings:</strong> the hero imposes no heading level — on a landing page, slot the page&rsquo;s <code class="scd-inline-code">h1</code> into <code class="scd-inline-code">heading</code>.</li>
+        <li><strong>CTAs:</strong> <code class="scd-inline-code">primary-href</code> / <code class="scd-inline-code">secondary-href</code> render real link-buttons (note: they open in a new tab via <code class="scd-inline-code">target="_blank"</code>).</li>
+        <li><strong>Image:</strong> the background image takes <code class="scd-inline-code">image-alt</code> — pass an empty value if it&rsquo;s purely atmospheric, and mind text contrast over it (a gradient overlay is built in).</li>
+        <li><strong>Form:</strong> <code class="scd-inline-code">show-form</code> renders a labelled email <a href="/components/input/">Input</a> plus a submit <a href="/components/button/">Button</a>.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-hero"></scd-api>
+    </div>

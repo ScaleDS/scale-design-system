@@ -1,0 +1,104 @@
+    <div class="scd-page-header">
+      <h1>Card Pricing</h1>
+      <div class="scd-page-header-text">
+        <p>A pricing-tier card with slots for a badge, plan price, description, feature rows,
+          and an action area — assembled from <a href="/components/badge/">Badge</a>,
+          <a href="/components/row/">Row</a>, and <a href="/components/button/">Button</a>.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-card-pricing.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=4283-5763"
+        framer="available"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-card-pricing'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Slot a <a href="/components/badge/">Badge</a> into <code class="scd-inline-code">badge</code>,
+        the price into <code class="scd-inline-code">plan</code>, supporting copy into
+        <code class="scd-inline-code">description</code>, <a href="/components/row/">Rows</a> for
+        features in the default slot, and a <a href="/components/button/">Button</a> into
+        <code class="scd-inline-code">actions</code>.</p>
+      <scd-demo>
+        <sc-card-pricing style="max-width:360px">
+          <sc-badge slot="badge" status="default">Starter</sc-badge>
+          <span slot="plan">$19</span>
+          <span slot="description">For individuals.</span>
+          <sc-row trailing-icon="check">Basic components</sc-row>
+          <sc-row trailing-icon="check">1 project</sc-row>
+          <sc-row>Community support</sc-row>
+          <sc-button slot="actions" type="primary" size="m">Buy Now</sc-button>
+        </sc-card-pricing>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Plan comparison</h3>
+      <p>Lay tiers side by side and use the <a href="/components/badge/">Badge</a> status plus a
+        higher-emphasis <a href="/components/button/">Button</a> to flag the recommended plan.</p>
+      <scd-demo>
+        <sc-card-pricing style="flex:1;min-width:240px;max-width:300px">
+          <sc-badge slot="badge" status="default">Starter</sc-badge>
+          <span slot="plan">$19</span>
+          <span slot="description">For individuals.</span>
+          <sc-row trailing-icon="check">Basic components</sc-row>
+          <sc-row trailing-icon="check">1 project</sc-row>
+          <sc-button slot="actions" type="secondary" size="m">Choose Starter</sc-button>
+        </sc-card-pricing>
+        <sc-card-pricing style="flex:1;min-width:240px;max-width:300px">
+          <sc-badge slot="badge" status="positive">Most popular</sc-badge>
+          <span slot="plan">$49</span>
+          <span slot="description">For growing teams.</span>
+          <sc-row trailing-icon="check">All components</sc-row>
+          <sc-row trailing-icon="check">Unlimited projects</sc-row>
+          <sc-row trailing-icon="check">Priority support</sc-row>
+          <sc-button slot="actions" type="primary" size="m">Choose Pro</sc-button>
+        </sc-card-pricing>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>pricing pages, plan comparisons, and subscription
+        tiers. For a plain surface, use <a href="/components/card/">Card</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>List the same features in the same order across tiers so they&rsquo;re scannable.</li>
+            <li>Flag one recommended plan with a <a href="/components/badge/">Badge</a> and a primary button.</li>
+            <li>Keep the price prominent and the billing period unambiguous.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t cram unlimited feature rows in — summarise and link to full details.</li>
+            <li>Don&rsquo;t give every tier a primary button; only the recommended one should compete.</li>
+            <li>Don&rsquo;t hide the real cost behind vague copy.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Structure:</strong> the price renders in a <code class="scd-inline-code">&lt;span&gt;</code>, not a heading — add a real heading near the card (e.g. the plan name) so tiers appear in the document outline.</li>
+        <li><strong>Feature rows:</strong> the check icon is decorative; the <a href="/components/row/">Row</a> text must convey what&rsquo;s included on its own.</li>
+        <li><strong>Action:</strong> the <code class="scd-inline-code">actions</code> slot holds a real <a href="/components/button/">Button</a> or link — keyboard focusable, with a label naming the plan it buys.</li>
+        <li><strong>Comparison:</strong> when laying tiers side by side, keep a logical DOM order so screen-reader users read each plan top to bottom.</li>
+        <li><strong>Contrast:</strong> the <a href="/components/badge/">Badge</a> status colour must meet WCAG AA against the card surface.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-card-pricing"></scd-api>
+    </div>

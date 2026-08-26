@@ -1,0 +1,83 @@
+    <div class="scd-page-header">
+      <h1>Row</h1>
+      <div class="scd-page-header-text">
+        <p>A horizontal list item with optional leading/trailing icons and a built-in
+          <a href="/components/divider/">Divider</a> beneath it.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-row.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=892-5435"
+        framer="available"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-row'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Icons</h3>
+      <p>Add a <code class="scd-inline-code">leading-icon</code> and/or
+        <code class="scd-inline-code">trailing-icon</code>; the label fills the space between.</p>
+      <scd-demo>
+        <div style="width:320px">
+          <sc-row>List item</sc-row>
+          <sc-row leading-icon="check-circle">Verified</sc-row>
+          <sc-row trailing-icon="chevron-right">View details</sc-row>
+          <sc-row leading-icon="user" trailing-icon="external-link">Profile</sc-row>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>No divider</h3>
+      <p><code class="scd-inline-code">hide-divider</code> removes the line below a single row —
+        useful for the last item in a list.</p>
+      <scd-demo code="&lt;sc-row hide-divider&gt;No divider below&lt;/sc-row&gt;">
+        <div style="width:320px">
+          <sc-row hide-divider>No divider below</sc-row>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>pricing feature lists, settings rows, and any horizontal
+        label-value pair. Used for the feature lines in
+        <a href="/components/card-pricing/">Card Pricing</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use rows for short, scannable label or label-value lines.</li>
+            <li>Use a trailing chevron only when the row navigates somewhere.</li>
+            <li>Set <code class="scd-inline-code">hide-divider</code> on the final row, or hide all dividers via <code class="scd-inline-code">--sc-row-divider-display: none</code> on the container.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t pack multi-line or complex content into a row — use a <a href="/components/card/">Card</a>.</li>
+            <li>Don&rsquo;t imply interactivity with a chevron if the row doesn&rsquo;t act.</li>
+            <li>Don&rsquo;t rely on the icon alone to convey meaning — keep the label.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Semantics:</strong> Row is a presentational container — for a true list, place rows inside a <code class="scd-inline-code">&lt;ul&gt;</code> / <code class="scd-inline-code">&lt;li&gt;</code> so it&rsquo;s announced as a list.</li>
+        <li><strong>Icons:</strong> the leading/trailing icons are decorative; the label text must carry the meaning.</li>
+        <li><strong>Interactivity:</strong> Row isn&rsquo;t focusable on its own — if it should act, wrap the content in a real <a href="/components/button/">Button</a> or link.</li>
+        <li><strong>Divider:</strong> the built-in subtle divider is decorative; don&rsquo;t depend on it to group content for assistive tech.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-row"></scd-api>
+    </div>

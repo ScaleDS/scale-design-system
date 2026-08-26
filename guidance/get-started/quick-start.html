@@ -1,0 +1,68 @@
+    <div class="scd-page-header">
+      <h1>Quick Start</h1>
+      <div class="scd-page-header-text">
+        <p>Scale ships as framework-agnostic <code class="scd-inline-code">&lt;sc-*&gt;</code> web
+          components with built-in theming and design tokens. Install the package once, then
+          import only the components you use — each file registers its own custom element, and
+          Inter is bundled in, so there&rsquo;s no font setup.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=858-3403"
+        framer="https://framer.com/projects/Scale-Framer--4twKyhG02VwUwUQOjsPO-hK3fM?node=yiuUBaWvq"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <p>Add the package to your project with your package manager of choice.</p>
+      <scd-demo code="npm install @scale-ds/scale-design-system"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Start from a template</h2>
+      <p>The fastest way to a running app — scaffold a pre-wired Vite + TypeScript project with
+        theming, tokens, and a sample page already set up.</p>
+      <scd-demo code="npx degit ScaleDS/scale-design-system/examples/starter my-app
+cd my-app && npm install && npm run dev"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Use a component</h2>
+      <p>Import a component straight into any page. The import registers its custom element, so
+        the markup just works — no build step or wrapper required.</p>
+      <scd-demo code="&lt;script type=&quot;module&quot;&gt;
+  import '@scale-ds/scale-design-system/components/sc-button'
+&lt;/script&gt;
+
+&lt;sc-button type=&quot;primary&quot; href=&quot;/docs&quot;&gt;Get Started&lt;/sc-button&gt;"></scd-demo>
+      <p>Every component is also exported from the package root, so you can pull in
+        several at once — or register the whole set with a single side-effect import.</p>
+      <scd-demo code="&lt;script type=&quot;module&quot;&gt;
+  // Named classes from the root barrel
+  import { ScButton, ScCard } from '@scale-ds/scale-design-system'
+
+  // …or register every component in one import
+  import '@scale-ds/scale-design-system'
+&lt;/script&gt;"></scd-demo>
+      <p>Per-component imports keep your bundle small (only what you use is shipped);
+        the root barrel is the quickest way to prototype. Every component page lists its own import line
+        under <strong>Install</strong>, plus live examples you can copy.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Theming</h2>
+      <p>Visual properties come from CSS custom properties. The semantic brand variables resolve
+        to a primitive brand scale (<code class="scd-inline-code">--sc-color-brand-100</code>–<code class="scd-inline-code">900</code>) — in the light theme:</p>
+      <scd-demo code=":root {
+  --sc-color-background-brand: var(--sc-color-brand-500);
+  --sc-color-background-brand-hover: var(--sc-color-brand-600);
+  --sc-color-background-brand-pressed: var(--sc-color-brand-700);
+  --sc-color-text-brand: var(--sc-color-brand-500);
+  --sc-color-border-brand: var(--sc-color-brand-500);
+}"></scd-demo>
+      <p>Retheme by overriding the <code class="scd-inline-code">--sc-color-brand-*</code> primitives —
+        <code class="scd-inline-code">sc-logo</code> and every component follow automatically. The dark
+        theme picks different steps from the same scale, so both themes retheme at once and honour
+        <code class="scd-inline-code">prefers-color-scheme</code>. See <a href="/foundations/color/">Color</a>
+        for the full token reference.</p>
+    </div>

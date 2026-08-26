@@ -1,0 +1,87 @@
+    <div class="scd-page-header">
+      <h1>Divider</h1>
+      <div class="scd-page-header-text">
+        <p>A thin horizontal line that separates content into sections.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-divider.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=48-1372"
+        framer="available"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-divider'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Variants</h3>
+      <p><code class="scd-inline-code">default</code> is a standard border;
+        <code class="scd-inline-code">subtle</code> recedes into the background; and
+        <code class="scd-inline-code">selected</code> uses the brand accent for an active
+        boundary.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l);width:320px">
+          <sc-divider></sc-divider>
+          <sc-divider variant="subtle"></sc-divider>
+          <sc-divider variant="selected"></sc-divider>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>In context</h3>
+      <p>A divider spans the full width of its container — drop it between stacked content to
+        mark a boundary.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-m);width:320px">
+          <div>Account settings</div>
+          <sc-divider variant="subtle"></sc-divider>
+          <div>Notifications</div>
+          <sc-divider variant="subtle"></sc-divider>
+          <div>Billing</div>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>section separators, boundaries between list or menu
+        items, and grouping cues inside a <a href="/components/card/">Card</a>. When you only
+        need whitespace, use spacing instead of a line.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use <code class="scd-inline-code">subtle</code> for quiet separators within a surface.</li>
+            <li>Reserve <code class="scd-inline-code">selected</code> for an active or highlighted boundary.</li>
+            <li>Let the divider fill its container; control width via the parent.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t stack dividers and heavy spacing — pick one separation cue.</li>
+            <li>Don&rsquo;t use a divider where a heading or whitespace would group content more clearly.</li>
+            <li>Don&rsquo;t rely on a divider to convey meaning that needs a label.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> defaults to <code class="scd-inline-code">role="separator"</code> so assistive tech announces the boundary.</li>
+        <li><strong>Decorative use:</strong> if the line is purely visual, override with <code class="scd-inline-code">role="presentation"</code> so it&rsquo;s ignored.</li>
+        <li><strong>Contrast:</strong> <code class="scd-inline-code">subtle</code> is intentionally low-contrast — don&rsquo;t depend on it as the only signal that content is grouped.</li>
+        <li><strong>Orientation:</strong> the divider is horizontal; for vertical separation, lay out with borders or spacing on the parent.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-divider"></scd-api>
+    </div>

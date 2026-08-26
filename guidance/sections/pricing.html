@@ -1,0 +1,92 @@
+    <div class="scd-page-header">
+      <h1>Section Pricing</h1>
+      <div class="scd-page-header-text">
+        <p>Side-by-side plan comparison with feature lists and action buttons, making the buying
+          decision easier — a centred heading/subtext above three
+          <a href="/components/card-pricing/">Card Pricing</a> slots in a responsive grid.</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-section-pricing'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Three columns</h3>
+      <scd-demo>
+        <sc-section-pricing>
+          <h2 slot="heading">Pricing</h2>
+          <p slot="subtext">Pick a plan that works for you.</p>
+          <sc-card-pricing slot="card-1">
+            <sc-badge slot="badge" status="default">Figma</sc-badge>
+            <span slot="plan">$49</span>
+            <span slot="description">For designers.</span>
+            <sc-row trailing-icon="check">Figma file</sc-row>
+            <sc-row trailing-icon="check">Lifetime updates</sc-row>
+            <sc-row>USD</sc-row>
+            <a slot="actions" href="#"><sc-button type="primary">Buy Now</sc-button></a>
+          </sc-card-pricing>
+          <sc-card-pricing slot="card-2">
+            <sc-badge slot="badge" status="default">Framer</sc-badge>
+            <span slot="plan">$99</span>
+            <span slot="description">For creators.</span>
+            <sc-row trailing-icon="check">Framer remix link</sc-row>
+            <sc-row trailing-icon="check">Lifetime updates</sc-row>
+            <sc-row>USD</sc-row>
+            <a slot="actions" href="#"><sc-button type="primary">Buy Now</sc-button></a>
+          </sc-card-pricing>
+          <sc-card-pricing slot="card-3">
+            <sc-badge slot="badge" status="info">Everything</sc-badge>
+            <span slot="plan">$129</span>
+            <span slot="description">Best value.</span>
+            <sc-row trailing-icon="check">Framer + Figma</sc-row>
+            <sc-row trailing-icon="check">Lifetime updates</sc-row>
+            <sc-row>USD</sc-row>
+            <a slot="actions" href="#"><sc-button type="primary">Buy Now</sc-button></a>
+          </sc-card-pricing>
+        </sc-section-pricing>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>pricing pages, plan comparison, and
+        subscription tiers. Slot a pricing card into each of
+        <code class="scd-inline-code">card-1</code>…<code class="scd-inline-code">card-3</code>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep the feature rows parallel across cards so plans compare line by line.</li>
+            <li>Highlight one recommended plan — e.g. an <code class="scd-inline-code">info</code> badge like &ldquo;Best value&rdquo;.</li>
+            <li>State the price plainly in <code class="scd-inline-code">plan</code> and what it&rsquo;s for in <code class="scd-inline-code">description</code>.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t exceed the three card slots — more tiers belong in a comparison <a href="/components/table/">Table</a>.</li>
+            <li>Don&rsquo;t make every card&rsquo;s CTA shout — emphasise the recommended plan&rsquo;s button.</li>
+            <li>Don&rsquo;t hide caveats (currency, renewal terms) — a plain <code class="scd-inline-code">sc-row</code> without an icon works for fine print.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Headings:</strong> the section imposes no heading level — slot the <code class="scd-inline-code">h2</code>/<code class="scd-inline-code">h3</code> that fits the page outline into <code class="scd-inline-code">heading</code>.</li>
+        <li><strong>Structure:</strong> purely presentational — semantics come from the slotted <a href="/components/card-pricing/">Card Pricing</a> cards and their content.</li>
+        <li><strong>Order:</strong> reading and tab order follow the slot order (<code class="scd-inline-code">card-1</code>→<code class="scd-inline-code">card-3</code>), on desktop and when the grid stacks on mobile.</li>
+        <li><strong>Meaning:</strong> don&rsquo;t convey &ldquo;included&rdquo; by icon alone — the check rows keep their text labels.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-section-pricing"></scd-api>
+    </div>

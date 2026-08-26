@@ -1,0 +1,213 @@
+    <div class="scd-page-header">
+      <h1>Border</h1>
+      <div class="scd-page-header-text">
+        <p>Borders combine flexible radius values and standardized widths to create
+          consistent, accessible interfaces. They define visual boundaries, create
+          hierarchy, and communicate interactive states. Build with the named tokens
+          (<code class="scd-inline-code">--sc-border-radius-*</code>,
+          <code class="scd-inline-code">--sc-border-width-*</code>) rather than raw
+          values so edges stay crisp and consistent at every density.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-variables-border.scss"
+        figma="available"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Border radius</h2>
+      <p>Corner-radius values create visual cohesion and communicate brand personality
+        through corner rounding. Match the radius to the element's scale: small controls
+        take small radii, large surfaces like cards and modals take larger ones.</p>
+      <sc-table-basic class="scd-border-table scd-radius-table" label="Border radius scale">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-border-preview-col)">Size</sc-table-head>
+          <sc-table-head width="var(--scd-border-name-col)">Name</sc-table-head>
+          <sc-table-head width="max-content">Variable</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Common use cases</sc-table-head>
+          <sc-table-head width="max-content">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-none)"></span></sc-table-cell>
+          <sc-table-cell>None</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-none</code></sc-table-cell>
+          <sc-table-cell>Sharp corners for precision: professional, technical, modern luxury</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">0px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-xs)"></span></sc-table-cell>
+          <sc-table-cell>XS</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-xs</code></sc-table-cell>
+          <sc-table-cell>Subtle rounding: clean, minimal, refined</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">4px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-s)"></span></sc-table-cell>
+          <sc-table-cell>S</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-s</code></sc-table-cell>
+          <sc-table-cell>Moderate rounding: friendly, approachable, modern</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">8px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-m)"></span></sc-table-cell>
+          <sc-table-cell>M</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-m</code></sc-table-cell>
+          <sc-table-cell>Balanced rounding: warm, inviting, comfortable</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">12px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-l)"></span></sc-table-cell>
+          <sc-table-cell>L</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-l</code></sc-table-cell>
+          <sc-table-cell>Generous rounding: playful, friendly, casual</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-xl)"></span></sc-table-cell>
+          <sc-table-cell>XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-xl</code></sc-table-cell>
+          <sc-table-cell>Strong rounding: bold, distinctive, energetic</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">24px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-2xl)"></span></sc-table-cell>
+          <sc-table-cell>2XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-2xl</code></sc-table-cell>
+          <sc-table-cell>Very round: soft, organic, welcoming</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">32px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-3xl)"></span></sc-table-cell>
+          <sc-table-cell>3XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-3xl</code></sc-table-cell>
+          <sc-table-cell>Extra round: highly organic, flowing</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">40px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-4xl)"></span></sc-table-cell>
+          <sc-table-cell>4XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-4xl</code></sc-table-cell>
+          <sc-table-cell>Large cards and panels: spacious, open, modern</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">48px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-5xl)"></span></sc-table-cell>
+          <sc-table-cell>5XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-5xl</code></sc-table-cell>
+          <sc-table-cell>Hero elements: statement pieces</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">56px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch" style="border-radius: var(--sc-border-radius-6xl)"></span></sc-table-cell>
+          <sc-table-cell>6XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-6xl</code></sc-table-cell>
+          <sc-table-cell>Extra large elements: dramatic, memorable</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">64px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-radius-swatch scd-radius-swatch--pill" style="border-radius: var(--sc-border-radius-pill)"></span></sc-table-cell>
+          <sc-table-cell>Pill</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-pill</code></sc-table-cell>
+          <sc-table-cell>Fully rounded ends: tags, badges, toggles</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">999px</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Border width</h2>
+      <p>Border-width values provide precise control over visual weight and hierarchy.
+        Keeping widths on a small fixed scale keeps edges crisp and consistent at
+        every density.</p>
+      <sc-table-basic class="scd-border-table" label="Border width scale">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-border-preview-col)">Size</sc-table-head>
+          <sc-table-head width="var(--scd-border-name-col)">Name</sc-table-head>
+          <sc-table-head width="max-content">Variable</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Common use cases</sc-table-head>
+          <sc-table-head width="max-content">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-width-swatch" style="border-width: var(--sc-border-width-none)"></span></sc-table-cell>
+          <sc-table-cell>None</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-width-none</code></sc-table-cell>
+          <sc-table-cell>Remove borders entirely</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">0px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-width-swatch" style="border-width: var(--sc-border-width-xs)"></span></sc-table-cell>
+          <sc-table-cell>XS</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-width-xs</code></sc-table-cell>
+          <sc-table-cell>Hairline separators, subtle dividers</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">0.5px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-width-swatch" style="border-width: var(--sc-border-width-s)"></span></sc-table-cell>
+          <sc-table-cell>S</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-width-s</code></sc-table-cell>
+          <sc-table-cell><strong>Default border</strong>: most UI elements</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">1px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-width-swatch" style="border-width: var(--sc-border-width-m)"></span></sc-table-cell>
+          <sc-table-cell>M</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-width-m</code></sc-table-cell>
+          <sc-table-cell>Emphasized borders, hover states</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">1.5px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-width-swatch" style="border-width: var(--sc-border-width-l)"></span></sc-table-cell>
+          <sc-table-cell>L</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-width-l</code></sc-table-cell>
+          <sc-table-cell>Strong borders, selected states</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">2px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-width-swatch" style="border-width: var(--sc-border-width-xl)"></span></sc-table-cell>
+          <sc-table-cell>XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-width-xl</code></sc-table-cell>
+          <sc-table-cell>Focus indicators, very strong emphasis</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">4px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-width-swatch" style="border-width: var(--sc-border-width-2xl)"></span></sc-table-cell>
+          <sc-table-cell>2XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-width-2xl</code></sc-table-cell>
+          <sc-table-cell>Decorative borders, brand emphasis</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">8px</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Maintain a consistent radius within a component; all corners share the same value unless intentionally asymmetric.</li>
+            <li>Scale radius proportionally, because larger elements can carry larger radii.</li>
+            <li>Use appropriate widths for states: focus states should be more prominent (2&ndash;4px) than default borders (1px).</li>
+            <li>Consider nested hierarchy: inner elements should have a smaller radius than their containers.</li>
+            <li>Test borders in both light and dark modes to verify visual quality.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t mix radius values randomly; establish a consistent scale and stick to it.</li>
+            <li>Don&rsquo;t use excessive border widths. Anything thicker than 4px should be rare and intentional.</li>
+            <li>Don&rsquo;t apply different radii to different corners unless intentional; asymmetry feels broken.</li>
+            <li>Don&rsquo;t ignore the container/content relationship: rounded images in square containers look awkward.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Focus indicators:</strong> keyboard navigation needs a clearly visible focus state. Use a border width of L (2px) or XL (4px), and never remove the outline without providing an alternative.</li>
+        <li><strong>Touch targets:</strong> borders count toward target size. Keep interactive targets at least 44&times;44px including the border, and factor border width into spacing.</li>
+        <li><strong>Radius &amp; legibility:</strong> rounded corners aid scannability, but extreme radii (&gt;24px) can crowd text in small containers. Keep enough padding between content and rounded edges.</li>
+      </ul>
+    </div>

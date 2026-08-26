@@ -1,0 +1,151 @@
+    <div class="scd-page-header">
+      <h1>Tabs</h1>
+      <div class="scd-page-header-text">
+        <p>Selectable labels that switch between content panels, showing one at a time without a
+          page reload.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-tabs.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=893-6273"
+        framer="https://scaleframer.framer.website/components/tabs"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-tabs'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Slot <code class="scd-inline-code">sc-tab</code>s into <code class="scd-inline-code">nav</code>
+        and matching <code class="scd-inline-code">sc-tab-panel</code>s; <code class="scd-inline-code">active</code>
+        sets the open panel by its <code class="scd-inline-code">panel</code> / <code class="scd-inline-code">name</code>.</p>
+      <scd-demo>
+        <sc-tabs active="overview" style="max-width:520px">
+          <sc-tab slot="nav" panel="overview">Overview</sc-tab>
+          <sc-tab slot="nav" panel="activity">Activity</sc-tab>
+          <sc-tab slot="nav" panel="settings">Settings</sc-tab>
+          <sc-tab-panel name="overview">A high-level summary of the project and its current status.</sc-tab-panel>
+          <sc-tab-panel name="activity">Recent activity, comments, and history appear here.</sc-tab-panel>
+          <sc-tab-panel name="settings">Configuration and preferences for this workspace.</sc-tab-panel>
+        </sc-tabs>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Many tabs</h3>
+      <scd-demo code='&lt;sc-tabs active="t1"&gt;
+  &lt;sc-tab slot="nav" panel="t1"&gt;Tab 1&lt;/sc-tab&gt;
+  &lt;!-- ...repeat for t2–t8... --&gt;
+  &lt;sc-tab-panel name="t1"&gt;Content for tab 1.&lt;/sc-tab-panel&gt;
+  &lt;!-- ...repeat for t2–t8... --&gt;
+&lt;/sc-tabs&gt;'>
+        <sc-tabs active="t1" style="max-width:520px">
+          <sc-tab slot="nav" panel="t1">Tab 1</sc-tab>
+          <sc-tab slot="nav" panel="t2">Tab 2</sc-tab>
+          <sc-tab slot="nav" panel="t3">Tab 3</sc-tab>
+          <sc-tab slot="nav" panel="t4">Tab 4</sc-tab>
+          <sc-tab slot="nav" panel="t5">Tab 5</sc-tab>
+          <sc-tab slot="nav" panel="t6">Tab 6</sc-tab>
+          <sc-tab slot="nav" panel="t7">Tab 7</sc-tab>
+          <sc-tab slot="nav" panel="t8">Tab 8</sc-tab>
+          <sc-tab-panel name="t1">Content for tab 1.</sc-tab-panel>
+          <sc-tab-panel name="t2">Content for tab 2.</sc-tab-panel>
+          <sc-tab-panel name="t3">Content for tab 3.</sc-tab-panel>
+          <sc-tab-panel name="t4">Content for tab 4.</sc-tab-panel>
+          <sc-tab-panel name="t5">Content for tab 5.</sc-tab-panel>
+          <sc-tab-panel name="t6">Content for tab 6.</sc-tab-panel>
+          <sc-tab-panel name="t7">Content for tab 7.</sc-tab-panel>
+          <sc-tab-panel name="t8">Content for tab 8.</sc-tab-panel>
+        </sc-tabs>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled tab</h3>
+      <scd-demo>
+        <sc-tabs active="one" style="max-width:520px">
+          <sc-tab slot="nav" panel="one">One</sc-tab>
+          <sc-tab slot="nav" panel="two" disabled>Two</sc-tab>
+          <sc-tab slot="nav" panel="three">Three</sc-tab>
+          <sc-tab-panel name="one">First panel.</sc-tab-panel>
+          <sc-tab-panel name="two">Second panel.</sc-tab-panel>
+          <sc-tab-panel name="three">Third panel.</sc-tab-panel>
+        </sc-tabs>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Manual activation</h3>
+      <p><code class="scd-inline-code">activation="manual"</code> — arrow keys move focus,
+        <kbd>Enter</kbd>/<kbd>Space</kbd> selects (vs the default <code class="scd-inline-code">auto</code>,
+        which selects on focus).</p>
+      <scd-demo>
+        <sc-tabs active="a" activation="manual" style="max-width:520px">
+          <sc-tab slot="nav" panel="a">Account</sc-tab>
+          <sc-tab slot="nav" panel="b">Billing</sc-tab>
+          <sc-tab slot="nav" panel="c">Team</sc-tab>
+          <sc-tab-panel name="a">Account details.</sc-tab-panel>
+          <sc-tab-panel name="b">Billing and invoices.</sc-tab-panel>
+          <sc-tab-panel name="c">Team members and roles.</sc-tab-panel>
+        </sc-tabs>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Bottom placement</h3>
+      <p><code class="scd-inline-code">placement="bottom"</code> puts the nav below the panels.</p>
+      <scd-demo>
+        <sc-tabs active="map" placement="bottom" style="max-width:520px">
+          <sc-tab slot="nav" panel="map">Map</sc-tab>
+          <sc-tab slot="nav" panel="list">List</sc-tab>
+          <sc-tab-panel name="map">Map view of results.</sc-tab-panel>
+          <sc-tab-panel name="list">List view of results.</sc-tab-panel>
+        </sc-tabs>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>switching between peer views of the same context. The
+        group owns selection, roving focus, and keyboard interaction
+        (<kbd>←</kbd>/<kbd>→</kbd> between tabs, <kbd>Home</kbd>/<kbd>End</kbd> to the ends).
+        For stacked, independently-expandable sections use an
+        <a href="/components/accordion/">Accordion</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use tabs for peer views of the same object, not a sequence of steps.</li>
+            <li>Keep tab labels short — one or two words — and order them by importance.</li>
+            <li>Always have one tab active; default to the most common view.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use tabs for a linear flow — use a stepper or pages.</li>
+            <li>Don&rsquo;t overflow into too many tabs; consider a <a href="/components/menu/">Menu</a> or sub-nav.</li>
+            <li>Don&rsquo;t put unrelated content behind tabs just to save space.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Pattern:</strong> follows the WAI-ARIA Tabs pattern — a <code class="scd-inline-code">role="tablist"</code> of <code class="scd-inline-code">role="tab"</code> controls, each wired to a <code class="scd-inline-code">role="tabpanel"</code> via <code class="scd-inline-code">aria-controls</code> / <code class="scd-inline-code">aria-labelledby</code>.</li>
+        <li><strong>Selection:</strong> the active tab carries <code class="scd-inline-code">aria-selected="true"</code>; its panel is shown while the others are <code class="scd-inline-code">aria-hidden</code>.</li>
+        <li><strong>Keyboard:</strong> roving tabindex — <kbd>←</kbd>/<kbd>→</kbd> move between tabs, <kbd>Home</kbd>/<kbd>End</kbd> jump to the ends; in <code class="scd-inline-code">manual</code> mode <kbd>Enter</kbd>/<kbd>Space</kbd> activates.</li>
+        <li><strong>Disabled:</strong> a <code class="scd-inline-code">disabled</code> tab sets <code class="scd-inline-code">aria-disabled</code> and is skipped.</li>
+        <li><strong>Panel focus:</strong> each panel is focusable (<code class="scd-inline-code">tabindex="0"</code>) so keyboard users can reach its content.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-tabs,sc-tab,sc-tab-panel"></scd-api>
+    </div>

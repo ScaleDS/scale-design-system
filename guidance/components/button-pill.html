@@ -1,0 +1,116 @@
+    <div class="scd-page-header">
+      <h1>Button Pill</h1>
+      <div class="scd-page-header-text">
+        <p>Like Button, but with fully rounded ends for a softer, more contemporary feel.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-button-pill.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=23278-183547"
+        framer="https://scaleframer.framer.website/components/button-pill"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-button-pill'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Types</h3>
+      <p>Ten visual types, ordered by emphasis — the same scale as
+        <a href="/components/button/">Button</a> in a rounded shape.</p>
+      <scd-demo>
+        <sc-button-pill type="primary">Primary</sc-button-pill>
+        <sc-button-pill type="secondary">Secondary</sc-button-pill>
+        <sc-button-pill type="tertiary">Tertiary</sc-button-pill>
+        <sc-button-pill type="outline">Outline</sc-button-pill>
+        <sc-button-pill type="mono">Mono</sc-button-pill>
+        <sc-button-pill type="negative-primary">Negative</sc-button-pill>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Sizes</h3>
+      <scd-demo>
+        <sc-button-pill size="l" type="primary">Large</sc-button-pill>
+        <sc-button-pill size="m" type="primary">Medium</sc-button-pill>
+        <sc-button-pill size="s" type="primary">Small</sc-button-pill>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>With icons</h3>
+      <p>Add a <code class="scd-inline-code">leading-icon</code> or
+        <code class="scd-inline-code">trailing-icon</code> to reinforce the action.</p>
+      <scd-demo>
+        <sc-button-pill type="primary" leading-icon="play">Play</sc-button-pill>
+        <sc-button-pill type="secondary" trailing-icon="chevron-right">Next</sc-button-pill>
+        <sc-button-pill type="outline" leading-icon="filter">Filter</sc-button-pill>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>States</h3>
+      <scd-demo>
+        <sc-button-pill type="primary" disabled>Disabled</sc-button-pill>
+        <sc-button-pill type="primary" loading>Loading</sc-button-pill>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>As a segmented control</h3>
+      <p>Inside a <a href="/components/button-group/">Button Group</a> with
+        <code class="scd-inline-code">selectable</code>, each pill becomes a single-select option.</p>
+      <scd-demo>
+        <sc-button-group selectable value="7d" label="Time range">
+          <sc-button-pill value="24h">24h</sc-button-pill>
+          <sc-button-pill value="7d">7d</sc-button-pill>
+          <sc-button-pill value="30d">30d</sc-button-pill>
+          <sc-button-pill value="90d">90d</sc-button-pill>
+        </sc-button-group>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>filter chips, tag-like toggles, and segmented
+        controls — pair with a <a href="/components/button-group/">Button Group</a> for
+        single-select. For standard form and page actions, use
+        <a href="/components/button/">Button</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use pills for filters, toggles, and segmented choices.</li>
+            <li>Keep a clear, action- or value-led label on every pill.</li>
+            <li>Pick one shape per context — don&rsquo;t mix pills and square buttons in the same row.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use pills for primary form or page actions — use <a href="/components/button/">Button</a>.</li>
+            <li>Don&rsquo;t ship icon-only pills — use <a href="/components/button-icon/">Button Icon</a>.</li>
+            <li>Don&rsquo;t stack several primary pills competing for attention.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Element:</strong> renders a native <code class="scd-inline-code">&lt;button type="button"&gt;</code> — keyboard focusable by default.</li>
+        <li><strong>Activation:</strong> <kbd>Enter</kbd> / <kbd>Space</kbd> activates.</li>
+        <li><strong>Busy / disabled:</strong> <code class="scd-inline-code">loading</code> sets <code class="scd-inline-code">aria-busy</code> and disables the button; <code class="scd-inline-code">disabled</code> blocks activation.</li>
+        <li><strong>Label:</strong> the visible text carries the meaning — keep a label rather than relying on an icon alone.</li>
+        <li><strong>Selection:</strong> inside a selectable <a href="/components/button-group/">Button Group</a> the group exposes each pill as a <code class="scd-inline-code">radio</code> with <code class="scd-inline-code">aria-checked</code>.</li>
+        <li><strong>Focus:</strong> shows the global keyboard focus ring.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-button-pill"></scd-api>
+    </div>

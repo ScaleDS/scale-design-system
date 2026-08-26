@@ -1,0 +1,129 @@
+    <div class="scd-page-header">
+      <h1>Card</h1>
+      <div class="scd-page-header-text">
+        <p>A self-contained surface that groups related content and actions around a single
+          subject. Compose a <code class="scd-inline-code">surface</code> elevation, a
+          <code class="scd-inline-code">radius</code>, and optional
+          <code class="scd-inline-code">padding</code>.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-card.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=4283-5763"
+        framer="available"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-card'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Surface</h3>
+      <p>A transparent <code class="scd-inline-code">subtle</code> tint plus four shadow
+        elevations — <code class="scd-inline-code">l1</code> is the resting card, higher levels
+        read as floating layers.</p>
+      <scd-demo>
+        <sc-card surface="subtle" radius="m" padding="l" style="width:240px">Subtle background, no shadow.</sc-card>
+        <sc-card surface="l1" radius="m" padding="l" style="width:240px">L1 — the resting card surface.</sc-card>
+        <sc-card surface="l2" radius="m" padding="l" style="width:240px">L2 — raised for emphasis or hover.</sc-card>
+        <sc-card surface="l3" radius="m" padding="l" style="width:240px">L3 — popovers and floating panels.</sc-card>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Radius</h3>
+      <scd-demo>
+        <sc-card surface="l1" radius="none" padding="l" style="width:200px">No radius</sc-card>
+        <sc-card surface="l1" radius="s" padding="l" style="width:200px">Radius S</sc-card>
+        <sc-card surface="l1" radius="m" padding="l" style="width:200px">Radius M</sc-card>
+        <sc-card surface="l1" radius="xl" padding="l" style="width:200px">Radius XL</sc-card>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Padding</h3>
+      <p>Padding defaults to <code class="scd-inline-code">none</code> so edge-to-edge content
+        (like images) sits flush — set it when the card holds plain content.</p>
+      <scd-demo>
+        <sc-card surface="l1" radius="m" padding="s" style="width:200px">Padding S</sc-card>
+        <sc-card surface="l1" radius="m" padding="m" style="width:200px">Padding M</sc-card>
+        <sc-card surface="l1" radius="m" padding="l" style="width:200px">Padding L</sc-card>
+        <sc-card surface="l1" radius="m" padding="xl" style="width:200px">Padding XL</sc-card>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Composition</h3>
+      <p>Cards are just a surface — slot in whatever structure you need. They clip overflow,
+        so edge-to-edge images get rounded corners for free.</p>
+      <scd-demo>
+        <sc-card surface="l1" radius="l" padding="l" style="width:320px">
+          <div style="display:flex;flex-direction:column;gap:var(--sc-space-m)">
+            <div>
+              <div style="font-weight:600;font-size:18px">Project Aurora</div>
+              <div style="color:var(--sc-color-text-secondary);font-size:14px;margin-top:4px">
+                Cross-functional initiative kicking off next quarter.
+              </div>
+            </div>
+            <sc-button-group>
+              <sc-button type="primary" size="s">View</sc-button>
+              <sc-button type="secondary" size="s">Share</sc-button>
+            </sc-button-group>
+          </div>
+        </sc-card>
+        <sc-card surface="l1" radius="l" style="width:280px">
+          <img src="https://picsum.photos/seed/scale-card/560/240" alt="" style="display:block;width:100%;height:140px;object-fit:cover" />
+          <div style="padding:var(--sc-space-l);display:flex;flex-direction:column;gap:var(--sc-space-s)">
+            <div style="font-weight:600">Sunrise over the bay</div>
+            <div style="color:var(--sc-color-text-secondary);font-size:14px">
+              The card clips overflow so children don&rsquo;t need their own rounded corners.
+            </div>
+          </div>
+        </sc-card>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>any time related content and actions belong together
+        as one visually-grouped unit. For ready-made patterns, reach for
+        <a href="/components/card-image/">Card Image</a>,
+        <a href="/components/card-pricing/">Card Pricing</a>, or
+        <a href="/components/card-selector/">Card Selector</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep one subject per card — a single object, summary, or choice.</li>
+            <li>Use <code class="scd-inline-code">l1</code> for resting cards and reserve higher elevations for floating layers.</li>
+            <li>Leave <code class="scd-inline-code">padding="none"</code> when an image or table needs to reach the edges.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t nest cards within cards — flatten the hierarchy instead.</li>
+            <li>Don&rsquo;t mix several elevations in one grid; keep peers at the same level.</li>
+            <li>Don&rsquo;t make the whole card a single click target without a clear focusable control inside.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> Card is a presentational <code class="scd-inline-code">&lt;div&gt;</code> surface with no implicit role — meaning comes from the content you slot in.</li>
+        <li><strong>Structure:</strong> give the card a heading (<code class="scd-inline-code">&lt;h2&gt;</code>–<code class="scd-inline-code">&lt;h4&gt;</code>) so it appears in the document outline; group lists of cards in a <code class="scd-inline-code">&lt;ul&gt;</code> / <code class="scd-inline-code">&lt;li&gt;</code> where appropriate.</li>
+        <li><strong>Interactivity:</strong> put a real <a href="/components/button/">Button</a> or link inside rather than attaching a click handler to the card; keyboard users need a focusable control.</li>
+        <li><strong>Images:</strong> decorative images need <code class="scd-inline-code">alt=""</code>; meaningful ones need descriptive alt text.</li>
+        <li><strong>Contrast:</strong> text on any surface level must meet WCAG AA — elevation changes the background, so re-check low-emphasis text.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-card"></scd-api>
+    </div>

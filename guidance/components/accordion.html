@@ -1,0 +1,95 @@
+    <div class="scd-page-header">
+      <h1>Accordion</h1>
+      <div class="scd-page-header-text">
+        <p>Vertically stacked sections that expand and collapse, perfect for keeping dense content tidy and scannable.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-accordion.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=8809-102"
+        framer="https://scaleframer.framer.website/components/accordion"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-accordion'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>A single section with a <code class="scd-inline-code">heading</code> and slotted body content, collapsed on load.</p>
+      <scd-demo>
+        <sc-accordion heading="What is Scale?">
+          Scale is a design system for Figma and Framer that helps individuals and organisations
+          scale their design workflow.
+        </sc-accordion>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Open by default</h3>
+      <p>Set <code class="scd-inline-code">open</code> to expand a panel on load — useful for the
+        first item or a high-priority answer.</p>
+      <scd-demo>
+        <sc-accordion heading="How does dark mode work?" open>
+          Scale uses semantic CSS custom properties that switch between light and dark themes
+          automatically. No manual variant management needed.
+        </sc-accordion>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Stacked</h3>
+      <p>Place accordions back-to-back; each opens and closes independently.</p>
+      <scd-demo>
+        <sc-accordion heading="First question">
+          Answer to the first question goes here.
+        </sc-accordion>
+        <sc-accordion heading="Second question" open>
+          Answer to the second question is expanded by default.
+        </sc-accordion>
+        <sc-accordion heading="Third question">
+          Answer to the third question goes here.
+        </sc-accordion>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>FAQ sections, settings panels, and content
+        that should stay hidden by default but remain accessible on demand.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep headings short and descriptive so the collapsed list stays scannable.</li>
+            <li>Use it for secondary or optional content that not everyone needs at once.</li>
+            <li>Let each section open and close independently.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t hide information everyone needs — show that inline instead.</li>
+            <li>Don&rsquo;t nest accordions inside accordions.</li>
+            <li>Don&rsquo;t use one to switch between peer views — reach for <a href="/components/tabs/">Tabs</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Trigger:</strong> each heading is a native <code class="scd-inline-code">&lt;button&gt;</code> with <code class="scd-inline-code">aria-expanded</code> reflecting open/closed state and <code class="scd-inline-code">aria-controls</code> pointing at its panel.</li>
+        <li><strong>Keyboard:</strong> <kbd>Enter</kbd> / <kbd>Space</kbd> toggles the focused section; <kbd>Tab</kbd> moves between headers.</li>
+        <li><strong>Panel:</strong> the body is a <code class="scd-inline-code">role="region"</code> labelled by its header via <code class="scd-inline-code">aria-labelledby</code>.</li>
+        <li><strong>Focus:</strong> the header shows the global keyboard focus ring; it is never removed.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-accordion"></scd-api>
+    </div>

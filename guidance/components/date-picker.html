@@ -1,0 +1,104 @@
+    <div class="scd-page-header">
+      <h1>Date Picker</h1>
+      <div class="scd-page-header-text">
+        <p>An accessible calendar for choosing a single date or a range, with full keyboard
+          grid navigation, roving focus, and an optional confirm/cancel flow. Follows the
+          WAI-ARIA date-picker grid pattern.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-date-picker.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=6052-10156"
+        framer="https://scaleframer.framer.website/components/form"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-date-picker'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Single date</h3>
+      <p>Set <code class="scd-inline-code">value</code> as an ISO date
+        (<code class="scd-inline-code">YYYY-MM-DD</code>), or leave it empty for no initial
+        selection. The component fires <code class="scd-inline-code">change</code> with
+        <code class="scd-inline-code">{ value }</code>.</p>
+      <scd-demo>
+        <sc-date-picker value="2011-04-15"></sc-date-picker>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Range</h3>
+      <p><code class="scd-inline-code">mode="range"</code> selects a start
+        (<code class="scd-inline-code">value</code>) and <code class="scd-inline-code">end</code>
+        date; <code class="scd-inline-code">change</code> then carries
+        <code class="scd-inline-code">{ start, end }</code>.</p>
+      <scd-demo>
+        <sc-date-picker mode="range" value="2011-04-08" end="2011-04-19"></sc-date-picker>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>With actions and limits</h3>
+      <p><code class="scd-inline-code">show-actions</code> adds a confirm/cancel footer (the
+        selection stays pending until confirmed); <code class="scd-inline-code">min</code> /
+        <code class="scd-inline-code">max</code> constrain the window; and
+        <code class="scd-inline-code">first-day-of-week</code> sets the week start.</p>
+      <scd-demo>
+        <sc-date-picker value="2011-04-15" show-actions min="2011-04-04" max="2011-04-22" first-day-of-week="sunday"></sc-date-picker>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Localized</h3>
+      <p>Pass a BCP-47 <code class="scd-inline-code">locale</code> to translate the month and
+        weekday names; combine with <code class="scd-inline-code">first-day-of-week</code> for
+        regional conventions.</p>
+      <scd-demo>
+        <sc-date-picker value="2011-04-15" locale="de-DE" first-day-of-week="monday"></sc-date-picker>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>date and range selection in forms, filters, and
+        scheduling flows. For free-text date entry, pair it with an
+        <a href="/components/input/">Input</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use <code class="scd-inline-code">min</code> / <code class="scd-inline-code">max</code> to rule out impossible dates rather than validating after the fact.</li>
+            <li>Set <code class="scd-inline-code">show-actions</code> when a selection should be deliberate (e.g. inside a popover).</li>
+            <li>Match <code class="scd-inline-code">locale</code> and <code class="scd-inline-code">first-day-of-week</code> to the user&rsquo;s region.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a calendar for a far-past date like birth year — a typed <a href="/components/input/">Input</a> is faster.</li>
+            <li>Don&rsquo;t hide the selected value — echo it back near the field.</li>
+            <li>Don&rsquo;t disable arbitrary days without telling the user why they&rsquo;re unavailable.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Grid:</strong> the calendar is a <code class="scd-inline-code">role="grid"</code> of <code class="scd-inline-code">gridcell</code> day buttons with roving <code class="scd-inline-code">tabindex</code> — one tab stop for the whole grid.</li>
+        <li><strong>Keyboard:</strong> <kbd>←</kbd> <kbd>→</kbd> day, <kbd>↑</kbd> <kbd>↓</kbd> week, <kbd>Home</kbd> / <kbd>End</kbd> week edges, <kbd>Page Up</kbd> / <kbd>Page Down</kbd> month, <kbd>Shift</kbd>+<kbd>Page Up</kbd> / <kbd>Page Down</kbd> year.</li>
+        <li><strong>Selection:</strong> the chosen day (and range endpoints/fill) carry <code class="scd-inline-code">aria-selected</code>; today is marked <code class="scd-inline-code">aria-current="date"</code>.</li>
+        <li><strong>Announcements:</strong> the month label is a polite live region, so month changes are read out.</li>
+        <li><strong>Month nav:</strong> the prev/next arrows are labelled <a href="/components/button-icon/">Button Icon</a>s (&ldquo;Previous month&rdquo; / &ldquo;Next month&rdquo;).</li>
+        <li><strong>Disabled days:</strong> dates outside <code class="scd-inline-code">min</code>/<code class="scd-inline-code">max</code> render as <code class="scd-inline-code">disabled</code> buttons, skipped by activation.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-date-picker"></scd-api>
+    </div>

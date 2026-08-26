@@ -1,0 +1,772 @@
+    <div class="scd-page-header">
+      <h1>Typography</h1>
+      <div class="scd-page-header-text">
+        <p>Typography shapes the visual language of digital products by defining consistent, accessible text styles that support readability, hierarchy, and brand expression.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-variables-type.scss"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=47-564&amp;t=BcRLKw3SXvMqeYyh-1"
+        framer="https://scaleframer.framer.website/foundations/typography"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Semantic</h2>
+      <p>Rather than using sizes by their value (e.g., "14px"), we use them by their function (e.g., "Text/M/Regular"). This ensures consistent application across products, easy responsive scaling, clear intent in code, and future-proof flexibility. The muted token under each specimen is the mixin to apply that style.</p>
+    </div>
+
+    <div class="scd-section scd-type-platform">
+      <h3>Platform agnostic</h3>
+      <p class="scd-type-platform-note">Only the font family changes across platforms; weights and letter-spacing
+        are shared. iOS and Android use the smaller mobile size scale at any width, while web uses the desktop
+        sizes and steps down to the mobile ones below 810px. The iOS preview uses the system font, so it renders
+        in SF Pro only on Apple devices.</p>
+      <sc-segmented-control class="scd-type-platform-control" value="web" label="Preview platform"></sc-segmented-control>
+    </div>
+
+    <div class="scd-section">
+      <h3>Heading</h3>
+      <p>Display and section headings. Inter, now in three weights (Light, Regular, Semibold) across ten sizes, from 72px hero headings down to a 14px 2XS.</p>
+      <sc-table-basic class="scd-type-table" label="Heading type styles">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-preview-col)">Preview</sc-table-head>
+          <sc-table-head width="auto">Variable</sc-table-head>
+          <sc-table-head width="auto">Tokens</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-5xl-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 5XL Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-5xl-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-5xl-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 5XL Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-5xl-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-5xl-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 5XL Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-5xl-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-4xl-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 4XL Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-4xl-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-4xl-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 4XL Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-4xl-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-4xl-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 4XL Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-4xl-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-3xl-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 3XL Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-3xl-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-3xl-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 3XL Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-3xl-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-3xl-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 3XL Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-3xl-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-2xl-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 2XL Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-2xl-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-2xl-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 2XL Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-2xl-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-2xl-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 2XL Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-2xl-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-xl-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading XL Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-xl-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-xl-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading XL Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-xl-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-xl-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading XL Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-xl-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-l-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading L Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-l-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-l-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading L Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-l-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-l-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading L Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-l-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-m-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading M Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-m-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-m-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading M Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-m-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-m-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading M Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-m-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-s-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading S Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-s-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-s-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading S Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-s-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-s-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading S Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-s-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-xs-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading XS Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-xs-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-xs-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading XS Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-xs-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-xs-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading XS Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-xs-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-2xs-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 2XS Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-2xs-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-2xs-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 2XS Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-2xs-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-heading-2xs-light scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Heading 2XS Light</span><code class="scd-inline-code scd-t-text-m">sc-typography-heading-2xs-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Text</h3>
+      <p>Body and supporting copy. Inter, now in Regular and Semibold across six sizes, from a 24px lead paragraph down to a new 10px XS for fine print.</p>
+      <sc-table-basic class="scd-type-table" label="Text type styles">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-preview-col)">Preview</sc-table-head>
+          <sc-table-head width="auto">Variable</sc-table-head>
+          <sc-table-head width="auto">Tokens</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-2xl-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text 2XL Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-2xl-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-2xl-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text 2XL Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-2xl-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-xl-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text XL Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-xl-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-xl-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text XL Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-xl-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-l-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text L Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-l-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-l-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text L Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-l-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-m-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text M Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-m-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-m-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text M Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-m-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-s-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text S Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-s-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-s-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text S Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-s-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-xs-regular scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text XS Regular</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-xs-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-text-xs-semi-bold scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Text XS Semi Bold</span><code class="scd-inline-code scd-t-text-m">sc-typography-text-xs-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Link</h3>
+      <p>Inline and standalone links. Inter, Semibold, sized to sit alongside the matching Text step.</p>
+      <sc-table-basic class="scd-type-table" label="Link type styles">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-preview-col)">Preview</sc-table-head>
+          <sc-table-head width="auto">Variable</sc-table-head>
+          <sc-table-head width="auto">Tokens</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-link-l scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Link L</span><code class="scd-inline-code scd-t-text-m">sc-typography-link-l</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-link-m scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Link M</span><code class="scd-inline-code scd-t-text-m">sc-typography-link-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-link-s scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Link S</span><code class="scd-inline-code scd-t-text-m">sc-typography-link-s</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Label</h3>
+      <p>UI labels for controls, tabs and chips. Inter, Semibold, compact and high-contrast.</p>
+      <sc-table-basic class="scd-type-table" label="Label type styles">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-preview-col)">Preview</sc-table-head>
+          <sc-table-head width="auto">Variable</sc-table-head>
+          <sc-table-head width="auto">Tokens</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-label-l scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Label L</span><code class="scd-inline-code scd-t-text-m">sc-typography-label-l</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-label-m scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Label M</span><code class="scd-inline-code scd-t-text-m">sc-typography-label-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><span class="scd-t-label-s scd-type-specimen-text">Aa</span></sc-table-cell>
+          <sc-table-cell><span class="scd-type-var-name">Label S</span><code class="scd-inline-code scd-t-text-m">sc-typography-label-s</code></sc-table-cell>
+          <sc-table-cell class="scd-type-props"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Primitives</h2>
+      <p>Primitives are the raw type values every semantic style is built from: the font
+        families, weights, and the size, line-height and letter-spacing scales. Reference the
+        semantic styles above in product UI rather than these directly; reach for a primitive
+        only when no semantic style fits. The size and line-height values shift at the 810px
+        mobile breakpoint.</p>
+    </div>
+
+    <div class="scd-section">
+      <h3>Family</h3>
+      <sc-table-basic class="scd-type-primitive-table" label="Font family primitives">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-prim-name-col)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Variable</sc-table-head>
+          <sc-table-head width="var(--scd-type-prim-value-col)">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Inter</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-family-inter</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-family-inter"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Roboto</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-family-roboto</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-family-roboto"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>SF Pro Text</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-family-sf-pro-text</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-family-sf-pro-text"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Weight</h3>
+      <sc-table-basic class="scd-type-primitive-table" label="Font weight primitives">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-prim-name-col)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Variable</sc-table-head>
+          <sc-table-head width="var(--scd-type-prim-value-col)">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Light</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-weight-light</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-weight-light"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Regular</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-weight-regular</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-weight-regular"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Semi Bold</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-weight-semi-bold</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-weight-semi-bold"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Size</h3>
+      <sc-table-basic class="scd-type-primitive-table" label="Font size primitives">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-prim-name-col)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Variable</sc-table-head>
+          <sc-table-head width="var(--scd-type-prim-value-col)">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>XS</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-xs</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-xs"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>S</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-s</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-s"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>M</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-m"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>L</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-l</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-l"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>2XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-2xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-2xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>3XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-3xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-3xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>4XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-4xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-4xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>5XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-5xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-5xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>6XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-6xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-6xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>7XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-7xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-7xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>8XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-8xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-8xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>9XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-9xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-9xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>10XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-10xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-size-10xl"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Line Height</h3>
+      <sc-table-basic class="scd-type-primitive-table" label="Line height primitives">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-prim-name-col)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Variable</sc-table-head>
+          <sc-table-head width="var(--scd-type-prim-value-col)">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>XS</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-xs</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-xs"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>S</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-s</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-s"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>M</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-m"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>L</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-l</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-l"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>2XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-2xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-2xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>3XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-3xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-3xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>4XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-4xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-4xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>5XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-5xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-5xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>6XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-6xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-6xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>7XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-7xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-7xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>8XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-8xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-8xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>9XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-9xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-9xl"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>10XL</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-10xl</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-line-height-10xl"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h3>Letter Spacing</h3>
+      <sc-table-basic class="scd-type-primitive-table" label="Letter spacing primitives">
+        <sc-table-row header slot="header">
+          <sc-table-head width="var(--scd-type-prim-name-col)">Name</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Variable</sc-table-head>
+          <sc-table-head width="var(--scd-type-prim-value-col)">Value</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>XS</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-letter-spacing-xs</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-letter-spacing-xs"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>S</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-letter-spacing-s</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-letter-spacing-s"></sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>None</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-letter-spacing-none</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value" data-token="--sc-type-letter-spacing-none"></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+      import '@scale-ds/scale-design-system/components/sc-segmented-control'
+
+      // Platform preview — only the font family differs across platforms, so the
+      // toggle swaps the specimen font and the Family token; every other value
+      // is shared. (web/ios use already-loaded or system fonts; android loads
+      // Roboto from Google Fonts on demand.)
+      const PLATFORMS = [
+        { value: 'web', label: 'Web', token: '--sc-type-family-inter', family: 'Inter' },
+        { value: 'ios', label: 'iOS', token: '--sc-type-family-sf-pro-text', family: 'SF Pro Text' },
+        { value: 'android', label: 'Android', token: '--sc-type-family-roboto', family: 'Roboto' },
+      ]
+      let platform = PLATFORMS[0]
+
+      // Fill the "Tokens" column: for each specimen we read the CSS variables the
+      // type mixin sets (from its compiled `.scd-t-*` rule) and pair each with the
+      // value it resolves to in the current theme/viewport — the same breakdown
+      // Figma shows for a text style. Authoring stays a single `.scd-t-*` class;
+      // this derives the per-property table from the live styles.
+      const PROPS = [
+        ['font-family', 'Family'],
+        ['font-weight', 'Weight'],
+        ['font-size', 'Size'],
+        ['line-height', 'Line height'],
+        ['letter-spacing', 'Letter spacing'],
+      ]
+
+      // Map every `.scd-t-*` rule → { property: '--var-name' } by scanning the
+      // declared (unresolved) values in the loaded stylesheets.
+      function collectMixinVars() {
+        const map = {}
+        for (const sheet of Array.from(document.styleSheets)) {
+          let rules
+          try { rules = sheet.cssRules } catch { continue } // cross-origin (fonts)
+          for (const rule of Array.from(rules)) {
+            if (!(rule instanceof CSSStyleRule)) continue
+            const sel = rule.selectorText
+            if (!/^\.scd-t-[\w-]+$/.test(sel)) continue
+            const key = sel.slice(1)
+            const vars = (map[key] ??= {})
+            for (const [prop] of PROPS) {
+              const decl = rule.style.getPropertyValue(prop)
+              const m = decl.match(/var\(\s*(--[\w-]+)\s*\)/)
+              if (m) vars[prop] = m[1]
+            }
+          }
+        }
+        return map
+      }
+
+      // Resolve a property's live value off the specimen (which carries the
+      // mixin) — so it reflects the current viewport, including the responsive
+      // type overrides below the 810px mobile breakpoint.
+      function resolved(specimen, prop) {
+        let value = getComputedStyle(specimen).getPropertyValue(prop).trim()
+        if (prop === 'font-family') value = value.replace(/^["']|["']$/g, '').split(',')[0]
+        // letter-spacing of 0 computes to "normal" — show "0" instead.
+        if (value === 'normal') value = '0'
+        return value
+      }
+
+      // Build a px → token reverse map for the size and line-height scales from
+      // the *base* :root declarations (ignoring the @media override), each
+      // `--sc-type-…: var(--sc-unit-NN)` resolved through its non-responsive
+      // unit. Below the mobile breakpoint a step's value changes to another
+      // step's value (e.g. size-10xl drops 72px → 56px), so the resolved value
+      // maps back to the token that canonically holds it (size-8xl).
+      function buildScale() {
+        const sizeUnit = {}, lineUnit = {}
+        for (const sheet of Array.from(document.styleSheets)) {
+          let rules
+          try { rules = sheet.cssRules } catch { continue }
+          // Only top-level :root rules — CSSMediaRule (the responsive override)
+          // isn't a CSSStyleRule, so it's skipped and we get the base scale.
+          for (const rule of Array.from(rules)) {
+            if (!(rule instanceof CSSStyleRule) || rule.selectorText !== ':root') continue
+            for (let i = 0; i < rule.style.length; i++) {
+              const p = rule.style.item(i)
+              const target = p.startsWith('--sc-type-size-') ? sizeUnit
+                : p.startsWith('--sc-type-line-height-') ? lineUnit : null
+              if (!target) continue
+              const m = rule.style.getPropertyValue(p).match(/var\(\s*(--[\w-]+)\s*\)/)
+              if (m) target[p] = m[1]
+            }
+          }
+        }
+        const root = getComputedStyle(document.documentElement)
+        const reverse = (decl) => {
+          const map = {}
+          for (const [token, unitVar] of Object.entries(decl)) {
+            const px = parseFloat(root.getPropertyValue(unitVar))
+            if (!Number.isNaN(px)) map[px] = token
+          }
+          return map
+        }
+        return { 'font-size': reverse(sizeUnit), 'line-height': reverse(lineUnit) }
+      }
+
+      onReady('.scd-type-props', () => {
+        const mixinVars = collectMixinVars()
+        const scale = buildScale()
+        // Each row's value + variable spans, kept so both can be re-read when the
+        // viewport crosses the mobile breakpoint (sizes/line-heights swap).
+        const rows = []
+
+        document.querySelectorAll('.scd-type-props').forEach((cell) => {
+          const specimen = cell.closest('sc-table-row')?.querySelector('.scd-type-specimen-text')
+          if (!specimen) return
+          const key = [...specimen.classList].find((c) => c.startsWith('scd-t-'))
+          if (!key) return
+
+          const vars = mixinVars[key] ?? {}
+          const list = document.createElement('div')
+          list.className = 'scd-type-tokens'
+          const fields = []
+
+          for (const [prop, label] of PROPS) {
+            const varName = vars[prop]
+            if (!varName) continue
+            const token = document.createElement('div')
+            token.className = 'scd-type-token'
+            token.innerHTML =
+              `<span class="scd-type-token-label">${label}:</span> ` +
+              `<span class="scd-type-token-var"></span> ` +
+              `<span class="scd-type-token-raw"></span>`
+            list.appendChild(token)
+            fields.push({
+              prop,
+              mixinVar: varName,
+              var: token.querySelector('.scd-type-token-var'),
+              raw: token.querySelector('.scd-type-token-raw'),
+            })
+          }
+          cell.replaceChildren(list)
+          rows.push({ specimen, fields })
+        })
+
+        // (Re)write each token from the live computed styles. For size and
+        // line-height the variable name tracks the value (mapped through the
+        // scale); other properties keep the variable the mixin declares.
+        const refresh = () => {
+          for (const { specimen, fields } of rows) {
+            for (const f of fields) {
+              // Family is platform-driven, not read off the specimen.
+              if (f.prop === 'font-family') {
+                f.var.textContent = platform.token
+                f.raw.textContent = `(${platform.family})`
+                continue
+              }
+              const value = resolved(specimen, f.prop)
+              const dynamic = scale[f.prop]?.[parseFloat(value)]
+              f.var.textContent = dynamic ?? f.mixinVar
+              f.raw.textContent = `(${value})`
+            }
+          }
+        }
+        refresh()
+
+        // Swap to the responsive values when crossing the mobile breakpoint.
+        window.matchMedia('(max-width: 810px)').addEventListener('change', refresh)
+
+        // Platform toggle: re-render the specimen font (via a root data-attr the
+        // CSS keys off) and the Family token, leaving every other value untouched.
+        const control = document.querySelector('.scd-type-platform-control')
+        if (control) {
+          control.items = PLATFORMS.map(({ value, label }) => ({ value, label }))
+          document.documentElement.dataset.typePlatform = platform.value
+          control.addEventListener('change', (e) => {
+            platform = PLATFORMS.find((p) => p.value === e.detail.value) ?? PLATFORMS[0]
+            document.documentElement.dataset.typePlatform = platform.value
+            // Android: pull Roboto from Google Fonts the first time it's picked.
+            if (platform.value === 'android' && !document.getElementById('scd-roboto-font')) {
+              const link = document.createElement('link')
+              link.id = 'scd-roboto-font'
+              link.rel = 'stylesheet'
+              link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap'
+              document.head.appendChild(link)
+            }
+            refresh()
+            // Let the primitive tables re-read their values too (they drop to the
+            // mobile scale for iOS/Android).
+            window.dispatchEvent(new Event('scd-type-platform-change'))
+          })
+        }
+      })
+    </script>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      // Fill the Value column of the primitive tables from each token's live
+      // resolved value, so the size and line-height scales show their responsive
+      // value and swap when crossing the 810px mobile breakpoint.
+      onReady('.scd-type-primitive-value', () => {
+        const cells = [...document.querySelectorAll('.scd-type-primitive-value')]
+        const fill = () => {
+          for (const cell of cells) {
+            // Read off the cell so it picks up the mobile-scale override the
+            // platform toggle sets on the table for iOS/Android.
+            let value = getComputedStyle(cell).getPropertyValue(cell.dataset.token).trim()
+            if (value === 'normal') value = '0'
+            cell.textContent = value
+          }
+        }
+        fill()
+        window.matchMedia('(max-width: 810px)').addEventListener('change', fill)
+        window.addEventListener('scd-type-platform-change', fill)
+      })
+    </script>

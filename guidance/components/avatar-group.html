@@ -1,0 +1,89 @@
+    <div class="scd-page-header">
+      <h1>Avatar Group</h1>
+      <div class="scd-page-header-text">
+        <p>Overlapping avatars with an overflow count — a compact way to show
+          several people at once.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-avatar-group.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=5926-18314"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-avatar-group'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Sizes</h3>
+      <p>The group <code class="scd-inline-code">size</code> applies to every child avatar.</p>
+      <scd-demo>
+        <sc-avatar-group size="l">
+          <sc-avatar size="l" src="https://i.pravatar.cc/48?img=11" alt="User 1"></sc-avatar>
+          <sc-avatar size="l" src="https://i.pravatar.cc/48?img=12" alt="User 2"></sc-avatar>
+          <sc-avatar size="l" src="https://i.pravatar.cc/48?img=13" alt="User 3"></sc-avatar>
+          <sc-avatar size="l" alt="Grace"></sc-avatar>
+          <sc-avatar size="l" alt="Henry"></sc-avatar>
+        </sc-avatar-group>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Overflow count</h3>
+      <p>Set <code class="scd-inline-code">max</code> to cap visible avatars; the remainder collapse
+        into a &ldquo;+N&rdquo; chip. <strong>Click the chip</strong> to open a dropdown of
+        the hidden people — each row shows their avatar and name (read from each
+        avatar&rsquo;s <code class="scd-inline-code">alt</code>).</p>
+      <scd-demo>
+        <sc-avatar-group size="m" max="3">
+          <sc-avatar size="m" src="https://i.pravatar.cc/48?img=11" alt="Olivia Martin"></sc-avatar>
+          <sc-avatar size="m" src="https://i.pravatar.cc/48?img=12" alt="Liam Nguyen"></sc-avatar>
+          <sc-avatar size="m" src="https://i.pravatar.cc/48?img=13" alt="Emma Johansson"></sc-avatar>
+          <sc-avatar size="m" src="https://i.pravatar.cc/48?img=14" alt="Noah Patel"></sc-avatar>
+          <sc-avatar size="m" src="https://i.pravatar.cc/48?img=15" alt="Ava Rossi"></sc-avatar>
+          <sc-avatar size="m" alt="William Chen"></sc-avatar>
+          <sc-avatar size="m" alt="Sophia Garcia"></sc-avatar>
+        </sc-avatar-group>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>team rosters, shared-document viewers,
+        multi-user presence, and collaborator lists.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Give every avatar a meaningful <code class="scd-inline-code">alt</code> — the names drive the overflow dropdown.</li>
+            <li>Set <code class="scd-inline-code">max</code> so the row stays compact in its container.</li>
+            <li>Keep the group size consistent with the surrounding UI density.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t show a long unbroken row — cap it with <code class="scd-inline-code">max</code> and let the rest overflow.</li>
+            <li>Don&rsquo;t rely on the photos alone to identify people; surface names in the overflow menu.</li>
+            <li>Don&rsquo;t use it for a single person — use <a href="/components/avatar/">Avatar</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Group:</strong> the row is <code class="scd-inline-code">role="group"</code> labelled &ldquo;Avatar group&rdquo;.</li>
+        <li><strong>Overflow trigger:</strong> the &ldquo;+N&rdquo; control is a native <code class="scd-inline-code">&lt;button&gt;</code> with <code class="scd-inline-code">aria-haspopup="menu"</code>, <code class="scd-inline-code">aria-expanded</code>, and an <code class="scd-inline-code">aria-label</code> of &ldquo;N more&rdquo;.</li>
+        <li><strong>Menu:</strong> the dropdown is <code class="scd-inline-code">role="menu"</code> with <code class="scd-inline-code">role="menuitem"</code> rows; <kbd>Esc</kbd> closes it and returns focus to the trigger.</li>
+        <li><strong>Focus:</strong> the overflow button shows the global keyboard focus ring.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-avatar-group"></scd-api>
+    </div>

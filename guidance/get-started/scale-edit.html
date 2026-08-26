@@ -1,0 +1,85 @@
+    <div class="scd-page-header">
+      <h1>Scale Edit</h1>
+      <div class="scd-page-header-text">
+        <p>A dev-only, in-page editing overlay. Pin comments and make <strong>token-aware</strong>
+          visual tweaks — colour roles, spacing, radius, typography — directly on a running page.
+          The controls only offer valid Scale tokens, so every edit stays on-system, and each
+          change is captured to a small queue that a coding agent reads and applies to your real
+          source.</p>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>How it works</h2>
+      <p>Scale Edit has three parts that hand off to each other:</p>
+      <ul>
+        <li><strong>The overlay</strong> (<code class="scd-inline-code">&lt;sc-edit-layer&gt;</code>) — mounts on the running page. Point at any
+          element to pin a free-text comment, or open the edit panel to change an attribute, a
+          text node, or a style — style controls are populated from the design tokens, never
+          free-form values.</li>
+        <li><strong>The bridge</strong> (the Vite plugin) — serves a tiny REST endpoint backed by
+          <code class="scd-inline-code">.scale/edits.json</code> in your project root, and stamps
+          <code class="scd-inline-code">data-sc-loc="file:line"</code> onto served HTML so items
+          carry a precise source location.</li>
+        <li><strong>The agent</strong> — a coding agent (e.g. the <code class="scd-inline-code">/scale-edit</code>
+          skill) reads the pending queue, applies each item to the source files it points at, and
+          marks it resolved.</li>
+      </ul>
+      <p>The result: design feedback captured where you see it, applied where it lives — with
+        tokens preserved end to end.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Setup with Vite</h2>
+      <p>Add the plugin to your Vite config. It is inert in production builds
+        (<code class="scd-inline-code">apply: 'serve'</code>) and does nothing in dev either until
+        you opt in per run.</p>
+      <scd-demo code="// vite.config.ts
+import { scaleEdit } from '@scale-ds/scale-design-system/vite'
+
+export default defineConfig({
+  plugins: [scaleEdit()],
+})"></scd-demo>
+      <p>The overlay is <strong>off by default</strong> — turn it on per run with the
+        <code class="scd-inline-code">SCALE_EDIT</code> env var:</p>
+      <scd-demo code="SCALE_EDIT=1 npm run dev      # overlay on for this run
+SCALE_EDIT=open npm run dev   # on, and mounted already engaged
+npm run dev                   # no overlay"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Plugin options</h2>
+      <p>Everything can also be set statically in the config instead of via the env var.</p>
+      <scd-demo code="scaleEdit({
+  enabled: true,            // force on/off (default: only when SCALE_EDIT is set)
+  open: true,               // mount engaged instead of collapsed
+  endpoint: '/__scale/edits', // bridge route the overlay talks to
+  store: '.scale/edits.json', // queue file, relative to the project root
+  stampSource: true,        // data-sc-loc=&quot;file:line&quot; stamping on served HTML
+})"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Without Vite</h2>
+      <p>Non-Vite setups can mount the overlay manually. Keep the call behind a dev-only
+        condition — the overlay is never meant to ship to production.</p>
+      <scd-demo code="import { enableEdit } from '@scale-ds/scale-design-system/edit'
+
+if (import.meta.env.DEV) enableEdit()  // optional: enableEdit({ open: true })"></scd-demo>
+      <p>Without the Vite bridge there is no queue endpoint, so pair
+        <code class="scd-inline-code">enableEdit({ endpoint })</code> with your own handler that
+        persists the posted items.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>The queue and the agent</h2>
+      <p>Every comment and edit is appended to <code class="scd-inline-code">.scale/edits.json</code>
+        as a pending item — the structured change (attribute / style / text, with the token name
+        when one was picked) plus an anchor: tag name, CSS selector, DOM path, and the stamped
+        <code class="scd-inline-code">file:line</code> source location where available.</p>
+      <p>An agent applies the queue to source: token styles are written as
+        <code class="scd-inline-code">var(--sc-…)</code> (never the resolved raw value), typography
+        edits use the named type styles, and each applied item is removed from the queue via the
+        bridge. The queue is dev-only state — keep <code class="scd-inline-code">.scale/</code>
+        out of version control.</p>
+    </div>

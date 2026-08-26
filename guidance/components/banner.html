@@ -1,0 +1,148 @@
+    <div class="scd-page-header">
+      <h1>Banner</h1>
+      <div class="scd-page-header-text">
+        <p>Full-width messages pinned to the top of the page for system-wide announcements or important notices.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-banner.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=9704-76167"
+        framer="https://scaleframer.framer.website/components/banner"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-banner'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Status variants</h3>
+      <p>Click a trigger — the banner fades in full-width at the top of the page.
+        Five semantic statuses set the icon and background colour. Banners are
+        persistent: only one shows at a time, and it stays until the reader
+        dismisses it with the close button (or <kbd>Esc</kbd> while focused).</p>
+      <scd-demo code="const banner = document.createElement('sc-banner')
+banner.status = 'info'
+banner.text = 'Information message text.'
+banner.link = 'Learn more'
+document.body.prepend(banner)">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sc-space-s)">
+          <sc-button data-banner data-status="info" data-text="Information message text." data-link="Learn more">Info</sc-button>
+          <sc-button type="secondary" data-banner data-status="warning" data-text="Warning message text." data-link="Learn more">Warning</sc-button>
+          <sc-button type="secondary" data-banner data-status="negative" data-text="Error message text." data-link="Learn more">Negative</sc-button>
+          <sc-button type="secondary" data-banner data-status="positive" data-text="Success message text." data-link="Learn more">Positive</sc-button>
+          <sc-button type="secondary" data-banner data-status="mono" data-text="Mono banner text." data-link="Learn more">Mono</sc-button>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Options</h3>
+      <p>Drop the trailing link with <code class="scd-inline-code">hide-link</code>, or turn the link into
+        a real anchor with <code class="scd-inline-code">link-href</code>.</p>
+      <scd-demo code="const banner = document.createElement('sc-banner')
+banner.status = 'info'
+banner.text = 'Click the link to learn more.'
+banner.link = 'Learn more'
+banner.setAttribute('link-href', '#')
+document.body.prepend(banner)">
+        <div style="display:flex;flex-wrap:wrap;gap:var(--sc-space-s)">
+          <sc-button type="secondary" data-banner data-status="info" data-text="Banner without a link." data-hide-link>Without link</sc-button>
+          <sc-button type="secondary" data-banner data-status="info" data-text="Click the link to learn more." data-link="Learn more" data-link-href="#">With link href</sc-button>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>page-level announcements, system status,
+        marketing messages, and dismissable notices. For alerts scoped to a card use
+        <a href="/components/alert/">Alert</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Reserve banners for page-level, system-wide messages.</li>
+            <li>Show one at a time and let the reader dismiss it.</li>
+            <li>Keep it to a single line with one optional link.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a banner for card- or section-scoped messages — use <a href="/components/alert/">Alert</a>.</li>
+            <li>Don&rsquo;t stack multiple banners on a page.</li>
+            <li>Don&rsquo;t use it for transient confirmations — use <a href="/components/toast/">Toast</a>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> the banner is <code class="scd-inline-code">role="status"</code> labelled &ldquo;Notification&rdquo;, so it&rsquo;s announced politely without stealing focus.</li>
+        <li><strong>Dismiss:</strong> a close button removes it; <kbd>Esc</kbd> closes it while focused.</li>
+        <li><strong>Not colour alone:</strong> each status pairs its colour with a distinct <a href="/components/status-icon/">status icon</a>.</li>
+        <li><strong>Focus:</strong> the link and close button show the global keyboard focus ring.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-banner"></scd-api>
+    </div>
+
+    <script type="module">
+      import '@scale-ds/scale-design-system/components/sc-banner'
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      // One fixed full-width slot pinned to the top of the page.
+      function getStack() {
+        let stack = document.getElementById('scd-banner-stack')
+        if (!stack) {
+          stack = document.createElement('div')
+          stack.id = 'scd-banner-stack'
+          stack.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:2000'
+          document.body.appendChild(stack)
+        }
+        return stack
+      }
+
+      // Track the single live banner so a new trigger replaces it.
+      let current = null
+
+      function makeBanner(d) {
+        const banner = document.createElement('sc-banner')
+        banner.status = d.status || 'info'
+        banner.text = d.text || ''
+        if (d.link) banner.link = d.link
+        if (d.linkHref) banner.setAttribute('link-href', d.linkHref)
+        if (d.hideLink !== undefined) banner.toggleAttribute('hide-link', true)
+
+        // sc-banner owns its own enter/exit (fade + 8px nudge, on the motion
+        // tokens) and defers detaching until the exit has played, so there is
+        // nothing to wire up here.
+        banner.addEventListener('close', () => {
+          if (current === banner) current = null
+        })
+        return banner
+      }
+
+      function showBanner(d) {
+        const stack = getStack()
+        // Persistent + single: clear any live banner instantly (native remove,
+        // skipping the exit animation), then let the new one animate in.
+        if (current) HTMLElement.prototype.remove.call(current)
+        const banner = makeBanner(d)
+        current = banner
+        stack.appendChild(banner)
+      }
+
+      onReady('sc-button[data-banner]', () => {
+        document.querySelectorAll('sc-button[data-banner]').forEach((btn) => {
+          btn.addEventListener('click', () => showBanner(btn.dataset))
+        })
+      })
+    </script>

@@ -1,0 +1,103 @@
+    <div class="scd-page-header">
+      <h1>Breadcrumbs</h1>
+      <div class="scd-page-header-text">
+        <p>Trail of linked pages showing users exactly where they are within the site hierarchy.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-breadcrumbs.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=9709-25353"
+        framer="https://scaleframer.framer.website/components/breadcrumbs"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-breadcrumbs'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Pass <code class="scd-inline-code">crumbs</code> as an array of <code class="scd-inline-code">{ label, href }</code>
+        and set <code class="scd-inline-code">current</code> for the active page. A crumb with no <code class="scd-inline-code">href</code> fires a
+        <code class="scd-inline-code">navigate</code> event instead of following a link.</p>
+      <scd-demo code='&lt;sc-breadcrumbs current="Running"&gt;&lt;/sc-breadcrumbs&gt;
+
+// crumbs is an array property, set in JS:
+breadcrumbs.crumbs = [
+  { label: "Home", href: "/" },
+  { label: "Products", href: "/products" },
+  { label: "Shoes", href: "/products/shoes" },
+]'>
+        <sc-breadcrumbs id="scd-bc-1" current="Running" style="max-width:100%"></sc-breadcrumbs>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Without a current page</h3>
+      <p>Omit <code class="scd-inline-code">current</code> and the trailing separator is suppressed.</p>
+      <scd-demo code='breadcrumbs.crumbs = [
+  { label: "Dashboard", href: "/" },
+  { label: "Settings", href: "/settings" },
+  { label: "Account", href: "/settings/account" },
+]'>
+        <sc-breadcrumbs id="scd-bc-2" style="max-width:100%"></sc-breadcrumbs>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>navigation trails on deep pages and to give
+        location context inside an app hierarchy.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Start at the site root and end at the current page.</li>
+            <li>Use short labels that match the destination page titles.</li>
+            <li>Keep the trail on one line; truncate long paths rather than wrap.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use breadcrumbs as a page&rsquo;s primary navigation.</li>
+            <li>Don&rsquo;t make the current page a clickable link.</li>
+            <li>Don&rsquo;t show them on top-level pages with no hierarchy.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Landmark:</strong> the trail is a <code class="scd-inline-code">&lt;nav&gt;</code> labelled &ldquo;Breadcrumb&rdquo; wrapping an ordered list.</li>
+        <li><strong>Current page:</strong> marked <code class="scd-inline-code">aria-current="page"</code> and rendered as plain text, not a link.</li>
+        <li><strong>Separators:</strong> the &ldquo;/&rdquo; dividers are <code class="scd-inline-code">aria-hidden</code>, so screen readers skip them.</li>
+        <li><strong>Crumbs:</strong> each is a keyboard-focusable link (<kbd>Enter</kbd> activates); a crumb with no <code class="scd-inline-code">href</code> fires a <code class="scd-inline-code">navigate</code> event instead of following a URL.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-breadcrumbs"></scd-api>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+      onReady('#scd-bc-1', () => {
+        const bc1 = document.getElementById('scd-bc-1')
+        if (bc1) bc1.crumbs = [
+          { label: 'Home', href: '#' },
+          { label: 'Products', href: '#' },
+          { label: 'Shoes', href: '#' },
+        ]
+        const bc2 = document.getElementById('scd-bc-2')
+        if (bc2) bc2.crumbs = [
+          { label: 'Dashboard', href: '#' },
+          { label: 'Settings', href: '#' },
+          { label: 'Account', href: '#' },
+        ]
+      })
+    </script>

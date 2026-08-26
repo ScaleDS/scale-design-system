@@ -1,0 +1,108 @@
+    <div class="scd-page-header">
+      <h1>Input PIN</h1>
+      <div class="scd-page-header-text">
+        <p>One-time-code / PIN entry across separate digit cells. Typing auto-advances,
+          Backspace steps back, arrows navigate, and pasting a code distributes its digits across
+          the cells.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-input-pin.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=31936-81337"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-input-pin'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>4 digits</h3>
+      <p><code class="scd-inline-code">length</code> sets the number of cells (default 4).</p>
+      <scd-demo>
+        <sc-input-pin label="Verification code" help-text="Enter the 4-digit code we sent you."></sc-input-pin>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>6 digits</h3>
+      <scd-demo>
+        <sc-input-pin length="6" label="Verification code" help-text="Enter the 6-digit code."></sc-input-pin>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Sizes</h3>
+      <p>Two sizes — <code class="scd-inline-code">l</code> (default) and
+        <code class="scd-inline-code">xl</code>.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l);align-items:flex-start">
+          <sc-input-pin size="l" label="Large" value="12"></sc-input-pin>
+          <sc-input-pin size="xl" label="Extra large" value="12"></sc-input-pin>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Negative</h3>
+      <scd-demo>
+        <sc-input-pin state="negative" value="1234" label="Code" help-text="That code is incorrect."></sc-input-pin>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Positive</h3>
+      <scd-demo>
+        <sc-input-pin state="positive" value="1234" label="Code" help-text="Code verified."></sc-input-pin>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-input-pin disabled value="1234" label="Code"></sc-input-pin>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>verification codes, 2FA, and short PIN entry.
+        Form-associated — the host submits the joined value and fires a
+        <code class="scd-inline-code">complete</code> event when every cell is filled. For
+        general text, use <a href="/components/input/">Input</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Match <code class="scd-inline-code">length</code> to the real code length so paste fills cleanly.</li>
+            <li>Tell users where the code came from in <code class="scd-inline-code">help-text</code>.</li>
+            <li>Use <code class="scd-inline-code">state="negative"</code> with a message when a code is wrong.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use split cells for long or alphanumeric input — use <a href="/components/input/">Input</a>.</li>
+            <li>Don&rsquo;t block paste; many users paste codes from another app.</li>
+            <li>Don&rsquo;t rely on colour alone for the error — keep the help text.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Grouping:</strong> the cells sit in a <code class="scd-inline-code">role="group"</code> labelled by the field label and described by the help text.</li>
+        <li><strong>Per-cell label:</strong> each cell announces &ldquo;Digit N of M&rdquo;; the first cell carries <code class="scd-inline-code">autocomplete="one-time-code"</code> so OS code suggestions work.</li>
+        <li><strong>Keyboard:</strong> typing auto-advances; <kbd>Backspace</kbd> clears and steps back; <kbd>←</kbd>/<kbd>→</kbd>, <kbd>Home</kbd>/<kbd>End</kbd> move between cells; paste distributes digits.</li>
+        <li><strong>Input mode:</strong> <code class="scd-inline-code">inputmode="numeric"</code> brings up the number pad on mobile.</li>
+        <li><strong>Form:</strong> form-associated — <code class="scd-inline-code">required</code> sets <code class="scd-inline-code">valueMissing</code> until all cells are filled; emits <code class="scd-inline-code">input</code>, <code class="scd-inline-code">change</code>, and <code class="scd-inline-code">complete</code>.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-input-pin"></scd-api>
+    </div>

@@ -1,0 +1,250 @@
+    <div class="scd-page-header">
+      <h1>Modal</h1>
+      <div class="scd-page-header-text">
+        <p>A full-focus overlay window for critical information, forms, or workflows that need
+          undivided attention. Built on the native <code class="scd-inline-code">&lt;dialog&gt;</code>
+          element, so focus trapping, top-layer rendering, and focus restoration come for free.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-modal.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=6757-14019"
+        framer="https://scaleframer.framer.website/components/modal"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-modal'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>With actions</h3>
+      <p>Slot footer buttons into <code class="scd-inline-code">actions</code>; the footer hides
+        itself when empty.</p>
+      <scd-demo code='&lt;sc-button onclick="this.nextElementSibling.show()"&gt;Open modal&lt;/sc-button&gt;
+&lt;sc-modal heading="Heading"&gt;
+  &lt;p&gt;Modal body content goes here.&lt;/p&gt;
+  &lt;sc-button slot="actions" type="secondary"&gt;Cancel&lt;/sc-button&gt;
+  &lt;sc-button slot="actions" type="primary"&gt;Confirm&lt;/sc-button&gt;
+&lt;/sc-modal&gt;'>
+        <div>
+          <sc-button onclick="this.nextElementSibling.show()">Open modal</sc-button>
+          <sc-modal heading="Heading">
+            <p style="margin:0;color:var(--sc-color-text-secondary)">Modal body content goes here. Background content is inert while the modal is open, and focus is trapped within it.</p>
+            <sc-button slot="actions" type="secondary" onclick="this.closest('sc-modal').close()">Cancel</sc-button>
+            <sc-button slot="actions" type="primary" onclick="this.closest('sc-modal').close()">Confirm</sc-button>
+          </sc-modal>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Slotted — radio group</h3>
+      <scd-demo code='&lt;sc-modal heading="Choose a plan"&gt;
+  &lt;div role="radiogroup" aria-label="Plan"&gt;
+    &lt;sc-radio name="plan" value="free" checked&gt;Free&lt;/sc-radio&gt;
+    &lt;sc-radio name="plan" value="starter"&gt;Starter&lt;/sc-radio&gt;
+    &lt;sc-radio name="plan" value="pro"&gt;Pro&lt;/sc-radio&gt;
+    &lt;sc-radio name="plan" value="team"&gt;Team&lt;/sc-radio&gt;
+    &lt;sc-radio name="plan" value="enterprise"&gt;Enterprise&lt;/sc-radio&gt;
+  &lt;/div&gt;
+  &lt;sc-button slot="actions" type="secondary"&gt;Cancel&lt;/sc-button&gt;
+  &lt;sc-button slot="actions" type="primary"&gt;Confirm&lt;/sc-button&gt;
+&lt;/sc-modal&gt;'>
+        <div>
+          <sc-button onclick="this.nextElementSibling.show()">Open modal</sc-button>
+          <sc-modal heading="Choose a plan">
+            <div role="radiogroup" aria-label="Plan" style="display:flex;flex-direction:column;gap:var(--sc-space-s)">
+              <sc-radio name="modal-plan" value="free" checked>Free</sc-radio>
+              <sc-radio name="modal-plan" value="starter">Starter</sc-radio>
+              <sc-radio name="modal-plan" value="pro">Pro</sc-radio>
+              <sc-radio name="modal-plan" value="team">Team</sc-radio>
+              <sc-radio name="modal-plan" value="enterprise">Enterprise</sc-radio>
+            </div>
+            <sc-button slot="actions" type="secondary" onclick="this.closest('sc-modal').close()">Cancel</sc-button>
+            <sc-button slot="actions" type="primary" onclick="this.closest('sc-modal').close()">Confirm</sc-button>
+          </sc-modal>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Slotted — login form</h3>
+      <p>Flags empty required fields and only closes when valid.</p>
+      <scd-demo code='&lt;sc-modal heading="Sign in"&gt;
+  &lt;div class="stack"&gt;
+    &lt;sc-button type="secondary"&gt;&lt;svg slot=""&gt;…Google G…&lt;/svg&gt;Continue with Google&lt;/sc-button&gt;
+    &lt;div class="or-divider"&gt;
+      &lt;sc-divider variant="subtle"&gt;&lt;/sc-divider&gt;
+      &lt;span&gt;or&lt;/span&gt;
+      &lt;sc-divider variant="subtle"&gt;&lt;/sc-divider&gt;
+    &lt;/div&gt;
+    &lt;sc-input label="Email" type="email" placeholder="you@example.com" required&gt;&lt;/sc-input&gt;
+    &lt;sc-input label="Password" type="password" placeholder="••••••••" required&gt;&lt;/sc-input&gt;
+  &lt;/div&gt;
+  &lt;sc-button slot="actions" type="primary"&gt;Sign in&lt;/sc-button&gt;
+&lt;/sc-modal&gt;'>
+        <div>
+          <sc-button onclick="this.nextElementSibling.show()">Open modal</sc-button>
+          <sc-modal heading="Sign in">
+            <div style="display:flex;flex-direction:column;gap:var(--sc-space-l)">
+              <sc-button type="secondary" style="width:100%"><svg slot="" width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.637-.057-1.251-.164-1.84H9v3.481h4.844a4.14 4.14 0 0 1-1.796 2.716v2.259h2.908c1.702-1.567 2.684-3.875 2.684-6.615z"/><path fill="#34A853" d="M9 18c2.43 0 4.467-.806 5.956-2.18l-2.908-2.259c-.806.54-1.837.86-3.048.86-2.344 0-4.328-1.584-5.036-3.711H.957v2.332A8.997 8.997 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.964 10.71A5.41 5.41 0 0 1 3.682 9c0-.593.102-1.17.282-1.71V4.958H.957A8.996 8.996 0 0 0 0 9c0 1.452.348 2.827.957 4.042l3.007-2.332z"/><path fill="#EA4335" d="M9 3.58c1.321 0 2.508.454 3.44 1.345l2.582-2.58C13.463.891 11.426 0 9 0A8.997 8.997 0 0 0 .957 4.958L3.964 7.29C4.672 5.163 6.656 3.58 9 3.58z"/></svg>Continue with Google</sc-button>
+              <div style="display:flex;align-items:center;gap:var(--sc-space-m)">
+                <sc-divider variant="subtle" style="flex:1"></sc-divider>
+                <span style="color:var(--sc-color-text-secondary);font-size:var(--sc-type-size-m)">or</span>
+                <sc-divider variant="subtle" style="flex:1"></sc-divider>
+              </div>
+              <sc-input data-signin-field label="Email" type="email" placeholder="you@example.com" required show-help-text="false"></sc-input>
+              <sc-input data-signin-field label="Password" type="password" placeholder="••••••••" required show-help-text="false"></sc-input>
+            </div>
+            <sc-button slot="actions" type="primary" data-signin-submit>Sign in</sc-button>
+          </sc-modal>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Slotted — date picker</h3>
+      <scd-demo code='&lt;!-- sc-date-picker is borderless by default; just stretch it full width --&gt;
+&lt;sc-modal heading="Select a date"&gt;
+  &lt;sc-date-picker mode="single" value="2011-04-15"
+    style="width:100%"&gt;&lt;/sc-date-picker&gt;
+  &lt;sc-button slot="actions" type="secondary"&gt;Cancel&lt;/sc-button&gt;
+  &lt;sc-button slot="actions" type="primary"&gt;Confirm&lt;/sc-button&gt;
+&lt;/sc-modal&gt;'>
+        <div>
+          <sc-button onclick="this.nextElementSibling.show()">Open modal</sc-button>
+          <sc-modal heading="Select a date">
+            <sc-date-picker mode="single" value="2011-04-15" style="width:100%"></sc-date-picker>
+            <sc-button slot="actions" type="secondary" onclick="this.closest('sc-modal').close()">Cancel</sc-button>
+            <sc-button slot="actions" type="primary" onclick="this.closest('sc-modal').close()">Confirm</sc-button>
+          </sc-modal>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Single action</h3>
+      <scd-demo code='&lt;sc-modal heading="Delete file?"&gt;
+  &lt;p&gt;This action cannot be undone.&lt;/p&gt;
+  &lt;sc-button slot="actions" type="primary"&gt;Got it&lt;/sc-button&gt;
+&lt;/sc-modal&gt;'>
+        <div>
+          <sc-button onclick="this.nextElementSibling.show()">Open modal</sc-button>
+          <sc-modal heading="Delete file?">
+            <p style="margin:0;color:var(--sc-color-text-secondary)">This action cannot be undone.</p>
+            <sc-button slot="actions" type="primary" onclick="this.closest('sc-modal').close()">Got it</sc-button>
+          </sc-modal>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Body only</h3>
+      <p>With no <code class="scd-inline-code">actions</code> slot, the footer is hidden.</p>
+      <scd-demo code='&lt;sc-modal heading="About"&gt;
+  &lt;p&gt;A modal with no footer actions.&lt;/p&gt;
+&lt;/sc-modal&gt;'>
+        <div>
+          <sc-button onclick="this.nextElementSibling.show()">Open modal</sc-button>
+          <sc-modal heading="About">
+            <p style="margin:0;color:var(--sc-color-text-secondary)">A modal with no footer actions — dismiss with the close button, Escape, or a backdrop click.</p>
+          </sc-modal>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Non-dismissable</h3>
+      <p><code class="scd-inline-code">no-dismiss</code> disables Escape and backdrop clicks —
+        the user must choose an action.</p>
+      <scd-demo code='&lt;sc-modal heading="Action required" no-dismiss&gt;
+  &lt;p&gt;You must choose an action.&lt;/p&gt;
+  &lt;sc-button slot="actions" type="primary"&gt;Acknowledge&lt;/sc-button&gt;
+&lt;/sc-modal&gt;'>
+        <div>
+          <sc-button onclick="this.nextElementSibling.show()">Open modal</sc-button>
+          <sc-modal heading="Action required" no-dismiss>
+            <p style="margin:0;color:var(--sc-color-text-secondary)">Escape and backdrop clicks are disabled — you must choose an action.</p>
+            <sc-button slot="actions" type="primary" onclick="this.closest('sc-modal').close()">Acknowledge</sc-button>
+          </sc-modal>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>confirmations, focused tasks, and short forms that must
+        interrupt the current flow. Call <code class="scd-inline-code">show()</code> to open and
+        <code class="scd-inline-code">close()</code> to dismiss — Escape and backdrop clicks also
+        dismiss unless <code class="scd-inline-code">no-dismiss</code> is set.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Reserve modals for tasks that genuinely must interrupt the flow.</li>
+            <li>Give a clear <code class="scd-inline-code">heading</code> and put the primary action last.</li>
+            <li>Keep content short; for long flows use a dedicated page instead.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t stack modals on modals — finish one before opening another.</li>
+            <li>Don&rsquo;t use <code class="scd-inline-code">no-dismiss</code> unless an action is truly required.</li>
+            <li>Don&rsquo;t bury critical info in a modal the user will reflexively dismiss.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Native dialog:</strong> built on <code class="scd-inline-code">&lt;dialog&gt;.showModal()</code> — focus is trapped, background content is inert, and focus returns to the trigger on close (WAI-ARIA APG Dialog pattern).</li>
+        <li><strong>Heading:</strong> the <code class="scd-inline-code">heading</code> renders an <code class="scd-inline-code">&lt;h2&gt;</code> that names the dialog; always provide one.</li>
+        <li><strong>Dismiss:</strong> <kbd>Esc</kbd> and backdrop clicks close it (unless <code class="scd-inline-code">no-dismiss</code>); the close button is a labelled <a href="/components/button-icon/">Button Icon</a>.</li>
+        <li><strong>Scroll lock:</strong> body scrolling is locked while open so the page behind doesn&rsquo;t move.</li>
+        <li><strong>Events:</strong> emits <code class="scd-inline-code">sc-open</code> and <code class="scd-inline-code">sc-close</code> for wiring side effects.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-modal"></scd-api>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      // Sign-in modal: flag empty required fields (negative state) and only close when valid.
+      onReady('[data-signin-submit]', () => {
+        document.querySelectorAll('[data-signin-submit]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const modal = btn.closest('sc-modal')
+            let firstInvalid = null
+            modal.querySelectorAll('sc-input').forEach((input) => {
+              const label = input.getAttribute('label') || 'This field'
+              if (!input.value.trim()) {
+                input.state = 'negative'
+                input.helpText = `${label} is required`
+                input.showHelpText = true
+                firstInvalid ??= input
+              } else {
+                input.state = 'default'
+                input.showHelpText = false
+              }
+            })
+            if (firstInvalid) { firstInvalid.focus?.(); return }
+            modal.close()
+          })
+        })
+        // Clear a field's error once the user starts typing.
+        document.querySelectorAll('sc-input[data-signin-field]').forEach((input) => {
+          input.addEventListener('input', () => {
+            if (input.value.trim()) { input.state = 'default'; input.showHelpText = false }
+          })
+        })
+      })
+    </script>

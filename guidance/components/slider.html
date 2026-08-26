@@ -1,0 +1,118 @@
+    <div class="scd-page-header">
+      <h1>Slider</h1>
+      <div class="scd-page-header-text">
+        <p>A continuous range control built on a native
+          <code class="scd-inline-code">&lt;input type="range"&gt;</code> — keyboard, drag, touch,
+          and form participation come for free. The 4px track fills brand-blue up to the handle.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-slider.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=23278-207164"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-slider'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Value</h3>
+      <p><code class="scd-inline-code">value</code> is clamped to the
+        <code class="scd-inline-code">min</code>–<code class="scd-inline-code">max</code> range.</p>
+      <scd-demo>
+        <div style="display:flex;flex-direction:column;gap:var(--sc-space-l);max-width:370px">
+          <sc-slider value="0" label="Volume"></sc-slider>
+          <sc-slider value="50" label="Volume"></sc-slider>
+          <sc-slider value="100" label="Volume"></sc-slider>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Live value</h3>
+      <p>Read <code class="scd-inline-code">event.detail.value</code> from the
+        <code class="scd-inline-code">input</code> event to mirror the value as it&rsquo;s dragged.</p>
+      <scd-demo code="&lt;sc-slider value=&quot;30&quot; @input=${e =&gt; readout.textContent = e.detail.value + '%'}&gt;&lt;/sc-slider&gt;
+&lt;span&gt;30%&lt;/span&gt;">
+        <div style="display:flex;align-items:center;gap:var(--sc-space-l);max-width:370px;width:100%">
+          <sc-slider data-slider-readout value="30" label="Volume" style="flex:1"></sc-slider>
+          <span class="slider-value" style="min-width:4ch;text-align:right;font-variant-numeric:tabular-nums;color:var(--sc-color-text-primary)">30%</span>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Custom range &amp; step</h3>
+      <p>Set <code class="scd-inline-code">min</code>, <code class="scd-inline-code">max</code>, and
+        <code class="scd-inline-code">step</code> to snap to discrete values.</p>
+      <scd-demo>
+        <sc-slider min="0" max="10" step="2" value="6" label="Rating" style="max-width:370px"></sc-slider>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Disabled</h3>
+      <scd-demo>
+        <sc-slider value="40" disabled label="Volume" style="max-width:370px"></sc-slider>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>volume, brightness, ratings, and any bounded numeric
+        value where approximate selection is fine. Emits
+        <code class="scd-inline-code">input</code> while dragging and
+        <code class="scd-inline-code">change</code> on commit. For exact numbers, use an
+        <a href="/components/input/">Input</a>.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use a slider when the exact number doesn&rsquo;t matter — approximate is fine.</li>
+            <li>Show the current value nearby when precision helps the user.</li>
+            <li>Use <code class="scd-inline-code">step</code> to snap to meaningful increments.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use a slider when an exact value is required — use an <a href="/components/input/">Input</a>.</li>
+            <li>Don&rsquo;t use a wide range with a tiny step that&rsquo;s impossible to hit by drag.</li>
+            <li>Don&rsquo;t omit <code class="scd-inline-code">label</code> — the slider needs an accessible name.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Role:</strong> the native range input provides <code class="scd-inline-code">role="slider"</code> with <code class="scd-inline-code">aria-valuemin</code>/<code class="scd-inline-code">max</code>/<code class="scd-inline-code">now</code> updated automatically.</li>
+        <li><strong>Name:</strong> <code class="scd-inline-code">label</code> sets <code class="scd-inline-code">aria-label</code>; always provide one.</li>
+        <li><strong>Keyboard:</strong> <kbd>←</kbd>/<kbd>→</kbd> (and <kbd>↑</kbd>/<kbd>↓</kbd>) step by <code class="scd-inline-code">step</code>, <kbd>Page Up</kbd>/<kbd>Page Down</kbd> jump larger, <kbd>Home</kbd>/<kbd>End</kbd> go to the ends.</li>
+        <li><strong>Focus:</strong> a dashed ring shows on the thumb for keyboard focus only.</li>
+        <li><strong>Form:</strong> form-associated — submits <code class="scd-inline-code">value</code> under <code class="scd-inline-code">name</code> and participates in reset.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-slider"></scd-api>
+    </div>
+
+    <script type="module">
+      import { onReady } from '/src/guidelines/ready.ts'
+
+      // Live value: mirror the slider's value into the readout beside it as it's dragged.
+      onReady('sc-slider[data-slider-readout]', () => {
+        document.querySelectorAll('sc-slider[data-slider-readout]').forEach((slider) => {
+          slider.addEventListener('input', (e) => {
+            const out = slider.parentElement?.querySelector('.slider-value')
+            const value = e.detail?.value ?? slider.value
+            if (out) out.textContent = `${value}%`
+          })
+        })
+      })
+    </script>

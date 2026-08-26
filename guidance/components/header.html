@@ -1,0 +1,170 @@
+    <div class="scd-page-header">
+      <h1>Header</h1>
+      <div class="scd-page-header-text">
+        <p>The fixed top bar of a site — brand logo, primary navigation, key actions, and an
+          optional search overlay. Below 810px it collapses into a two-level mobile menu.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/components/sc-header.ts"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=5469-7546"
+        framer="https://scaleframer.framer.website/components/header"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <scd-demo code="import '@scale-ds/scale-design-system/components/sc-header'"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>Default</h3>
+      <p>Pass <code class="scd-inline-code">nav-links</code> as a JSON array of
+        <code class="scd-inline-code">{ label, href }</code>;
+        <code class="scd-inline-code">primary-label</code> /
+        <code class="scd-inline-code">primary-href</code> set the CTA. (Framed here — in
+        production it spans the viewport and is fixed to the top.)</p>
+      <scd-demo code='&lt;sc-header
+  primary-label="Buy now"
+  primary-href="#"
+  nav-links=&apos;[{"label":"Pricing","href":"#"},{"label":"FAQ","href":"#"}]&apos;&gt;
+&lt;/sc-header&gt;'>
+        <!-- transform on the wrapper makes the fixed-position header position
+             against this box instead of the viewport, containing the demo. -->
+        <div style="position:relative;height:96px;border:1px solid var(--sc-color-border-subtle);border-radius:8px;overflow:hidden;width:100%;transform:translateZ(0)">
+          <sc-header
+            primary-label="Buy now"
+            primary-href="#"
+            nav-links='[{"label":"Pricing","href":"#"},{"label":"FAQ","href":"#"}]'
+          ></sc-header>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Secondary action</h3>
+      <p>Add <code class="scd-inline-code">secondary-label</code> /
+        <code class="scd-inline-code">secondary-href</code> for a lower-emphasis action beside
+        the primary CTA — typically &ldquo;Sign in&rdquo;.</p>
+      <scd-demo code='&lt;sc-header
+  primary-label="Buy now"
+  secondary-label="Sign in"
+  nav-links=&apos;[{"label":"Pricing","href":"#"},{"label":"FAQ","href":"#"}]&apos;&gt;
+&lt;/sc-header&gt;'>
+        <div style="position:relative;height:96px;border:1px solid var(--sc-color-border-subtle);border-radius:8px;overflow:hidden;width:100%;transform:translateZ(0)">
+          <sc-header
+            primary-label="Buy now"
+            primary-href="#"
+            secondary-label="Sign in"
+            secondary-href="#"
+            nav-links='[{"label":"Pricing","href":"#"},{"label":"FAQ","href":"#"}]'
+          ></sc-header>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>Nav alignment</h3>
+      <p><code class="scd-inline-code">nav-align</code> positions the links —
+        <code class="scd-inline-code">center</code> (default),
+        <code class="scd-inline-code">leading</code>, or
+        <code class="scd-inline-code">trailing</code>.</p>
+      <scd-demo code='&lt;sc-header
+  nav-align="trailing"
+  primary-label="Buy now"
+  nav-links=&apos;[{"label":"Pricing","href":"#"},{"label":"FAQ","href":"#"}]&apos;&gt;
+&lt;/sc-header&gt;'>
+        <div style="position:relative;height:96px;border:1px solid var(--sc-color-border-subtle);border-radius:8px;overflow:hidden;width:100%;transform:translateZ(0)">
+          <sc-header
+            nav-align="trailing"
+            primary-label="Buy now"
+            primary-href="#"
+            nav-links='[{"label":"Pricing","href":"#"},{"label":"FAQ","href":"#"}]'
+          ></sc-header>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>With search</h3>
+      <p>Set <code class="scd-inline-code">show-search</code> to reveal the search icon, and
+        provide pages to match against via the
+        <code class="scd-inline-code">.searchItems</code> property (an array of
+        <code class="scd-inline-code">{ label, href, group }</code>). Click the magnifier to open
+        the overlay.</p>
+      <scd-demo code='&lt;sc-header show-search primary-label="Buy now"
+  nav-links=&apos;[{"label":"Pricing","href":"#"}]&apos;&gt;&lt;/sc-header&gt;
+
+&lt;script type="module"&gt;
+  document.querySelector("sc-header").searchItems = [
+    { label: "Button", href: "/components/button/", group: "Components" },
+    { label: "Card", href: "/components/card/", group: "Components" },
+    { label: "Color", href: "/foundations/color/", group: "Foundations" },
+  ]
+&lt;/script&gt;'>
+        <div style="position:relative;height:320px;border:1px solid var(--sc-color-border-subtle);border-radius:8px;overflow:hidden;width:100%;transform:translateZ(0)">
+          <sc-header
+            id="scd-header-search"
+            show-search
+            primary-label="Buy now"
+            primary-href="#"
+            nav-links='[{"label":"Pricing","href":"#"},{"label":"FAQ","href":"#"}]'
+          ></sc-header>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <h3>Usage</h3>
+      <p>site-wide navigation, marketing-site headers, and app
+        top bars. Pairs with the <a href="/components/footer/">Footer</a> at the bottom of the
+        page.</p>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Keep top-level nav short — a handful of destinations, not a sitemap.</li>
+            <li>Lead with a single primary CTA; pair it with at most one secondary action.</li>
+            <li>Set <code class="scd-inline-code">active-href</code> / <code class="scd-inline-code">active-section</code> so the current page reads as selected.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t stack multiple primary CTAs competing for attention.</li>
+            <li>Don&rsquo;t enable <code class="scd-inline-code">show-search</code> without supplying <code class="scd-inline-code">.searchItems</code>.</li>
+            <li>Don&rsquo;t put a second fixed header on the page — it&rsquo;s a single, page-level landmark.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Landmark:</strong> renders a native <code class="scd-inline-code">&lt;header&gt;</code> (banner) with a <code class="scd-inline-code">&lt;nav aria-label="Main"&gt;</code> for primary navigation.</li>
+        <li><strong>Current page:</strong> the link matching <code class="scd-inline-code">active-href</code> gets <code class="scd-inline-code">aria-current="page"</code>.</li>
+        <li><strong>Search:</strong> a <code class="scd-inline-code">role="search"</code> region with a <code class="scd-inline-code">combobox</code> input and <code class="scd-inline-code">listbox</code> results — <kbd>↓</kbd>/<kbd>↑</kbd> move through options, <kbd>Enter</kbd> follows, <kbd>Esc</kbd> closes.</li>
+        <li><strong>Mobile menu:</strong> the toggle exposes <code class="scd-inline-code">aria-expanded</code>; section rows use <code class="scd-inline-code">aria-haspopup</code> for the second-level panel.</li>
+        <li><strong>Theme toggle:</strong> a <code class="scd-inline-code">role="switch"</code> with <code class="scd-inline-code">aria-checked</code> and an &ldquo;Toggle theme&rdquo; label.</li>
+        <li><strong>Layout offset:</strong> because it&rsquo;s <code class="scd-inline-code">position: fixed</code>, give page content top padding so nothing hides behind it.</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
+      <h2>Properties</h2>
+      <scd-api tags="sc-header"></scd-api>
+    </div>
+
+    <script type="module">
+      const h = document.getElementById('scd-header-search')
+      if (h) {
+        h.searchItems = [
+          { label: 'Button', href: '/components/button/', group: 'Components' },
+          { label: 'Card', href: '/components/card/', group: 'Components' },
+          { label: 'Date Picker', href: '/components/date-picker/', group: 'Components' },
+          { label: 'Color', href: '/foundations/color/', group: 'Foundations' },
+          { label: 'Spacing', href: '/foundations/spacing/', group: 'Foundations' },
+        ]
+      }
+    </script>
