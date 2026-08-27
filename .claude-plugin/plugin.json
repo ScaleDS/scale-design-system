@@ -1,0 +1,12 @@
+{
+  "name": "scale",
+  "description": "Build, review, and migrate UI with the Scale Design System. Bundles the Scale MCP server with skills that make an agent check the catalog before writing markup, read a component's guidance before using it, and verify its own output against the token and accessibility rules.",
+  "version": "4.1.0",
+  "author": {
+    "name": "Scale Design System",
+    "url": "https://scaledesignsystem.com"
+  },
+  "homepage": "https://scaledesignsystem.com",
+  "repository": "https://github.com/ScaleDS/scale-design-system",
+  "keywords": ["design-system", "web-components", "lit", "design-tokens", "accessibility"]
+}

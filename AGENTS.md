@@ -31,6 +31,8 @@ That second one drives most of the rules below.
 | `context/` | The AI layer: `AGENTS.md`, `components.json`, `tokens.json`, `patterns.json`, and generated `agents/<tag>.md`. **Ships in the npm tarball** |
 | `guidance/` | Hand-authored HTML page fragments — the source for both the docs guidelines pages and `context/agents/`. See `guidance/AUTHORING.md`. **Ships in the npm tarball** |
 | `mcp/` | Bundled MCP server, `src/index.ts` → `dist/` |
+| `skills/` | The `scale-build` / `scale-review` / `scale-migrate` skills shipped by the Claude Code plugin |
+| `.claude-plugin/`, `.mcp.json` | Plugin manifest and MCP wiring. Installing the plugin gets the skills and the server together |
 | `scripts/` | `generate-context.mjs`, `emit-agent-docs.mjs`, `build-motion-tokens.mjs`, `check-motion-drift.mjs` |
 | `examples/starter` | The `degit` target from the README |
 | `dist/`, `mcp/dist/` | Build output, gitignored. Never edit by hand |
