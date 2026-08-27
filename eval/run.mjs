@@ -27,7 +27,7 @@ const arg = (name, fallback) => {
   return i === -1 ? fallback : process.argv[i + 1]
 }
 
-const MODEL = arg('model', 'claude-opus-5')
+const MODEL = arg('model', null)
 const ONLY = arg('only', null)
 const CONDITIONS = arg('condition', null) ? [arg('condition', null)] : ['baseline', 'guided']
 
@@ -77,41 +77,95 @@ ${index}
 ${foundations.join(', ')}`
 }
 
-// Imported lazily and left out of package.json on purpose. The eval is opt-in
-// and never runs in CI, so making every `npm ci` install an API client the
-// shipped library has no use for would be a poor trade.
-let Anthropic
-try {
-  ({ default: Anthropic } = await import('@anthropic-ai/sdk'))
-} catch {
-  console.error('The eval needs the Anthropic SDK, which is not a dependency of this package:\n')
-  console.error('  npm install --no-save @anthropic-ai/sdk\n')
-  process.exit(1)
-}
+/**
+ * Two transports, because they bill differently.
+ *
+ * `api` goes through the Anthropic SDK and needs API credits. `cli` shells out
+ * to `claude -p`, which runs on a Claude Pro/Max subscription — a different
+ * product with separate billing, and the only route available to someone who
+ * has a subscription but no API key.
+ *
+ * They do not measure quite the same thing. The CLI carries Claude Code's own
+ * system prompt and harness, so a CLI run measures "a coding agent with and
+ * without the guidance" rather than "the raw model". For this eval that is
+ * arguably the more relevant question — the guidance exists for coding agents —
+ * but the two numbers are not interchangeable, so the transport is recorded in
+ * the results file.
+ */
+const VIA = arg('via', null) ?? (process.env.ANTHROPIC_API_KEY ? 'api' : 'cli')
 
-// Zero-arg: resolves ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN, or an
-// `ant auth login` profile, in that order. An unset API key does not mean
-// there are no credentials — `ant auth status` shows what is active.
-const client = new Anthropic()
+// The CLI takes short aliases, the SDK takes full ids. Defaulting per transport
+// avoids passing `claude-opus-5` to a flag that wants `opus`.
+const MODEL_RESOLVED = MODEL ?? (VIA === 'cli' ? 'opus' : 'claude-opus-5')
 
-async function ask(system, prompt) {
-  const response = await client.messages.create({
-    model: MODEL,
-    max_tokens: 16000,
-    system,
-    messages: [{ role: 'user', content: prompt }],
-  })
-  const text = response.content
-    .filter((b) => b.type === 'text')
-    .map((b) => b.text)
-    .join('\n')
-  return { text, usage: response.usage }
+let ask
+
+if (VIA === 'api') {
+  // Imported lazily and left out of package.json on purpose. The eval is opt-in
+  // and never runs in CI, so making every `npm ci` install an API client the
+  // shipped library has no use for would be a poor trade.
+  let Anthropic
+  try {
+    ({ default: Anthropic } = await import('@anthropic-ai/sdk'))
+  } catch {
+    console.error('The eval needs the Anthropic SDK, which is not a dependency of this package:\n')
+    console.error('  npm install --no-save @anthropic-ai/sdk\n')
+    process.exit(1)
+  }
+
+  // Zero-arg: resolves ANTHROPIC_API_KEY, ANTHROPIC_AUTH_TOKEN, or an
+  // `ant auth login` profile, in that order.
+  const client = new Anthropic()
+
+  ask = async (system, prompt) => {
+    const response = await client.messages.create({
+      model: MODEL_RESOLVED, max_tokens: 16000, system,
+      messages: [{ role: 'user', content: prompt }],
+    })
+    return {
+      text: response.content.filter((b) => b.type === 'text').map((b) => b.text).join('\n'),
+      usage: response.usage,
+    }
+  }
+} else {
+  const { execFile } = await import('child_process')
+  const { promisify } = await import('util')
+  const { mkdtempSync } = await import('fs')
+  const { tmpdir } = await import('os')
+  const run = promisify(execFile)
+
+  // Run from an empty scratch directory with every tool denied. Both are
+  // required for the comparison to mean anything: from inside a Scale checkout
+  // the baseline could read context/agents/ and CLAUDE.md, which is precisely
+  // the guidance the baseline is defined as not having.
+  //
+  // `--strict-mcp-config` with no `--mcp-config` is the load-bearing one, and
+  // it was learned the hard way. Without it the session inherits whatever MCP
+  // servers the machine has configured — including Scale's own. On the first
+  // run the guided condition dutifully tried to call `get-component`, hit a
+  // permission prompt nobody was there to answer, and spent 8 of 30 prompts
+  // asking for access instead of writing code. That is a broken harness, not a
+  // result, and it also meant one condition had reach the other did not.
+  const sandbox = mkdtempSync(join(tmpdir(), 'scale-eval-'))
+  const DENY = 'Read Write Edit Bash Glob Grep WebFetch WebSearch Task NotebookEdit TodoWrite'
+
+  ask = async (system, prompt) => {
+    const { stdout } = await run('claude', [
+      '-p', prompt,
+      '--system-prompt', system,
+      '--model', MODEL_RESOLVED,
+      '--disallowedTools', DENY,
+      '--strict-mcp-config',
+      '--no-session-persistence',
+    ], { cwd: sandbox, maxBuffer: 32 * 1024 * 1024, timeout: 300_000 })
+    return { text: stdout, usage: null }
+  }
 }
 
 const systems = { baseline: SHARED, guided: guidedSystem() }
 const results = {}
 
-console.log(`model: ${MODEL}`)
+console.log(`model: ${MODEL_RESOLVED}  via: ${VIA}`)
 console.log(`prompts: ${selected.length}  conditions: ${CONDITIONS.join(', ')}\n`)
 
 for (const condition of CONDITIONS) {
@@ -139,7 +193,7 @@ const outDir = join(here, 'results')
 mkdirSync(outDir, { recursive: true })
 const stamp = new Date().toISOString().replace(/[:.]/g, '-')
 const outFile = join(outDir, `${stamp}.json`)
-writeFileSync(outFile, JSON.stringify({ model: MODEL, at: stamp, results }, null, 2))
+writeFileSync(outFile, JSON.stringify({ model: MODEL_RESOLVED, via: VIA, at: stamp, results }, null, 2))
 
 console.log('─'.repeat(58))
 const summaries = {}
