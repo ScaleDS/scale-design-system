@@ -73,8 +73,9 @@ Once connected, ask your AI agent questions like:
 
 | Tool | Description | Parameters |
 |------|-------------|------------|
+| `get-component-guidance` | **Start here when writing code.** The full guidance file for one component or foundation: when to use it, when not to, do/don't rules, worked examples, the accessibility contract, and props with their accepted values. ~1k tokens instead of the ~26k the whole catalog costs | `name` (e.g. `"sc-button"`, `"spacing"`) |
 | `list-components` | Lists all 62 components with category and description | _(none)_ |
-| `get-component` | Full API for a specific component: props, slots, events, example, whenToUse | `tag` (e.g. `"sc-button"`) |
+| `get-component` | The contract alone for one component: props, slots, events, example, whenToUse. Prefer `get-component-guidance` when the answer needs judgment rather than just the API | `tag` (e.g. `"sc-button"`) |
 | `search-components` | Find components by keyword in description, category, or whenToUse | `query` (e.g. `"form"`) |
 | `get-tokens` | Design tokens in W3C DTCG format | `category` (optional: `color`, `spacing`, `typography`, `borderRadius`, `borderWidth`, `shadow`, `unit`, `breakpoint`, `motion`) |
 | `get-patterns` | Common composition patterns with templates | `name` (optional, e.g. `"Hero Section"`) |

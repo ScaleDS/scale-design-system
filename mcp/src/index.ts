@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js'
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
-import { readFileSync, existsSync } from 'fs'
+import { readFileSync, existsSync, readdirSync } from 'fs'
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
 import { z } from 'zod'
@@ -143,6 +143,34 @@ server.tool('get-dependencies', 'Get the dependency tree for a component (which 
     }
     return {
       content: [{ type: 'text', text: `${tag} depends on: ${deps.join(', ')}` }],
+    }
+  }
+)
+
+server.tool('get-component-guidance', 'Get the full guidance file for one component or foundation: when to use it, when not to, do/don\'t rules, every worked example, and the accessibility contract, plus its props with their accepted values. Prefer this over get-component when writing or reviewing code — get-component returns the contract alone, and the judgment is what stops an agent picking the wrong component or hardcoding a value that has a token.',
+  {
+    name: z.string().describe('Component tag (e.g. sc-button) or foundation name (color, spacing, typography, border, elevation, layout, material, motion)'),
+  },
+  async ({ name }) => {
+    // One file, ~790 tokens, instead of the ~26k the whole catalog costs. The
+    // point of the split: an agent placing a button should not have to read
+    // every component in the system to do it.
+    const file = join(contextDir, 'agents', `${name}.md`)
+    if (!existsSync(file)) {
+      const available = existsSync(join(contextDir, 'agents'))
+        ? readdirSync(join(contextDir, 'agents')).map((f) => f.replace(/\.md$/, ''))
+        : []
+      const near = available.filter((a) => a.includes(name) || name.includes(a)).slice(0, 8)
+      return {
+        content: [{
+          type: 'text',
+          text: `No guidance file for "${name}".${near.length ? ` Did you mean: ${near.join(', ')}?` : ''}`
+            + `\n\nGuidance exists for ${available.length} names. Use list-components for the component tags.`,
+        }],
+      }
+    }
+    return {
+      content: [{ type: 'text', text: readFileSync(file, 'utf-8') }],
     }
   }
 )
