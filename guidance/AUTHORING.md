@@ -1,10 +1,23 @@
 # Guidelines page authoring
 
 How to write the hand-authored HTML fragments in this folder
-(`content/{foundations,components,sections}/<slug>.html`). Each fragment is raw HTML
-injected into the `<scd-shell>` body by `scripts/generate-pages.mjs`; the nav set is
-derived from `context/components.json` + `tokens.json`, so a fragment only owns its own
-prose + demos.
+(`guidance/{foundations,components,sections}/<slug>.html`).
+
+**A fragment has two outputs, and is the only authored source for both.** The docs site
+renders it into a guidelines page (`scale-docs/site/scripts/generate-pages.mjs` reads this
+folder from the installed package), and `scripts/emit-agent-docs.mjs` renders it into
+`context/agents/<tag>.md` for coding agents. Write it once, well, and both stay in step —
+which is the whole reason the fragments live here rather than in the docs repo.
+
+Practical consequence: **if it isn't good enough to show a human, it doesn't belong in the
+fragment.** There is no agent-only channel. The nav set is derived from
+`context/components.json` + `tokens.json`, so a fragment only owns its own prose + demos.
+
+The emitter reads specific structures, so the template below is load-bearing rather than
+decorative: the `<h2>` headings delimit sections, `Guidelines` supplies When-to-use plus
+Do/Don't, `Accessibility`'s `<ul>` is lifted verbatim, each Examples `<h3>` + `<scd-demo>`
+becomes a fenced code block, and `<scd-api tags="…">` declares which tags the page
+documents (the first is the primary; the rest get contract-only files pointing back here).
 
 **Component pages and Foundation pages are structured differently** — components document an
 *object* (anatomy, states, props, install), foundations document a *system of values* (a

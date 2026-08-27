@@ -28,9 +28,10 @@ That second one drives most of the rules below.
 | `components/` | One `sc-*` element per file. 63 elements, 62 of them public — `sc-edit-layer` is Scale Edit tooling and is deliberately kept out of the catalog |
 | `components/*.ts` (no element) | Shared helpers: `feather.ts`, `reset.ts`, `button-variants.ts`, `sc-focus-ring.ts`, `theme-controller.ts`, `sc-motion.ts`. Reuse, don't duplicate |
 | `scss/` | Token variables and mixins. `main.scss` is the global entry |
-| `context/` | The AI layer: `AGENTS.md`, `components.json`, `tokens.json`, `patterns.json`. **Ships in the npm tarball** |
+| `context/` | The AI layer: `AGENTS.md`, `components.json`, `tokens.json`, `patterns.json`, and generated `agents/<tag>.md`. **Ships in the npm tarball** |
+| `guidance/` | Hand-authored HTML page fragments — the source for both the docs guidelines pages and `context/agents/`. See `guidance/AUTHORING.md`. **Ships in the npm tarball** |
 | `mcp/` | Bundled MCP server, `src/index.ts` → `dist/` |
-| `scripts/` | `generate-context.mjs`, `build-motion-tokens.mjs`, `check-motion-drift.mjs` |
+| `scripts/` | `generate-context.mjs`, `emit-agent-docs.mjs`, `build-motion-tokens.mjs`, `check-motion-drift.mjs` |
 | `examples/starter` | The `degit` target from the README |
 | `dist/`, `mcp/dist/` | Build output, gitignored. Never edit by hand |
 
@@ -40,12 +41,14 @@ That second one drives most of the rules below.
 npm run build             # tsc && tsc -p mcp
 npm run lint              # eslint, with the lit + wc rule sets. Must pass clean
 npm run generate:context  # regenerate context/components.json from source
+npm run generate:agents   # regenerate context/agents/*.md from guidance/ + components.json
 npm run check:motion      # guard the keyframe mirror and the generated motion tokens
 ```
 
 `prepare` runs the build on install, which is what lets a `git+…#main` install resolve
-`components/*.js` with no manual build step. `prepublishOnly` runs build, `check:motion`, and
-the context generator in `--strict` mode, so a stale `components.json` fails the release.
+`components/*.js` with no manual build step. `prepublishOnly` runs build, `check:motion`, the
+context generator in `--strict` mode, and the agent-docs emitter, so a stale
+`components.json` fails the release and the shipped agent files always match the guidance.
 
 There is no unit-test suite here yet. The Playwright suite lives in `../scale-docs/site/tests/`
 and runs against the docs guidelines pages; motion has dedicated coverage there in
@@ -56,8 +59,17 @@ and runs against the docs guidelines pages; motion has dedicated coverage there 
 1. `npm run generate:context` and commit the updated `context/` files. This is not optional —
    `components.json` is what the MCP server, the docs API tables, and every consuming agent
    read.
-2. If the docs site needs the change, copy `context/components.json` into
+2. `npm run generate:agents` and commit `context/agents/`. It is generated from `guidance/`
+   plus `components.json`, so a prop change or a fragment edit both move it. Committing the
+   output is what lets CI catch a stale file as a diff.
+3. If the docs site needs the change, copy `context/components.json` into
    `../scale-docs/context/`. The two are kept byte-identical.
+
+## After changing a guidance fragment
+
+Run `npm run generate:agents` and commit the result. The fragment is the only authored
+artifact: the human page and the agent file are both built from it, so never hand-edit
+anything under `context/agents/` — the next run overwrites it.
 
 ## Motion
 

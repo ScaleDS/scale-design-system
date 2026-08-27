@@ -47,9 +47,10 @@
     "build:watch": "tsc --watch",
     "prepare": "npm run build",
     "generate:context": "node scripts/generate-context.mjs",
+    "generate:agents": "node scripts/emit-agent-docs.mjs",
     "build:motion-tokens": "node scripts/build-motion-tokens.mjs",
     "check:motion": "node scripts/check-motion-drift.mjs && node scripts/build-motion-tokens.mjs --check",
-    "prepublishOnly": "npm run build && npm run check:motion && node scripts/generate-context.mjs --strict",
+    "prepublishOnly": "npm run build && npm run check:motion && node scripts/generate-context.mjs --strict && node scripts/emit-agent-docs.mjs",
     "dev": "tsc --watch"
   },
   "keywords": [
