@@ -152,12 +152,39 @@ for (const condition of CONDITIONS) {
   }
 }
 
+// A request that never reached the model is not evidence about the model. A run
+// with failures in it can still be read, but the failures have to be visible
+// next to the numbers, and a run where nothing succeeded must not print a delta
+// at all — "+0 percentage points" off zero responses is the exact
+// number-generator failure this eval exists to avoid.
+const failed = Object.fromEntries(
+  CONDITIONS.map((c) => [c, results[c].filter((r) => r.error).length]),
+)
+const totalFailed = Object.values(failed).reduce((a, b) => a + b, 0)
+const totalRuns = CONDITIONS.reduce((n, c) => n + results[c].length, 0)
+
+if (totalFailed) {
+  console.log('─'.repeat(58))
+  console.error(`⚠ ${totalFailed}/${totalRuns} requests failed: ${CONDITIONS.map((c) => `${c} ${failed[c]}`).join(', ')}`)
+  console.error('  Failed requests are counted as not-clean, so any delta below is understated.')
+}
+
+if (totalFailed === totalRuns) {
+  console.error('\n✖ every request failed — no result. Check credentials (ANTHROPIC_API_KEY, or `ant auth login`).')
+  process.exit(1)
+}
+
 if (CONDITIONS.length === 2) {
   const delta = summaries.guided.cleanRate - summaries.baseline.cleanRate
   console.log('─'.repeat(58))
   console.log(`delta: ${delta >= 0 ? '+' : ''}${(delta * 100).toFixed(0)} percentage points clean`)
   const totalFindings = (c) => Object.values(summaries[c].byCheck).reduce((a, b) => a + b, 0)
   console.log(`findings: ${totalFindings('baseline')} baseline → ${totalFindings('guided')} guided`)
+
+  // 30 prompts resolves a large effect and not a small one. Saying so here
+  // costs one line and stops a two-prompt swing being reported as a win.
+  const swing = Math.abs(delta * summaries.baseline.total)
+  if (swing <= 2) console.log('note: within ~2 prompts — too close to call at this sample size.')
 }
 
 console.log(`\nwritten to ${outFile.replace(root, '.')}`)
