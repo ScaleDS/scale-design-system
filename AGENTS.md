@@ -34,6 +34,7 @@ That second one drives most of the rules below.
 | `skills/` | The `scale-build` / `scale-review` / `scale-migrate` skills shipped by the Claude Code plugin |
 | `.claude-plugin/`, `.mcp.json` | Plugin manifest and MCP wiring. Installing the plugin gets the skills and the server together |
 | `scripts/` | `generate-context.mjs`, `emit-agent-docs.mjs`, `build-motion-tokens.mjs`, `check-motion-drift.mjs` |
+| `eval/` | Measures whether the agent guidance changes model output. Opt-in, costs tokens; its grader self-test runs in CI |
 | `examples/starter` | The `degit` target from the README |
 | `dist/`, `mcp/dist/` | Build output, gitignored. Never edit by hand |
 
@@ -46,6 +47,8 @@ npm run generate:context  # regenerate context/components.json from source
 npm run generate:agents   # regenerate context/agents/*.md from guidance/ + components.json
 npm run check:motion      # guard the keyframe mirror and the generated motion tokens
 npm run check:agents      # fail if context/agents/ is stale, or a fragment breaks the schema
+npm run check:grader      # eval grader self-test (deterministic, no API cost)
+npm run eval              # the guided-vs-baseline eval. Costs tokens — see eval/README.md
 ```
 
 `prepare` runs the build on install, which is what lets a `git+…#main` install resolve

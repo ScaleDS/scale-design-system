@@ -44,3 +44,8 @@ jobs:
 
       - name: Agent docs match the guidance fragments
         run: npm run check:agents
+
+      # The eval's grader, not the eval itself — deterministic, no API calls, no
+      # cost. It is what makes any number the eval reports trustworthy.
+      - name: Eval grader self-test
+        run: npm run check:grader

@@ -16,3 +16,6 @@ tmp/
 ## Test output
 test-results/
 playwright-report/
+
+# Eval run output (costs tokens to produce; not a build input)
+eval/results/

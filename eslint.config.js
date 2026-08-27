@@ -27,7 +27,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['scripts/**/*.mjs', 'mcp/**/*.ts', 'vite-plugin.js'],
+    files: ['scripts/**/*.mjs', 'eval/**/*.mjs', 'mcp/**/*.ts', 'vite-plugin.js'],
     languageOptions: { globals: { ...globals.node } },
   },
 )
