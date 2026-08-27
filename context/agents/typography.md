@@ -19,4 +19,14 @@ Rather than using sizes by their value (e.g., "14px"), we use them by their func
 
 Primitives are the raw type values every semantic style is built from: the font families, weights, and the size, line-height and letter-spacing scales. Reference the semantic styles above in product UI rather than these directly; reach for a primitive only when no semantic style fits. The size and line-height values shift at the 810px mobile breakpoint.
 
+## Accessibility
+
+- **Body size:** set body text at 16px or larger. Smaller type is harder to read for everyone and forces zoom on mobile, so reserve the S and XS steps for labels and captions rather than paragraphs.
+- **Respect the user’s setting:** size type in relative units so it grows when someone raises their browser or OS text size. A layout that breaks at 200% zoom fails WCAG 1.4.4.
+- **Line height:** keep body text at 1.5 or more, and paragraph spacing at least twice the font size (WCAG 1.4.12). The line-height primitives already meet this — don’t tighten them to win vertical space.
+- **Line length:** hold running text to 60–90 characters. Longer lines make it easy to lose your place returning to the left edge.
+- **Heading order:** pick the heading level by its place in the document outline, not by how big it looks. Screen readers navigate by that outline, so use a type token to change the size instead of skipping a level.
+- **Weight and case:** avoid long runs of ALL CAPS, which are slower to read, and don’t rely on weight alone to carry meaning — light weights on low-contrast backgrounds are the first thing to disappear.
+- **Alignment:** keep body text left-aligned. Justified text opens uneven rivers of white space that are particularly hard going for dyslexic readers.
+
 The full token set for this foundation is in `context/tokens.json`.

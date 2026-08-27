@@ -560,6 +560,19 @@
       </sc-table-basic>
     </div>
 
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Body size:</strong> set body text at 16px or larger. Smaller type is harder to read for everyone and forces zoom on mobile, so reserve the S and XS steps for labels and captions rather than paragraphs.</li>
+        <li><strong>Respect the user&rsquo;s setting:</strong> size type in relative units so it grows when someone raises their browser or OS text size. A layout that breaks at 200% zoom fails WCAG 1.4.4.</li>
+        <li><strong>Line height:</strong> keep body text at 1.5 or more, and paragraph spacing at least twice the font size (WCAG 1.4.12). The line-height primitives already meet this &mdash; don&rsquo;t tighten them to win vertical space.</li>
+        <li><strong>Line length:</strong> hold running text to 60&ndash;90 characters. Longer lines make it easy to lose your place returning to the left edge.</li>
+        <li><strong>Heading order:</strong> pick the heading level by its place in the document outline, not by how big it looks. Screen readers navigate by that outline, so use a type token to change the size instead of skipping a level.</li>
+        <li><strong>Weight and case:</strong> avoid long runs of ALL CAPS, which are slower to read, and don&rsquo;t rely on weight alone to carry meaning &mdash; light weights on low-contrast backgrounds are the first thing to disappear.</li>
+        <li><strong>Alignment:</strong> keep body text left-aligned. Justified text opens uneven rivers of white space that are particularly hard going for dyslexic readers.</li>
+      </ul>
+    </div>
+
     <script type="module">
       import { onReady } from '/src/guidelines/ready.ts'
       import '@scale-ds/scale-design-system/components/sc-segmented-control'

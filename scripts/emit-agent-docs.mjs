@@ -14,7 +14,7 @@
 // Run via `npm run generate:agents`, and by prepublishOnly alongside
 // generate-context.
 
-import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync } from 'fs'
+import { readFileSync, readdirSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'fs'
 import { join } from 'path'
 
 const root = process.cwd()
@@ -415,7 +415,58 @@ function foundationDoc({ slug, parsed }) {
   return lines.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n'
 }
 
+/* ----------------------------------------------------------------- lint ---- */
+
+/**
+ * The sections `guidance/AUTHORING.md` marks required, and which are load-bearing
+ * for the emitter rather than merely conventional.
+ *
+ * A fragment missing its Accessibility list produces an agent file with no
+ * accessibility contract, and an agent that reads it will ship an unlabelled
+ * control believing it had the full picture. Silence is the dangerous failure
+ * here — a missing section doesn't look like an error in the output, it looks
+ * like a component with nothing to say on the subject.
+ */
+const REQUIRED = {
+  components: ['Examples', 'Accessibility', 'Properties'],
+  sections: ['Examples', 'Accessibility', 'Properties'],
+  foundations: ['Accessibility'],
+}
+
+/** Not required by the template, but their absence silently thins the output. */
+const RECOMMENDED = {
+  components: ['Install', 'Guidelines'],
+  sections: ['Guidelines'],
+  foundations: ['Guidelines'],
+}
+
+function* lintFragments(fragments) {
+  for (const fragment of fragments) {
+    const where = `guidance/${fragment.section}/${fragment.slug}.html`
+    const headings = sections(fragment.html).map(s => s.title)
+
+    for (const required of REQUIRED[fragment.section] ?? []) {
+      if (!headings.includes(required)) yield `${where}: missing required <h2>${required}</h2>`
+    }
+    for (const recommended of RECOMMENDED[fragment.section] ?? []) {
+      if (!headings.includes(recommended)) warnings.push(`${where}: no <h2>${recommended}</h2> section`)
+    }
+
+    if (!/<h1[^>]*>/.test(fragment.html)) yield `${where}: no <h1>`
+    if (!/<div class="scd-page-header-text">/.test(fragment.html)) {
+      warnings.push(`${where}: no .scd-page-header-text, so the agent file gets no lead paragraph`)
+    }
+
+    if (fragment.section !== 'foundations' && !fragment.tags.length) {
+      yield `${where}: no <scd-api tags="…">, so no agent file can be produced for it`
+    }
+  }
+}
+
 /* ------------------------------------------------------------------ run ---- */
+
+const CHECK = process.argv.includes('--check')
+const warnings = []
 
 const fragments = []
 for (const section of ['components', 'sections', 'foundations']) {
@@ -434,18 +485,18 @@ const links = new Map(
   fragments.filter(f => f.tags.length).map(f => [`${f.section}/${f.slug}`, f.tags[0]]),
 )
 
-rmSync(outDir, { recursive: true, force: true })
-mkdirSync(outDir, { recursive: true })
-
-let written = 0
+// Everything is rendered into memory first so that `--check` and a real run
+// share one code path. A verifier that re-implements the generator is a
+// verifier that can disagree with it for reasons that have nothing to do with
+// the thing being checked.
+const rendered = new Map()
 const missingContract = []
 
 for (const fragment of fragments) {
   const parsed = parseFragment(fragment.html, links)
 
   if (fragment.section === 'foundations') {
-    writeFileSync(join(outDir, `${fragment.slug}.md`), foundationDoc({ slug: fragment.slug, parsed }), 'utf-8')
-    written++
+    rendered.set(`${fragment.slug}.md`, foundationDoc({ slug: fragment.slug, parsed }))
     continue
   }
 
@@ -453,46 +504,68 @@ for (const fragment of fragments) {
   if (!primary) continue
 
   if (!byTag.has(primary)) missingContract.push(primary)
-  writeFileSync(
-    join(outDir, `${primary}.md`),
-    componentDoc({ tag: primary, parsed, slug: fragment.slug, section: fragment.section }),
-    'utf-8',
-  )
-  written++
+  rendered.set(`${primary}.md`, componentDoc({ tag: primary, parsed, slug: fragment.slug, section: fragment.section }))
 
   for (const tag of subParts) {
     if (!byTag.has(tag)) missingContract.push(tag)
-    writeFileSync(
-      join(outDir, `${tag}.md`),
-      subPartDoc({ tag, parent: primary, slug: fragment.slug, section: fragment.section }),
-      'utf-8',
-    )
-    written++
+    rendered.set(`${tag}.md`, subPartDoc({ tag, parent: primary, slug: fragment.slug, section: fragment.section }))
   }
 }
 
-console.log(`Emitted ${written} agent files → ${outDir}`)
+const problems = [...lintFragments(fragments)]
+
+if (CHECK) {
+  const onDisk = existsSync(outDir)
+    ? new Map(readdirSync(outDir).filter(f => f.endsWith('.md'))
+      .map(f => [f, readFileSync(join(outDir, f), 'utf-8')]))
+    : new Map()
+
+  for (const [name, body] of rendered) {
+    if (!onDisk.has(name)) problems.push(`${name}: missing from context/agents/ — run \`npm run generate:agents\``)
+    else if (onDisk.get(name) !== body) problems.push(`${name}: out of date — run \`npm run generate:agents\``)
+  }
+  for (const name of onDisk.keys()) {
+    if (!rendered.has(name)) problems.push(`${name}: no fragment produces this any more — run \`npm run generate:agents\``)
+  }
+} else {
+  rmSync(outDir, { recursive: true, force: true })
+  mkdirSync(outDir, { recursive: true })
+  for (const [name, body] of rendered) writeFileSync(join(outDir, name), body, 'utf-8')
+  console.log(`Emitted ${rendered.size} agent files → ${outDir}`)
+}
 
 // Every tag in the catalog should be reachable by name, or a lookup returns
 // nothing for a component the design system genuinely ships.
-const documented = new Set(readdirSync(outDir).map(f => f.replace(/\.md$/, '')))
+// Read from what was just rendered, not from disk, so a check run reports on
+// the same bytes it compared rather than on whatever happens to be committed.
+const documented = new Set([...rendered.keys()].map(f => f.replace(/\.md$/, '')))
 const undocumented = catalog.components.map(c => c.tag).filter(t => !documented.has(t))
 
 // An entity that survived decoding means the map is missing a name the authors
 // have started using. Cheap to catch here, invisible otherwise.
 const stray = new Set()
-for (const file of readdirSync(outDir)) {
-  for (const m of readFileSync(join(outDir, file), 'utf-8').matchAll(/&[a-zA-Z]{2,10};/g)) stray.add(m[0])
+for (const body of rendered.values()) {
+  for (const m of body.matchAll(/&[a-zA-Z]{2,10};/g)) stray.add(m[0])
 }
-if (stray.size) {
-  console.warn(`\n⚠ undecoded HTML entities in the output: ${[...stray].join(' ')} — add them to ENTITIES.`)
-}
+if (stray.size) problems.push(`undecoded HTML entities in the output: ${[...stray].join(' ')} — add them to ENTITIES`)
 
 if (missingContract.length) {
-  console.warn(`\n⚠ referenced by a fragment but absent from components.json: ${[...new Set(missingContract)].join(', ')}`)
+  problems.push(`referenced by a fragment but absent from components.json: ${[...new Set(missingContract)].join(', ')}`)
 }
 if (undocumented.length) {
-  console.warn(`\n⚠ ${undocumented.length} catalog tags have no agent file: ${undocumented.join(', ')}`)
-} else {
-  console.log(`✓ all ${catalog.components.length} catalog tags have an agent file.`)
+  problems.push(`${undocumented.length} catalog tags have no agent file: ${undocumented.join(', ')}`)
 }
+
+for (const w of warnings) console.warn(`⚠ ${w}`)
+
+if (problems.length) {
+  console.error(`\n✖ emit-agent-docs: ${problems.length} problem${problems.length > 1 ? 's' : ''}`)
+  for (const p of problems) console.error(`  - ${p}`)
+  // Fail either way. In --check this is the guarantee; in a normal run it means
+  // files were just written from a fragment that does not satisfy the schema,
+  // and letting that pass quietly is how the drift starts.
+  process.exit(1)
+}
+
+console.log(`✓ all ${catalog.components.length} catalog tags have an agent file${warnings.length ? `, ${warnings.length} warning(s)` : ''}.`)
+if (CHECK) console.log('✓ context/agents/ is up to date with guidance/.')

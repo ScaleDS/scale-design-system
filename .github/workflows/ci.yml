@@ -1,0 +1,46 @@
+# Checks on every push and pull request. Until now the only workflow here was
+# release-please, so nothing verified a change before it reached main.
+#
+# The drift check is the one worth explaining. `context/agents/` and
+# `context/components.json` are generated and committed, which makes them
+# capable of disagreeing with the source they came from. Regenerating in CI and
+# failing on a difference is what keeps that from happening quietly: an agent
+# file cannot describe a component that no longer works that way, because the
+# build stops before it can.
+
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      - name: Motion tokens match the SCSS
+        run: npm run check:motion
+
+      - name: Catalog is up to date with the components
+        run: |
+          node scripts/generate-context.mjs --strict
+          git diff --exit-code --stat context/components.json \
+            || { echo "::error::context/components.json is stale — run 'npm run generate:context' and commit the result."; exit 1; }
+
+      - name: Agent docs match the guidance fragments
+        run: npm run check:agents

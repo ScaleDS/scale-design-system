@@ -43,12 +43,18 @@ npm run lint              # eslint, with the lit + wc rule sets. Must pass clean
 npm run generate:context  # regenerate context/components.json from source
 npm run generate:agents   # regenerate context/agents/*.md from guidance/ + components.json
 npm run check:motion      # guard the keyframe mirror and the generated motion tokens
+npm run check:agents      # fail if context/agents/ is stale, or a fragment breaks the schema
 ```
 
 `prepare` runs the build on install, which is what lets a `git+…#main` install resolve
 `components/*.js` with no manual build step. `prepublishOnly` runs build, `check:motion`, the
 context generator in `--strict` mode, and the agent-docs emitter, so a stale
 `components.json` fails the release and the shipped agent files always match the guidance.
+
+CI (`.github/workflows/ci.yml`) runs lint, build, `check:motion`, `check:agents`, and a
+strict catalog regeneration on every push and pull request. `context/` is generated *and*
+committed, so the only thing stopping it drifting from source is that CI regenerates it and
+fails on a difference.
 
 There is no unit-test suite here yet. The Playwright suite lives in `../scale-docs/site/tests/`
 and runs against the docs guidelines pages; motion has dedicated coverage there in
