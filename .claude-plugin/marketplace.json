@@ -1,0 +1,21 @@
+{
+  "name": "scale-design-system",
+  "metadata": {
+    "description": "The Scale Design System plugin: skills and an MCP server for building, reviewing, and migrating UI with Scale."
+  },
+  "owner": {
+    "name": "Scale Design System",
+    "url": "https://scaledesignsystem.com"
+  },
+  "plugins": [
+    {
+      "name": "scale",
+      "description": "Build, review, and migrate UI with the Scale Design System. Bundles the Scale MCP server with skills that make an agent check the catalog before writing markup, read a component's guidance before using it, and verify its own output against the token and accessibility rules.",
+      "author": {
+        "name": "Scale Design System"
+      },
+      "category": "design",
+      "source": "./"
+    }
+  ]
+}
