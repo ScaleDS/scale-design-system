@@ -62,6 +62,13 @@ tokens and patterns directly — no guessing, no web search.
 | `context/patterns.json` | Composition patterns with ready-to-use templates |
 | `guidance/` | The authored HTML fragments the guidance files and the docs site are both generated from |
 
+`guidance/` ships for the documentation site's benefit, not yours. The site
+resolves this package from `main` and reads the fragments out of it at build
+time, so they have to travel in the tarball. They are not useful to a consuming
+app on their own — they contain `<scd-demo>` and `<scd-api>` elements that only
+exist in the docs site. **Read `context/agents/` instead**: same content, as
+Markdown, generated from these.
+
 ### The per-component files
 
 `context/agents/sc-button.md` carries the contract in frontmatter — every prop
