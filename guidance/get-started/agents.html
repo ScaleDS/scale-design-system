@@ -91,14 +91,18 @@ claude plugin install scale@scale-design-system"></scd-demo>
         <code class="scd-inline-code">sc-card-pricing</code> children, spacing from
         <code class="scd-inline-code">--sc-space-*</code>, and no colour literals. The agent
         checks the pattern library before assembling anything from parts.</p>
+    </div>
 
+    <div class="scd-section">
       <h3>Let it pick the right component</h3>
       <scd-demo code="After the user saves, show a brief success message that disappears on its own."></scd-demo>
       <p>Expect <code class="scd-inline-code">sc-toast</code>, not
         <code class="scd-inline-code">sc-alert</code>. The distinction is written into both
         components&rsquo; guidance, so the agent reads it rather than guessing from the
         names.</p>
+    </div>
 
+    <div class="scd-section">
       <h3>Watch it avoid a trap</h3>
       <scd-demo code="Make a toolbar with search, filter and settings controls. Icons only, no labels."></scd-demo>
       <p>Expect <code class="scd-inline-code">sc-button-icon</code> with a
@@ -106,7 +110,9 @@ claude plugin install scale@scale-design-system"></scd-demo>
         <code class="scd-inline-code">sc-button</code>&rsquo;s guidance says outright not to
         use it for icon-only actions, and the accessibility rules require the accessible
         name.</p>
+    </div>
 
+    <div class="scd-section">
       <h3>Style something by hand</h3>
       <scd-demo code="Style a summary panel with a raised surface, a subtle border and secondary text. It has to work in light and dark."></scd-demo>
       <p>Expect semantic tokens throughout and no hex values. A literal that looks right in
