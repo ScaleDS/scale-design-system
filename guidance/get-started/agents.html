@@ -84,40 +84,44 @@ claude plugin install scale@scale-design-system"></scd-demo>
       <h2>Try it</h2>
       <p>Ask for what you want in plain language. Naming components is not necessary, and
         naming them wrongly is the thing the guidance is there to prevent.</p>
-
-      <h3>Build something</h3>
-      <scd-demo code="Build a pricing page with three plans."></scd-demo>
-      <p>Expect <code class="scd-inline-code">sc-section-pricing</code> with
-        <code class="scd-inline-code">sc-card-pricing</code> children, spacing from
-        <code class="scd-inline-code">--sc-space-*</code>, and no colour literals. The agent
-        checks the pattern library before assembling anything from parts.</p>
     </div>
 
-    <div class="scd-section">
-      <h3>Let it pick the right component</h3>
-      <scd-demo code="After the user saves, show a brief success message that disappears on its own."></scd-demo>
-      <p>Expect <code class="scd-inline-code">sc-toast</code>, not
-        <code class="scd-inline-code">sc-alert</code>. The distinction is written into both
-        components&rsquo; guidance, so the agent reads it rather than guessing from the
-        names.</p>
-    </div>
+    <div class="scd-section-group">
+      <div class="scd-section">
+        <h3>Build something</h3>
+        <scd-demo code="Build a pricing page with three plans."></scd-demo>
+        <p>Expect <code class="scd-inline-code">sc-section-pricing</code> with
+          <code class="scd-inline-code">sc-card-pricing</code> children, spacing from
+          <code class="scd-inline-code">--sc-space-*</code>, and no colour literals. The agent
+          checks the pattern library before assembling anything from parts.</p>
+      </div>
 
-    <div class="scd-section">
-      <h3>Watch it avoid a trap</h3>
-      <scd-demo code="Make a toolbar with search, filter and settings controls. Icons only, no labels."></scd-demo>
-      <p>Expect <code class="scd-inline-code">sc-button-icon</code> with a
-        <code class="scd-inline-code">label</code> on each control.
-        <code class="scd-inline-code">sc-button</code>&rsquo;s guidance says outright not to
-        use it for icon-only actions, and the accessibility rules require the accessible
-        name.</p>
-    </div>
+      <div class="scd-section">
+        <h3>Let it pick the right component</h3>
+        <scd-demo code="After the user saves, show a brief success message that disappears on its own."></scd-demo>
+        <p>Expect <code class="scd-inline-code">sc-toast</code>, not
+          <code class="scd-inline-code">sc-alert</code>. The distinction is written into both
+          components&rsquo; guidance, so the agent reads it rather than guessing from the
+          names.</p>
+      </div>
 
-    <div class="scd-section">
-      <h3>Style something by hand</h3>
-      <scd-demo code="Style a summary panel with a raised surface, a subtle border and secondary text. It has to work in light and dark."></scd-demo>
-      <p>Expect semantic tokens throughout and no hex values. A literal that looks right in
-        one theme breaks the other, which is why hardcoded colour is the failure the
-        guidance works hardest to prevent.</p>
+      <div class="scd-section">
+        <h3>Watch it avoid a trap</h3>
+        <scd-demo code="Make a toolbar with search, filter and settings controls. Icons only, no labels."></scd-demo>
+        <p>Expect <code class="scd-inline-code">sc-button-icon</code> with a
+          <code class="scd-inline-code">label</code> on each control.
+          <code class="scd-inline-code">sc-button</code>&rsquo;s guidance says outright not to
+          use it for icon-only actions, and the accessibility rules require the accessible
+          name.</p>
+      </div>
+
+      <div class="scd-section">
+        <h3>Style something by hand</h3>
+        <scd-demo code="Style a summary panel with a raised surface, a subtle border and secondary text. It has to work in light and dark."></scd-demo>
+        <p>Expect semantic tokens throughout and no hex values. A literal that looks right in
+          one theme breaks the other, which is why hardcoded colour is the failure the
+          guidance works hardest to prevent.</p>
+      </div>
     </div>
 
     <div class="scd-section">
