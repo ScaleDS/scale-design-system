@@ -29,7 +29,8 @@ const arg = (name, fallback) => {
 
 const MODEL = arg('model', null)
 const ONLY = arg('only', null)
-const CONDITIONS = arg('condition', null) ? [arg('condition', null)] : ['baseline', 'guided']
+const ALL_CONDITIONS = ['baseline', 'guided', 'guided-lookup']
+const CONDITIONS = arg('condition', null) ? [arg('condition', null)] : ALL_CONDITIONS
 
 const { prompts } = JSON.parse(readFileSync(join(here, 'prompts.json'), 'utf-8'))
 const selected = ONLY ? prompts.filter((p) => p.id === ONLY) : prompts
@@ -128,11 +129,30 @@ if (VIA === 'api') {
     }
   }
 } else {
-  const { execFile } = await import('child_process')
-  const { promisify } = await import('util')
+  const { spawn } = await import('child_process')
   const { mkdtempSync } = await import('fs')
   const { tmpdir } = await import('os')
-  const run = promisify(execFile)
+
+  /**
+   * spawn rather than execFile so stdin can be closed outright. Left open,
+   * `claude -p` waits on it, warns "no stdin data received in 3s", and the run
+   * becomes flaky — it cost 7 of 30 lookup prompts on the first three-way run.
+   * This also keeps stderr and the exit code, which the previous error path
+   * threw away, leaving failures unattributable.
+   */
+  const run = (args, opts) => new Promise((resolve, reject) => {
+    const child = spawn('claude', args, { ...opts, stdio: ['ignore', 'pipe', 'pipe'] })
+    let stdout = '', stderr = ''
+    child.stdout.on('data', (d) => { stdout += d })
+    child.stderr.on('data', (d) => { stderr += d })
+    const timer = setTimeout(() => { child.kill('SIGKILL'); reject(new Error(`timed out after ${opts.timeout / 1000}s`)) }, opts.timeout)
+    child.on('error', (e) => { clearTimeout(timer); reject(e) })
+    child.on('close', (code) => {
+      clearTimeout(timer)
+      if (code === 0) resolve({ stdout })
+      else reject(new Error(`claude exited ${code}: ${stderr.trim().slice(0, 300) || '(no stderr)'}`))
+    })
+  })
 
   // Run from an empty scratch directory with every tool denied. Both are
   // required for the comparison to mean anything: from inside a Scale checkout
@@ -149,20 +169,46 @@ if (VIA === 'api') {
   const sandbox = mkdtempSync(join(tmpdir(), 'scale-eval-'))
   const DENY = 'Read Write Edit Bash Glob Grep WebFetch WebSearch Task NotebookEdit TodoWrite'
 
-  ask = async (system, prompt) => {
-    const { stdout } = await run('claude', [
+  // The lookup condition gets the Scale MCP server and nothing else. It points
+  // at this checkout's own server rather than the published package, because
+  // the npm release predates the agent files — `npx @scale-ds/...` would start
+  // a server with no context/agents/ to serve and the condition would silently
+  // degrade into the plain guided one.
+  const mcpConfig = join(sandbox, 'mcp.json')
+  writeFileSync(mcpConfig, JSON.stringify({
+    mcpServers: { scale: { command: 'node', args: [join(root, 'mcp', 'dist', 'index.js')] } },
+  }))
+  const SCALE_TOOLS = [
+    'mcp__scale__get-component-guidance', 'mcp__scale__get-component',
+    'mcp__scale__list-components', 'mcp__scale__search-components',
+    'mcp__scale__get-tokens', 'mcp__scale__get-patterns',
+    'mcp__scale__get-component-example', 'mcp__scale__get-dependencies',
+  ].join(' ')
+
+  ask = async (system, prompt, condition) => {
+    const lookup = condition === 'guided-lookup'
+    const { stdout } = await run([
       '-p', prompt,
       '--system-prompt', system,
       '--model', MODEL_RESOLVED,
       '--disallowedTools', DENY,
-      '--strict-mcp-config',
+      ...(lookup
+        // Pre-approved, because there is nobody at the terminal to answer a
+        // permission prompt — an unanswered one costs the whole prompt.
+        ? ['--mcp-config', mcpConfig, '--strict-mcp-config', '--allowedTools', SCALE_TOOLS]
+        : ['--strict-mcp-config']),
       '--no-session-persistence',
-    ], { cwd: sandbox, maxBuffer: 32 * 1024 * 1024, timeout: 300_000 })
+    ], { cwd: sandbox, timeout: 600_000 })
     return { text: stdout, usage: null }
   }
 }
 
-const systems = { baseline: SHARED, guided: guidedSystem() }
+// guided-lookup shares the guided system prompt. The only difference between
+// them is whether the agent can act on the skill's instruction to read a
+// component's guidance before using it — which is the step the skill is built
+// around, and the one the plain guided condition cannot take.
+const guided = guidedSystem()
+const systems = { baseline: SHARED, guided, 'guided-lookup': guided }
 const results = {}
 
 console.log(`model: ${MODEL_RESOLVED}  via: ${VIA}`)
@@ -173,7 +219,7 @@ for (const condition of CONDITIONS) {
   for (const p of selected) {
     process.stdout.write(`  ${condition.padEnd(9)} ${p.id.padEnd(22)}`)
     try {
-      const { text, usage } = await ask(systems[condition], p.prompt)
+      const { text, usage } = await ask(systems[condition], p.prompt, condition)
       const graded = grade(text)
       results[condition].push({ id: p.id, area: p.area, ...graded, response: text, usage })
       console.log(isClean(graded) ? 'clean' : `${graded.findings.length} finding(s)`)
@@ -228,17 +274,28 @@ if (totalFailed === totalRuns) {
   process.exit(1)
 }
 
-if (CONDITIONS.length === 2) {
-  const delta = summaries.guided.cleanRate - summaries.baseline.cleanRate
-  console.log('─'.repeat(58))
-  console.log(`delta: ${delta >= 0 ? '+' : ''}${(delta * 100).toFixed(0)} percentage points clean`)
-  const totalFindings = (c) => Object.values(summaries[c].byCheck).reduce((a, b) => a + b, 0)
-  console.log(`findings: ${totalFindings('baseline')} baseline → ${totalFindings('guided')} guided`)
+const totalFindings = (c) => Object.values(summaries[c].byCheck).reduce((a, b) => a + b, 0)
 
-  // 30 prompts resolves a large effect and not a small one. Saying so here
-  // costs one line and stops a two-prompt swing being reported as a win.
-  const swing = Math.abs(delta * summaries.baseline.total)
-  if (swing <= 2) console.log('note: within ~2 prompts — too close to call at this sample size.')
+if (CONDITIONS.includes('baseline') && CONDITIONS.length > 1) {
+  console.log('─'.repeat(58))
+  for (const c of CONDITIONS.filter((x) => x !== 'baseline')) {
+    const delta = summaries[c].cleanRate - summaries.baseline.cleanRate
+    const swing = Math.abs(delta * summaries.baseline.total)
+    // 30 prompts resolves a large effect and not a small one. Saying so costs
+    // one line and stops a two-prompt swing being reported as a win.
+    const note = swing <= 2 ? '  (within ~2 prompts — too close to call)' : ''
+    console.log(`${c.padEnd(14)} ${delta >= 0 ? '+' : ''}${(delta * 100).toFixed(0)} pp clean vs baseline, ` +
+      `findings ${totalFindings('baseline')} → ${totalFindings(c)}${note}`)
+  }
+
+  // Components actually used, per condition. Without it the check counts read
+  // as though they were comparable, and they are not: a condition that never
+  // writes an sc-* tag scores zero invalid-prop for the worst possible reason.
+  console.log('─'.repeat(58))
+  for (const c of CONDITIONS) {
+    const used = results[c].filter((r) => r.tags?.length).length
+    console.log(`${c.padEnd(14)} used sc-* components in ${used}/${results[c].length} responses`)
+  }
 }
 
 console.log(`\nwritten to ${outFile.replace(root, '.')}`)
