@@ -1,0 +1,187 @@
+    <div class="scd-page-header">
+      <h1>Agents</h1>
+      <div class="scd-page-header-text">
+        <p>Point your coding agent at Scale and it stops guessing. Every component and
+          foundation ships a guidance file written for machines.</p>
+        <p>Each one is generated from the page you are reading now, so what an agent is
+          told and what you see cannot drift apart.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/tree/main/context/agents"
+        figma="https://www.figma.com/design/BDgzx7fkrNoRK87uZX6sFw/Scale.Design-System--3.2.0-?node-id=858-3403"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>What you get</h2>
+      <p>Three layers, each doing a different job.</p>
+      <sc-table-basic label="The agent layers">
+        <sc-table-row header>
+          <sc-table-head>Layer</sc-table-head>
+          <sc-table-head>What it is</sc-table-head>
+          <sc-table-head>Why it matters</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><strong>Guidance files</strong></sc-table-cell>
+          <sc-table-cell>One Markdown file per component and foundation, 70 in all</sc-table-cell>
+          <sc-table-cell>The contract and the judgment in one place: every prop with its
+            accepted values, plus when to use the component, when not to, and its
+            accessibility rules</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><strong>MCP server</strong></sc-table-cell>
+          <sc-table-cell>Bundled with the package, serves those files on request</sc-table-cell>
+          <sc-table-cell>Your agent reads one component at a time instead of pulling a
+            100KB catalog to place a single button</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><strong>Skills</strong></sc-table-cell>
+          <sc-table-cell>Procedures the agent follows: build, review, migrate</sc-table-cell>
+          <sc-table-cell>A server answers questions but changes nothing on its own. The
+            skills are what make an agent look things up in the first place</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+      <p>The third layer is the one people skip, and it is the one that does the work. An
+        agent with the server installed and nothing telling it to use them will still write
+        a raw <code class="scd-inline-code">&lt;button&gt;</code> with a hardcoded colour.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Install</h2>
+      <p>In Claude Code, one plugin brings the skills and the server together.</p>
+      <scd-demo code="claude plugin marketplace add ScaleDS/scale-design-system
+claude plugin install scale@scale-design-system"></scd-demo>
+      <p>Restart Claude Code, then check it landed with
+        <code class="scd-inline-code">/plugin</code>. You should see
+        <code class="scd-inline-code">scale</code> enabled, and the
+        <code class="scd-inline-code">scale-build</code>,
+        <code class="scd-inline-code">scale-review</code> and
+        <code class="scd-inline-code">scale-migrate</code> skills available.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Other editors</h2>
+      <p>Cursor, Windsurf and Claude Desktop take the server on its own. Add it to your MCP
+        config:</p>
+      <scd-demo code="{
+  &quot;mcpServers&quot;: {
+    &quot;scale&quot;: {
+      &quot;command&quot;: &quot;npx&quot;,
+      &quot;args&quot;: [&quot;@scale-ds/scale-design-system&quot;]
+    }
+  }
+}"></scd-demo>
+      <p>No MCP support at all? Installing the package already put the files in your
+        project, at
+        <code class="scd-inline-code">node_modules/@scale-ds/scale-design-system/context/agents/</code>.</p>
+      <p>Point your agent there, or at the published copies. Every page on this site serves
+        its guidance at <code class="scd-inline-code">&lt;page-url&gt;agent.md</code>, indexed
+        at <a href="/llms.txt">/llms.txt</a>.</p>
+      <p>All three routes return the same file, so nothing here depends on one vendor.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Try it</h2>
+      <p>Ask for what you want in plain language. Naming components is not necessary, and
+        naming them wrongly is the thing the guidance is there to prevent.</p>
+
+      <h3>Build something</h3>
+      <scd-demo code="Build a pricing page with three plans."></scd-demo>
+      <p>Expect <code class="scd-inline-code">sc-section-pricing</code> with
+        <code class="scd-inline-code">sc-card-pricing</code> children, spacing from
+        <code class="scd-inline-code">--sc-space-*</code>, and no colour literals. The agent
+        checks the pattern library before assembling anything from parts.</p>
+
+      <h3>Let it pick the right component</h3>
+      <scd-demo code="After the user saves, show a brief success message that disappears on its own."></scd-demo>
+      <p>Expect <code class="scd-inline-code">sc-toast</code>, not
+        <code class="scd-inline-code">sc-alert</code>. The distinction is written into both
+        components&rsquo; guidance, so the agent reads it rather than guessing from the
+        names.</p>
+
+      <h3>Watch it avoid a trap</h3>
+      <scd-demo code="Make a toolbar with search, filter and settings controls. Icons only, no labels."></scd-demo>
+      <p>Expect <code class="scd-inline-code">sc-button-icon</code> with a
+        <code class="scd-inline-code">label</code> on each control.
+        <code class="scd-inline-code">sc-button</code>&rsquo;s guidance says outright not to
+        use it for icon-only actions, and the accessibility rules require the accessible
+        name.</p>
+
+      <h3>Style something by hand</h3>
+      <scd-demo code="Style a summary panel with a raised surface, a subtle border and secondary text. It has to work in light and dark."></scd-demo>
+      <p>Expect semantic tokens throughout and no hex values. A literal that looks right in
+        one theme breaks the other, which is why hardcoded colour is the failure the
+        guidance works hardest to prevent.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Review code you already have</h2>
+      <p>Point the review skill at existing work. It audits rather than rewrites, so you
+        decide what gets fixed.</p>
+      <scd-demo code="Review src/checkout/ against the Scale design system."></scd-demo>
+      <p>It checks five things:</p>
+      <ul>
+        <li>Raw HTML controls where a Scale component exists</li>
+        <li>Hardcoded colours, spacing, type and motion that have tokens</li>
+        <li>Prop values outside a component&rsquo;s accepted set</li>
+        <li>Accessibility contracts the code does not meet</li>
+        <li>Missing imports</li>
+      </ul>
+      <p>Findings come back ordered by severity, with the token or component you should
+        have used named for you.</p>
+      <p>Most of these fail quietly. An invalid prop value renders the default instead of
+        throwing, so nothing surfaces at runtime and the page just looks slightly wrong.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Migrate an existing page</h2>
+      <p>Moving from Tailwind, Bootstrap or plain CSS works one piece at a time.</p>
+      <scd-demo code="Migrate the settings page from Tailwind to Scale."></scd-demo>
+      <p>The agent inventories every control first and shows you the mapping before editing
+        anything. Whatever has no Scale equivalent comes back as a list, because that is a
+        decision for you rather than something to improvise.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>What to expect</h2>
+      <p>The difference is measured, not asserted. Thirty realistic prompts, graded for
+        hardcoded values, raw HTML where a component exists, hallucinated tags and invalid
+        prop values:</p>
+      <sc-table-basic label="Measured effect of the guidance">
+        <sc-table-row header>
+          <sc-table-head>Setup</sc-table-head>
+          <sc-table-head>Clean output</sc-table-head>
+          <sc-table-head>Problems found</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>No guidance</sc-table-cell>
+          <sc-table-cell>37%</sc-table-cell>
+          <sc-table-cell>161</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Skills and catalog</sc-table-cell>
+          <sc-table-cell>57%</sc-table-cell>
+          <sc-table-cell>26</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell><strong>Skills, catalog and lookup</strong></sc-table-cell>
+          <sc-table-cell><strong>93%</strong></sc-table-cell>
+          <sc-table-cell><strong>3</strong></sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+      <p>Being able to look a component up is where most of the gain sits. Invalid prop
+        values drop from 15 to none once the agent can read the accepted values instead of
+        inventing them.</p>
+      <p>Treat the numbers as a large effect rather than a precise one. Repeat runs move by
+        several points, and this was measured through a coding agent rather than a bare
+        model.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Keeping it honest</h2>
+      <p>You never edit a guidance file. Each one is generated from the page it documents,
+        so the agent version and the human version are the same content by construction,
+        and a build fails if they fall out of step.</p>
+      <p>That matters because hand-written agent instructions rot. A prop changes, the
+        documentation is updated, the agent file is forgotten, and your tooling confidently
+        recommends something that no longer works.</p>
+    </div>
