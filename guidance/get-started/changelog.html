@@ -11,6 +11,46 @@
     </div>
 
     <div class="scd-section">
+      <h2>Scale v4.2</h2>
+      <p class="scd-changelog-meta">
+        <sc-badge status="positive">Published</sc-badge>
+        <time datetime="2026-08-28">28 August 2026</time>
+        <span class="scd-changelog-platform">Lit</span>
+      </p>
+      <h3>New</h3>
+      <ul>
+        <li><strong>Agent guidance</strong>: a Markdown file for every component and
+          foundation, 70 in all, carrying the prop contract and the judgment together.
+          Each is generated from the page it documents, so an agent file cannot drift from
+          what you read</li>
+        <li>Claude Code plugin bundling the MCP server with three skills:
+          <code class="scd-inline-code">scale-build</code>,
+          <code class="scd-inline-code">scale-review</code> and
+          <code class="scd-inline-code">scale-migrate</code>. One install wires up both</li>
+        <li><code class="scd-inline-code">get-component-guidance</code> on the MCP server,
+          returning one component at a time instead of the whole catalog</li>
+        <li>Guidance published on the site: every page serves its own at
+          <code class="scd-inline-code">&lt;page-url&gt;agent.md</code>, indexed at
+          <a href="/llms.txt">/llms.txt</a>, with the catalog at
+          <code class="scd-inline-code">/context/*.json</code></li>
+        <li>Agents page in Get Started, covering setup and the prompts to try</li>
+      </ul>
+      <h3>Updated</h3>
+      <ul>
+        <li>Properties tables now list the values a prop accepts. They showed the name of a
+          TypeScript type, which told a designer nothing. 81 props the generator was
+          silently dropping are back, including <code class="scd-inline-code">href</code> on
+          Button, and components exposing CSS custom properties gained a table for them</li>
+        <li>The guidelines page content moved into the package, so it travels with the
+          components it documents and an installed consumer has it offline</li>
+        <li>Typography foundation gained an accessibility section, covering body size,
+          respecting the reader&rsquo;s text setting, line height and length, and heading
+          order</li>
+        <li>A build check now fails if a guidance file falls out of step with its page</li>
+      </ul>
+    </div>
+
+    <div class="scd-section">
       <h2>Scale v4.1</h2>
       <p class="scd-changelog-meta">
         <sc-badge status="positive">Published</sc-badge>
