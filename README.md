@@ -19,7 +19,8 @@ Find out more and grab a licence for the Figma and Framer versions here: [www.sc
 - Form-associated inputs that work in real `<form>` submissions
 - Polymorphic `sc-button` that renders a real `<a>` when given an `href`
 - Shared theme controller with light/dark and brand-token retheming
-- MCP server + `components.json` / `tokens.json` / `patterns.json` for AI agents
+- Per-component guidance for coding agents, generated from the same pages humans
+  read, plus an MCP server and a Claude Code plugin — see [AI agent integration](#ai-agent-integration)
 
 ## Installation
 
@@ -49,17 +50,40 @@ element on import:
 
 ## AI agent integration
 
-Scale ships with machine-readable context so AI agents can query component APIs,
-tokens, and patterns directly — no guessing, no web search.
+Scale ships machine-readable context so agents can look up component APIs,
+tokens and patterns directly — no guessing, no web search.
 
 | File | Purpose |
 |---|---|
 | `context/AGENTS.md` | Agent entry point — rules, categories, quick reference |
-| `context/components.json` | Full component catalog — props, slots, events, examples |
+| `context/agents/*.md` | **One guidance file per component and foundation** — 70 of them, ~790 tokens each |
+| `context/components.json` | Full component catalog — props with their accepted values, slots, events, CSS API |
 | `context/tokens.json` | W3C DTCG design tokens |
 | `context/patterns.json` | Composition patterns with ready-to-use templates |
+| `guidance/` | The authored HTML fragments the guidance files and the docs site are both generated from |
 
-An MCP server is bundled for IDE integration (Cursor, Claude Code, Claude Desktop):
+### The per-component files
+
+`context/agents/sc-button.md` carries the contract in frontmatter — every prop
+with its real enum values, slots, events, CSS parts and custom properties — and
+the judgment in the body: when to use it, when not to, do and don't, worked
+examples, the accessibility contract.
+
+Nothing in them is hand-written. They are generated from `guidance/`, the same
+source that renders the human documentation, so an agent file cannot drift from
+the page a person reads — it *is* that page. CI fails on a stale one.
+
+Three ways to reach the same file, so this is not tied to one vendor's protocol:
+
+1. **MCP** — `get-component-guidance` (below)
+2. **Installed package** — `node_modules/@scale-ds/scale-design-system/context/agents/sc-button.md`
+3. **Web** — `https://scaledesignsystem.com/components/button/agent.md`, indexed at [`/llms.txt`](https://scaledesignsystem.com/llms.txt)
+
+An editor with no MCP support still gets the full guidance.
+
+### MCP server
+
+Bundled for Cursor, Claude Code and Claude Desktop:
 
 ```json
 {
@@ -71,6 +95,46 @@ An MCP server is bundled for IDE integration (Cursor, Claude Code, Claude Deskto
   }
 }
 ```
+
+Tools: `get-component-guidance` (**start here when writing code** — one
+component's full guidance, ~1k tokens instead of the ~26k the whole catalog
+costs), `list-components`, `get-component`, `search-components`, `get-tokens`,
+`get-patterns`, `get-component-example`, `get-dependencies`. Full table in
+[`mcp/README.md`](mcp/README.md).
+
+### Claude Code plugin
+
+The skills matter more than the server. An MCP tool is inert until something
+decides to call it, and an agent with the server installed will still write
+`<button style="background:#0055ff">` unless something tells it not to.
+
+Installing the plugin from this repo wires up both at once:
+
+| Skill | For |
+|---|---|
+| `scale-build` | Building UI — check the catalog, read the guidance, compose, style with tokens, verify |
+| `scale-review` | Auditing existing code for hardcoded values, raw controls, invalid props, missing a11y |
+| `scale-migrate` | Converting from Tailwind, plain HTML, or another library |
+
+### Does it work?
+
+Measured, not assumed. 30 realistic prompts, graded structurally for hardcoded
+values, raw HTML where an `sc-*` exists, hallucinated tags and invalid prop
+values ([`eval/`](eval/README.md)):
+
+| | clean output | findings |
+|---|---|---|
+| No guidance | 11/30 (37%) | 161 |
+| Rules + catalog | 17/30 (57%) | 26 |
+| **Rules + catalog + lookup** | **28/30 (93%)** | **3** |
+
+Being able to look a component up is where the value is. Invalid prop values —
+`size="large"`, `type="ghost"` — go from 15 to zero once the agent can read the
+enum values rather than guess them.
+
+Caveats kept with the number: run-to-run variance is wide at this sample size,
+so read it as a large effect with an imprecise magnitude, and it was measured
+through a coding agent rather than a raw API call.
 
 ## Theming
 
@@ -168,12 +232,22 @@ queue options and the agent workflow.
 npm run build             # Compile TypeScript (components + bundled MCP server)
 npm run build:watch       # Watch mode
 npm run generate:context  # Regenerate components.json from source
+npm run generate:agents   # Regenerate context/agents/ from guidance/ + components.json
 npm run check:motion      # Guard the SCSS/TS keyframe mirror and the motion tokens
+npm run check:agents      # Fail if context/agents/ is stale or a fragment breaks the schema
+npm run check:grader      # Eval grader self-test (deterministic, no API cost)
+npm run eval              # Guided-vs-baseline eval. Costs tokens — see eval/README.md
 ```
 
+`context/` is generated **and** committed, so the only thing keeping it honest is
+that CI regenerates it and fails on a difference. After editing a component run
+`generate:context`; after editing a fragment in `guidance/` run
+`generate:agents`. Never hand-edit anything under `context/agents/` — the next
+run overwrites it.
+
 The package builds on install via `prepare` and ships compiled `dist/` (plus
-`scss/`, `context/`, `assets/`, `mcp/dist/`), so `github:` installs resolve
-`@scale-ds/scale-design-system/components/*` with no manual build step.
+`scss/`, `context/`, `guidance/`, `assets/`, `mcp/dist/`), so `github:` installs
+resolve `@scale-ds/scale-design-system/components/*` with no manual build step.
 
 ## Contributing
 
