@@ -7,6 +7,22 @@ version, and the Figma and Framer counterparts track it at major.minor.
 Design-history for releases before 4.0 (the Figma-only 1.0–3.2 line) lives on
 the [site changelog](https://scaledesignsystem.com/get-started/changelog/).
 
+## [4.2.0](https://github.com/ScaleDS/scale-design-system/compare/v4.1.0...v4.2.0) (2026-08-29)
+
+
+### Features
+
+* **eval:** add a lookup condition, and record the result ([d9623dd](https://github.com/ScaleDS/scale-design-system/commit/d9623dd00992c8aebd73a88e845fa0ed62b56324))
+* **plugin:** ship scale-build, scale-review and scale-migrate ([248ff76](https://github.com/ScaleDS/scale-design-system/commit/248ff7659975fb8a9c163d3ab8f06c65ed75e545))
+
+
+### Bug Fixes
+
+* **ci:** bump the catalog version with the package version ([d99e8ea](https://github.com/ScaleDS/scale-design-system/commit/d99e8eac31da8d3976233d9fa4385ab97c48dfe0))
+* **eval:** don't report a delta when requests failed ([cac6374](https://github.com/ScaleDS/scale-design-system/commit/cac6374959ddf55f7e0406fc06f6be7cb5e282fd))
+* **eval:** isolate the CLI runs from the machine's MCP config ([8c8a738](https://github.com/ScaleDS/scale-design-system/commit/8c8a738871d29edb5dcc4b52f3d1b2a8c2e5f66e))
+* **plugin:** add the marketplace manifest, without which it cannot be installed ([e73df89](https://github.com/ScaleDS/scale-design-system/commit/e73df894120b43f8882fdbf7c4ab8ad463a09ef4))
+
 ## [4.1.0](https://github.com/ScaleDS/scale-design-system/compare/v4.0.0...v4.1.0) (2026-08-16)
 
 
