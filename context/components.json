@@ -1,6 +1,6 @@
 {
   "name": "@scale-ds/scale-design-system",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "framework": "lit",
   "description": "Scale Design System — A Lit-based agentic design system with machine-readable context for AI and human developers",
   "components": [
