@@ -23,6 +23,44 @@ the [site changelog](https://scaledesignsystem.com/get-started/changelog/).
 * **eval:** isolate the CLI runs from the machine's MCP config ([8c8a738](https://github.com/ScaleDS/scale-design-system/commit/8c8a738871d29edb5dcc4b52f3d1b2a8c2e5f66e))
 * **plugin:** add the marketplace manifest, without which it cannot be installed ([e73df89](https://github.com/ScaleDS/scale-design-system/commit/e73df894120b43f8882fdbf7c4ab8ad463a09ef4))
 
+### Agent tooling (4.2)
+
+The bulk of this release landed as `chore:` commits and so is absent from the
+generated sections above. It is the substance of 4.2:
+
+New:
+
+- 70 per-component and per-foundation guidance files in `context/agents/`,
+  generated from `guidance/` rather than written by hand, so an agent file
+  cannot drift from the page a person reads
+- Claude Code plugin bundling the MCP server with three skills: `scale-build`,
+  `scale-review`, `scale-migrate`
+- `get-component-guidance` on the MCP server, roughly a thousand tokens for one
+  component against twenty-six thousand for the whole catalog
+- `guidance/` ships in the package, so the docs site and any consumer read the
+  same authored source
+- Published on the site at `<page-url>agent.md`, indexed by `/llms.txt`, with
+  the catalog at `/context/*.json`
+
+Updated:
+
+- `components.json` now resolves union types to their accepted values, recovers
+  81 props the generator was silently dropping (`href`, `target` and `rel` on
+  `sc-button` among them), de-duplicates CSS parts, and adds per-component CSS
+  custom properties and derived accessibility data
+- The site's Properties tables show accepted values instead of TypeScript type
+  names, and gained a CSS Properties table for the eleven components that
+  expose one
+- Typography foundation gained an accessibility section
+- `npm run check:agents` fails the build when a guidance file goes stale, and
+  the repo gained its first CI workflow beyond release automation
+
+Measured effect on agent output, 30 prompts graded for hardcoded values, raw
+HTML where a component exists, hallucinated tags and invalid prop values:
+37% clean with no guidance, 57% with the rules and catalog, 93% with lookup.
+Findings fell from 161 to 3. Treat it as a large effect with an imprecise
+magnitude; repeat runs move by several points.
+
 ## [4.1.0](https://github.com/ScaleDS/scale-design-system/compare/v4.0.0...v4.1.0) (2026-08-16)
 
 
