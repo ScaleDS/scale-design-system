@@ -3,6 +3,14 @@
   "release-type": "node",
   "include-component-in-tag": false,
   "packages": {
-    ".": {}
+    ".": {
+      "extra-files": [
+        {
+          "type": "json",
+          "path": "context/components.json",
+          "jsonpath": "$.version"
+        }
+      ]
+    }
   }
 }
