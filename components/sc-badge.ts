@@ -74,8 +74,8 @@ export class ScBadge extends LitElement {
     svg {
       display: block;
       flex-shrink: 0;
-      width: 16px;
-      height: 16px;
+      width: var(--sc-size-icon-s);
+      height: var(--sc-size-icon-s);
     }
   `
 

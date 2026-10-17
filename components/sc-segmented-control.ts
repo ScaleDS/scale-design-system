@@ -125,8 +125,8 @@ export class ScSegmentedControl extends LitElement {
 
     .segment svg {
       display: block;
-      width: 20px;
-      height: 20px;
+      width: var(--sc-size-icon-m);
+      height: var(--sc-size-icon-m);
       color: currentColor;
     }
 

@@ -93,22 +93,22 @@ export class ScTag extends LitElement {
     .close {
       display: inline-flex;
       flex-shrink: 0;
-      width: 16px;
-      height: 16px;
+      width: var(--sc-size-icon-s);
+      height: var(--sc-size-icon-s);
       color: var(--sc-color-icon-primary);
     }
 
     .icon svg,
     .close svg {
       display: block;
-      width: 16px;
-      height: 16px;
+      width: var(--sc-size-icon-s);
+      height: var(--sc-size-icon-s);
     }
 
     .avatar {
       flex-shrink: 0;
-      width: 16px;
-      height: 16px;
+      width: var(--sc-size-icon-s);
+      height: var(--sc-size-icon-s);
       border-radius: 50%;
       object-fit: cover;
     }

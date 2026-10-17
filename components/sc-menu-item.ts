@@ -71,15 +71,15 @@ export class ScMenuItem extends LitElement {
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
+      width: var(--sc-size-icon-l);
+      height: var(--sc-size-icon-l);
       color: var(--sc-color-icon-primary);
     }
 
     .icon svg {
       display: block;
-      width: 20px;
-      height: 20px;
+      width: var(--sc-size-icon-m);
+      height: var(--sc-size-icon-m);
     }
 
     .label {

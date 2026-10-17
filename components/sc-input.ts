@@ -299,8 +299,8 @@ export class ScInput extends LitElement {
       justify-content: center;
       flex-shrink: 0;
       color: var(--sc-color-icon-primary);
-      width: 24px;
-      height: 24px;
+      width: var(--sc-size-icon-l);
+      height: var(--sc-size-icon-l);
     }
 
     :host([state='disabled']) .icon {
@@ -309,8 +309,8 @@ export class ScInput extends LitElement {
 
     .icon svg {
       display: block;
-      width: 20px;
-      height: 20px;
+      width: var(--sc-size-icon-m);
+      height: var(--sc-size-icon-m);
     }
   `]
 

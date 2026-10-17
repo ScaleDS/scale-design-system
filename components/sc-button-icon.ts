@@ -52,8 +52,8 @@ export class ScButtonIcon extends LitElement {
       border-radius: var(--sc-button-icon-radius, var(--sc-border-radius-xl));
     }
     :host([size='l']) svg {
-      width: var(--sc-button-icon-glyph-size, 24px);
-      height: var(--sc-button-icon-glyph-size, 24px);
+      width: var(--sc-button-icon-glyph-size, var(--sc-size-icon-l));
+      height: var(--sc-button-icon-glyph-size, var(--sc-size-icon-l));
     }
 
     :host([size='s']) button {
@@ -61,8 +61,8 @@ export class ScButtonIcon extends LitElement {
       border-radius: var(--sc-button-icon-radius, var(--sc-border-radius-l));
     }
     :host([size='s']) svg {
-      width: var(--sc-button-icon-glyph-size, 16px);
-      height: var(--sc-button-icon-glyph-size, 16px);
+      width: var(--sc-button-icon-glyph-size, var(--sc-size-icon-s));
+      height: var(--sc-button-icon-glyph-size, var(--sc-size-icon-s));
     }
 
     /* ---- Types ---- */

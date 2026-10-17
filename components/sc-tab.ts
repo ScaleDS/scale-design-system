@@ -30,7 +30,8 @@ export class ScTab extends LitElement {
       align-items: center;
       justify-content: center;
       gap: var(--sc-space-xs);
-      height: 40px;
+      /* 3XL, so the bar follows density with its label. */
+      height: var(--sc-space-3xl);
       padding: 0 var(--sc-space-s);
       /* 2px selected indicator; transparent by default so there's no layout
          shift between states. Pulled down 1px to overlap the nav's bottom line. */
@@ -69,8 +70,8 @@ export class ScTab extends LitElement {
     ::slotted([slot='prefix']),
     ::slotted([slot='suffix']) {
       display: inline-flex;
-      width: 24px;
-      height: 24px;
+      width: var(--sc-size-icon-l);
+      height: var(--sc-size-icon-l);
     }
   `
 

@@ -1,0 +1,74 @@
+/* Scale: Density Variables */
+@use './sc-variables-unit';
+
+/* Compact density: every size tier steps down one place, so a component that
+   reads its sizes from tokens gets denser with no change of its own. Put
+   data-density="compact" on <html> or on any element to make that subtree
+   compact. Without the attribute, the default sizes in the spacing, border,
+   type and size files apply.
+
+   Must load after those files: on <html> this block and theirs tie on
+   specificity, so the later one wins. Colour, border width, shadow, motion and
+   letter spacing don't change with density. */
+[data-density='compact'] {
+  /* Spacing: 2XS is the floor, so XS joins it at 2px. */
+  --sc-space-xs: var(--sc-unit-2);
+  --sc-space-s: var(--sc-unit-4);
+  --sc-space-m: var(--sc-unit-8);
+  --sc-space-l: var(--sc-unit-12);
+  --sc-space-xl: var(--sc-unit-16);
+  --sc-space-2xl: var(--sc-unit-24);
+  --sc-space-3xl: var(--sc-unit-32);
+  --sc-space-4xl: var(--sc-unit-40);
+  --sc-space-5xl: var(--sc-unit-48);
+  --sc-space-6xl: var(--sc-unit-56);
+  --sc-space-7xl: var(--sc-unit-64);
+  --sc-space-8xl: var(--sc-unit-72);
+
+  /* Radius: pill and circle stay round. */
+  --sc-border-radius-xs: var(--sc-unit-2);
+  --sc-border-radius-s: var(--sc-unit-4);
+  --sc-border-radius-m: var(--sc-unit-8);
+  --sc-border-radius-l: var(--sc-unit-12);
+  --sc-border-radius-xl: var(--sc-unit-16);
+  --sc-border-radius-2xl: var(--sc-unit-24);
+  --sc-border-radius-3xl: var(--sc-unit-32);
+  --sc-border-radius-4xl: var(--sc-unit-40);
+  --sc-border-radius-5xl: var(--sc-unit-48);
+  --sc-border-radius-6xl: var(--sc-unit-56);
+
+  /* Type size: XS (10px) is the floor, and S takes 11px between it and M. */
+  --sc-type-size-s: var(--sc-unit-11);
+  --sc-type-size-m: var(--sc-unit-12);
+  --sc-type-size-l: var(--sc-unit-14);
+  --sc-type-size-xl: var(--sc-unit-16);
+  --sc-type-size-2xl: var(--sc-unit-18);
+  --sc-type-size-3xl: var(--sc-unit-20);
+  --sc-type-size-4xl: var(--sc-unit-24);
+  --sc-type-size-5xl: var(--sc-unit-28);
+  --sc-type-size-6xl: var(--sc-unit-32);
+  --sc-type-size-7xl: var(--sc-unit-40);
+  --sc-type-size-8xl: var(--sc-unit-48);
+  --sc-type-size-9xl: var(--sc-unit-56);
+  --sc-type-size-10xl: var(--sc-unit-64);
+
+  --sc-type-line-height-xs: var(--sc-unit-12);
+  --sc-type-line-height-s: var(--sc-unit-14);
+  --sc-type-line-height-m: var(--sc-unit-16);
+  --sc-type-line-height-l: var(--sc-unit-20);
+  --sc-type-line-height-xl: var(--sc-unit-24);
+  --sc-type-line-height-2xl: var(--sc-unit-26);
+  --sc-type-line-height-3xl: var(--sc-unit-28);
+  --sc-type-line-height-4xl: var(--sc-unit-32);
+  --sc-type-line-height-5xl: var(--sc-unit-36);
+  --sc-type-line-height-6xl: var(--sc-unit-40);
+  --sc-type-line-height-7xl: var(--sc-unit-48);
+  --sc-type-line-height-8xl: var(--sc-unit-56);
+  --sc-type-line-height-9xl: var(--sc-unit-64);
+  --sc-type-line-height-10xl: var(--sc-unit-72);
+
+  /* Icon */
+  --sc-size-icon-s: var(--sc-unit-12);
+  --sc-size-icon-m: var(--sc-unit-16);
+  --sc-size-icon-l: var(--sc-unit-20);
+}

@@ -15,7 +15,7 @@ type SpinnerType = 'primary' | 'negative' | 'mono' | 'inverse'
 // scaling tricks. Colours come from the Border/* tokens.
 @customElement('sc-spinner')
 export class ScSpinner extends LitElement {
-  /** Diameter: `l` = 48px, `s` = 24px. */
+  /** Diameter: `l` = 48px, `s` = 24px (20px in compact density). */
   @property({ reflect: true }) size: SpinnerSize = 'l'
   /** Colour variant. `inverse` is for dark backgrounds. */
   @property({ reflect: true }) type: SpinnerType = 'primary'
@@ -39,7 +39,7 @@ export class ScSpinner extends LitElement {
     }
 
     :host([size='l']) { width: 48px; height: 48px; }
-    :host([size='s']) { width: 24px; height: 24px; }
+    :host([size='s']) { width: var(--sc-size-icon-l); height: var(--sc-size-icon-l); }
 
     svg {
       width: 100%;

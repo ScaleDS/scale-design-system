@@ -1,0 +1,10 @@
+/* Scale: Size Variables */
+@use './sc-variables-unit';
+
+/* Icon: the glyph box an icon draws in. Read these rather than a fixed px
+   size so icons follow density with the text beside them. */
+:root {
+  --sc-size-icon-s: var(--sc-unit-16);
+  --sc-size-icon-m: var(--sc-unit-20);
+  --sc-size-icon-l: var(--sc-unit-24);
+}

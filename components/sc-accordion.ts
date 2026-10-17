@@ -75,8 +75,8 @@ export class ScAccordion extends LitElement {
 
     .chevron {
       flex-shrink: 0;
-      width: 24px;
-      height: 24px;
+      width: var(--sc-size-icon-l);
+      height: var(--sc-size-icon-l);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -92,8 +92,8 @@ export class ScAccordion extends LitElement {
 
     .chevron svg {
       display: block;
-      width: 24px;
-      height: 24px;
+      width: var(--sc-size-icon-l);
+      height: var(--sc-size-icon-l);
     }
   `]
 

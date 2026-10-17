@@ -513,7 +513,7 @@
         },
         {
           "name": "--sc-button-icon-glyph-size",
-          "default": "24px"
+          "default": "var(--sc-size-icon-l)"
         },
         {
           "name": "--sc-button-icon-color",

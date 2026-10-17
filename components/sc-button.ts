@@ -67,8 +67,8 @@ export class ScButton extends LitElement {
       ${labelL}
     }
     :host([size='l']) svg {
-      width: 24px;
-      height: 24px;
+      width: var(--sc-size-icon-l);
+      height: var(--sc-size-icon-l);
     }
 
     :host([size='m']) :is(button, a) {
@@ -77,8 +77,8 @@ export class ScButton extends LitElement {
       ${labelM}
     }
     :host([size='m']) svg {
-      width: 20px;
-      height: 20px;
+      width: var(--sc-size-icon-m);
+      height: var(--sc-size-icon-m);
     }
 
     :host([size='s']) :is(button, a) {
@@ -87,8 +87,8 @@ export class ScButton extends LitElement {
       ${labelS}
     }
     :host([size='s']) svg {
-      width: 16px;
-      height: 16px;
+      width: var(--sc-size-icon-s);
+      height: var(--sc-size-icon-s);
     }
 
     /* ---- Text-only type variants (specific to sc-button) ---- */

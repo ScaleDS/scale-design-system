@@ -26,8 +26,8 @@ export class ScCheckboxItem extends LitElement {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 24px;
-      height: 24px;
+      width: var(--sc-size-icon-l);
+      height: var(--sc-size-icon-l);
       padding: 0;
       appearance: none;
       -webkit-appearance: none;
@@ -99,8 +99,8 @@ export class ScCheckboxItem extends LitElement {
 
     .icon svg {
       display: block;
-      width: 16px;
-      height: 16px;
+      width: var(--sc-size-icon-s);
+      height: var(--sc-size-icon-s);
     }
 
     :host([checked]) .icon-check,
