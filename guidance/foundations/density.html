@@ -1,0 +1,135 @@
+    <div class="scd-page-header">
+      <h1>Density</h1>
+      <div class="scd-page-header-text">
+        <p>Density sets how much fits in a space. Scale has two densities:
+          <strong>Default</strong>, sized for reading and touch, and
+          <strong>Compact</strong>, for dense tools such as editors, dashboards and
+          data tables. Compact works like a theme: put
+          <code class="scd-inline-code">data-density="compact"</code> on
+          <code class="scd-inline-code">&lt;html&gt;</code> or on any element, and every
+          component inside it gets smaller with no change to its markup.</p>
+      </div>
+      <scd-resources
+        lit="https://github.com/ScaleDS/scale-design-system/blob/main/scss/sc-variables-density.scss"></scd-resources>
+    </div>
+
+    <div class="scd-section">
+      <h2>How it works</h2>
+      <p>Components read their sizes from the spacing, radius, type and icon tokens,
+        never from fixed pixels. Compact moves each of those tokens one step down
+        its own scale, so <code class="scd-inline-code">--sc-space-m</code> takes the
+        value of <code class="scd-inline-code">--sc-space-s</code>, and
+        <code class="scd-inline-code">--sc-type-size-m</code> takes the value of
+        <code class="scd-inline-code">--sc-type-size-s</code>. A medium button goes
+        from 36px to 24px tall, and its label from 14px to 12px.</p>
+      <p>Colour, border width, shadow, motion and letter spacing stay the same in
+        both densities. The smallest steps have a floor:
+        <code class="scd-inline-code">--sc-space-2xs</code> stays 2px and
+        <code class="scd-inline-code">--sc-type-size-xs</code> stays 10px, so
+        Compact never shrinks text below a legible size.</p>
+    </div>
+
+    <div class="scd-section">
+      <h2>Examples</h2>
+      <h3>A compact region</h3>
+      <p>The attribute applies to everything inside the element that carries it, so a
+        dense panel can sit inside a page at default density.</p>
+      <scd-demo>
+        <div style="display: flex; flex-direction: column; gap: var(--sc-space-l)">
+          <sc-button-group gap="s">
+            <sc-button size="m" leading-icon="plus">Default</sc-button>
+            <sc-button size="m" type="secondary">Cancel</sc-button>
+          </sc-button-group>
+          <div data-density="compact">
+            <sc-button-group gap="s">
+              <sc-button size="m" leading-icon="plus">Compact</sc-button>
+              <sc-button size="m" type="secondary">Cancel</sc-button>
+            </sc-button-group>
+          </div>
+        </div>
+      </scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h3>A compact page</h3>
+      <p>Set it on the root to make a whole app compact, alongside the theme.</p>
+      <scd-demo code="&lt;html data-theme=&quot;dark&quot; data-density=&quot;compact&quot;&gt;"></scd-demo>
+    </div>
+
+    <div class="scd-section">
+      <h2>What changes</h2>
+      <p>Every step of these tiers moves down one place. The full list of compact
+        values is the <code class="scd-inline-code">density.compact</code> group in
+        <code class="scd-inline-code">context/tokens.json</code>.</p>
+      <sc-table-basic class="scd-type-primitive-table" label="Tokens that change with density">
+        <sc-table-row header slot="header">
+          <sc-table-head width="max-content">Tier</sc-table-head>
+          <sc-table-head width="minmax(0,1fr)">Example</sc-table-head>
+          <sc-table-head width="max-content">Default</sc-table-head>
+          <sc-table-head width="max-content">Compact</sc-table-head>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Spacing</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-space-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">12px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">8px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Radius</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-border-radius-s</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">8px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">4px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Type size</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-size-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">14px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">12px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Line height</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-type-line-height-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">20px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+        <sc-table-row>
+          <sc-table-cell>Icon size</sc-table-cell>
+          <sc-table-cell><code class="scd-inline-code scd-t-text-m">--sc-size-icon-m</code></sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">20px</sc-table-cell>
+          <sc-table-cell class="scd-type-primitive-value">16px</sc-table-cell>
+        </sc-table-row>
+      </sc-table-basic>
+    </div>
+
+    <div class="scd-section">
+      <h2>Guidelines</h2>
+      <div class="scd-guidelines">
+        <div class="scd-guideline">
+          <h3>Do</h3>
+          <ul>
+            <li>Use Compact for tools people work in all day with a mouse and keyboard: editors, admin panels, dashboards, data tables.</li>
+            <li>Set the density once, on the root or on a whole region, rather than on single components.</li>
+            <li>Size your own UI with the same tokens (<code class="scd-inline-code">--sc-space-*</code>, <code class="scd-inline-code">--sc-type-size-*</code>, <code class="scd-inline-code">--sc-size-icon-*</code>) so it follows the density too.</li>
+            <li>Check a compact screen in both themes, as you would any other change.</li>
+          </ul>
+        </div>
+        <div class="scd-guideline">
+          <h3>Don&rsquo;t</h3>
+          <ul>
+            <li>Don&rsquo;t use Compact for marketing pages, long reading or touch-first screens; Default is sized for those.</li>
+            <li>Don&rsquo;t mix densities inside one control group, such as a toolbar or a form row.</li>
+            <li>Don&rsquo;t size icons or controls in fixed pixels; they won&rsquo;t follow the density and will look out of scale beside everything else.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="scd-section">
+      <h2>Accessibility</h2>
+      <ul>
+        <li><strong>Target size:</strong> compact controls are smaller than the 44&times;44px touch target, so keep Compact to pointer-first interfaces. Where a compact screen may be used by touch, add space around controls or leave that screen at Default.</li>
+        <li><strong>Text size:</strong> compact body text is 12px and the smallest text is 10px. Don&rsquo;t go smaller, and keep long passages of text at Default.</li>
+        <li><strong>Zoom:</strong> every size is a token, so browser zoom and text scaling still work in Compact. Check that layouts hold at 200% zoom.</li>
+        <li><strong>Contrast:</strong> density doesn&rsquo;t change colour, so contrast holds; smaller text still needs 4.5:1.</li>
+      </ul>
+    </div>

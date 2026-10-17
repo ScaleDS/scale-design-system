@@ -10,6 +10,7 @@ Scale is a **Lit web component** design system. When generating code that uses `
 - Components auto-register when imported — no manual `customElements.define` needed
 - Styling uses CSS custom properties (`--sc-*`) — never hardcode colors, spacing, or fonts
 - All components support light/dark themes via `data-theme` attribute on `<html>`
+- All components support a compact density via `data-density="compact"` on `<html>` or any element
 
 ## Rules
 
@@ -39,7 +40,21 @@ Read `context/tokens.json` for all design tokens in W3C DTCG format:
 - **Border**: Radius scale (none to pill) and width scale (none to 2xl)
 - **Shadows**: 4 elevation levels (l1-l4)
 - **Breakpoints**: mobile (402px), tablet (810px), desktop (1440px)
+- **Size**: `--sc-size-icon-{s,m,l}`, the glyph box an icon draws in
+- **Density**: the `density.compact` group, the values the size tiers take under `data-density="compact"` (see Density below)
 - **Motion**: Durations, easings, composite transitions, loops, distances and scales (see Motion below)
+
+## Density
+
+`data-density="compact"` moves every size tier one step down its scale: spacing, radius, type size, line height and icon size. A medium button goes from 36px to 24px tall. It applies to the element that carries it and everything inside, like `data-theme`. Colour, border width, shadow and motion don't change.
+
+- Use Compact for pointer-first tools: editors, admin panels, dashboards, data tables. Keep Default for marketing pages, long reading and touch.
+- Set it once, on `<html>` or a whole region, never per component.
+- Size your own UI with the tokens (`--sc-space-*`, `--sc-type-size-*`, `--sc-size-icon-*`), never fixed px, so it follows the density.
+
+```html
+<html data-theme="dark" data-density="compact">
+```
 
 
 ## Motion
@@ -115,6 +130,11 @@ import '@scale-ds/scale-design-system'
 ### Theme setup
 ```html
 <html data-theme="light"> <!-- or "dark" -->
+```
+
+### Density setup
+```html
+<html data-theme="light" data-density="compact"> <!-- omit data-density for the default -->
 ```
 
 ## Component Categories

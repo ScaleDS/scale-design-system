@@ -19,6 +19,7 @@ Find out more and grab a licence for the Figma and Framer versions here: [www.sc
 - Form-associated inputs that work in real `<form>` submissions
 - Polymorphic `sc-button` that renders a real `<a>` when given an `href`
 - Shared theme controller with light/dark and brand-token retheming
+- A compact density for dense tools, set with one attribute like the theme
 - Per-component guidance for coding agents, generated from the same pages humans
   read, plus an MCP server and a Claude Code plugin — see [AI agent integration](#ai-agent-integration)
 
@@ -167,6 +168,19 @@ both themes retheme at once and honour `prefers-color-scheme`.
 Light/dark is driven by `data-theme` on `<html>` and a shared `ThemeController`.
 See the [Color foundation](https://scaledesignsystem.com/foundations/color/) for
 the full token reference.
+
+## Density
+
+Put `data-density="compact"` on `<html>`, or on any element, for a denser UI: every
+size tier (spacing, radius, type size, line height and icon size) steps down one place,
+so a medium button goes from 36px to 24px tall. It's meant for editors, dashboards
+and data tables used with a mouse and keyboard; keep the default for reading and touch.
+
+```html
+<html data-theme="dark" data-density="compact">
+```
+
+See the [Density foundation](https://scaledesignsystem.com/foundations/density/).
 
 ## Motion
 
