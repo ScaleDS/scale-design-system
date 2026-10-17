@@ -37,8 +37,8 @@
   --sc-border-radius-5xl: var(--sc-unit-48);
   --sc-border-radius-6xl: var(--sc-unit-56);
 
-  /* Type size: XS (10px) is the floor, and S takes 11px between it and M. */
-  --sc-type-size-s: var(--sc-unit-11);
+  /* Type size: XS is the floor, so S joins it at 10px. Every size stays even. */
+  --sc-type-size-s: var(--sc-unit-10);
   --sc-type-size-m: var(--sc-unit-12);
   --sc-type-size-l: var(--sc-unit-14);
   --sc-type-size-xl: var(--sc-unit-16);
