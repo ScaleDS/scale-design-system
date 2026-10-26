@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 import { readFileSync, readdirSync, writeFileSync } from 'fs'
+import { createRequire } from 'module'
 import { join } from 'path'
 
 const componentsDir = join(process.cwd(), 'components')
 const outputFile = join(process.cwd(), 'context', 'components.json')
+const iconsFile = join(process.cwd(), 'context', 'icons.json')
 
 const pkg = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf-8'))
 
@@ -407,6 +409,20 @@ function parseComponent(filePath) {
     props[name] = prop
   }
 
+  // A prop is an icon when its value is drawn as a Feather icon: passed to
+  // featherIcon(), directly or through a helper that does, here. A prop
+  // forwarded to another component's icon prop is marked in a second pass,
+  // once every component is parsed.
+  const drawers = ['featherIcon', ...[...content.matchAll(
+    /(?:private\s+|protected\s+)?(\w+)\(\s*(\w+)\s*:\s*string\s*\)[^{]*\{\s*return\s+featherIcon\(\s*\2\b/g,
+  )].map(m => m[1])]
+  for (const m of content.matchAll(new RegExp(`(?:${drawers.join('|')})\\(\\s*this\\.(\\w+)`, 'g'))) {
+    if (props[m[1]]) props[m[1]].format = 'icon'
+  }
+  const forwards = [...content.matchAll(/<(sc-[a-z-]+)\b[^>]*/g)].flatMap(tag =>
+    [...tag[0].matchAll(/\s([a-z-]+)=\$\{this\.(\w+)/g)].map(m => ({ child: tag[1], attribute: m[1], prop: m[2] })),
+  )
+
   const slots = []
   const slotRegex = /<slot(?:\s+name="([^"]*)")?/g
   let slotMatch
@@ -453,12 +469,31 @@ function parseComponent(filePath) {
     a11y: parseA11y(content),
     dependencies: deps,
     example: `<${tagName}></${tagName}>`,
+    forwards,
   }
 }
 
 const components = componentFiles.map(f => parseComponent(join(componentsDir, f)))
 const componentTags = new Set(components.map(c => c.tag))
 for (const c of components) c.dependencies = c.dependencies.filter(d => componentTags.has(d))
+
+// A prop forwarded to another component's icon prop is an icon too (sc-hero's
+// primary-leading-icon becomes its button's leading-icon). Repeat until
+// nothing changes, so a chain of forwards resolves.
+const byTag = new Map(components.map(c => [c.tag, c]))
+for (let changed = true; changed;) {
+  changed = false
+  for (const c of components) {
+    for (const { child, attribute, prop } of c.forwards) {
+      const target = Object.values(byTag.get(child)?.props ?? {}).find(p => p.attribute === attribute)
+      if (target?.format === 'icon' && c.props[prop] && c.props[prop].format !== 'icon') {
+        c.props[prop].format = 'icon'
+        changed = true
+      }
+    }
+  }
+}
+for (const c of components) delete c.forwards
 
 const output = {
   name: pkg.name,
@@ -470,6 +505,22 @@ const output = {
 
 writeFileSync(outputFile, JSON.stringify(output, null, 2), 'utf-8')
 console.log(`Generated ${components.length} components → ${outputFile}`)
+
+// The icon set that props marked "format": "icon" take a name from: every
+// Feather icon the installed feather-icons draws, with its search tags and SVG.
+const require = createRequire(import.meta.url)
+const feather = require('feather-icons')
+const featherPackage = require('feather-icons/package.json')
+const iconSet = {
+  name: 'Feather',
+  version: featherPackage.version,
+  license: featherPackage.license,
+  icons: Object.values(feather.icons)
+    .map(icon => ({ name: icon.name, tags: icon.tags, svg: icon.toSvg() }))
+    .sort((a, b) => a.name.localeCompare(b.name)),
+}
+writeFileSync(iconsFile, JSON.stringify(iconSet, null, 2) + '\n', 'utf-8')
+console.log(`Generated ${iconSet.icons.length} icons → ${iconsFile}`)
 
 // Surface components missing hand-authored metadata.
 const uncovered = components
