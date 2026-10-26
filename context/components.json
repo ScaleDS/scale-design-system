@@ -236,7 +236,8 @@
           "type": "string",
           "default": "",
           "attribute": "icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         }
       },
       "slots": [
@@ -490,7 +491,8 @@
           "type": "string",
           "default": "circle",
           "attribute": "icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "label": {
           "type": "string",
@@ -580,13 +582,15 @@
           "type": "string",
           "default": "",
           "attribute": "leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "trailingIcon": {
           "type": "string",
           "default": "",
           "attribute": "trailing-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         }
       },
       "slots": [
@@ -660,13 +664,15 @@
           "type": "string",
           "default": "",
           "attribute": "leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "trailingIcon": {
           "type": "string",
           "default": "",
           "attribute": "trailing-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "href": {
           "type": "string",
@@ -1657,7 +1663,8 @@
           "type": "string",
           "default": "",
           "attribute": "primary-leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "secondaryLabel": {
           "type": "string",
@@ -1675,7 +1682,8 @@
           "type": "string",
           "default": "",
           "attribute": "secondary-leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "imageSrc": {
           "type": "string",
@@ -1914,13 +1922,15 @@
           "type": "string",
           "default": "",
           "attribute": "leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "trailingIcon": {
           "type": "string",
           "default": "",
           "attribute": "trailing-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "type": {
           "type": "string",
@@ -2166,13 +2176,15 @@
           "type": "string",
           "default": "",
           "attribute": "leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "trailingIcon": {
           "type": "string",
           "default": "",
           "attribute": "trailing-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         }
       },
       "slots": [
@@ -2532,13 +2544,15 @@
           "type": "string",
           "default": "",
           "attribute": "leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "trailingIcon": {
           "type": "string",
           "default": "",
           "attribute": "trailing-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "hideDivider": {
           "type": "boolean",
@@ -3302,13 +3316,15 @@
           "type": "string",
           "default": "",
           "attribute": "leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "trailingIcon": {
           "type": "string",
           "default": "",
           "attribute": "trailing-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "secondaryText": {
           "type": "string",
@@ -3760,7 +3776,8 @@
           "type": "string",
           "default": "",
           "attribute": "leading-icon",
-          "reflect": false
+          "reflect": false,
+          "format": "icon"
         },
         "avatar": {
           "type": "string",
